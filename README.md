@@ -11,10 +11,6 @@ java -jar Timesheets.jar
 
 The program is built in Java 8 in order for the application to work, a working installation of Java version 8 is necessary.
 
-```
-Give examples
-```
-
 ## Authors
 
 * **Danick Triantis** - Initial Work and Improvements - [CaptainKills](https://github.com/CaptainKills)
