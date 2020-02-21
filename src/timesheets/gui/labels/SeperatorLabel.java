@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import timesheets.gui.lists.FontList;
 
 public class SeperatorLabel extends JLabel{
+	private static final long serialVersionUID = 6505078244088230911L;
 
 	public SeperatorLabel(String c) {
 		super(c);

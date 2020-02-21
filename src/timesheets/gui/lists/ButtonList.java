@@ -48,6 +48,6 @@ public class ButtonList {
 	
 	public static JRadioButton adminEnableButton = new AdminRadioButton("Enable", false);
 	public static JRadioButton adminDisableButton = new AdminRadioButton("Disable", true);
-	private static ButtonGroup group = new AdminSelectionGroup();
+	public static ButtonGroup group = new AdminSelectionGroup();
 
 }

@@ -10,9 +10,11 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import timesheets.TimeHandler;
-import timesheets.gui.lists.*;
+import timesheets.gui.lists.FontList;
 
 public class LoginDisplayArea extends JTextArea{
+	private static final long serialVersionUID = -8427377108410611993L;
+	
 	private TimeHandler time = new TimeHandler();
 
 	public LoginDisplayArea() {

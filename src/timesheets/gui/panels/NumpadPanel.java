@@ -2,12 +2,15 @@ package timesheets.gui.panels;
 
 import java.awt.Color;
 
-import timesheets.gui.lists.*;
-
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
+import timesheets.gui.lists.ButtonList;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.TextFieldList;
+
 public class NumpadPanel extends JPanel{
+	private static final long serialVersionUID = -3100897625894870435L;
 
 	public NumpadPanel() {
 		super();

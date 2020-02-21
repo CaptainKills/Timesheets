@@ -3,9 +3,11 @@ package timesheets.gui.buttons;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import timesheets.gui.lists.*;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.FontList;
 
 public class AdminRadioButton extends JRadioButton{
+	private static final long serialVersionUID = 6317798246219219156L;
 
 	public AdminRadioButton(String text, Boolean onoff) {
 		super(text, onoff);

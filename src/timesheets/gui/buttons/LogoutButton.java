@@ -6,9 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import timesheets.gui.ExtendedHandler;
-import timesheets.gui.lists.*;
+import timesheets.gui.lists.ButtonList;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.PanelList;
+import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.TextFieldList;
 
 public class LogoutButton extends JButton{
+	private static final long serialVersionUID = -6786090739017183076L;
 
 	public LogoutButton() {
 		super("Logout");

@@ -1,14 +1,24 @@
 package timesheets.gui.buttons;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-import timesheets.*;
-import timesheets.gui.ExtendedHandler;
-import timesheets.gui.lists.*;
-import java.time.*;
 import javax.swing.JButton;
 
+import timesheets.DataHandler;
+import timesheets.Employee;
+import timesheets.TimeHandler;
+import timesheets.gui.ExtendedHandler;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.TextFieldList;
+
 public class EndShiftButton extends JButton{
+	private static final long serialVersionUID = 1690125966086841320L;
+	
 	private DataHandler data = new DataHandler();
 	private TimeHandler time = new TimeHandler();
 	

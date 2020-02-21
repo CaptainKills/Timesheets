@@ -3,9 +3,14 @@ package timesheets.gui.panels;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
-import timesheets.gui.lists.*;
+import timesheets.gui.lists.ButtonList;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.LabelList;
+import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.lists.UnusualsList;
 
 public class TestingPanel extends JPanel {
+	private static final long serialVersionUID = -3152890576497459265L;
 
 	public TestingPanel() {
 		super();

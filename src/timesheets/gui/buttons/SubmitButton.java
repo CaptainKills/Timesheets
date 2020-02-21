@@ -22,6 +22,7 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 
 public class SubmitButton extends JButton {
+	private static final long serialVersionUID = -2944959431303812446L;
 	
 	private int menuChoice;
 	private JTextField idField = TextFieldList.idField;

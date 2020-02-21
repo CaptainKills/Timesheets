@@ -1,9 +1,13 @@
 package timesheets.gui.textfields;
 
-import javax.swing.*;
-import timesheets.gui.lists.*;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.FontList;
 
 public class IDInputField extends JTextField{
+	private static final long serialVersionUID = -7437435542193984592L;
 
 	public IDInputField() {
 		super("");

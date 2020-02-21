@@ -6,10 +6,15 @@ import java.util.Map;
 
 import javax.swing.JComboBox;
 
-import timesheets.*;
-import timesheets.gui.lists.*;
+import timesheets.DataHandler;
+import timesheets.Employee;
+import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.TextFieldList;
 
 public class EmployeeBox<T> extends JComboBox<T>{
+	private static final long serialVersionUID = -8247944843862213418L;
+	
 	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
 
 	public EmployeeBox() {

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import timesheets.gui.lists.PanelList;
 
 public class MainPanel extends JPanel{
+	private static final long serialVersionUID = 7649238192790429353L;
 
 	public MainPanel() {
 		setVisible(true);

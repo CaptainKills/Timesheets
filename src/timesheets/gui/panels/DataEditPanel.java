@@ -1,9 +1,9 @@
 package timesheets.gui.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 
-import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.JPanel;
 
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
@@ -12,6 +12,7 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 
 public class DataEditPanel extends JPanel {
+	private static final long serialVersionUID = 5115383729678262568L;
 
 	public DataEditPanel() {
 		super();
