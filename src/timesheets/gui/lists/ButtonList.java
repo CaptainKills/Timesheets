@@ -46,8 +46,8 @@ public class ButtonList {
 	public static JButton idButton = new IDGeneratorButton();
 	public static JButton submitButton = new SubmitButton();
 	
-	private static ButtonGroup group = new AdminSelectionGroup();
 	public static JRadioButton adminEnableButton = new AdminRadioButton("Enable", false);
 	public static JRadioButton adminDisableButton = new AdminRadioButton("Disable", true);
+	private static ButtonGroup group = new AdminSelectionGroup();
 
 }
