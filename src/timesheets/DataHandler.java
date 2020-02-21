@@ -1,18 +1,30 @@
 package timesheets;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.*;
-import java.time.*;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DataHandler {
-	private final String filePath_EmployeeData = "EmployeeData.dat";
-	private final String filePath_TimeData = "TimeData.dat";
-	private final String filePath_Settings = "Settings.dat";
-	private File file_EmployeeData = new File(filePath_EmployeeData);
-	private File file_TimeData = new File(filePath_TimeData);
-	private File file_Settings = new File(filePath_Settings);
+	private final Path path_EmployeeData = Paths.get("data" + File.separator + "EmployeeData.dat").toAbsolutePath();
+	private final Path path_TimeData = Paths.get("data" + File.separator + "TimeData.dat").toAbsolutePath();
+	private final Path path_Settings = Paths.get("data" + File.separator + "Settings.dat").toAbsolutePath();
+	private File file_EmployeeData = path_EmployeeData.toFile();
+	private File file_TimeData = path_TimeData.toFile();
+	private File file_Settings = path_Settings.toFile();
 
 	private PrintWriter employeeWriter;
 	private PrintWriter timeWriter;
@@ -31,12 +43,6 @@ public class DataHandler {
 	private static final String setting_REGEX = "\\S+(?=[=])";
 	private static final String value_REGEX = "(?<=[=])\\S+";
 
-	private int import_ID;
-	private String import_Name;
-	private int import_Age;
-	private double import_Salary;
-	private Boolean import_Admin;
-
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
 	
@@ -50,13 +56,8 @@ public class DataHandler {
 			+ ""
 			+ "";
 	
-	private LinkedList<String> EmployeeData;
-	private TreeMap<LocalDate, LocalTime[]> import_WorkedTime;
-
-	private Random rand = new Random();
-	private String idString;
-	private int[] idNumbers = { 0, 0, 0, 0, 0 };
-	private int newID;
+	private final String defaultEmployeeData = "12345/Admin/1/0.0/true";
+	private final String defaultTimeData = "12345@";
 
 	public void loadDataFromFiles() {
 		checkFiles();
@@ -77,54 +78,62 @@ public class DataHandler {
 				extractSettings(newline);
 			}
 		} catch (IOException e) {
-			System.out.print("Could not read from file: " + e);
+			System.out.println("Could not read from file: " + e);
 		} finally {
 			try {
 				employeeReader.close();
 				timeReader.close();
 				settingsReader.close();
 			} catch (Exception e) {
-				System.out.print("Could not close reader: " + e);
+				System.out.println("Could not close reader: " + e);
 			}
 		}
 	}
 	
 	private void checkFiles() {
 		if (!file_EmployeeData.exists()) {
-			tryToCreateFile(filePath_EmployeeData, file_EmployeeData, employeeWriter);
+			tryToCreateFile(file_EmployeeData, employeeWriter);
 		}
 		if (!file_TimeData.exists()) {
-			tryToCreateFile(filePath_TimeData, file_TimeData, timeWriter);
+			tryToCreateFile(file_TimeData, timeWriter);
 		}
 		if (!file_Settings.exists()) {
-			tryToCreateFile(filePath_Settings, file_Settings, settingsWriter);
+			tryToCreateFile(file_Settings, settingsWriter);
 		}
 	}
 	
-	private void tryToCreateFile(String filepath, File file, PrintWriter writer) {
+	private void tryToCreateFile(File file, PrintWriter writer) {
 		try {
-			final Formatter formatter = new Formatter(filepath);
+			if(!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+			}
+			
+			file.createNewFile();
 			writer = new PrintWriter(file);
 			
-			if(filepath.equals(filePath_Settings)) {
+			if(file.getAbsolutePath() == path_Settings.toString()) {
 				writer.print(defaultSettings);
+			} else if(file.getAbsolutePath() == path_EmployeeData.toString()) {
+				writer.print(defaultEmployeeData);
+			} else if(file.getAbsolutePath() == path_TimeData.toString()) {
+				writer.print(defaultTimeData);
 			}
 			
 			writer.flush();
 			writer.close();
-			formatter.close();
 		} catch (Exception e) {
 			System.out.println("The file could not be created: " + e);
 		}
 	}
 	
 	private void assignDataToEmployee(String employee, String time) {
-		EmployeeData = extractDataViaRegex(emp_REGEX, employee);
-		import_ID = Integer.parseInt(EmployeeData.get(0));
-		import_Name = EmployeeData.get(1);
-		import_Age = Integer.parseInt(EmployeeData.get(2));
-		import_Salary = Double.parseDouble(EmployeeData.get(3));
-		import_Admin = Boolean.parseBoolean(EmployeeData.get(4));
+		LinkedList<String> EmployeeData = extractDataViaRegex(emp_REGEX, employee);
+		int import_ID = Integer.parseInt(EmployeeData.get(0));
+		String import_Name = EmployeeData.get(1);
+		int import_Age = Integer.parseInt(EmployeeData.get(2));
+		double import_Salary = Double.parseDouble(EmployeeData.get(3));
+		boolean import_Admin = Boolean.parseBoolean(EmployeeData.get(4));
+		TreeMap<LocalDate, LocalTime[]> import_WorkedTime;
 		
 		if (time.length() > 6) {
 			import_WorkedTime = getSavedTimeMap(time);
@@ -196,13 +205,12 @@ public class DataHandler {
 		checkFiles();
 		
 		try {
-			employeeWriter = new PrintWriter(filePath_EmployeeData);
-			timeWriter = new PrintWriter(filePath_TimeData);
-			settingsWriter = new PrintWriter(filePath_Settings);
+			employeeWriter = new PrintWriter(file_EmployeeData);
+			timeWriter = new PrintWriter(file_TimeData);
+			settingsWriter = new PrintWriter(file_Settings);
 			
 			writeDataToFile(employeeWriter, timeWriter);
 			writeSettingsToFile(settingsWriter);
-			
 		} catch (Exception e) {
 			System.out.println("Could not write to the file: " + e);
 		} finally {
@@ -233,8 +241,11 @@ public class DataHandler {
 	}
 
 	public int generateNewID() {
+		int newID;
+		int[] idNumbers = { 0, 0, 0, 0, 0 };
+		
 		for (int i = 0; i < 5; i++) {
-			idNumbers[i] = rand.nextInt(9);
+			idNumbers[i] = new Random().nextInt(9);
 		}
 		newID = convertIdArrayToInt(idNumbers);
 
@@ -246,7 +257,9 @@ public class DataHandler {
 	}
 	
 	private int convertIdArrayToInt(int[] generatedId) {
-		if (idNumbers[0] == 0) {
+		String idString = "";
+		
+		if (generatedId[0] == 0) {
 			idString = Integer.toString(generatedId[0] + 1) + Integer.toString(generatedId[1])
 					+ Integer.toString(generatedId[2]) + Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
 		} else {
