@@ -1,0 +1,19 @@
+# Windows
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Eclipse Java Folders
+.metadata
+bin/
+tmp/
+.settings/
+.recommenders/
+
+# Java Files
+*.class
+*.dat
+
+# Package Files
+*.zip
+*.rar
