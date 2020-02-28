@@ -77,7 +77,7 @@ public class SubmitButton extends JButton {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
 					"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
 
-			clearInputs();
+			ExtendedHandler.clearInputs();
 		}
 	}
 
