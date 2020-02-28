@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 
 	private JTextArea dateDisplay;
 	private JScrollPane scrollPane;
-	private JComboBox<String> employeeComboBox;
+//	private JComboBox<String> employeeComboBox;
 
 	private ButtonGroup adminSelectionGroup, dateSelectionGroup;
 	// numpadPanel buttons
@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 //	private Font infolabelFont = new Font("Arial", Font.BOLD, frameWidth / 64);
 	private Font normalFont = new Font("Arial", Font.PLAIN, frameWidth / 60);
 	private Font textDisplayFont = new Font("Arial", Font.PLAIN, frameWidth / 64);
-	private Font labelFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
+//	private Font labelFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
 
 	public MainFrame() {
 		super("Timesheets");
@@ -439,34 +439,34 @@ public class MainFrame extends JFrame {
 		});
 		menuPanel.add(editSheetButton);
 
-		editEmpButton = new JButton("Edit Employee");
-		editEmpButton.setPreferredSize(buttonSize_menu);
-		editEmpButton.setFont(buttonFont);
-		editEmpButton.setVisible(false);
-		editEmpButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				mainEmpLabelPanel.setVisible(true);
-				mainEmpControlPanel.setVisible(true);
-				dateControlPanel.setVisible(false);
-				dateDisplayPanel.setVisible(false);
-
-				submitButton.setText("Save Employee");
-				idInput.setEnabled(true);
-				idGenButton.setEnabled(true);
-				nameInput.setEnabled(true);
-				ageInput.setEnabled(true);
-				salaryInput.setEnabled(true);
-				adminEnabled.setEnabled(true);
-				adminDisabled.setEnabled(true);
-				employeeComboBox.setEnabled(true);
-				//loadNames();
-
-				//clearInputs();
-				pack();
-			}
-		});
-		menuPanel.add(editEmpButton);
+//		editEmpButton = new JButton("Edit Employee");
+//		editEmpButton.setPreferredSize(buttonSize_menu);
+//		editEmpButton.setFont(buttonFont);
+//		editEmpButton.setVisible(false);
+//		editEmpButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				mainEmpLabelPanel.setVisible(true);
+//				mainEmpControlPanel.setVisible(true);
+//				dateControlPanel.setVisible(false);
+//				dateDisplayPanel.setVisible(false);
+//
+//				submitButton.setText("Save Employee");
+//				idInput.setEnabled(true);
+//				idGenButton.setEnabled(true);
+//				nameInput.setEnabled(true);
+//				ageInput.setEnabled(true);
+//				salaryInput.setEnabled(true);
+//				adminEnabled.setEnabled(true);
+//				adminDisabled.setEnabled(true);
+//				employeeComboBox.setEnabled(true);
+//				//loadNames();
+//
+//				//clearInputs();
+//				pack();
+//			}
+//		});
+//		menuPanel.add(editEmpButton);
 
 		exitButton = new JButton("Exit Program");
 		exitButton.setPreferredSize(buttonSize_menu);
