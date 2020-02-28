@@ -39,5 +39,6 @@ public class ButtonList {
 	
 	public static JButton addEmployeeButton = new AddEmployeeButton();
 	public static JButton removeEmployeeButton = new RemoveEmployeeButton();
+	public static JButton editEmployeeButton = new EditEmployeeButton();
 
 }

@@ -17,7 +17,8 @@ public class SwitchMenuButton extends JButton{
 		super(">>");
 		setPreferredSize(DimensionList.buttonSize_small);
 		setFont(FontList.buttonFont);
-		setEnabled(false);
+		setEnabled(true);
+		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -52,8 +53,8 @@ public class SwitchMenuButton extends JButton{
 
 	private void displayAdminButtons(Boolean bool) {
 		ButtonList.addEmployeeButton.setVisible(bool);
-		//removeEmpButton.setVisible(bool);
-		//editEmpButton.setVisible(bool);
+		ButtonList.removeEmployeeButton.setVisible(bool);
+		ButtonList.editEmployeeButton.setVisible(bool);
 		//printSheetButton.setVisible(bool);
 		//editSheetButton.setVisible(bool);
 		//exitButton.setVisible(bool);
