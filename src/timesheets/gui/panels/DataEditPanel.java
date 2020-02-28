@@ -18,6 +18,7 @@ public class DataEditPanel extends JPanel {
 		super();
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setBackground(Color.WHITE);
+		setVisible(false);
 
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
@@ -33,11 +34,11 @@ public class DataEditPanel extends JPanel {
 							.addComponent(LabelList.adminLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 							)
 					.addGroup(layout.createParallelGroup()
-							.addComponent(LabelList.sep1Label, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(LabelList.sep2Label, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(LabelList.sep3Label, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(LabelList.sep4Label, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(LabelList.sep5Label, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+							.addComponent(LabelList.sep1Label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(LabelList.sep2Label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(LabelList.sep3Label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(LabelList.sep4Label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(LabelList.sep5Label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							)
 					.addGroup(layout.createParallelGroup()
 							.addComponent(UnusualsList.empBox, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
