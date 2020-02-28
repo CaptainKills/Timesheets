@@ -18,8 +18,8 @@ public class MainFrame extends JFrame {
 	private TimeHandler time = new TimeHandler();
 	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
 
-	private int id, menuChoice;
-	private Employee activeEmployee, transferEmployee;
+//	private int id, menuChoice;
+//	private Employee activeEmployee, transferEmployee;
 
 //	private LocalTime[] previousShift, newShift;
 //	private LocalTime currentTime, differenceTime, additionalBreakTime, newTime;
@@ -59,9 +59,9 @@ public class MainFrame extends JFrame {
 //	private Dimension buttonSize_medium = new Dimension((43 * frameWidth) / 120, frameHeight / 7);
 //	private Dimension buttonSize_small = new Dimension((89 * frameWidth) / 768, frameHeight / 7);
 //	private Dimension labelSize_large = new Dimension((23 * frameWidth) / 48, (2 * frameHeight) / 25);
-	private Dimension labelSize_small = new Dimension(frameWidth / 8, frameHeight / 10);
-	private Dimension fieldSize_large = new Dimension((5 * frameWidth) / 16, frameHeight / 10);
-	private Dimension fieldSize_medium = new Dimension((29 * frameWidth) / 192, frameHeight / 10);
+//	private Dimension labelSize_small = new Dimension(frameWidth / 8, frameHeight / 10);
+//	private Dimension fieldSize_large = new Dimension((5 * frameWidth) / 16, frameHeight / 10);
+//	private Dimension fieldSize_medium = new Dimension((29 * frameWidth) / 192, frameHeight / 10);
 	private Dimension dateDisplaySize_large = new Dimension((11 * frameWidth) / 64, frameHeight / 14);
 	private Dimension dateDisplaySize_medium = new Dimension(frameWidth / 9, frameHeight / 14);
 	private Dimension dateDisplaySize_small = new Dimension(frameWidth / 20, frameHeight / 14);
