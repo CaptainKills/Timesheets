@@ -4,20 +4,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-import timesheets.gui.buttons.AdminRadioButton;
-import timesheets.gui.buttons.AdminSelectionGroup;
-import timesheets.gui.buttons.ClearButton;
-import timesheets.gui.buttons.EndBreakButton;
-import timesheets.gui.buttons.EndShiftButton;
-import timesheets.gui.buttons.IDGeneratorButton;
-import timesheets.gui.buttons.LoginButton;
-import timesheets.gui.buttons.LogoutButton;
-import timesheets.gui.buttons.NumberButton;
-import timesheets.gui.buttons.RemoveNumberButton;
-import timesheets.gui.buttons.StartBreakButton;
-import timesheets.gui.buttons.StartShiftButton;
-import timesheets.gui.buttons.SubmitButton;
-import timesheets.gui.buttons.SwitchMenuButton;
+import timesheets.gui.buttons.*;
 
 public class ButtonList {
 	
@@ -49,5 +36,7 @@ public class ButtonList {
 	public static JRadioButton adminEnableButton = new AdminRadioButton("Enable", false);
 	public static JRadioButton adminDisableButton = new AdminRadioButton("Disable", true);
 	public static ButtonGroup group = new AdminSelectionGroup();
+	
+	public static JButton addEmployeeButton = new AddEmployeeButton();
 
 }
