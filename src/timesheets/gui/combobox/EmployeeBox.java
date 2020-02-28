@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 
 import timesheets.DataHandler;
 import timesheets.Employee;
+import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
@@ -32,10 +33,11 @@ public class EmployeeBox<T> extends JComboBox<T>{
 							TextFieldList.nameField.setText(emp.getName());
 							TextFieldList.ageField.setText(Integer.toString(emp.getAge()));
 							TextFieldList.salaryField.setText(Double.toString(emp.getSalary()));
+							
 							if (emp.getAdmin() == true) {
-								//adminEnabled.setSelected(true);
+								ButtonList.adminEnableButton.setSelected(true);
 							} else if (emp.getAdmin() == false) {
-								//adminDisabled.setSelected(true);
+								ButtonList.adminDisableButton.setSelected(true);
 							}
 						} else {
 							continue;
