@@ -1,6 +1,10 @@
 package timesheets.gui;
 
-import timesheets.gui.lists.*;
+import timesheets.DataHandler;
+import timesheets.Employee;
+import timesheets.gui.lists.ButtonList;
+import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.lists.UnusualsList;
 
 public class ExtendedHandler {
 	
@@ -17,6 +21,14 @@ public class ExtendedHandler {
 		TextFieldList.ageField.setText("");
 		TextFieldList.salaryField.setText("");
 		ButtonList.adminDisableButton.setSelected(true);
+	}
+	
+	public static void loadEmployeesInBox() {
+		UnusualsList.empBox.removeAllItems();
+		for (Employee emp : DataHandler.EmployeeList.values()) {
+			UnusualsList.empBox.addItem(emp.getName());
+		}
+
 	}
 
 }
