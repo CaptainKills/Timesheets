@@ -9,6 +9,7 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 
@@ -24,6 +25,7 @@ public class EditEmployeeButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				PanelList.editPanel.setVisible(true);
 				//mainEmpLabelPanel.setVisible(true);
 				//mainEmpControlPanel.setVisible(true);
 				//dateControlPanel.setVisible(false);
