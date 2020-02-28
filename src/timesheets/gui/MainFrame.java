@@ -392,34 +392,34 @@ public class MainFrame extends JFrame {
 		});
 		menuPanel.add(printSheetButton);
 
-		removeEmpButton = new JButton("Remove Employee");
-		removeEmpButton.setPreferredSize(buttonSize_menu);
-		removeEmpButton.setFont(buttonFont);
-		removeEmpButton.setVisible(false);
-		removeEmpButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				mainEmpLabelPanel.setVisible(true);
-				mainEmpControlPanel.setVisible(true);
-				dateControlPanel.setVisible(false);
-				dateDisplayPanel.setVisible(false);
-
-				submitButton.setText("Remove Employee");
-				idInput.setEnabled(false);
-				idGenButton.setEnabled(false);
-				nameInput.setEnabled(false);
-				ageInput.setEnabled(false);
-				salaryInput.setEnabled(false);
-				adminEnabled.setEnabled(false);
-				adminDisabled.setEnabled(false);
-				employeeComboBox.setEnabled(true);
-				loadNames();
-
-				//clearInputs();
-				pack();
-			}
-		});
-		menuPanel.add(removeEmpButton);
+//		removeEmpButton = new JButton("Remove Employee");
+//		removeEmpButton.setPreferredSize(buttonSize_menu);
+//		removeEmpButton.setFont(buttonFont);
+//		removeEmpButton.setVisible(false);
+//		removeEmpButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				mainEmpLabelPanel.setVisible(true);
+//				mainEmpControlPanel.setVisible(true);
+//				dateControlPanel.setVisible(false);
+//				dateDisplayPanel.setVisible(false);
+//
+//				submitButton.setText("Remove Employee");
+//				idInput.setEnabled(false);
+//				idGenButton.setEnabled(false);
+//				nameInput.setEnabled(false);
+//				ageInput.setEnabled(false);
+//				salaryInput.setEnabled(false);
+//				adminEnabled.setEnabled(false);
+//				adminDisabled.setEnabled(false);
+//				employeeComboBox.setEnabled(true);
+//				//loadNames();
+//
+//				//clearInputs();
+//				pack();
+//			}
+//		});
+//		menuPanel.add(removeEmpButton);
 
 		editSheetButton = new JButton("Edit Timesheets");
 		editSheetButton.setPreferredSize(buttonSize_menu);
@@ -460,7 +460,7 @@ public class MainFrame extends JFrame {
 				adminEnabled.setEnabled(true);
 				adminDisabled.setEnabled(true);
 				employeeComboBox.setEnabled(true);
-				loadNames();
+				//loadNames();
 
 				//clearInputs();
 				pack();
@@ -1160,13 +1160,13 @@ public class MainFrame extends JFrame {
 //		adminDisabled.setSelected(true);
 //	}
 
-	private void loadNames() {
-		employeeComboBox.removeAllItems();
-		for (Employee emp : EmployeeList.values()) {
-			employeeComboBox.addItem(emp.getName());
-		}
-
-	}
+//	private void loadNames() {
+//		employeeComboBox.removeAllItems();
+//		for (Employee emp : EmployeeList.values()) {
+//			employeeComboBox.addItem(emp.getName());
+//		}
+//
+//	}
 
 //	private void addToShift(LocalTime start, LocalTime end, LocalTime paused, LocalTime difference) {
 //		newShift = new LocalTime[4];

@@ -38,5 +38,6 @@ public class ButtonList {
 	public static ButtonGroup group = new AdminSelectionGroup();
 	
 	public static JButton addEmployeeButton = new AddEmployeeButton();
+	public static JButton removeEmployeeButton = new RemoveEmployeeButton();
 
 }

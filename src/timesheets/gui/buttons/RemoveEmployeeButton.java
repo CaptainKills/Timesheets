@@ -13,11 +13,11 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 
-public class AddEmployeeButton extends JButton{
-	private static final long serialVersionUID = -3510275592566235838L;
+public class RemoveEmployeeButton extends JButton{
+	private static final long serialVersionUID = 4105654947299367234L;
 
-	public AddEmployeeButton() {
-		super("Add Employee");
+	public RemoveEmployeeButton() {
+		super("Remove Employee");
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);
@@ -31,7 +31,7 @@ public class AddEmployeeButton extends JButton{
 				//dateControlPanel.setVisible(false);
 				//dateDisplayPanel.setVisible(false);
 
-				ButtonList.submitButton.setText("Add Employee");
+				ButtonList.submitButton.setText("Remove Employee");
 				
 				TextFieldList.idField.setEnabled(true);
 				ButtonList.idButton.setEnabled(true);
@@ -42,7 +42,7 @@ public class AddEmployeeButton extends JButton{
 				ButtonList.adminEnableButton.setEnabled(true);
 				ButtonList.adminDisableButton.setEnabled(true);
 				UnusualsList.empBox.setEnabled(true);
-				UnusualsList.empBox.setSelectedIndex(-1);
+				ExtendedHandler.loadEmployeesInBox();
 
 				ExtendedHandler.clearInputs();
 				//pack();

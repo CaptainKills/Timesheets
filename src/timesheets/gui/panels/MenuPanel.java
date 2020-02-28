@@ -30,12 +30,15 @@ public class MenuPanel extends JPanel{
 						.addComponent(ButtonList.endBreakButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						
 						.addGroup(layout.createSequentialGroup()
-								.addComponent(ButtonList.logoutButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-								.addComponent(ButtonList.switchMenuButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(ButtonList.removeEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						
 						.addGroup(layout.createSequentialGroup()
-								.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(ButtonList.logoutButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(ButtonList.switchMenuButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						)
 				);
@@ -50,6 +53,9 @@ public class MenuPanel extends JPanel{
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(ButtonList.removeEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
 				.addGroup(layout.createParallelGroup()
