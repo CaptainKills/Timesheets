@@ -10,5 +10,13 @@ public class ExtendedHandler {
 		ButtonList.startBreakButton.setEnabled(startbreak);
 		ButtonList.endBreakButton.setEnabled(endbreak);
 	}
+	
+	public static void clearInputs() {
+		TextFieldList.idField.setText("");
+		TextFieldList.nameField.setText("");
+		TextFieldList.ageField.setText("");
+		TextFieldList.salaryField.setText("");
+		ButtonList.adminDisableButton.setSelected(true);
+	}
 
 }
