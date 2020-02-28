@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
@@ -24,16 +25,38 @@ public class SwitchMenuButton extends JButton{
 					PanelList.numpadPanel.setVisible(false);
 					PanelList.adminPanel.setVisible(true);
 					
+					displayTimeButtons(false);
+					displayAdminButtons(true);
+					
 					setText("<<");
 				} else if (getText().equals("<<")) {
 					PanelList.numpadPanel.setVisible(true);
 					PanelList.adminPanel.setVisible(false);
+					
+					displayTimeButtons(true);
+					displayAdminButtons(false);
 					
 					setText(">>");
 				}
 				//pack();
 			}
 		});
+	}
+	
+	private void displayTimeButtons(Boolean bool) {
+		ButtonList.startShiftButton.setVisible(bool);
+		ButtonList.endShiftButton.setVisible(bool);
+		ButtonList.startBreakButton.setVisible(bool);
+		ButtonList.endBreakButton.setVisible(bool);
+	}
+
+	private void displayAdminButtons(Boolean bool) {
+		ButtonList.addEmployeeButton.setVisible(bool);
+		//removeEmpButton.setVisible(bool);
+		//editEmpButton.setVisible(bool);
+		//printSheetButton.setVisible(bool);
+		//editSheetButton.setVisible(bool);
+		//exitButton.setVisible(bool);
 	}
 
 }
