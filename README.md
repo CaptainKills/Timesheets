@@ -1,13 +1,6 @@
 # Timesheets
  A program that can keep track of working hours of employees. By logging start- and end-times the program is able to determine how long the employee has worked, en at what times the employee has clocked in and out.
- 
-<div class="alert alert-block alert-danger">
-<b>A very important remark:</b> 
-    
- This program is not intended to be used by real businesses. 
- This is just a fun project I've been working on and is not meant to be used in practise.
-</div>
- 
+
  ```
  This program is not intended to be used by real businesses. 
  This is just a fun project I've been working on and is not meant to be used in practise.
