@@ -15,13 +15,13 @@
 
 ## Getting Started
 
-The application can be downloaded as a .jar file from the build folder called `Timesheets.jar`. The application can then be launched by opening a command line and typing:
+The application can be downloaded as a .jar file from the build folder. The application can then be launched by opening a command line and typing:
 ```
 java -jar Timesheets.jar
 ```
 ### Prerequisites
 
-The program is built in `Java 8` in order for the application to work, a working installation of Java version 8 is necessary.
+The program is built in Java 8 in order for the application to work, a working installation of Java version 8 is necessary.
 
 ## Authors
 
