@@ -59,6 +59,7 @@ public class MenuPanel extends JPanel{
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
+				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.removeEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
