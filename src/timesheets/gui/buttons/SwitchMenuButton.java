@@ -36,7 +36,6 @@ public class SwitchMenuButton extends JButton{
 					
 					displayTimeButtons(true);
 					displayAdminButtons(false);
-					
 					setText(">>");
 				}
 				//pack();
@@ -57,7 +56,7 @@ public class SwitchMenuButton extends JButton{
 		ButtonList.editEmployeeButton.setVisible(bool);
 		//printSheetButton.setVisible(bool);
 		//editSheetButton.setVisible(bool);
-		//exitButton.setVisible(bool);
+		ButtonList.exitButton.setVisible(bool);
 	}
 
 }

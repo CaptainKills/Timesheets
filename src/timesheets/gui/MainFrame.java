@@ -468,18 +468,18 @@ public class MainFrame extends JFrame {
 //		});
 //		menuPanel.add(editEmpButton);
 
-		exitButton = new JButton("Exit Program");
-		exitButton.setPreferredSize(buttonSize_menu);
-		exitButton.setFont(buttonFont);
-		exitButton.setVisible(false);
-		exitButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				data.saveDataToFiles();
-				System.exit(0);
-			}
-		});
-		menuPanel.add(exitButton);
+//		exitButton = new JButton("Exit Program");
+//		exitButton.setPreferredSize(buttonSize_menu);
+//		exitButton.setFont(buttonFont);
+//		exitButton.setVisible(false);
+//		exitButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				data.saveDataToFiles();
+//				System.exit(0);
+//			}
+//		});
+//		menuPanel.add(exitButton);
 
 //		logoutButton = new JButton("Logout");
 //		logoutButton.setPreferredSize(buttonSize_medium);
