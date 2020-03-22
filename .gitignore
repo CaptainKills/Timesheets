@@ -8,6 +8,8 @@ $RECYCLE.BIN/
 bin/
 tmp/
 data/
+lib/
+logs/
 .settings/
 .recommenders/
 
