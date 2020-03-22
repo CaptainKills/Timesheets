@@ -17,7 +17,7 @@ public class AdminLabel extends JLabel{
 		setPreferredSize(DimensionList.labelSize_small);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
-		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 	}
 
 }

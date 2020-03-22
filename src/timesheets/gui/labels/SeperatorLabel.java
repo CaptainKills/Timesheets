@@ -17,7 +17,7 @@ public class SeperatorLabel extends JLabel{
 		setPreferredSize(new Dimension(1, 1));
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setFont(FontList.labelFont);
-		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 	}
 
 }
