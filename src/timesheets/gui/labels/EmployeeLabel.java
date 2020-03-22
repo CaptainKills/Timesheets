@@ -1,8 +1,5 @@
 package timesheets.gui.labels;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
