@@ -6,8 +6,16 @@ import org.apache.logging.log4j.Logger;
 public class LoggingTest {
 	private final static Logger logger = LogManager.getLogger(LoggingTest.class);
 
-	public LoggingTest() {
-		// TODO Auto-generated constructor stub
+	public static void testLog() {
+		System.out.println("Hello Logging World!");
+		
+		logger.info("This is a information message.");
+		logger.error("This is an error message!");
+		logger.warn("This is a warning message!");
+		logger.fatal("This is a fatal message! Program will terminate!");
+		logger.debug("This is a debug message.");
+		
+		System.out.println("Test Completed!");
 	}
 
 }
