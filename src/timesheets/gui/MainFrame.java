@@ -43,8 +43,8 @@ public class MainFrame extends JFrame {
 	// numpadPanel buttons
 //	private JButton numButton, clearButton, removeButton, zeroButton, loginButton;
 	// menuPanel buttons
-	private JButton startButton, endButton, startBreakButton, endBreakButton, logoutButton, menuSwitchButton,
-			addEmpButton, removeEmpButton, editEmpButton, printSheetButton, editSheetButton, exitButton;
+//	private JButton startButton, endButton, startBreakButton, endBreakButton, logoutButton, menuSwitchButton,
+//			addEmpButton, removeEmpButton, editEmpButton, printSheetButton, editSheetButton, exitButton;
 	// mainEmpControlPanel buttons
 	private JButton idGenButton, submitButton, submitDateButton;
 	private JRadioButton adminEnabled, adminDisabled, dateToday, dateWeek, dateMonth, dateSpecific;
@@ -52,9 +52,9 @@ public class MainFrame extends JFrame {
 //	private BoxLayout mainLayout;
 	private FlowLayout normalPanelLayout, mainLabelPanelLayout, mainControlPanelLayout;
 
-	private Dimension panelSize = new Dimension(frameWidth / 2, frameHeight);
+//	private Dimension panelSize = new Dimension(frameWidth / 2, frameHeight);
 //	private Dimension buttonSize_numbers = new Dimension((5 * frameWidth) / 32, frameHeight / 7);
-	private Dimension buttonSize_menu = new Dimension((91 * frameWidth) / 384, frameHeight / 7);
+//	private Dimension buttonSize_menu = new Dimension((91 * frameWidth) / 384, frameHeight / 7);
 //	private Dimension buttonSize_large = new Dimension((23 * frameWidth) / 48, frameHeight / 7);
 //	private Dimension buttonSize_medium = new Dimension((43 * frameWidth) / 120, frameHeight / 7);
 //	private Dimension buttonSize_small = new Dimension((89 * frameWidth) / 768, frameHeight / 7);
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame {
 	private Dimension dateDisplaySize_small = new Dimension(frameWidth / 20, frameHeight / 14);
 
 //	private Font inputFont = new Font("Arial", Font.PLAIN, (3 * frameWidth) / 64);
-	private Font buttonFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
+//	private Font buttonFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
 //	private Font infolabelFont = new Font("Arial", Font.BOLD, frameWidth / 64);
 	private Font normalFont = new Font("Arial", Font.PLAIN, frameWidth / 60);
 	private Font textDisplayFont = new Font("Arial", Font.PLAIN, frameWidth / 64);
@@ -220,11 +220,11 @@ public class MainFrame extends JFrame {
 //		});
 //		numpadPanel.add(loginButton);		
 
-		menuPanel = new JPanel();
-		menuPanel.setPreferredSize(panelSize);
-		menuPanel.setLayout(normalPanelLayout);
-		menuPanel.setBackground(Color.WHITE);
-		menuPanel.setVisible(true);
+//		menuPanel = new JPanel();
+//		menuPanel.setPreferredSize(panelSize);
+//		menuPanel.setLayout(normalPanelLayout);
+//		menuPanel.setBackground(Color.WHITE);
+//		menuPanel.setVisible(true);
 
 //		timeLabel = new JLabel("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |");
 //		timeLabel.setPreferredSize(labelSize_large);
