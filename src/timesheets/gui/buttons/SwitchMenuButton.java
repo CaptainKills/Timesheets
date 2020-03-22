@@ -54,8 +54,8 @@ public class SwitchMenuButton extends JButton{
 		ButtonList.addEmployeeButton.setVisible(bool);
 		ButtonList.removeEmployeeButton.setVisible(bool);
 		ButtonList.editEmployeeButton.setVisible(bool);
-		//printSheetButton.setVisible(bool);
-		//editSheetButton.setVisible(bool);
+		ButtonList.printSheetsButton.setVisible(bool);
+		ButtonList.editSheetsButton.setVisible(bool);
 		ButtonList.exitButton.setVisible(bool);
 	}
 

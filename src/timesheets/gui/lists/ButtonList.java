@@ -40,7 +40,7 @@ public class ButtonList {
 	public static JButton addEmployeeButton = new AddEmployeeButton();
 	public static JButton removeEmployeeButton = new RemoveEmployeeButton();
 	public static JButton editEmployeeButton = new EditEmployeeButton();
-	
-	
+	public static JButton printSheetsButton = new PrintSheetsButton();
+	public static JButton editSheetsButton = new EditSheetsButton();
 	public static JButton exitButton = new ExitButton();
 }

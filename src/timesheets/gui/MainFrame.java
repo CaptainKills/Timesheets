@@ -374,23 +374,23 @@ public class MainFrame extends JFrame {
 //		});
 //		menuPanel.add(addEmpButton);
 
-		printSheetButton = new JButton("Print Timesheets");
-		printSheetButton.setPreferredSize(buttonSize_menu);
-		printSheetButton.setFont(buttonFont);
-		printSheetButton.setVisible(false);
-		printSheetButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				mainEmpLabelPanel.setVisible(false);
-				mainEmpControlPanel.setVisible(false);
-				dateControlPanel.setVisible(true);
-				dateDisplayPanel.setVisible(true);
-
-				dateDisplay.setText("");
-				pack();
-			}
-		});
-		menuPanel.add(printSheetButton);
+//		printSheetButton = new JButton("Print Timesheets");
+//		printSheetButton.setPreferredSize(buttonSize_menu);
+//		printSheetButton.setFont(buttonFont);
+//		printSheetButton.setVisible(false);
+//		printSheetButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				mainEmpLabelPanel.setVisible(false);
+//				mainEmpControlPanel.setVisible(false);
+//				dateControlPanel.setVisible(true);
+//				dateDisplayPanel.setVisible(true);
+//
+//				dateDisplay.setText("");
+//				pack();
+//			}
+//		});
+//		menuPanel.add(printSheetButton);
 
 //		removeEmpButton = new JButton("Remove Employee");
 //		removeEmpButton.setPreferredSize(buttonSize_menu);
@@ -421,23 +421,23 @@ public class MainFrame extends JFrame {
 //		});
 //		menuPanel.add(removeEmpButton);
 
-		editSheetButton = new JButton("Edit Timesheets");
-		editSheetButton.setPreferredSize(buttonSize_menu);
-		editSheetButton.setFont(buttonFont);
-		editSheetButton.setVisible(false);
-		editSheetButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				mainEmpLabelPanel.setVisible(false);
-				mainEmpControlPanel.setVisible(false);
-				dateControlPanel.setVisible(true);
-				dateDisplayPanel.setVisible(true);
-
-				dateDisplay.setText("");
-				pack();
-			}
-		});
-		menuPanel.add(editSheetButton);
+//		editSheetButton = new JButton("Edit Timesheets");
+//		editSheetButton.setPreferredSize(buttonSize_menu);
+//		editSheetButton.setFont(buttonFont);
+//		editSheetButton.setVisible(false);
+//		editSheetButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				mainEmpLabelPanel.setVisible(false);
+//				mainEmpControlPanel.setVisible(false);
+//				dateControlPanel.setVisible(true);
+//				dateDisplayPanel.setVisible(true);
+//
+//				dateDisplay.setText("");
+//				pack();
+//			}
+//		});
+//		menuPanel.add(editSheetButton);
 
 //		editEmpButton = new JButton("Edit Employee");
 //		editEmpButton.setPreferredSize(buttonSize_menu);

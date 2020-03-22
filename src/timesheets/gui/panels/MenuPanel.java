@@ -31,12 +31,12 @@ public class MenuPanel extends JPanel{
 						
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-								
+								.addComponent(ButtonList.printSheetsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(ButtonList.removeEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-								
+								.addComponent(ButtonList.editSheetsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						
 						.addGroup(layout.createSequentialGroup()
@@ -61,10 +61,12 @@ public class MenuPanel extends JPanel{
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.addEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.printSheetsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.removeEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.editSheetsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
 				.addGroup(layout.createParallelGroup()
