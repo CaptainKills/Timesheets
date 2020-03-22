@@ -24,7 +24,7 @@ public class SwitchMenuButton extends JButton{
 			public void actionPerformed(ActionEvent event) {
 				if (getText().equals(">>")) {
 					PanelList.numpadPanel.setVisible(false);
-					PanelList.adminPanel.setVisible(true);
+					PanelList.editPanel.setVisible(true);
 					
 					displayTimeButtons(false);
 					displayAdminButtons(true);
@@ -32,7 +32,7 @@ public class SwitchMenuButton extends JButton{
 					setText("<<");
 				} else if (getText().equals("<<")) {
 					PanelList.numpadPanel.setVisible(true);
-					PanelList.adminPanel.setVisible(false);
+					PanelList.editPanel.setVisible(false);
 					
 					displayTimeButtons(true);
 					displayAdminButtons(false);

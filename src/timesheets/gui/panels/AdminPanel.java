@@ -2,6 +2,7 @@ package timesheets.gui.panels;
 
 import java.awt.Color;
 
+import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
 import timesheets.gui.lists.DimensionList;
@@ -15,6 +16,21 @@ public class AdminPanel extends JPanel{
 		setLayout(LayoutList.defaultLayout);
 		setBackground(Color.WHITE);
 		setVisible(false);
+		
+		GroupLayout layout = new GroupLayout(this);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+
+		layout.setHorizontalGroup(
+				layout.createSequentialGroup()
+					
+				);
+
+		layout.setVerticalGroup(
+				layout.createSequentialGroup()
+				
+				);
+		setLayout(layout);
 	}
 
 }
