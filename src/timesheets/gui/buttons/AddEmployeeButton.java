@@ -41,7 +41,7 @@ public class AddEmployeeButton extends JButton{
 				
 				ButtonList.adminEnableButton.setEnabled(true);
 				ButtonList.adminDisableButton.setEnabled(true);
-				UnusualsList.empBox.setEnabled(true);
+				UnusualsList.empBox.setEnabled(false);
 				UnusualsList.empBox.setSelectedIndex(-1);
 
 				ExtendedHandler.clearInputs();
