@@ -227,7 +227,7 @@ public class DataHandler {
 		for (Map.Entry<Integer, Employee> entry : EmployeeList.entrySet()) {
 			Employee dummy_employee = entry.getValue();
 			employee.println(dummy_employee.toString());
-			time.println(dummy_employee.getID() + "@" + dummy_employee.timeMapToString());
+			time.println(dummy_employee.getID_String() + "@" + dummy_employee.timeMapToString());
 		}
 	}
 	
@@ -257,15 +257,9 @@ public class DataHandler {
 	}
 	
 	private int convertIdArrayToInt(int[] generatedId) {
-		String idString = "";
+		String idString = Integer.toString(generatedId[0]) + Integer.toString(generatedId[1]) + Integer.toString(generatedId[2])
+		+ Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
 		
-		if (generatedId[0] == 0) {
-			idString = Integer.toString(generatedId[0] + 1) + Integer.toString(generatedId[1])
-					+ Integer.toString(generatedId[2]) + Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
-		} else {
-			idString = Integer.toString(generatedId[0]) + Integer.toString(generatedId[1]) + Integer.toString(generatedId[2])
-					+ Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
-		}
 		return Integer.parseInt(idString);
 	}
 	

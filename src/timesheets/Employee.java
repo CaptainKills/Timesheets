@@ -28,7 +28,7 @@ public class Employee {
 	
 	@Override
 	public String toString() {
-		return ID + "/" + Name + "/" + Age + "/" + Salary + "/" + Admin;
+		return getID_String() + "/" + Name + "/" + Age + "/" + Salary + "/" + Admin;
 	}
 	
 	public String timeMapToString() {
@@ -45,6 +45,10 @@ public class Employee {
 
 	public int getID() {
 		return ID;
+	}
+	
+	public String getID_String() {
+		return String.format("%05d", ID);
 	}
 
 	public void setID(int id) {
