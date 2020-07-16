@@ -92,17 +92,17 @@ public class DataHandler {
 	
 	private void checkFiles() {
 		if (!file_EmployeeData.exists()) {
-			tryToCreateFile(file_EmployeeData, employeeWriter);
+			createFile(file_EmployeeData, employeeWriter);
 		}
 		if (!file_TimeData.exists()) {
-			tryToCreateFile(file_TimeData, timeWriter);
+			createFile(file_TimeData, timeWriter);
 		}
 		if (!file_Settings.exists()) {
-			tryToCreateFile(file_Settings, settingsWriter);
+			createFile(file_Settings, settingsWriter);
 		}
 	}
 	
-	private void tryToCreateFile(File file, PrintWriter writer) {
+	private void createFile(File file, PrintWriter writer) {
 		try {
 			if(!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
