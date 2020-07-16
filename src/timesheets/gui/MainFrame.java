@@ -33,7 +33,6 @@ import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.lists.PanelList;
-import timesheets.logging.LoggingTest;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 01L;
