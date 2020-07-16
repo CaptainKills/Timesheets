@@ -250,13 +250,6 @@ public class DataHandler {
 		}
 	}
 	
-	private int convertIdArrayToInt(int[] generatedId) {
-		String idString = Integer.toString(generatedId[0]) + Integer.toString(generatedId[1]) + Integer.toString(generatedId[2])
-		+ Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
-		
-		return Integer.parseInt(idString);
-	}
-	
 	public Boolean isIdUsed(int id) {
 		if (EmployeeList.get(id) != null) {
 			return true;
