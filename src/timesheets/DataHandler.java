@@ -241,13 +241,7 @@ public class DataHandler {
 	}
 
 	public int generateNewID() {
-		int newID;
-		int[] idNumbers = { 0, 0, 0, 0, 0 };
-		
-		for (int i = 0; i < 5; i++) {
-			idNumbers[i] = new Random().nextInt(9);
-		}
-		newID = convertIdArrayToInt(idNumbers);
+		int newID = new Random().nextInt(100000);
 
 		if (isIdUsed(newID)) {
 			return generateNewID();

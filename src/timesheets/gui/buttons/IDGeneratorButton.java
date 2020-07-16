@@ -23,7 +23,8 @@ public class IDGeneratorButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				TextFieldList.idField.setText(Integer.toString(data.generateNewID()));
+				String textID = String.format("%05d", data.generateNewID());
+				TextFieldList.idField.setText(textID);
 				//pack();
 			}
 		});
