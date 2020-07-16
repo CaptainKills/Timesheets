@@ -113,6 +113,8 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
+		
+		LoggingTest.testLog();
 
 		/*
 		 * 
