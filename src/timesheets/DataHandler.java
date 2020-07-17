@@ -237,7 +237,7 @@ public class DataHandler {
 			settingsWriter = new PrintWriter(file_Settings);
 			
 			writeDataToFile(employeeWriter, timeWriter);
-			//writeSettingsToFile(settingsWriter);
+			writeSettingsToFile(settingsWriter);
 			
 			logger.info("Succesfully saved data to files.");
 		} catch (Exception e) {
