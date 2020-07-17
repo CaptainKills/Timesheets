@@ -1,6 +1,7 @@
 package timesheets.logging;
 
 import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Logger {
 	private String className;
@@ -30,7 +31,7 @@ public class Logger {
 	}
 	
 	private String formatMessage(String level, String msg) {
-		return String.format("%s [%s] %s - %s", LocalTime.now(), level, className, msg); 
+		return String.format("%s %s [%s] %s - %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
 	}
 
 }
