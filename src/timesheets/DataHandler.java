@@ -37,13 +37,9 @@ public class DataHandler {
 	private Scanner timeReader;
 	private Scanner settingsReader;
 
-	private static final String emp_REGEX = "[^\\/]+";
-	private static final String year_REGEX = "(?<=[@]|[,])\\d+";
-	private static final String month_REGEX = "(?<=[-])\\d+(?=[-])";
-	private static final String day_REGEX = "\\d+(?=[=])";
-	private static final String hour_REGEX = "\\d+(?=[:])";
-	private static final String minutes_REGEX = "(?<=[:])\\d+";
-	
+	private static final String emp_REGEX = "[^\\/]+";	
+	private static final String date_REGEX = "(?<=[@]|[,])[^=]+";
+	private static final String time_REGEX = "(?<=[=]|[|]).....";
 	private static final String setting_REGEX = "\\S+(?=[=])";
 	private static final String value_REGEX = "(?<=[=])\\S+";
 
@@ -183,21 +179,20 @@ public class DataHandler {
 	}
 
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
-		LinkedList<String> yearList = extractString(year_REGEX, time);
-		LinkedList<String> monthList = extractString(month_REGEX, time);
-		LinkedList<String> dayList = extractString(day_REGEX, time);
-		LinkedList<String> hourList = extractString(hour_REGEX, time);
-		LinkedList<String> minutesList = extractString(minutes_REGEX, time);
+		LinkedList<String> dates = extractString(date_REGEX, time);
+		LinkedList<String> times = extractString(time_REGEX, time);
+		
+		System.out.println(dates.toString());
+		System.out.println(times.toString());
 
 		LinkedList<LocalDate> datesList = new LinkedList<LocalDate>();
-		for (int index = 0; index < yearList.size(); index++) {
-			datesList.add(LocalDate.of(Integer.parseInt(yearList.get(index)), Integer.parseInt(monthList.get(index)),
-					Integer.parseInt(dayList.get(index))));
+		for (int index = 0; index < dates.size(); index++) {
+			datesList.add(LocalDate.parse(dates.get(index)));
 		}
 
 		LinkedList<LocalTime> timeList = new LinkedList<LocalTime>();
-		for (int index = 0; index < hourList.size(); index++) {
-			timeList.add(LocalTime.of(Integer.parseInt(hourList.get(index)), Integer.parseInt(minutesList.get(index))));
+		for (int index = 0; index < times.size(); index++) {
+			timeList.add(LocalTime.parse(times.get(index)));
 		}
 
 		TreeMap<LocalDate, LocalTime[]> shiftsMap = new TreeMap<LocalDate, LocalTime[]>();
