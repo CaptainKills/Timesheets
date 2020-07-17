@@ -18,6 +18,8 @@ public class LogManager {
 	
 	private static FileWriter file_writer;
 	private static PrintWriter log_writer;
+	
+	private static boolean debugMode = true;
 
 	public static void initialise() {
 		try {
@@ -38,7 +40,9 @@ public class LogManager {
 			log_writer = new PrintWriter(file_writer);
 			log_writer.println(log);
 			
-			System.out.println(log);
+			if(debugMode) {
+				System.out.println(log);
+			}
 		} catch (Exception e){
 			System.out.println("Could not write to log file: " + e);
 		} finally {
