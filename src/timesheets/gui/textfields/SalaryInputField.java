@@ -5,9 +5,11 @@ import javax.swing.SwingConstants;
 
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.logging.Logger;
 
 public class SalaryInputField extends JTextField{
 	private static final long serialVersionUID = 5223232371355031531L;
+	private static final Logger logger = new Logger(SalaryInputField.class.toString());
 
 	public SalaryInputField() {
 		super("");
@@ -15,6 +17,8 @@ public class SalaryInputField extends JTextField{
 		setFont(FontList.normalFont);
 		setEditable(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
+		
+		logger.debug("SalaryInputField initialised.");
 	}
 
 }

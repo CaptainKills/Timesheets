@@ -11,9 +11,11 @@ import javax.swing.Timer;
 
 import timesheets.TimeHandler;
 import timesheets.gui.lists.FontList;
+import timesheets.logging.Logger;
 
 public class LoginDisplayArea extends JTextArea{
 	private static final long serialVersionUID = -8427377108410611993L;
+	private static final Logger logger = new Logger(LoginDisplayArea.class.toString());
 	
 	private TimeHandler time = new TimeHandler();
 
@@ -33,6 +35,8 @@ public class LoginDisplayArea extends JTextArea{
 				updateTimeText();
 			}
 		}).start();
+		
+		logger.debug("LoginDisplayArea initialised.");
 	}
 	
 	public void updateInfoText(String newText) {
