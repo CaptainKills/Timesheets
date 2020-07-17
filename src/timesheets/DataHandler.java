@@ -241,7 +241,7 @@ public class DataHandler {
 	}
 
 	public int generateNewID() {
-		int newID = new Random().nextInt(100000);
+		int newID = new Random().nextInt(100000); //Generate number from 00000 to 99999 - a five digit ID
 
 		if (isIdUsed(newID)) {
 			return generateNewID();
