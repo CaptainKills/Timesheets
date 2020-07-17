@@ -14,7 +14,7 @@ java -jar Timesheets.jar
 ```
 ### Prerequisites
 
-The program is built in Java 8 in order for the application to work, a working installation of Java version 8 or higher is therefore necessary.
+The program is built in Java 8. In order for the application to work, a working installation of Java version 8 or higher is therefore necessary.
 
 ## Authors
 
