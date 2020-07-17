@@ -181,9 +181,6 @@ public class DataHandler {
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
 		LinkedList<String> dates = extractString(date_REGEX, time);
 		LinkedList<String> times = extractString(time_REGEX, time);
-		
-		System.out.println(dates.toString());
-		System.out.println(times.toString());
 
 		LinkedList<LocalDate> datesList = new LinkedList<LocalDate>();
 		for (int index = 0; index < dates.size(); index++) {
