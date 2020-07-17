@@ -92,9 +92,7 @@ public class DataHandler {
 		logger.info("Loading Data From Files Complete.");
 	}
 	
-	private void checkFiles() {
-		logger.debug("Check if any of the files exist.");
-		
+	private void checkFiles() {		
 		if (!file_EmployeeData.exists()) {
 			logger.info("EmplopyeeData file does not exist.");
 			createFile(file_EmployeeData, employeeWriter);

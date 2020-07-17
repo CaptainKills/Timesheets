@@ -14,9 +14,11 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class StartShiftButton extends JButton{
 	private static final long serialVersionUID = -3218652731101113395L;
+	private static final Logger logger = new Logger(StartShiftButton.class.toString());
 	
 	private TimeHandler time = new TimeHandler();
 
@@ -33,11 +35,15 @@ public class StartShiftButton extends JButton{
 				
 				LocalTime currentTime = time.roundOffTime(time.getCurrentTime());
 				TextAreaList.loginTextArea.updateInfoText("Workshift has been started at: " + currentTime);
+				logger.info("Employee " + activeEmployee.getID_String() + " has started their shift at " + currentTime);
+				
 				activeEmployee.setTimeStarted(currentTime);
 				ExtendedHandler.enableShiftButtons(false, true, true, false);
 				//pack();
 			}
 		});
+		
+		logger.debug("StartShiftButton initialised.");
 	}
 
 }

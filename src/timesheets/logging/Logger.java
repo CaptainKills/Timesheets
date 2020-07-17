@@ -25,13 +25,13 @@ public class Logger {
 		LogManager.writeLog(log);
 	}
 	
-	public void fatal(String msg) {
+	public void warn(String msg) {
 		String log = formatMessage("FATAL", msg);
 		LogManager.writeLog(log);
 	}
 	
 	private String formatMessage(String level, String msg) {
-		return String.format("%s %s [%s] %s - %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
+		return String.format("%s %s [%s] %s -> %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
 	}
 
 }

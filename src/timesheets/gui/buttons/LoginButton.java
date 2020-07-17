@@ -14,9 +14,11 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class LoginButton extends JButton{
 	private static final long serialVersionUID = 8434083962194467158L;
+	private static final Logger logger = new Logger(LoginButton.class.toString());
 	
 	private DataHandler data = new DataHandler();
 	private int id = 0;
@@ -25,6 +27,7 @@ public class LoginButton extends JButton{
 		super("Login");
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
+		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -37,6 +40,7 @@ public class LoginButton extends JButton{
 					Employee activeEmployee = DataHandler.EmployeeList.get(id);
 					
 					TextAreaList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
+					logger.info("Employee " + activeEmployee.getID_String() + " has logged in.");
 					setEnabled(false);
 
 					if (activeEmployee.getTimeStarted() == null) {
@@ -65,10 +69,13 @@ public class LoginButton extends JButton{
 					ButtonList.logoutButton.setEnabled(true);
 					//pack();
 				} else {
+					logger.warn("Someone entered a non-existent ID.");
 					JOptionPane.showMessageDialog(PanelList.mainPanel, "Please enter correct ID!", "Incorrect ID",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
+		
+		logger.debug("LoginButton initialised.");
 	}
 }

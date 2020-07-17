@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				if (JOptionPane.showConfirmDialog(getContentPane(), "Are you sure?") == JOptionPane.YES_OPTION) {
 					data.saveDataToFiles();
-					logger.info("Application Closed\n");
+					logger.info("Application Closed.\n");
 					System.exit(0);
 				}
 			}

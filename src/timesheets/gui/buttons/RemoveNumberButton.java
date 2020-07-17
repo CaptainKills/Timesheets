@@ -9,9 +9,11 @@ import javax.swing.JTextField;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class RemoveNumberButton extends JButton{
 	private static final long serialVersionUID = -6376697726067622946L;
+	private static final Logger logger = new Logger(RemoveNumberButton.class.toString());
 
 	public RemoveNumberButton() {
 		super("<<");
@@ -27,6 +29,8 @@ public class RemoveNumberButton extends JButton{
 				//pack();
 			}
 		});
+		
+		logger.debug("RemoveNumberButton initialised.");
 	}
 	
 }

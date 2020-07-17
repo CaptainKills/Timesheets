@@ -7,9 +7,11 @@ import javax.swing.JButton;
 
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.logging.Logger;
 
 public class PrintSheetsButton extends JButton{
 	private static final long serialVersionUID = 2103797465124170334L;
+	private static final Logger logger = new Logger(PrintSheetsButton.class.toString());
 
 	public PrintSheetsButton() {
 		super("Print Timesheets");
@@ -29,6 +31,8 @@ public class PrintSheetsButton extends JButton{
 				//pack();
 			}
 		});
+		
+		logger.debug("PrintSheetsButton initialised.");
 	}
 
 }

@@ -15,9 +15,11 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class EndShiftButton extends JButton{
 	private static final long serialVersionUID = 1690125966086841320L;
+	private static final Logger logger = new Logger(EndShiftButton.class.toString());
 	
 	private DataHandler data = new DataHandler();
 	private TimeHandler time = new TimeHandler();
@@ -31,6 +33,7 @@ public class EndShiftButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);
+		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -48,6 +51,7 @@ public class EndShiftButton extends JButton{
 				} else if(activeEmployee.getTimePaused() == null){
 					TextAreaList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
 				}
+				logger.info("Employee " + activeEmployee.getID_String() + " ended their shift at: " + currentTime);
 				
 				if (activeEmployee.getWorkedTime().containsKey(currentDate)) {
 					previousShift = activeEmployee.getWorkedTime().get(currentDate);					
@@ -69,6 +73,8 @@ public class EndShiftButton extends JButton{
 				//pack();
 			}
 		});
+		
+		logger.debug("EndShiftButton initialised.");
 	}
 	
 	private void addToShift(LocalTime start, LocalTime end, LocalTime paused, LocalTime difference) {

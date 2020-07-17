@@ -12,9 +12,11 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.logging.Logger;
 
 public class RemoveEmployeeButton extends JButton{
 	private static final long serialVersionUID = 4105654947299367234L;
+	private static final Logger logger = new Logger(RemoveEmployeeButton.class.toString());
 
 	public RemoveEmployeeButton() {
 		super("Remove Employee");
@@ -48,6 +50,8 @@ public class RemoveEmployeeButton extends JButton{
 				//pack();
 			}
 		});
+		
+		logger.debug("RemoveEmployeeButton initialised.");
 	}
 
 }

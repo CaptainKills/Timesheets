@@ -16,6 +16,7 @@ public class ClearButton extends JButton{
 		super("Clear");
 		setPreferredSize(DimensionList.buttonSize_numbers);
 		setFont(FontList.buttonFont);
+		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

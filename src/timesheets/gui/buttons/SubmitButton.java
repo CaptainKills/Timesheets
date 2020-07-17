@@ -21,9 +21,11 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.logging.Logger;
 
 public class SubmitButton extends JButton {
 	private static final long serialVersionUID = -2944959431303812446L;
+	private static final Logger logger = new Logger(SubmitButton.class.toString());
 	
 	private int menuChoice;
 	private JTextField idField = TextFieldList.idField;
@@ -54,10 +56,11 @@ public class SubmitButton extends JButton {
 			}
 			// pack();
 		});
+		
+		logger.debug("SubmitButton initialised.");
 	}
 
 	private void addEmployee() {
-		
 		if (idField.getText().equals("") || nameField.getText().equals("") || ageField.getText().equals("")
 				|| salaryField.getText().equals("")) {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
@@ -73,6 +76,8 @@ public class SubmitButton extends JButton {
 				Double.parseDouble(salaryField.getText().replace(",", ".")), false, new TreeMap<LocalDate, LocalTime[]>());
 			}
 			EmployeeList.put(transferEmployee.getID(), transferEmployee);
+			logger.info("New Employee has been added: " + transferEmployee.getID_String());
+			
 			data.saveDataToFiles();
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
 					"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
@@ -95,6 +100,8 @@ public class SubmitButton extends JButton {
 			}
 			empBox.removeItem(empBox.getSelectedItem());
 			EmployeeList.remove(transferEmployee.getID());
+			logger.info("Employee " + transferEmployee.getID_String() + " has been removed");
+			
 			data.saveDataToFiles();
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been removed!", "Successfull Removal!",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -135,6 +142,8 @@ public class SubmitButton extends JButton {
 				}
 				
 				EmployeeList.put(transferEmployee.getID(), transferEmployee);
+				logger.info("Employee " + transferEmployee.getID_String() + "'s data has been changed and saved.");
+				
 				data.saveDataToFiles();
 				JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
 						"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);

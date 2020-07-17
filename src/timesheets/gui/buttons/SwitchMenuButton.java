@@ -9,9 +9,11 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
+import timesheets.logging.Logger;
 
 public class SwitchMenuButton extends JButton{
 	private static final long serialVersionUID = 4691645706084905079L;
+	private static final Logger logger = new Logger(SwitchMenuButton.class.toString());
 
 	public SwitchMenuButton() {
 		super(">>");
@@ -41,6 +43,8 @@ public class SwitchMenuButton extends JButton{
 				//pack();
 			}
 		});
+		
+		logger.debug("SwitchMenuButton initialised.");
 	}
 	
 	private void displayTimeButtons(Boolean bool) {
