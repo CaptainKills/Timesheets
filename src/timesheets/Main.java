@@ -13,10 +13,10 @@ public class Main {
 	public static void main(String[] args) {
 		LogManager.initialise();
 		
-		logger.debug("Initialise SwingUtilities.");
+		logger.debug("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				logger.debug("Initialise Mainframe.");
+				logger.debug("Initialising Mainframe.");
 				MainFrame frame = new MainFrame();
 				
 				logger.debug("Set frame parameters.");
