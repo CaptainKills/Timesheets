@@ -118,11 +118,11 @@ public class DataHandler {
 			} else if(file.getAbsolutePath() == path_TimeData.toString()) {
 				writer.print(defaultTimeData);
 			}
-			
-			writer.flush();
-			writer.close();
 		} catch (Exception e) {
 			System.out.println("The file could not be created: " + e);
+		} finally {
+			writer.flush();
+			writer.close();
 		}
 	}
 	
