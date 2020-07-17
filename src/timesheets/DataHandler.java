@@ -37,7 +37,6 @@ public class DataHandler {
 	private Scanner timeReader;
 	private Scanner settingsReader;
 
-	private static final String emp_REGEX = "[^\\/]+";	
 	private static final String date_REGEX = "(?<=[@]|[,])[^=]+";
 	private static final String time_REGEX = "(?<=[=]|[|]).....";
 
@@ -145,12 +144,12 @@ public class DataHandler {
 	}
 	
 	private void assignDataToEmployee(String employee, String time) {
-		LinkedList<String> EmployeeData = extractString(emp_REGEX, employee);
-		int import_ID = Integer.parseInt(EmployeeData.get(0));
-		String import_Name = EmployeeData.get(1);
-		int import_Age = Integer.parseInt(EmployeeData.get(2));
-		double import_Salary = Double.parseDouble(EmployeeData.get(3));
-		boolean import_Admin = Boolean.parseBoolean(EmployeeData.get(4));
+		String[] EmployeeData = employee.split("/");
+		int import_ID = Integer.parseInt(EmployeeData[0]);
+		String import_Name = EmployeeData[1];
+		int import_Age = Integer.parseInt(EmployeeData[2]);
+		double import_Salary = Double.parseDouble(EmployeeData[3]);
+		boolean import_Admin = Boolean.parseBoolean(EmployeeData[4]);
 		TreeMap<LocalDate, LocalTime[]> import_WorkedTime;
 		
 		if (time.length() > 6) {
@@ -163,22 +162,10 @@ public class DataHandler {
 		EmployeeList.put(import_ID, dummy_employee);
 		logger.debug("Employee Loaded: " + dummy_employee.getID_String());
 	}
-	
-	private LinkedList<String> extractString(String regex, String inputString) {
-		Pattern regexPattern = Pattern.compile(regex);
-		Matcher regexMatcher = regexPattern.matcher(inputString);
-
-		LinkedList<String> groupList = new LinkedList<String>();
-		while (regexMatcher.find()) {
-			String currentGroup = regexMatcher.group();
-			groupList.add(currentGroup);
-		}
-		return groupList;
-	}
 
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
-		LinkedList<String> dates = extractString(date_REGEX, time);
-		LinkedList<String> times = extractString(time_REGEX, time);
+		LinkedList<String> dates = extractREGEX(date_REGEX, time);
+		LinkedList<String> times = extractREGEX(time_REGEX, time);
 
 		LinkedList<LocalDate> datesList = new LinkedList<LocalDate>();
 		for (int index = 0; index < dates.size(); index++) {
@@ -199,6 +186,18 @@ public class DataHandler {
 			index++;
 		}
 		return shiftsMap;
+	}
+	
+	private LinkedList<String> extractREGEX(String regex, String inputString) {
+		Pattern regexPattern = Pattern.compile(regex);
+		Matcher regexMatcher = regexPattern.matcher(inputString);
+
+		LinkedList<String> groupList = new LinkedList<String>();
+		while (regexMatcher.find()) {
+			String currentGroup = regexMatcher.group();
+			groupList.add(currentGroup);
+		}
+		return groupList;
 	}
 	
 	private void extractSettings(String line) {
