@@ -30,7 +30,7 @@ public class Logger {
 	}
 	
 	private String formatMessage(String level, String msg) {
-		return String.format("%s [%s] %s - %s\n", LocalTime.now(), level, className, msg); 
+		return String.format("%s [%s] %s - %s", LocalTime.now(), level, className, msg); 
 	}
 
 }

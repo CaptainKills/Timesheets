@@ -1,6 +1,7 @@
 package timesheets.logging;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +16,7 @@ public class LogManager {
 	private static final Path log_path = Paths.get("logs" + File.separator + filename).toAbsolutePath();
 	private static File log_file = log_path.toFile();
 	
+	private static FileWriter file_writer;
 	private static PrintWriter log_writer;
 
 	public static void initialise() {
@@ -32,18 +34,16 @@ public class LogManager {
 	
 	public static void writeLog(String log) {
 		try {
-			System.out.println("Start write.");
-			log_writer = new PrintWriter(log_file);
-			log_writer.print(log);
-			System.out.println("Finish write.");
+			file_writer = new FileWriter(log_file, true);
+			log_writer = new PrintWriter(file_writer);
+			log_writer.println(log);
 			
-			System.out.print(log);
+			System.out.println(log);
 		} catch (Exception e){
-			System.out.println("Could not write to log file: " + e.toString());
+			System.out.println("Could not write to log file: " + e);
 		} finally {
 			log_writer.flush();
 			log_writer.close();
-			System.out.println("Close Write");
 		}
 	} 
 
