@@ -92,17 +92,17 @@ public class DataHandler {
 	
 	private void checkFiles() {
 		if (!file_EmployeeData.exists()) {
-			tryToCreateFile(file_EmployeeData, employeeWriter);
+			createFile(file_EmployeeData, employeeWriter);
 		}
 		if (!file_TimeData.exists()) {
-			tryToCreateFile(file_TimeData, timeWriter);
+			createFile(file_TimeData, timeWriter);
 		}
 		if (!file_Settings.exists()) {
-			tryToCreateFile(file_Settings, settingsWriter);
+			createFile(file_Settings, settingsWriter);
 		}
 	}
 	
-	private void tryToCreateFile(File file, PrintWriter writer) {
+	private void createFile(File file, PrintWriter writer) {
 		try {
 			if(!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
@@ -118,16 +118,16 @@ public class DataHandler {
 			} else if(file.getAbsolutePath() == path_TimeData.toString()) {
 				writer.print(defaultTimeData);
 			}
-			
-			writer.flush();
-			writer.close();
 		} catch (Exception e) {
 			System.out.println("The file could not be created: " + e);
+		} finally {
+			writer.flush();
+			writer.close();
 		}
 	}
 	
 	private void assignDataToEmployee(String employee, String time) {
-		LinkedList<String> EmployeeData = extractDataViaRegex(emp_REGEX, employee);
+		LinkedList<String> EmployeeData = extractData(emp_REGEX, employee);
 		int import_ID = Integer.parseInt(EmployeeData.get(0));
 		String import_Name = EmployeeData.get(1);
 		int import_Age = Integer.parseInt(EmployeeData.get(2));
@@ -145,7 +145,7 @@ public class DataHandler {
 		EmployeeList.put(import_ID, dummy_employee);
 	}
 	
-	private LinkedList<String> extractDataViaRegex(String regex, String inputString) {
+	private LinkedList<String> extractData(String regex, String inputString) {
 		Pattern regexPattern = Pattern.compile(regex);
 		Matcher regexMatcher = regexPattern.matcher(inputString);
 
@@ -158,11 +158,11 @@ public class DataHandler {
 	}
 
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
-		LinkedList<String> yearList = extractDataViaRegex(year_REGEX, time);
-		LinkedList<String> monthList = extractDataViaRegex(month_REGEX, time);
-		LinkedList<String> dayList = extractDataViaRegex(day_REGEX, time);
-		LinkedList<String> hourList = extractDataViaRegex(hour_REGEX, time);
-		LinkedList<String> minutesList = extractDataViaRegex(minutes_REGEX, time);
+		LinkedList<String> yearList = extractData(year_REGEX, time);
+		LinkedList<String> monthList = extractData(month_REGEX, time);
+		LinkedList<String> dayList = extractData(day_REGEX, time);
+		LinkedList<String> hourList = extractData(hour_REGEX, time);
+		LinkedList<String> minutesList = extractData(minutes_REGEX, time);
 
 		LinkedList<LocalDate> datesList = new LinkedList<LocalDate>();
 		for (int index = 0; index < yearList.size(); index++) {
@@ -227,7 +227,7 @@ public class DataHandler {
 		for (Map.Entry<Integer, Employee> entry : EmployeeList.entrySet()) {
 			Employee dummy_employee = entry.getValue();
 			employee.println(dummy_employee.toString());
-			time.println(dummy_employee.getID() + "@" + dummy_employee.timeMapToString());
+			time.println(dummy_employee.getID_String() + "@" + dummy_employee.timeMapToString());
 		}
 	}
 	
@@ -241,32 +241,13 @@ public class DataHandler {
 	}
 
 	public int generateNewID() {
-		int newID;
-		int[] idNumbers = { 0, 0, 0, 0, 0 };
-		
-		for (int i = 0; i < 5; i++) {
-			idNumbers[i] = new Random().nextInt(9);
-		}
-		newID = convertIdArrayToInt(idNumbers);
+		int newID = new Random().nextInt(100000);
 
 		if (isIdUsed(newID)) {
 			return generateNewID();
 		} else {
 			return newID;
 		}
-	}
-	
-	private int convertIdArrayToInt(int[] generatedId) {
-		String idString = "";
-		
-		if (generatedId[0] == 0) {
-			idString = Integer.toString(generatedId[0] + 1) + Integer.toString(generatedId[1])
-					+ Integer.toString(generatedId[2]) + Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
-		} else {
-			idString = Integer.toString(generatedId[0]) + Integer.toString(generatedId[1]) + Integer.toString(generatedId[2])
-					+ Integer.toString(generatedId[3]) + Integer.toString(generatedId[4]);
-		}
-		return Integer.parseInt(idString);
 	}
 	
 	public Boolean isIdUsed(int id) {
