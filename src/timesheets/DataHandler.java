@@ -210,7 +210,7 @@ public class DataHandler {
 			settingsWriter = new PrintWriter(file_Settings);
 			
 			writeDataToFile(employeeWriter, timeWriter);
-			writeSettingsToFile(settingsWriter);
+			//writeSettingsToFile(settingsWriter);
 		} catch (Exception e) {
 			System.out.println("Could not write to the file: " + e);
 		} finally {
