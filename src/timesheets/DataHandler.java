@@ -40,8 +40,6 @@ public class DataHandler {
 	private static final String emp_REGEX = "[^\\/]+";	
 	private static final String date_REGEX = "(?<=[@]|[,])[^=]+";
 	private static final String time_REGEX = "(?<=[=]|[|]).....";
-	private static final String setting_REGEX = "\\S+(?=[=])";
-	private static final String value_REGEX = "(?<=[=])\\S+";
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
@@ -204,19 +202,12 @@ public class DataHandler {
 	}
 	
 	private void extractSettings(String line) {
-		Pattern settingPattern = Pattern.compile(setting_REGEX);
-		Matcher settingMatcher = settingPattern.matcher(line);
+		String[] segments = line.split("=");
+		String setting = segments[0];
+		String value = segments[1];
 		
-		Pattern valuePattern = Pattern.compile(value_REGEX);
-		Matcher valueMatcher = valuePattern.matcher(line);
-		
-		while(settingMatcher.find() & valueMatcher.find()) {
-			String setting = settingMatcher.group();
-			String value = valueMatcher.group();
-			
-			settings.put(setting, value);
-			logger.debug("Added Setting - Key: " + setting + ", Value: " + value);
-		}
+		settings.put(setting, value);
+		logger.debug("Added Setting - Key: " + setting + ", Value: " + value);
 	}
 
 	public void saveDataToFiles() {
