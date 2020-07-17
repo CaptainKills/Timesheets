@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.TextAreaList;
+import timesheets.logging.Logger;
 
 public class MenuPanel extends JPanel{
 	private static final long serialVersionUID = 6491634731585216891L;
+	private static final Logger logger = new Logger(MenuPanel.class.toString());
 
 	public MenuPanel() {
 		setPreferredSize(DimensionList.defaultPanelSize);
@@ -81,6 +83,8 @@ public class MenuPanel extends JPanel{
 				);
 		
 		setLayout(layout);
+		
+		logger.debug("MenuPanel initalised.");
 	}
 
 }

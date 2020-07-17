@@ -158,7 +158,7 @@ public class DataHandler {
 
 		Employee dummy_employee = new Employee(import_ID, import_Name, import_Age, import_Salary, import_Admin, import_WorkedTime);
 		EmployeeList.put(import_ID, dummy_employee);
-		logger.debug("Employee Loaded: " + dummy_employee.getID_String());
+		logger.info("Employee Loaded: " + dummy_employee.getID_String());
 	}
 
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
@@ -204,7 +204,7 @@ public class DataHandler {
 		String value = segments[1];
 		
 		settings.put(setting, value);
-		logger.debug("Added Setting - Key: " + setting + ", Value: " + value);
+		logger.info("Added Setting " + setting + ", Value: " + value);
 	}
 
 	public void saveDataToFiles() {

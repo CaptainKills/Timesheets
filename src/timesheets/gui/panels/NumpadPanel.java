@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class NumpadPanel extends JPanel{
 	private static final long serialVersionUID = -3100897625894870435L;
+	private static final Logger logger = new Logger(NumpadPanel.class.toString());
 
 	public NumpadPanel() {
 		super();
@@ -79,6 +81,8 @@ public class NumpadPanel extends JPanel{
 						)
 				);
 		setLayout(layout);
+		
+		logger.debug("NumpadPanel initialised.");
 	}
 
 }

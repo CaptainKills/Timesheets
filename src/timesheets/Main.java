@@ -13,20 +13,20 @@ public class Main {
 	public static void main(String[] args) {
 		LogManager.initialise();
 		
-		logger.debug("Initialising SwingUtilities.");
+		logger.info("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				logger.debug("Initialising Mainframe.");
+				logger.info("Initialising Mainframe.");
 				MainFrame frame = new MainFrame();
 				
-				logger.debug("Set frame parameters.");
+				logger.info("Set frame parameters.");
 				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				frame.setSize(frame.frameWidth, frame.frameHeight);
 				frame.setResizable(true);
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
-				logger.debug("Initialisation of SwingUtilities Complete.");
+				logger.info("Initialisation of SwingUtilities Complete.");
 			}
 		});
 	}

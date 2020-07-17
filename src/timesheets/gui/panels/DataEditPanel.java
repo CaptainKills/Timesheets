@@ -10,9 +10,11 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.logging.Logger;
 
 public class DataEditPanel extends JPanel {
 	private static final long serialVersionUID = 5115383729678262568L;
+	private static final Logger logger = new Logger(DataEditPanel.class.toString());
 
 	public DataEditPanel() {
 		super();
@@ -94,5 +96,7 @@ public class DataEditPanel extends JPanel {
 						)
 				);
 		setLayout(layout);
+		
+		logger.debug("DataEditPanel initialised.");
 	}
 }

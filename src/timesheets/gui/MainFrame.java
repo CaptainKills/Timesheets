@@ -31,7 +31,6 @@ import javax.swing.SwingConstants;
 
 import timesheets.DataHandler;
 import timesheets.Employee;
-import timesheets.Main;
 import timesheets.TimeHandler;
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
@@ -101,7 +100,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		super("Timesheets");
-		logger.debug("Start MainFrame Setup.");
+		logger.info("Start MainFrame Setup.");
 		data.loadDataFromFiles();
 
 		PanelList.mainPanel.setupPanel();
@@ -118,7 +117,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
-		logger.debug("MainFrame Setup Complete.");
+		logger.info("MainFrame Setup Complete.");
 
 		/*
 		 * 

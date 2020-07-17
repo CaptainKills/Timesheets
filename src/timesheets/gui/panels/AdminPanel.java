@@ -7,9 +7,11 @@ import javax.swing.JPanel;
 
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LayoutList;
+import timesheets.logging.Logger;
 
 public class AdminPanel extends JPanel{
 	private static final long serialVersionUID = -7890834504049559961L;
+	private static final Logger logger = new Logger(AdminPanel.class.toString());
 
 	public AdminPanel() {
 		setPreferredSize(DimensionList.defaultPanelSize);
@@ -31,6 +33,8 @@ public class AdminPanel extends JPanel{
 				
 				);
 		setLayout(layout);
+		
+		logger.debug("AdminPanel initialised.");
 	}
 
 }

@@ -12,9 +12,11 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.logging.Logger;
 
 public class EmployeeBox<T> extends JComboBox<T>{
 	private static final long serialVersionUID = -8247944843862213418L;
+	private static final Logger logger = new Logger(EmployeeBox.class.toString());
 	
 	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
 
@@ -23,6 +25,7 @@ public class EmployeeBox<T> extends JComboBox<T>{
 		setFont(FontList.normalFont);
 		setVisible(true);
 		setEnabled(false);
+		
 		addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -39,6 +42,8 @@ public class EmployeeBox<T> extends JComboBox<T>{
 							} else if (emp.getAdmin() == false) {
 								ButtonList.adminDisableButton.setSelected(true);
 							}
+							
+							logger.info("Properties succesfully loaded into fields.");
 						} else {
 							continue;
 						}
@@ -49,6 +54,8 @@ public class EmployeeBox<T> extends JComboBox<T>{
 				//pack();
 			}
 		});
+		
+		logger.debug("EmployeeBox initialised.");
 	}
 
 }
