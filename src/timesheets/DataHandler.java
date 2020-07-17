@@ -18,7 +18,11 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import timesheets.logging.Logger;
+
 public class DataHandler {
+	private static final Logger logger = new Logger(DataHandler.class.toString());
+	
 	private final Path path_EmployeeData = Paths.get("data" + File.separator + "EmployeeData.dat").toAbsolutePath();
 	private final Path path_TimeData = Paths.get("data" + File.separator + "TimeData.dat").toAbsolutePath();
 	private final Path path_Settings = Paths.get("data" + File.separator + "Settings.dat").toAbsolutePath();
@@ -62,42 +66,52 @@ public class DataHandler {
 	public void loadDataFromFiles() {
 		checkFiles();
 		
+		logger.info("Loading Data From Files.");
 		try {
 			employeeReader = new Scanner(file_EmployeeData);
 			timeReader = new Scanner(file_TimeData);
 			settingsReader = new Scanner(file_Settings);
 			
+			logger.info("Loading Employee Data from File.");
 			while (employeeReader.hasNext() & timeReader.hasNext()) {
 				String employeeImport = employeeReader.nextLine();
 				String timeImport = timeReader.nextLine();
 				assignDataToEmployee(employeeImport, timeImport);
 			}
 			
+			logger.info("Loading Settings from File.");
 			while(settingsReader.hasNext()) {
 				String newline = settingsReader.nextLine();
 				extractSettings(newline);
 			}
 		} catch (IOException e) {
-			System.out.println("Could not read from file: " + e);
+			logger.error("COULD NOT LOAD DATA FROM FILES: " + e);
 		} finally {
 			try {
 				employeeReader.close();
 				timeReader.close();
 				settingsReader.close();
+				logger.debug("Readers Closed.");
 			} catch (Exception e) {
-				System.out.println("Could not close reader: " + e);
+				logger.error("COULD NOT CLOSE READERS: " + e);
 			}
 		}
+		logger.info("Loading Data From Files Complete.");
 	}
 	
 	private void checkFiles() {
+		logger.debug("Check if any of the files exist.");
+		
 		if (!file_EmployeeData.exists()) {
+			logger.info("EmplopyeeData file does not exist.");
 			createFile(file_EmployeeData, employeeWriter);
 		}
 		if (!file_TimeData.exists()) {
+			logger.info("TimeData file does not exist.");
 			createFile(file_TimeData, timeWriter);
 		}
 		if (!file_Settings.exists()) {
+			logger.info("Settings file does not exist.");
 			createFile(file_Settings, settingsWriter);
 		}
 	}
@@ -105,29 +119,39 @@ public class DataHandler {
 	private void createFile(File file, PrintWriter writer) {
 		try {
 			if(!file.getParentFile().exists()) {
+				logger.info("Parent Directory of files does not exist.");
 				file.getParentFile().mkdirs();
+				logger.info("Parent Directory of files created.");
 			}
 			
 			file.createNewFile();
+			logger.info("New File created at " + file.toString());
+			
 			writer = new PrintWriter(file);
 			
 			if(file.getAbsolutePath() == path_Settings.toString()) {
+				logger.debug("Writing default settings to Settings file.");
 				writer.print(defaultSettings);
 			} else if(file.getAbsolutePath() == path_EmployeeData.toString()) {
+				logger.debug("Writing default employee data to Settings file.");
 				writer.print(defaultEmployeeData);
 			} else if(file.getAbsolutePath() == path_TimeData.toString()) {
+				logger.debug("Writing default settings to Settings file.");
 				writer.print(defaultTimeData);
 			}
+			
+			logger.info("File creation succesfully completed.");
 		} catch (Exception e) {
-			System.out.println("The file could not be created: " + e);
+			logger.error("COULD NOT CREATE FILE: " + e);
 		} finally {
 			writer.flush();
 			writer.close();
+			logger.debug("Writer Flushed and Closed.");
 		}
 	}
 	
 	private void assignDataToEmployee(String employee, String time) {
-		LinkedList<String> EmployeeData = extractData(emp_REGEX, employee);
+		LinkedList<String> EmployeeData = extractString(emp_REGEX, employee);
 		int import_ID = Integer.parseInt(EmployeeData.get(0));
 		String import_Name = EmployeeData.get(1);
 		int import_Age = Integer.parseInt(EmployeeData.get(2));
@@ -143,9 +167,10 @@ public class DataHandler {
 
 		Employee dummy_employee = new Employee(import_ID, import_Name, import_Age, import_Salary, import_Admin, import_WorkedTime);
 		EmployeeList.put(import_ID, dummy_employee);
+		logger.debug("Employee Loaded: " + dummy_employee.getID_String());
 	}
 	
-	private LinkedList<String> extractData(String regex, String inputString) {
+	private LinkedList<String> extractString(String regex, String inputString) {
 		Pattern regexPattern = Pattern.compile(regex);
 		Matcher regexMatcher = regexPattern.matcher(inputString);
 
@@ -158,11 +183,11 @@ public class DataHandler {
 	}
 
 	private TreeMap<LocalDate, LocalTime[]> getSavedTimeMap(String time) {
-		LinkedList<String> yearList = extractData(year_REGEX, time);
-		LinkedList<String> monthList = extractData(month_REGEX, time);
-		LinkedList<String> dayList = extractData(day_REGEX, time);
-		LinkedList<String> hourList = extractData(hour_REGEX, time);
-		LinkedList<String> minutesList = extractData(minutes_REGEX, time);
+		LinkedList<String> yearList = extractString(year_REGEX, time);
+		LinkedList<String> monthList = extractString(month_REGEX, time);
+		LinkedList<String> dayList = extractString(day_REGEX, time);
+		LinkedList<String> hourList = extractString(hour_REGEX, time);
+		LinkedList<String> minutesList = extractString(minutes_REGEX, time);
 
 		LinkedList<LocalDate> datesList = new LinkedList<LocalDate>();
 		for (int index = 0; index < yearList.size(); index++) {
@@ -198,12 +223,14 @@ public class DataHandler {
 			String value = valueMatcher.group();
 			
 			settings.put(setting, value);
+			logger.debug("Added Setting - Key: " + setting + ", Value: " + value);
 		}
 	}
 
 	public void saveDataToFiles() {
 		checkFiles();
 		
+		logger.info("Saving Data to Files.");
 		try {
 			employeeWriter = new PrintWriter(file_EmployeeData);
 			timeWriter = new PrintWriter(file_TimeData);
@@ -211,8 +238,10 @@ public class DataHandler {
 			
 			writeDataToFile(employeeWriter, timeWriter);
 			//writeSettingsToFile(settingsWriter);
+			
+			logger.info("Succesfully saved data to files.");
 		} catch (Exception e) {
-			System.out.println("Could not write to the file: " + e);
+			logger.error("COULD NOT WRITE TO FILE: " + e);
 		} finally {
 			employeeWriter.flush();
 			employeeWriter.close();
@@ -220,10 +249,13 @@ public class DataHandler {
 			timeWriter.close();
 			settingsWriter.flush();
 			settingsWriter.close();
+			logger.debug("Writers Flushed and Closed.");
 		}
 	}
 	
 	private void writeDataToFile(PrintWriter employee, PrintWriter time) {
+		logger.debug("Writing employee data to file.");
+		
 		for (Map.Entry<Integer, Employee> entry : EmployeeList.entrySet()) {
 			Employee dummy_employee = entry.getValue();
 			employee.println(dummy_employee.toString());
@@ -232,6 +264,8 @@ public class DataHandler {
 	}
 	
 	private void writeSettingsToFile(PrintWriter writer) {
+		logger.debug("Writing settings to file.");
+		
 		for (Entry<String, String> entry : settings.entrySet()) {
 			String setting = entry.getKey();
 			String value = entry.getValue();
@@ -246,6 +280,7 @@ public class DataHandler {
 		if (isIdUsed(newID)) {
 			return generateNewID();
 		} else {
+			logger.debug("Generated new ID: " + newID);
 			return newID;
 		}
 	}

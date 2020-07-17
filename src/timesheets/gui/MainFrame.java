@@ -31,11 +31,14 @@ import javax.swing.SwingConstants;
 
 import timesheets.DataHandler;
 import timesheets.Employee;
+import timesheets.Main;
 import timesheets.TimeHandler;
 import timesheets.gui.lists.PanelList;
+import timesheets.logging.Logger;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 01L;
+	private static final Logger logger = new Logger(MainFrame.class.toString());
 	
 	private DataHandler data = new DataHandler();
 	private TimeHandler time = new TimeHandler();
@@ -98,6 +101,7 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		super("Timesheets");
+		logger.debug("Start MainFrame Setup.");
 		data.loadDataFromFiles();
 
 		PanelList.mainPanel.setupPanel();
@@ -108,10 +112,13 @@ public class MainFrame extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				if (JOptionPane.showConfirmDialog(getContentPane(), "Are you sure?") == JOptionPane.YES_OPTION) {
 					data.saveDataToFiles();
+					logger.info("Application Closed\n");
 					System.exit(0);
 				}
 			}
 		});
+		
+		logger.debug("MainFrame Setup Complete.");
 
 		/*
 		 * 
