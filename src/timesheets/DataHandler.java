@@ -132,7 +132,7 @@ public class DataHandler {
 			}
 			
 			logger.info("File creation succesfully completed.");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			logger.error("COULD NOT CREATE FILE: " + e);
 		} finally {
 			writer.flush();
@@ -220,7 +220,7 @@ public class DataHandler {
 			writeSettingsToFile(settingsWriter);
 			
 			logger.info("Succesfully saved data to files.");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO FILE: " + e);
 		} finally {
 			employeeWriter.flush();
