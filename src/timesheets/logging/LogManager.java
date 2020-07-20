@@ -2,6 +2,7 @@ package timesheets.logging;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,7 +29,7 @@ public class LogManager {
 			}
 			
 			log_file.createNewFile();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("The file could not be created: " + e);
 		}
 		writeLog("---Timesheets Log created [" + initial_date + " " + initial_time + "]---\n");
@@ -43,7 +44,7 @@ public class LogManager {
 			if(debugMode) {
 				System.out.println(log);
 			}
-		} catch (Exception e){
+		} catch (IOException e){
 			System.out.println("Could not write to log file: " + e);
 		} finally {
 			log_writer.flush();
