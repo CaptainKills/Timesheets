@@ -43,4 +43,10 @@ public class ButtonList {
 	public static JButton printSheetsButton = new PrintSheetsButton();
 	public static JButton editSheetsButton = new EditSheetsButton();
 	public static JButton exitButton = new ExitButton();
+	
+	public static JRadioButton dateTodayButton = new DateTodayButton();
+	public static JRadioButton dateWeekButton = new DateWeekButton();
+	//public static JRadioButton dateMonthButton = new DateMonthButton();
+	//public static JRadioButton dateSpecificButton = new DateSpecificButton();
+	//public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
 }

@@ -794,56 +794,56 @@ public class MainFrame extends JFrame {
 //		});
 //		mainEmpControlPanel.add(submitButton);
 
-		dateControlPanel = new JPanel();
-		dateControlPanel.setPreferredSize(new Dimension(692, 424));
-		dateControlPanel.setLayout(normalPanelLayout);
-		dateControlPanel.setBackground(Color.WHITE);
+//		dateControlPanel = new JPanel();
+//		dateControlPanel.setPreferredSize(new Dimension(692, 424));
+//		dateControlPanel.setLayout(normalPanelLayout);
+//		dateControlPanel.setBackground(Color.WHITE);
 
 		dateSelectionGroup = new ButtonGroup();
-		dateToday = new JRadioButton("Current Day", false);
-		dateToday.setPreferredSize(dateDisplaySize_large);
-		dateToday.setFont(textDisplayFont);
-		dateToday.setHorizontalAlignment(SwingConstants.LEFT);
-		dateToday.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent event) {
-				if (event.getStateChange() == ItemEvent.SELECTED) {
-					dayLabel.setEnabled(true);
-
-					for (Employee emp : EmployeeList.values()) {
-						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
-						if (emp.getWorkedTime() != null) {
-							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-								if (entry.getKey().isEqual(time.getCurrentDate())) {
-									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
-											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
-											+ entry.getValue()[3] + "\n");
-								} else {
-									continue;
-								}
-							}
-						} else {
-							dateDisplay.append("----------------------------------------------------\n");
-							continue;
-						}
-						dateDisplay.append("----------------------------------------------------\n");
-					}
-				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
-					dayLabel.setEnabled(false);
-					dateDisplay.setText("");
-				}
-				pack();
-			}
-		});
-		dateSelectionGroup.add(dateToday);
-		dateControlPanel.add(dateToday);
+//		dateToday = new JRadioButton("Current Day", false);
+//		dateToday.setPreferredSize(dateDisplaySize_large);
+//		dateToday.setFont(textDisplayFont);
+//		dateToday.setHorizontalAlignment(SwingConstants.LEFT);
+//		dateToday.addItemListener(new ItemListener() {
+//			@Override
+//			public void itemStateChanged(ItemEvent event) {
+//				if (event.getStateChange() == ItemEvent.SELECTED) {
+//					dayLabel.setEnabled(true);
+//
+//					for (Employee emp : EmployeeList.values()) {
+//						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
+//						if (emp.getWorkedTime() != null) {
+//							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
+//								if (entry.getKey().isEqual(time.getCurrentDate())) {
+//									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
+//											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
+//											+ entry.getValue()[3] + "\n");
+//								} else {
+//									continue;
+//								}
+//							}
+//						} else {
+//							dateDisplay.append("----------------------------------------------------\n");
+//							continue;
+//						}
+//						dateDisplay.append("----------------------------------------------------\n");
+//					}
+//				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
+//					dayLabel.setEnabled(false);
+//					dateDisplay.setText("");
+//				}
+//				pack();
+//			}
+//		});
+//		dateSelectionGroup.add(dateToday);
+//		PanelList.testPanel.add(dateToday);
 
 		dayLabel = new JLabel(time.getCurrentDate().getDayOfWeek().toString());
 		dayLabel.setPreferredSize(dateDisplaySize_large);
 		dayLabel.setFont(textDisplayFont);
 		dayLabel.setEnabled(false);
 		dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateControlPanel.add(dayLabel);
+		PanelList.testPanel.add(dayLabel);
 
 		dateWeek = new JRadioButton("Current Week", false);
 		dateWeek.setPreferredSize(dateDisplaySize_large);
@@ -882,14 +882,14 @@ public class MainFrame extends JFrame {
 			}
 		});
 		dateSelectionGroup.add(dateWeek);
-		dateControlPanel.add(dateWeek);
+		PanelList.testPanel.add(dateWeek);
 
 		weekLabel = new JLabel(time.getWeekStart().toString());
 		weekLabel.setPreferredSize(dateDisplaySize_large);
 		weekLabel.setFont(textDisplayFont);
 		weekLabel.setEnabled(false);
 		weekLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateControlPanel.add(weekLabel);
+		PanelList.testPanel.add(weekLabel);
 
 		dateMonth = new JRadioButton("Current Month", false);
 		dateMonth.setPreferredSize(dateDisplaySize_large);
@@ -928,14 +928,14 @@ public class MainFrame extends JFrame {
 			}
 		});
 		dateSelectionGroup.add(dateMonth);
-		dateControlPanel.add(dateMonth);
+		PanelList.testPanel.add(dateMonth);
 
 		monthLabel = new JLabel(time.getCurrentDate().getMonth().toString());
 		monthLabel.setPreferredSize(dateDisplaySize_large);
 		monthLabel.setFont(textDisplayFont);
 		monthLabel.setEnabled(false);
 		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateControlPanel.add(monthLabel);
+		PanelList.testPanel.add(monthLabel);
 
 		dateSpecific = new JRadioButton("Specific Date", false);
 		dateSpecific.setPreferredSize(dateDisplaySize_large);
@@ -984,13 +984,13 @@ public class MainFrame extends JFrame {
 			}
 		});
 		dateSelectionGroup.add(dateSpecific);
-		dateControlPanel.add(dateSpecific);
+		PanelList.testPanel.add(dateSpecific);
 
 		fromLabel = new JLabel("From:");
 		fromLabel.setPreferredSize(dateDisplaySize_small);
 		fromLabel.setFont(textDisplayFont);
 		fromLabel.setEnabled(false);
-		dateControlPanel.add(fromLabel);
+		PanelList.testPanel.add(fromLabel);
 
 		fromDayInput = new JTextField("dd", 2);
 		fromDayInput.setPreferredSize(dateDisplaySize_medium);
@@ -999,14 +999,14 @@ public class MainFrame extends JFrame {
 		fromDayInput.setHorizontalAlignment(SwingConstants.CENTER);
 		fromDayInput.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-				if (fromDayInput.getText().length() >= 2) {
+			public void keyTyped(KeyEvent e) {				
+				if (fromDayInput.getText().length() >= 2 && e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 				}
 				pack();
 			}
 		});
-		dateControlPanel.add(fromDayInput);
+		PanelList.testPanel.add(fromDayInput);
 
 		fromMonthInput = new JTextField("mm", 2);
 		fromMonthInput.setPreferredSize(dateDisplaySize_medium);
@@ -1022,7 +1022,7 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(fromMonthInput);
+		PanelList.testPanel.add(fromMonthInput);
 
 		fromYearInput = new JTextField("yyyy", 3);
 		fromYearInput.setPreferredSize(dateDisplaySize_small);
@@ -1038,13 +1038,13 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(fromYearInput);
+		PanelList.testPanel.add(fromYearInput);
 
 		toLabel = new JLabel("To:");
 		toLabel.setPreferredSize(dateDisplaySize_small);
 		toLabel.setFont(textDisplayFont);
 		toLabel.setEnabled(false);
-		dateControlPanel.add(toLabel);
+		PanelList.testPanel.add(toLabel);
 
 		toDayInput = new JTextField(Integer.toString(time.getCurrentDate().getDayOfMonth()), 2);
 		toDayInput.setPreferredSize(dateDisplaySize_medium);
@@ -1060,7 +1060,7 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(toDayInput);
+		PanelList.testPanel.add(toDayInput);
 
 		toMonthInput = new JTextField(Integer.toString(time.getCurrentDate().getMonthValue()), 2);
 		toMonthInput.setPreferredSize(dateDisplaySize_medium);
@@ -1076,7 +1076,7 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(toMonthInput);
+		PanelList.testPanel.add(toMonthInput);
 
 		toYearInput = new JTextField(Integer.toString(time.getCurrentDate().getYear()), 3);
 		toYearInput.setPreferredSize(dateDisplaySize_small);
@@ -1092,7 +1092,7 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(toYearInput);
+		PanelList.testPanel.add(toYearInput);
 
 		submitDateButton = new JButton("Submit Date");
 		submitDateButton.setPreferredSize(dateDisplaySize_large);
@@ -1134,22 +1134,22 @@ public class MainFrame extends JFrame {
 				pack();
 			}
 		});
-		dateControlPanel.add(submitDateButton);
+		PanelList.testPanel.add(submitDateButton);
 
-		dateDisplayPanel = new JPanel();
-		dateDisplayPanel.setPreferredSize(new Dimension((5 * frameWidth) / 16, frameHeight));
-		dateDisplayPanel.setLayout(normalPanelLayout);
-		dateDisplayPanel.setBackground(Color.WHITE);
-		dateDisplayPanel.setVisible(false);
+//		dateDisplayPanel = new JPanel();
+//		dateDisplayPanel.setPreferredSize(new Dimension((5 * frameWidth) / 16, frameHeight));
+//		dateDisplayPanel.setLayout(normalPanelLayout);
+//		dateDisplayPanel.setBackground(Color.WHITE);
+//		dateDisplayPanel.setVisible(true);
 
-		dateDisplay = new JTextArea(17, 20);
-		dateDisplay.setFont(normalFont);
-		dateDisplay.setEditable(false);
-		dateDisplay.setVisible(true);
-		dateDisplayPanel.add(dateDisplay);
-		scrollPane = new JScrollPane(dateDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		dateDisplayPanel.add(scrollPane);
+//		dateDisplay = new JTextArea(17, 20);
+//		dateDisplay.setFont(normalFont);
+//		dateDisplay.setEditable(false);
+//		dateDisplay.setVisible(true);
+//		PanelList.testPanel.add(dateDisplay);
+//		scrollPane = new JScrollPane(dateDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+//				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+//		PanelList.testPanel.add(scrollPane);
 
 		/*
 		 * mainPanel.add(numpadPanel); mainPanel.add(menuPanel);
