@@ -27,6 +27,7 @@ public class ExitButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				if (JOptionPane.showConfirmDialog(getRootPane(), "Are you sure?") == JOptionPane.YES_OPTION) {
+					logger.info("Closing Application...");
 					data.saveDataToFiles();
 					logger.info("Application Closed.\n");
 					System.exit(0);
