@@ -937,54 +937,54 @@ public class MainFrame extends JFrame {
 //		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 //		PanelList.testPanel.add(monthLabel);
 
-		dateSpecific = new JRadioButton("Specific Date", false);
-		dateSpecific.setPreferredSize(dateDisplaySize_large);
-		dateSpecific.setFont(textDisplayFont);
-		dateSpecific.setHorizontalAlignment(SwingConstants.LEFT);
-		dateSpecific.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent event) {
-				if (event.getStateChange() == ItemEvent.SELECTED) {
-					fromLabel.setEnabled(true);
-					fromYearInput.setEnabled(true);
-					fromYearInput.setText("yyyy");
-					fromMonthInput.setEnabled(true);
-					fromMonthInput.setText("mm");
-					fromDayInput.setEnabled(true);
-					fromDayInput.setText("dd");
-
-					toLabel.setEnabled(true);
-					toYearInput.setEnabled(true);
-					toYearInput.setText(Integer.toString(time.getCurrentDate().getYear()));
-					toMonthInput.setEnabled(true);
-					toMonthInput.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
-					toDayInput.setEnabled(true);
-					toDayInput.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
-					submitDateButton.setEnabled(true);
-				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
-					fromLabel.setEnabled(false);
-					fromYearInput.setEnabled(false);
-					fromYearInput.setText("yyyy");
-					fromMonthInput.setEnabled(false);
-					fromMonthInput.setText("mm");
-					fromDayInput.setEnabled(false);
-					fromDayInput.setText("dd");
-
-					toLabel.setEnabled(false);
-					toYearInput.setEnabled(false);
-					toYearInput.setText(Integer.toString(time.getCurrentDate().getYear()));
-					toMonthInput.setEnabled(false);
-					toMonthInput.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
-					toDayInput.setEnabled(false);
-					toDayInput.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
-					submitDateButton.setEnabled(false);
-					dateDisplay.setText("");
-				}
-				pack();
-			}
-		});
-		dateSelectionGroup.add(dateSpecific);
-		PanelList.testPanel.add(dateSpecific);
+//		dateSpecific = new JRadioButton("Specific Date", false);
+//		dateSpecific.setPreferredSize(dateDisplaySize_large);
+//		dateSpecific.setFont(textDisplayFont);
+//		dateSpecific.setHorizontalAlignment(SwingConstants.LEFT);
+//		dateSpecific.addItemListener(new ItemListener() {
+//			@Override
+//			public void itemStateChanged(ItemEvent event) {
+//				if (event.getStateChange() == ItemEvent.SELECTED) {
+//					fromLabel.setEnabled(true);
+//					fromYearInput.setEnabled(true);
+//					fromYearInput.setText("yyyy");
+//					fromMonthInput.setEnabled(true);
+//					fromMonthInput.setText("mm");
+//					fromDayInput.setEnabled(true);
+//					fromDayInput.setText("dd");
+//
+//					toLabel.setEnabled(true);
+//					toYearInput.setEnabled(true);
+//					toYearInput.setText(Integer.toString(time.getCurrentDate().getYear()));
+//					toMonthInput.setEnabled(true);
+//					toMonthInput.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
+//					toDayInput.setEnabled(true);
+//					toDayInput.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
+//					submitDateButton.setEnabled(true);
+//				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
+//					fromLabel.setEnabled(false);
+//					fromYearInput.setEnabled(false);
+//					fromYearInput.setText("yyyy");
+//					fromMonthInput.setEnabled(false);
+//					fromMonthInput.setText("mm");
+//					fromDayInput.setEnabled(false);
+//					fromDayInput.setText("dd");
+//
+//					toLabel.setEnabled(false);
+//					toYearInput.setEnabled(false);
+//					toYearInput.setText(Integer.toString(time.getCurrentDate().getYear()));
+//					toMonthInput.setEnabled(false);
+//					toMonthInput.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
+//					toDayInput.setEnabled(false);
+//					toDayInput.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
+//					submitDateButton.setEnabled(false);
+//					dateDisplay.setText("");
+//				}
+//				pack();
+//			}
+//		});
+//		dateSelectionGroup.add(dateSpecific);
+//		PanelList.testPanel.add(dateSpecific);
 
 		fromLabel = new JLabel("From:");
 		fromLabel.setPreferredSize(dateDisplaySize_small);

@@ -14,6 +14,7 @@ public class DateSelectionGroup extends ButtonGroup{
 		add(ButtonList.dateTodayButton);
 		add(ButtonList.dateWeekButton);
 		add(ButtonList.dateMonthButton);
+		add(ButtonList.dateSpecificButton);
 		
 		logger.debug("DateSelectionGroup initialised.");
 	}
