@@ -838,104 +838,104 @@ public class MainFrame extends JFrame {
 //		dateSelectionGroup.add(dateToday);
 //		PanelList.testPanel.add(dateToday);
 
-		dayLabel = new JLabel(time.getCurrentDate().getDayOfWeek().toString());
-		dayLabel.setPreferredSize(dateDisplaySize_large);
-		dayLabel.setFont(textDisplayFont);
-		dayLabel.setEnabled(false);
-		dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PanelList.testPanel.add(dayLabel);
+//		dayLabel = new JLabel(time.getCurrentDate().getDayOfWeek().toString());
+//		dayLabel.setPreferredSize(dateDisplaySize_large);
+//		dayLabel.setFont(textDisplayFont);
+//		dayLabel.setEnabled(false);
+//		dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		PanelList.testPanel.add(dayLabel);
 
-		dateWeek = new JRadioButton("Current Week", false);
-		dateWeek.setPreferredSize(dateDisplaySize_large);
-		dateWeek.setFont(textDisplayFont);
-		dateWeek.setHorizontalAlignment(SwingConstants.LEFT);
-		dateWeek.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent event) {
-				if (event.getStateChange() == ItemEvent.SELECTED) {
-					weekLabel.setEnabled(true);
+//		dateWeek = new JRadioButton("Current Week", false);
+//		dateWeek.setPreferredSize(dateDisplaySize_large);
+//		dateWeek.setFont(textDisplayFont);
+//		dateWeek.setHorizontalAlignment(SwingConstants.LEFT);
+//		dateWeek.addItemListener(new ItemListener() {
+//			@Override
+//			public void itemStateChanged(ItemEvent event) {
+//				if (event.getStateChange() == ItemEvent.SELECTED) {
+//					weekLabel.setEnabled(true);
+//
+//					for (Employee emp : EmployeeList.values()) {
+//						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
+//						if (emp.getWorkedTime() != null) {
+//							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
+//								if (entry.getKey().isAfter(time.getWeekStart().minusDays(1))
+//										&& entry.getKey().isBefore(time.getWeekEnd().plusDays(1))) {
+//									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
+//											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
+//											+ entry.getValue()[3] + "\n");
+//								} else {
+//									continue;
+//								}
+//							}
+//						} else {
+//							dateDisplay.append("----------------------------------------------------\n");
+//							continue;
+//						}
+//						dateDisplay.append("----------------------------------------------------\n");
+//					}
+//				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
+//					weekLabel.setEnabled(false);
+//					dateDisplay.setText("");
+//				}
+//				pack();
+//			}
+//		});
+//		dateSelectionGroup.add(dateWeek);
+//		PanelList.testPanel.add(dateWeek);
 
-					for (Employee emp : EmployeeList.values()) {
-						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
-						if (emp.getWorkedTime() != null) {
-							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-								if (entry.getKey().isAfter(time.getWeekStart().minusDays(1))
-										&& entry.getKey().isBefore(time.getWeekEnd().plusDays(1))) {
-									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
-											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
-											+ entry.getValue()[3] + "\n");
-								} else {
-									continue;
-								}
-							}
-						} else {
-							dateDisplay.append("----------------------------------------------------\n");
-							continue;
-						}
-						dateDisplay.append("----------------------------------------------------\n");
-					}
-				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
-					weekLabel.setEnabled(false);
-					dateDisplay.setText("");
-				}
-				pack();
-			}
-		});
-		dateSelectionGroup.add(dateWeek);
-		PanelList.testPanel.add(dateWeek);
+//		weekLabel = new JLabel(time.getWeekStart().toString());
+//		weekLabel.setPreferredSize(dateDisplaySize_large);
+//		weekLabel.setFont(textDisplayFont);
+//		weekLabel.setEnabled(false);
+//		weekLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		PanelList.testPanel.add(weekLabel);
 
-		weekLabel = new JLabel(time.getWeekStart().toString());
-		weekLabel.setPreferredSize(dateDisplaySize_large);
-		weekLabel.setFont(textDisplayFont);
-		weekLabel.setEnabled(false);
-		weekLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PanelList.testPanel.add(weekLabel);
+//		dateMonth = new JRadioButton("Current Month", false);
+//		dateMonth.setPreferredSize(dateDisplaySize_large);
+//		dateMonth.setFont(textDisplayFont);
+//		dateMonth.setHorizontalAlignment(SwingConstants.LEFT);
+//		dateMonth.addItemListener(new ItemListener() {
+//			@Override
+//			public void itemStateChanged(ItemEvent event) {
+//				if (event.getStateChange() == ItemEvent.SELECTED) {
+//					monthLabel.setEnabled(true);
+//
+//					for (Employee emp : EmployeeList.values()) {
+//						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
+//						if (emp.getWorkedTime() != null) {
+//							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
+//								if (entry.getKey().getMonth() == time.getCurrentDate().getMonth()
+//										&& entry.getKey().getYear() == time.getCurrentDate().getYear()) {
+//									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
+//											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
+//											+ entry.getValue()[3] + "\n");
+//								} else {
+//									continue;
+//								}
+//							}
+//						} else {
+//							dateDisplay.append("----------------------------------------------------\n");
+//							continue;
+//						}
+//						dateDisplay.append("----------------------------------------------------\n");
+//					}
+//				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
+//					monthLabel.setEnabled(false);
+//					dateDisplay.setText("");
+//				}
+//				pack();
+//			}
+//		});
+//		dateSelectionGroup.add(dateMonth);
+//		PanelList.testPanel.add(dateMonth);
 
-		dateMonth = new JRadioButton("Current Month", false);
-		dateMonth.setPreferredSize(dateDisplaySize_large);
-		dateMonth.setFont(textDisplayFont);
-		dateMonth.setHorizontalAlignment(SwingConstants.LEFT);
-		dateMonth.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent event) {
-				if (event.getStateChange() == ItemEvent.SELECTED) {
-					monthLabel.setEnabled(true);
-
-					for (Employee emp : EmployeeList.values()) {
-						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
-						if (emp.getWorkedTime() != null) {
-							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-								if (entry.getKey().getMonth() == time.getCurrentDate().getMonth()
-										&& entry.getKey().getYear() == time.getCurrentDate().getYear()) {
-									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
-											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
-											+ entry.getValue()[3] + "\n");
-								} else {
-									continue;
-								}
-							}
-						} else {
-							dateDisplay.append("----------------------------------------------------\n");
-							continue;
-						}
-						dateDisplay.append("----------------------------------------------------\n");
-					}
-				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
-					monthLabel.setEnabled(false);
-					dateDisplay.setText("");
-				}
-				pack();
-			}
-		});
-		dateSelectionGroup.add(dateMonth);
-		PanelList.testPanel.add(dateMonth);
-
-		monthLabel = new JLabel(time.getCurrentDate().getMonth().toString());
-		monthLabel.setPreferredSize(dateDisplaySize_large);
-		monthLabel.setFont(textDisplayFont);
-		monthLabel.setEnabled(false);
-		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PanelList.testPanel.add(monthLabel);
+//		monthLabel = new JLabel(time.getCurrentDate().getMonth().toString());
+//		monthLabel.setPreferredSize(dateDisplaySize_large);
+//		monthLabel.setFont(textDisplayFont);
+//		monthLabel.setEnabled(false);
+//		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		PanelList.testPanel.add(monthLabel);
 
 		dateSpecific = new JRadioButton("Specific Date", false);
 		dateSpecific.setPreferredSize(dateDisplaySize_large);

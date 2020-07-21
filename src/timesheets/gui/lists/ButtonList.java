@@ -46,7 +46,7 @@ public class ButtonList {
 	
 	public static JRadioButton dateTodayButton = new DateTodayButton();
 	public static JRadioButton dateWeekButton = new DateWeekButton();
-	//public static JRadioButton dateMonthButton = new DateMonthButton();
+	public static JRadioButton dateMonthButton = new DateMonthButton();
 	//public static JRadioButton dateSpecificButton = new DateSpecificButton();
-	//public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
+	public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
 }

@@ -18,4 +18,8 @@ public class LabelList {
 	public static JLabel sep4Label = new SeperatorLabel(":");
 	public static JLabel sep5Label = new SeperatorLabel(":");
 	
+	public static JLabel todayLabel = new TodayLabel();
+	public static JLabel weekLabel = new WeekLabel();
+	public static JLabel monthLabel = new MonthLabel();
+	
 }
