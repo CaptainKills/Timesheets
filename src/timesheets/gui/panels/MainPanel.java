@@ -20,7 +20,7 @@ public class MainPanel extends JPanel{
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				logger.info("Application resized to: X-" + e.getComponent().getWidth() + ", Y-" + e.getComponent().getHeight());
+				//logger.info("Application resized to: width=" + e.getComponent().getWidth() + ", height=" + e.getComponent().getHeight());
 			}
 		});
 		
