@@ -5,10 +5,11 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import timesheets.gui.combobox.EmployeeBox;
+import timesheets.gui.textareas.scrollpanes.ScrollPane;
 
 public class UnusualsList {
 
 	public static JComboBox<String> empBox = new EmployeeBox<String>();
-	public static JScrollPane scrollPane = new JScrollPane(TextAreaList.timesheetDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	public static JScrollPane scrollPane = new ScrollPane();
 
 }

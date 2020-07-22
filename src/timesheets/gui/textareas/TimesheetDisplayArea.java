@@ -13,8 +13,8 @@ public class TimesheetDisplayArea extends JTextArea{
 	public TimesheetDisplayArea() {
 		super(17,20);
 		setFont(FontList.normalFont);
-		setEditable(true);
+		setEditable(false);
 		
-		logger.debug("TimesheetdisplayArea initialised.");
+		logger.debug("TimesheetDisplayArea initialised.");
 	}
 }

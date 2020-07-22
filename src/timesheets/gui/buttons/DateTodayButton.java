@@ -7,16 +7,24 @@ import java.time.LocalTime;
 import java.util.Map;
 
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import timesheets.DataHandler;
 import timesheets.Employee;
+import timesheets.TimeHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.LabelList;
+import timesheets.gui.lists.TextAreaList;
 import timesheets.logging.Logger;
 
 public class DateTodayButton extends JRadioButton{
 	private static final long serialVersionUID = 4966799733565135084L;
 	private static final Logger logger = new Logger(DateTodayButton.class.toString());
+	private static TimeHandler time = new TimeHandler();
+	
+	private static JTextArea display = TextAreaList.timesheetDisplay;
 
 	public DateTodayButton() {
 		super("Date Today", false);
@@ -28,14 +36,14 @@ public class DateTodayButton extends JRadioButton{
 			@Override
 			public void itemStateChanged(ItemEvent event) {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
-					dayLabel.setEnabled(true);
+					LabelList.todayLabel.setEnabled(true);
 
-					for (Employee emp : EmployeeList.values()) {
-						dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
+					for (Employee emp : DataHandler.EmployeeList.values()) {
+						display.append(emp.getName() + " (" + emp.getID() + ")\n");
 						if (emp.getWorkedTime() != null) {
 							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
 								if (entry.getKey().isEqual(time.getCurrentDate())) {
-									dateDisplay.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
+									display.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
 											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
 											+ entry.getValue()[3] + "\n");
 								} else {
@@ -43,16 +51,15 @@ public class DateTodayButton extends JRadioButton{
 								}
 							}
 						} else {
-							dateDisplay.append("----------------------------------------------------\n");
+							display.append("----------------------------------------------------\n");
 							continue;
 						}
-						dateDisplay.append("----------------------------------------------------\n");
+						display.append("----------------------------------------------------\n");
 					}
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
-					dayLabel.setEnabled(false);
-					dateDisplay.setText("");
+					LabelList.todayLabel.setEnabled(false);
+					display.setText("");
 				}
-				//pack();
 			}
 		});
 		

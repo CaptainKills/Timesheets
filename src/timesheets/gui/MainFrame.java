@@ -1,37 +1,12 @@
 package timesheets.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Map;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 
 import timesheets.DataHandler;
-import timesheets.Employee;
-import timesheets.TimeHandler;
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
 
@@ -40,42 +15,42 @@ public class MainFrame extends JFrame {
 	private static final Logger logger = new Logger(MainFrame.class.toString());
 	
 	private DataHandler data = new DataHandler();
-	private TimeHandler time = new TimeHandler();
-	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
+//	private TimeHandler time = new TimeHandler();
+//	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
 
 //	private int id, menuChoice;
 //	private Employee activeEmployee, transferEmployee;
 
 //	private LocalTime[] previousShift, newShift;
 //	private LocalTime currentTime, differenceTime, additionalBreakTime, newTime;
-	private LocalDate currentDate, beginDate, endDate;
+//	private LocalDate currentDate, beginDate, endDate;
 
 	public final int frameWidth = 960; // 1=960 2=1440
 	public final int frameHeight = 350; // 1=350 2=700
 
-	private JPanel mainPanel, numpadPanel, menuPanel, mainEmpLabelPanel, mainEmpControlPanel, dateControlPanel,
-			dateDisplayPanel;
-	private JTextField numInput, idInput, nameInput, ageInput, salaryInput, fromDayInput, fromMonthInput, fromYearInput,
-			toDayInput, toMonthInput, toYearInput;
-	private JLabel infoLabel, timeLabel, selectedEmpLabel, idLabel, nameLabel, ageSalLabel, adminLabel, dayLabel,
-			weekLabel, monthLabel, fromLabel, toLabel;
+//	private JPanel mainPanel, numpadPanel, menuPanel, mainEmpLabelPanel, mainEmpControlPanel, dateControlPanel,
+//			dateDisplayPanel;
+//	private JTextField numInput, idInput, nameInput, ageInput, salaryInput, fromDayInput, fromMonthInput, fromYearInput,
+//			toDayInput, toMonthInput, toYearInput;
+//	private JLabel infoLabel, timeLabel, selectedEmpLabel, idLabel, nameLabel, ageSalLabel, adminLabel, dayLabel,
+//			weekLabel, monthLabel, fromLabel, toLabel;
 
-	private JTextArea dateDisplay;
-	private JScrollPane scrollPane;
+//	private JTextArea dateDisplay;
+//	private JScrollPane scrollPane;
 //	private JComboBox<String> employeeComboBox;
 
-	private ButtonGroup adminSelectionGroup, dateSelectionGroup;
+//	private ButtonGroup adminSelectionGroup, dateSelectionGroup;
 	// numpadPanel buttons
 //	private JButton numButton, clearButton, removeButton, zeroButton, loginButton;
 	// menuPanel buttons
 //	private JButton startButton, endButton, startBreakButton, endBreakButton, logoutButton, menuSwitchButton,
 //			addEmpButton, removeEmpButton, editEmpButton, printSheetButton, editSheetButton, exitButton;
 	// mainEmpControlPanel buttons
-	private JButton idGenButton, submitButton, submitDateButton;
-	private JRadioButton adminEnabled, adminDisabled, dateToday, dateWeek, dateMonth, dateSpecific;
+//	private JButton idGenButton, submitButton, submitDateButton;
+//	private JRadioButton adminEnabled, adminDisabled, dateToday, dateWeek, dateMonth, dateSpecific;
 
 //	private BoxLayout mainLayout;
-	private FlowLayout normalPanelLayout, mainLabelPanelLayout, mainControlPanelLayout;
+//	private FlowLayout normalPanelLayout, mainLabelPanelLayout, mainControlPanelLayout;
 
 //	private Dimension panelSize = new Dimension(frameWidth / 2, frameHeight);
 //	private Dimension buttonSize_numbers = new Dimension((5 * frameWidth) / 32, frameHeight / 7);
@@ -87,15 +62,15 @@ public class MainFrame extends JFrame {
 //	private Dimension labelSize_small = new Dimension(frameWidth / 8, frameHeight / 10);
 //	private Dimension fieldSize_large = new Dimension((5 * frameWidth) / 16, frameHeight / 10);
 //	private Dimension fieldSize_medium = new Dimension((29 * frameWidth) / 192, frameHeight / 10);
-	private Dimension dateDisplaySize_large = new Dimension((11 * frameWidth) / 64, frameHeight / 14);
-	private Dimension dateDisplaySize_medium = new Dimension(frameWidth / 9, frameHeight / 14);
-	private Dimension dateDisplaySize_small = new Dimension(frameWidth / 20, frameHeight / 14);
+//	private Dimension dateDisplaySize_large = new Dimension((11 * frameWidth) / 64, frameHeight / 14);
+//	private Dimension dateDisplaySize_medium = new Dimension(frameWidth / 9, frameHeight / 14);
+//	private Dimension dateDisplaySize_small = new Dimension(frameWidth / 20, frameHeight / 14);
 
 //	private Font inputFont = new Font("Arial", Font.PLAIN, (3 * frameWidth) / 64);
 //	private Font buttonFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
 //	private Font infolabelFont = new Font("Arial", Font.BOLD, frameWidth / 64);
-	private Font normalFont = new Font("Arial", Font.PLAIN, frameWidth / 60);
-	private Font textDisplayFont = new Font("Arial", Font.PLAIN, frameWidth / 64);
+//	private Font normalFont = new Font("Arial", Font.PLAIN, frameWidth / 60);
+//	private Font textDisplayFont = new Font("Arial", Font.PLAIN, frameWidth / 64);
 //	private Font labelFont = new Font("Arial", Font.PLAIN, frameWidth / 48);
 
 	public MainFrame() {
