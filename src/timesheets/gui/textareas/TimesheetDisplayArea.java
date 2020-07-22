@@ -11,7 +11,7 @@ public class TimesheetDisplayArea extends JTextArea{
 	private static final Logger logger = new Logger(TimesheetDisplayArea.class.toString());
 	
 	public TimesheetDisplayArea() {
-		super(17,20);
+		//super(17,20);
 		setFont(FontList.normalFont);
 		setEditable(false);
 		

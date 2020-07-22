@@ -9,7 +9,6 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.LayoutList;
-import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
@@ -53,7 +52,6 @@ public class TimesheetPanel extends JPanel {
 								)
 						.addComponent(ButtonList.submitDateButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
-				.addComponent(TextAreaList.timesheetDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)	
 				.addComponent(UnusualsList.scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)	
 				);
 
@@ -81,7 +79,6 @@ public class TimesheetPanel extends JPanel {
 								)
 						.addComponent(ButtonList.submitDateButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
-				.addComponent(TextAreaList.timesheetDisplay, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				.addComponent(UnusualsList.scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				);
 		setLayout(layout);

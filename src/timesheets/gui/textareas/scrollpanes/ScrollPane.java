@@ -13,7 +13,7 @@ public class ScrollPane extends JScrollPane {
 
 	public ScrollPane() {
 		super(TextAreaList.timesheetDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		setPreferredSize(new Dimension(10,100));
+		setPreferredSize(new Dimension(250,330));
 	}
 
 }
