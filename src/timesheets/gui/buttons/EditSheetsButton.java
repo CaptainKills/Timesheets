@@ -7,6 +7,8 @@ import javax.swing.JButton;
 
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.PanelList;
+import timesheets.gui.lists.TextAreaList;
 import timesheets.logging.Logger;
 
 public class EditSheetsButton extends JButton{
@@ -22,13 +24,10 @@ public class EditSheetsButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				//mainEmpLabelPanel.setVisible(false);
-				//mainEmpControlPanel.setVisible(false);
-				//dateControlPanel.setVisible(true);
-				//dateDisplayPanel.setVisible(true);
+				PanelList.editPanel.setVisible(false);
+				PanelList.timesheetPanel.setVisible(true);
 
-				//dateDisplay.setText("");
-				//pack();
+				TextAreaList.timesheetDisplay.setText("");
 			}
 		});
 		

@@ -799,7 +799,7 @@ public class MainFrame extends JFrame {
 //		dateControlPanel.setLayout(normalPanelLayout);
 //		dateControlPanel.setBackground(Color.WHITE);
 
-		dateSelectionGroup = new ButtonGroup();
+//		dateSelectionGroup = new ButtonGroup();
 //		dateToday = new JRadioButton("Current Day", false);
 //		dateToday.setPreferredSize(dateDisplaySize_large);
 //		dateToday.setFont(textDisplayFont);
@@ -986,155 +986,155 @@ public class MainFrame extends JFrame {
 //		dateSelectionGroup.add(dateSpecific);
 //		PanelList.testPanel.add(dateSpecific);
 
-		fromLabel = new JLabel("From:");
-		fromLabel.setPreferredSize(dateDisplaySize_small);
-		fromLabel.setFont(textDisplayFont);
-		fromLabel.setEnabled(false);
-		PanelList.testPanel.add(fromLabel);
+//		fromLabel = new JLabel("From:");
+//		fromLabel.setPreferredSize(dateDisplaySize_small);
+//		fromLabel.setFont(textDisplayFont);
+//		fromLabel.setEnabled(false);
+//		PanelList.testPanel.add(fromLabel);
 
-		fromDayInput = new JTextField("dd", 2);
-		fromDayInput.setPreferredSize(dateDisplaySize_medium);
-		fromDayInput.setFont(textDisplayFont);
-		fromDayInput.setEnabled(false);
-		fromDayInput.setHorizontalAlignment(SwingConstants.CENTER);
-		fromDayInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {				
-				if (fromDayInput.getText().length() >= 2 && e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(fromDayInput);
+//		fromDayInput = new JTextField("dd", 2);
+//		fromDayInput.setPreferredSize(dateDisplaySize_medium);
+//		fromDayInput.setFont(textDisplayFont);
+//		fromDayInput.setEnabled(false);
+//		fromDayInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		fromDayInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {				
+//				if (fromDayInput.getText().length() >= 2 && e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(fromDayInput);
 
-		fromMonthInput = new JTextField("mm", 2);
-		fromMonthInput.setPreferredSize(dateDisplaySize_medium);
-		fromMonthInput.setFont(textDisplayFont);
-		fromMonthInput.setEnabled(false);
-		fromMonthInput.setHorizontalAlignment(SwingConstants.CENTER);
-		fromMonthInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (fromMonthInput.getText().length() >= 2) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(fromMonthInput);
+//		fromMonthInput = new JTextField("mm", 2);
+//		fromMonthInput.setPreferredSize(dateDisplaySize_medium);
+//		fromMonthInput.setFont(textDisplayFont);
+//		fromMonthInput.setEnabled(false);
+//		fromMonthInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		fromMonthInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {
+//				if (fromMonthInput.getText().length() >= 2) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(fromMonthInput);
 
-		fromYearInput = new JTextField("yyyy", 3);
-		fromYearInput.setPreferredSize(dateDisplaySize_small);
-		fromYearInput.setFont(textDisplayFont);
-		fromYearInput.setEnabled(false);
-		fromYearInput.setHorizontalAlignment(SwingConstants.CENTER);
-		fromYearInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (fromYearInput.getText().length() >= 4) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(fromYearInput);
+//		fromYearInput = new JTextField("yyyy", 3);
+//		fromYearInput.setPreferredSize(dateDisplaySize_small);
+//		fromYearInput.setFont(textDisplayFont);
+//		fromYearInput.setEnabled(false);
+//		fromYearInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		fromYearInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {
+//				if (fromYearInput.getText().length() >= 4) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(fromYearInput);
 
-		toLabel = new JLabel("To:");
-		toLabel.setPreferredSize(dateDisplaySize_small);
-		toLabel.setFont(textDisplayFont);
-		toLabel.setEnabled(false);
-		PanelList.testPanel.add(toLabel);
+//		toLabel = new JLabel("To:");
+//		toLabel.setPreferredSize(dateDisplaySize_small);
+//		toLabel.setFont(textDisplayFont);
+//		toLabel.setEnabled(false);
+//		PanelList.testPanel.add(toLabel);
 
-		toDayInput = new JTextField(Integer.toString(time.getCurrentDate().getDayOfMonth()), 2);
-		toDayInput.setPreferredSize(dateDisplaySize_medium);
-		toDayInput.setFont(textDisplayFont);
-		toDayInput.setEnabled(false);
-		toDayInput.setHorizontalAlignment(SwingConstants.CENTER);
-		toDayInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (toDayInput.getText().length() >= 2) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(toDayInput);
+//		toDayInput = new JTextField(Integer.toString(time.getCurrentDate().getDayOfMonth()), 2);
+//		toDayInput.setPreferredSize(dateDisplaySize_medium);
+//		toDayInput.setFont(textDisplayFont);
+//		toDayInput.setEnabled(false);
+//		toDayInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		toDayInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {
+//				if (toDayInput.getText().length() >= 2) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(toDayInput);
 
-		toMonthInput = new JTextField(Integer.toString(time.getCurrentDate().getMonthValue()), 2);
-		toMonthInput.setPreferredSize(dateDisplaySize_medium);
-		toMonthInput.setFont(textDisplayFont);
-		toMonthInput.setEnabled(false);
-		toMonthInput.setHorizontalAlignment(SwingConstants.CENTER);
-		toMonthInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (toMonthInput.getText().length() >= 2) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(toMonthInput);
+//		toMonthInput = new JTextField(Integer.toString(time.getCurrentDate().getMonthValue()), 2);
+//		toMonthInput.setPreferredSize(dateDisplaySize_medium);
+//		toMonthInput.setFont(textDisplayFont);
+//		toMonthInput.setEnabled(false);
+//		toMonthInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		toMonthInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {
+//				if (toMonthInput.getText().length() >= 2) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(toMonthInput);
 
-		toYearInput = new JTextField(Integer.toString(time.getCurrentDate().getYear()), 3);
-		toYearInput.setPreferredSize(dateDisplaySize_small);
-		toYearInput.setFont(textDisplayFont);
-		toYearInput.setEnabled(false);
-		toYearInput.setHorizontalAlignment(SwingConstants.CENTER);
-		toYearInput.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (toYearInput.getText().length() >= 4) {
-					e.consume();
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(toYearInput);
+//		toYearInput = new JTextField(Integer.toString(time.getCurrentDate().getYear()), 3);
+//		toYearInput.setPreferredSize(dateDisplaySize_small);
+//		toYearInput.setFont(textDisplayFont);
+//		toYearInput.setEnabled(false);
+//		toYearInput.setHorizontalAlignment(SwingConstants.CENTER);
+//		toYearInput.addKeyListener(new KeyAdapter() {
+//			@Override
+//			public void keyTyped(KeyEvent e) {
+//				if (toYearInput.getText().length() >= 4) {
+//					e.consume();
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(toYearInput);
 
-		submitDateButton = new JButton("Submit Date");
-		submitDateButton.setPreferredSize(dateDisplaySize_large);
-		submitDateButton.setFont(textDisplayFont);
-		submitDateButton.setEnabled(false);
-		submitDateButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				try {
-					beginDate = LocalDate.of(Integer.parseInt(fromYearInput.getText()),
-							Integer.parseInt(fromMonthInput.getText()), Integer.parseInt(fromDayInput.getText()));
-					endDate = LocalDate.of(Integer.parseInt(toYearInput.getText()),
-							Integer.parseInt(toMonthInput.getText()), Integer.parseInt(toDayInput.getText()));
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(mainPanel, "Please enter a correct date!", "Incorrect date",
-							JOptionPane.INFORMATION_MESSAGE);
-					pack();
-					return;
-				} finally {
-					dateDisplay.setText("");
-				}
-
-				for (Employee emp : EmployeeList.values()) {
-					dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
-					if (!emp.getWorkedTime().isEmpty()) {
-						for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-							if (entry.getKey().isAfter(beginDate) && entry.getKey().isBefore(endDate)) {
-								dateDisplay.append(
-										entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-" + entry.getValue()[1]
-												+ ", P-" + entry.getValue()[2] + ", W-" + entry.getValue()[3] + "\n");
-							} else {
-								dateDisplay.append("----------------------------------------------------\n");
-								continue;
-							}
-						}
-					}
-					dateDisplay.append("----------------------------------------------------\n");
-				}
-				pack();
-			}
-		});
-		PanelList.testPanel.add(submitDateButton);
+//		submitDateButton = new JButton("Submit Date");
+//		submitDateButton.setPreferredSize(dateDisplaySize_large);
+//		submitDateButton.setFont(textDisplayFont);
+//		submitDateButton.setEnabled(false);
+//		submitDateButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent event) {
+//				try {
+//					beginDate = LocalDate.of(Integer.parseInt(fromYearInput.getText()),
+//							Integer.parseInt(fromMonthInput.getText()), Integer.parseInt(fromDayInput.getText()));
+//					endDate = LocalDate.of(Integer.parseInt(toYearInput.getText()),
+//							Integer.parseInt(toMonthInput.getText()), Integer.parseInt(toDayInput.getText()));
+//				} catch (NumberFormatException e) {
+//					JOptionPane.showMessageDialog(mainPanel, "Please enter a correct date!", "Incorrect date",
+//							JOptionPane.INFORMATION_MESSAGE);
+//					pack();
+//					return;
+//				} finally {
+//					dateDisplay.setText("");
+//				}
+//
+//				for (Employee emp : EmployeeList.values()) {
+//					dateDisplay.append(emp.getName() + " (" + emp.getID() + ")\n");
+//					if (!emp.getWorkedTime().isEmpty()) {
+//						for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
+//							if (entry.getKey().isAfter(beginDate) && entry.getKey().isBefore(endDate)) {
+//								dateDisplay.append(
+//										entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-" + entry.getValue()[1]
+//												+ ", P-" + entry.getValue()[2] + ", W-" + entry.getValue()[3] + "\n");
+//							} else {
+//								dateDisplay.append("----------------------------------------------------\n");
+//								continue;
+//							}
+//						}
+//					}
+//					dateDisplay.append("----------------------------------------------------\n");
+//				}
+//				pack();
+//			}
+//		});
+//		PanelList.testPanel.add(submitDateButton);
 
 //		dateDisplayPanel = new JPanel();
 //		dateDisplayPanel.setPreferredSize(new Dimension((5 * frameWidth) / 16, frameHeight));

@@ -11,5 +11,12 @@ public class TextFieldList {
 	public static JTextField nameField = new NameInputField();
 	public static JTextField ageField = new AgeInputField();
 	public static JTextField salaryField = new SalaryInputField();
+	
+	public static JTextField yearInput_from = new YearInputFrom();
+	public static JTextField yearInput_to = new YearInputTo();
+	public static JTextField monthInput_from = new MonthInputFrom();
+	public static JTextField monthInput_to = new MonthInputTo();
+	public static JTextField dayInput_from = new DayInputFrom();
+	public static JTextField dayInput_to = new DayInputTo();
 
 }

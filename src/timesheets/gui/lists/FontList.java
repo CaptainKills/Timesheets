@@ -13,6 +13,6 @@ public class FontList {
 	public static Font normalFont = new Font("Arial", Font.PLAIN, 6 + fontSize);
 	public static Font DisplayFont = new Font("Arial", Font.PLAIN, 5 + fontSize);
 	public static Font labelFont = new Font("Arial", Font.PLAIN, 10 + fontSize);
-	public static Font textDisplayFont = new Font("Arial", Font.PLAIN, 10 + fontSize);
+	public static Font textDisplayFont = new Font("Arial", Font.PLAIN, 8 + fontSize);
 
 }

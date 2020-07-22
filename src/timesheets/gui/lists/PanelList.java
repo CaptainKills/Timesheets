@@ -9,10 +9,7 @@ public class PanelList {
 	public static MenuPanel menuPanel = new MenuPanel();
 	public static AdminPanel adminPanel = new AdminPanel();
 	public static DataEditPanel editPanel = new DataEditPanel();
-	
-	//One signle panel
-	//public static JPanel dateControlPanel = new JPanel();
-	//public static JPanel dateDisplayPanel = new JPanel();
+	public static TimesheetPanel timesheetPanel = new TimesheetPanel();
 	
 	public static TestingPanel testPanel = new TestingPanel();
 }

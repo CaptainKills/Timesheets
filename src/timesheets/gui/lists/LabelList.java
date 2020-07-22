@@ -21,5 +21,7 @@ public class LabelList {
 	public static JLabel todayLabel = new TodayLabel();
 	public static JLabel weekLabel = new WeekLabel();
 	public static JLabel monthLabel = new MonthLabel();
+	public static JLabel fromDateLabel = new FromDateLabel();
+	public static JLabel toDateLabel = new ToDateLabel();
 	
 }
