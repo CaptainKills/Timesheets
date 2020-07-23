@@ -50,6 +50,7 @@ public class DataHandler {
 		try (Scanner employeeReader = new Scanner(file_EmployeeData);
 				Scanner timeReader = new Scanner(file_TimeData);
 				BufferedReader settingsReader = new BufferedReader(new FileReader(file_Settings))) {
+			
 			logger.info("Loading Employee Data from File.");
 			while (employeeReader.hasNext() & timeReader.hasNext()) {
 				String employeeImport = employeeReader.nextLine();
