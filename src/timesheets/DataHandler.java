@@ -78,7 +78,7 @@ public class DataHandler {
 			logger.info("EmployeeData File is empty: Length=" + file_EmployeeData.length());
 			writeDefaultsToFile(file_EmployeeData);
 		} else {
-			logger.info("EmplopyeeData file exists.");
+			logger.info("EmployeeData file exists.");
 		}
 		
 		if (!file_TimeData.exists()) {
