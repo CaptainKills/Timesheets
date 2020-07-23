@@ -187,20 +187,19 @@ public class DataHandler {
 				PrintWriter timeWriter = new PrintWriter(file_TimeData);) {
 
 			writeDataToFile(employeeWriter, timeWriter);
-
 			logger.info("Succesfully saved data to files.");
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO FILE: " + e);
 		}
 	}
 
-	private void writeDataToFile(PrintWriter employee, PrintWriter time) {
+	private void writeDataToFile(PrintWriter employeeWriter, PrintWriter timeWriter) {
 		logger.debug("Writing employee data to file.");
 
 		for (Map.Entry<Integer, Employee> entry : EmployeeList.entrySet()) {
-			Employee dummy_employee = entry.getValue();
-			employee.println(dummy_employee.toString());
-			time.println(dummy_employee.getID_String() + "@" + dummy_employee.timeMapToString());
+			Employee employee = entry.getValue();
+			employeeWriter.println(employee.toString());
+			timeWriter.println(employee.getID_String() + "@" + employee.timeMapToString());
 		}
 	}
 
