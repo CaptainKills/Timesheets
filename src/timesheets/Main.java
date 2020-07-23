@@ -23,7 +23,6 @@ public class Main {
 				
 				logger.info("Setting Frame Parameters.");
 				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-				//frame.setSize(frame.frameWidth, frame.frameHeight);
 				frame.setResizable(true);
 				frame.pack();
 				frame.setLocationRelativeTo(null);
