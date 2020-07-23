@@ -30,13 +30,6 @@ public class DataHandler {
 	private File file_TimeData = path_TimeData.toFile();
 	private File file_Settings = path_Settings.toFile();
 
-	private PrintWriter employeeWriter;
-	private PrintWriter timeWriter;
-	private PrintWriter settingsWriter;
-	private Scanner employeeReader;
-	private Scanner timeReader;
-	private Scanner settingsReader;
-
 	private static final String date_REGEX = "(?<=[@]|[,])[^=]+";
 	private static final String time_REGEX = "(?<=[=]|[|]).....";
 
@@ -60,11 +53,7 @@ public class DataHandler {
 		checkFiles();
 		
 		logger.info("Loading Data From Files.");
-		try {
-			employeeReader = new Scanner(file_EmployeeData);
-			timeReader = new Scanner(file_TimeData);
-			settingsReader = new Scanner(file_Settings);
-			
+		try (Scanner employeeReader = new Scanner(file_EmployeeData); Scanner timeReader = new Scanner(file_TimeData); Scanner settingsReader = new Scanner(file_Settings)){			
 			logger.info("Loading Employee Data from File.");
 			while (employeeReader.hasNext() & timeReader.hasNext()) {
 				String employeeImport = employeeReader.nextLine();
@@ -79,36 +68,28 @@ public class DataHandler {
 			}
 		} catch (IOException e) {
 			logger.error("COULD NOT LOAD DATA FROM FILES: " + e);
-		} finally {
-			try {
-				employeeReader.close();
-				timeReader.close();
-				settingsReader.close();
-				logger.debug("Readers Closed.");
-			} catch (Exception e) {
-				logger.error("COULD NOT CLOSE READERS: " + e);
-			}
-		}
+		} 
+
 		logger.info("Loading Data From Files Complete.");
 	}
 	
 	private void checkFiles() {		
 		if (!file_EmployeeData.exists()) {
 			logger.info("EmplopyeeData file does not exist.");
-			createFile(file_EmployeeData, employeeWriter);
+			createFile(file_EmployeeData);
 		}
 		if (!file_TimeData.exists()) {
 			logger.info("TimeData file does not exist.");
-			createFile(file_TimeData, timeWriter);
+			createFile(file_TimeData);
 		}
 		if (!file_Settings.exists()) {
 			logger.info("Settings file does not exist.");
-			createFile(file_Settings, settingsWriter);
+			createFile(file_Settings);
 		}
 	}
 	
-	private void createFile(File file, PrintWriter writer) {
-		try {
+	private void createFile(File file) {
+		try (PrintWriter writer = new PrintWriter(file)){
 			if(!file.getParentFile().exists()) {
 				logger.info("Parent Directory of files does not exist.");
 				file.getParentFile().mkdirs();
@@ -118,7 +99,6 @@ public class DataHandler {
 			file.createNewFile();
 			logger.info("New File created at " + file.toString());
 			
-			writer = new PrintWriter(file);
 			
 			if(file.getAbsolutePath() == path_Settings.toString()) {
 				logger.debug("Writing default settings to Settings file.");
@@ -134,11 +114,7 @@ public class DataHandler {
 			logger.info("File creation succesfully completed.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE FILE: " + e);
-		} finally {
-			writer.flush();
-			writer.close();
-			logger.debug("Writer Flushed and Closed.");
-		}
+		} 
 	}
 	
 	private void assignDataToEmployee(String employee, String time) {
@@ -211,10 +187,7 @@ public class DataHandler {
 		checkFiles();
 		
 		logger.info("Saving Data to Files.");
-		try {
-			employeeWriter = new PrintWriter(file_EmployeeData);
-			timeWriter = new PrintWriter(file_TimeData);
-			settingsWriter = new PrintWriter(file_Settings);
+		try (PrintWriter employeeWriter = new PrintWriter(file_EmployeeData); PrintWriter timeWriter = new PrintWriter(file_TimeData); PrintWriter settingsWriter = new PrintWriter(file_Settings)){
 			
 			writeDataToFile(employeeWriter, timeWriter);
 			writeSettingsToFile(settingsWriter);
@@ -222,15 +195,7 @@ public class DataHandler {
 			logger.info("Succesfully saved data to files.");
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO FILE: " + e);
-		} finally {
-			employeeWriter.flush();
-			employeeWriter.close();
-			timeWriter.flush();
-			timeWriter.close();
-			settingsWriter.flush();
-			settingsWriter.close();
-			logger.debug("Writers Flushed and Closed.");
-		}
+		} 
 	}
 	
 	private void writeDataToFile(PrintWriter employee, PrintWriter time) {
