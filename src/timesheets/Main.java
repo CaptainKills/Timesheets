@@ -40,7 +40,7 @@ public class Main {
 		});
 	}
 	
-	public static LinkedList<Image> getIcons(){
+	private static LinkedList<Image> getIcons(){
 		LinkedList<Image> list = new LinkedList<Image>();
 		list.add(img16.getImage());
 		list.add(img32.getImage());
