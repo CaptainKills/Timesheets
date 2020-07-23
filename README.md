@@ -16,6 +16,10 @@ java -jar Timesheets.jar
 
 The program is built in Java 8. In order for the application to work, a working installation of Java version 8 or higher is therefore necessary.
 
+#### Special Thanks
+
+Program Icon - Adapted from [Skoll](https://game-icons.net/1x1/skoll/atom.html), under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
 ## Authors
 
 * **Danick Triantis** - Initial Work and Improvements - [CaptainKills](https://github.com/CaptainKills)
