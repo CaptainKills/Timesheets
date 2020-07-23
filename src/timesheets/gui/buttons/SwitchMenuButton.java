@@ -35,6 +35,7 @@ public class SwitchMenuButton extends JButton{
 				} else if (getText().equals("<<")) {
 					PanelList.numpadPanel.setVisible(true);
 					PanelList.editPanel.setVisible(false);
+					PanelList.timesheetPanel.setVisible(false);
 					
 					displayTimeButtons(true);
 					displayAdminButtons(false);
