@@ -2,9 +2,14 @@ package timesheets.gui.lists;
 
 import java.awt.Dimension;
 
+import timesheets.DataHandler;
+
 public class DimensionList {
+	private static int frameWidth = Integer.parseInt(DataHandler.settings.get("width"));
+	private static int frameHeight = Integer.parseInt(DataHandler.settings.get("height"));
 	
-	public static Dimension defaultPanelSize = new Dimension(500, 360);
+	
+	public static Dimension defaultPanelSize = new Dimension(frameWidth/2, frameHeight);
 	
 	public static Dimension buttonSize_numbers = new Dimension(150, 50);
 	public static Dimension buttonSize_menu = new Dimension(228, 50);

@@ -16,13 +16,10 @@ public class MainFrame extends JFrame {
 	
 	private DataHandler data = new DataHandler();
 
-	public final int frameWidth = 960; // 1=960 2=1440
-	public final int frameHeight = 350; // 1=350 2=700
-
-
 	public MainFrame() {
 		super("Timesheets");
 		logger.info("Start MainFrame Setup.");
+		
 		data.loadDataFromFiles();
 
 		PanelList.mainPanel.setupPanel();
@@ -41,6 +38,5 @@ public class MainFrame extends JFrame {
 		});
 		
 		logger.info("MainFrame Setup Complete.");
-
 	}
 }
