@@ -19,7 +19,7 @@ public class SwitchMenuButton extends JButton{
 		super(">>");
 		setPreferredSize(DimensionList.buttonSize_small);
 		setFont(FontList.buttonFont);
-		setEnabled(true);
+		setEnabled(false);
 		
 		addActionListener(new ActionListener() {
 			@Override
