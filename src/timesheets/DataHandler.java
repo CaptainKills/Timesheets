@@ -74,14 +74,31 @@ public class DataHandler {
 		if (!file_EmployeeData.exists()) {
 			logger.info("EmplopyeeData file does not exist.");
 			createFile(file_EmployeeData);
+		} else if (file_EmployeeData.length() == 0) {
+			logger.info("EmployeeData File is empty: Length=" + file_EmployeeData.length());
+			writeDefaultsToFile(file_EmployeeData);
+		} else {
+			logger.info("EmplopyeeData file exists.");
 		}
+		
 		if (!file_TimeData.exists()) {
 			logger.info("TimeData file does not exist.");
 			createFile(file_TimeData);
+		} else if (file_TimeData.length() == 0) {
+			logger.info("TimeData File is empty: Length=" + file_TimeData.length());
+			writeDefaultsToFile(file_TimeData);
+		} else {
+			logger.info("TimeData file exists.");
 		}
+		
 		if (!file_Settings.exists()) {
 			logger.info("Settings file does not exist.");
 			createFile(file_Settings);
+		} else if (file_Settings.length() == 0) {
+			logger.info("Settings File is empty: Length=" + file_Settings.length());
+			writeDefaultsToFile(file_Settings);
+		} else {
+			logger.info("Settings file exists.");
 		}
 	}
 
@@ -99,7 +116,15 @@ public class DataHandler {
 		try (PrintWriter writer = new PrintWriter(file)) {
 			file.createNewFile();
 			logger.info("New File created at " + file.toString());
-
+			writeDefaultsToFile(file);
+			logger.info("File creation succesfully completed.");
+		} catch (IOException e) {
+			logger.error("COULD NOT CREATE FILE: " + e);
+		}
+	}
+	
+	private void writeDefaultsToFile(File file) {
+		try(PrintWriter writer = new PrintWriter(file)){
 			if (file.getAbsolutePath() == path_Settings.toString()) {
 				logger.debug("Writing default settings to Settings file.");
 				writer.print(defaultSettings);
@@ -110,10 +135,8 @@ public class DataHandler {
 				logger.debug("Writing default settings to Settings file.");
 				writer.print(defaultTimeData);
 			}
-
-			logger.info("File creation succesfully completed.");
-		} catch (IOException e) {
-			logger.error("COULD NOT CREATE FILE: " + e);
+		} catch (IOException e){
+			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
 		}
 	}
 
