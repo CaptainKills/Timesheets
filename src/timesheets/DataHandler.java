@@ -85,13 +85,17 @@ public class DataHandler {
 	}
 
 	private void createFile(File file) {
-		try (PrintWriter writer = new PrintWriter(file)) {
+		try {
 			if (!file.getParentFile().exists()) {
 				logger.info("Parent Directory of files does not exist.");
 				file.getParentFile().mkdirs();
 				logger.info("Parent Directory of files created.");
 			}
-
+		} catch (Exception e) {
+			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
+		}
+		
+		try (PrintWriter writer = new PrintWriter(file)) {
 			file.createNewFile();
 			logger.info("New File created at " + file.toString());
 
