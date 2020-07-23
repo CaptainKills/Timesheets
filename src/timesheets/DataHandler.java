@@ -1,6 +1,8 @@
 package timesheets;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
@@ -11,7 +13,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -48,7 +49,7 @@ public class DataHandler {
 		logger.info("Loading Data From Files.");
 		try (Scanner employeeReader = new Scanner(file_EmployeeData);
 				Scanner timeReader = new Scanner(file_TimeData);
-				Scanner settingsReader = new Scanner(file_Settings)) {
+				BufferedReader settingsReader = new BufferedReader(new FileReader(file_Settings))) {
 			logger.info("Loading Employee Data from File.");
 			while (employeeReader.hasNext() & timeReader.hasNext()) {
 				String employeeImport = employeeReader.nextLine();
@@ -57,8 +58,8 @@ public class DataHandler {
 			}
 
 			logger.info("Loading Settings from File.");
-			while (settingsReader.hasNext()) {
-				String newline = settingsReader.nextLine();
+			String newline;
+			while ((newline = settingsReader.readLine()) != null) {
 				extractSettings(newline);
 			}
 		} catch (IOException e) {
@@ -183,11 +184,9 @@ public class DataHandler {
 
 		logger.info("Saving Data to Files.");
 		try (PrintWriter employeeWriter = new PrintWriter(file_EmployeeData);
-				PrintWriter timeWriter = new PrintWriter(file_TimeData);
-				PrintWriter settingsWriter = new PrintWriter(file_Settings)) {
+				PrintWriter timeWriter = new PrintWriter(file_TimeData);) {
 
 			writeDataToFile(employeeWriter, timeWriter);
-			writeSettingsToFile(settingsWriter);
 
 			logger.info("Succesfully saved data to files.");
 		} catch (IOException e) {
@@ -202,17 +201,6 @@ public class DataHandler {
 			Employee dummy_employee = entry.getValue();
 			employee.println(dummy_employee.toString());
 			time.println(dummy_employee.getID_String() + "@" + dummy_employee.timeMapToString());
-		}
-	}
-
-	private void writeSettingsToFile(PrintWriter writer) {
-		logger.debug("Writing settings to file.");
-
-		for (Entry<String, String> entry : settings.entrySet()) {
-			String setting = entry.getKey();
-			String value = entry.getValue();
-
-			writer.println(setting + "=" + value);
 		}
 	}
 
