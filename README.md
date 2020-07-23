@@ -22,4 +22,4 @@ The program is built in Java 8. In order for the application to work, a working 
 
 ## Authors
 
-* **Danick Triantis** - Initial Work and Improvements - [CaptainKills](https://github.com/CaptainKills)
+* **Danick Triantis** - Creator - [CaptainKills](https://github.com/CaptainKills)
