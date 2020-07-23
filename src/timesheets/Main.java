@@ -13,11 +13,11 @@ import timesheets.logging.Logger;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class.toString());
-	private static final ImageIcon img16 = new ImageIcon("images/atom16.png");
-	private static final ImageIcon img32 = new ImageIcon("images/atom32.png");
-	private static final ImageIcon img128 = new ImageIcon("images/atom128.png");
-	private static final ImageIcon img256 = new ImageIcon("images/atom256.png");
-	private static final ImageIcon img512 = new ImageIcon("images/atom512.png");
+	private final static ImageIcon img16 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom16.png"));
+	private final static ImageIcon img32 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom32.png"));
+	private final static ImageIcon img128 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom128.png"));
+	private final static ImageIcon img256 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom256.png"));
+	private final static ImageIcon img512 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom512.png"));
 	
 	public static void main(String[] args) {
 		LogManager.initialise();
@@ -40,7 +40,7 @@ public class Main {
 		});
 	}
 	
-	private static LinkedList<Image> getIcons(){
+	public static LinkedList<Image> getIcons(){
 		LinkedList<Image> list = new LinkedList<Image>();
 		list.add(img16.getImage());
 		list.add(img32.getImage());
