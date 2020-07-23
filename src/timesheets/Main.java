@@ -1,5 +1,8 @@
 package timesheets;
 
+import java.awt.Image;
+import java.util.LinkedList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -10,7 +13,11 @@ import timesheets.logging.Logger;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class.toString());
-	private static final ImageIcon img = new ImageIcon("icon.png");
+	private static final ImageIcon img16 = new ImageIcon("images/atom16.png");
+	private static final ImageIcon img32 = new ImageIcon("images/atom32.png");
+	private static final ImageIcon img128 = new ImageIcon("images/atom128.png");
+	private static final ImageIcon img256 = new ImageIcon("images/atom256.png");
+	private static final ImageIcon img512 = new ImageIcon("images/atom512.png");
 	
 	public static void main(String[] args) {
 		LogManager.initialise();
@@ -27,9 +34,20 @@ public class Main {
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
-				frame.setIconImage(img.getImage());
+				frame.setIconImages(getIcons());
 				logger.info("Initialisation of SwingUtilities Complete.");
 			}
 		});
+	}
+	
+	private static LinkedList<Image> getIcons(){
+		LinkedList<Image> list = new LinkedList<Image>();
+		list.add(img16.getImage());
+		list.add(img32.getImage());
+		list.add(img128.getImage());
+		list.add(img256.getImage());
+		list.add(img512.getImage());
+		
+		return list;
 	}
 }
