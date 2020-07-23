@@ -17,9 +17,6 @@ public class LogManager {
 	private static final Path log_path = Paths.get("logs" + File.separator + filename).toAbsolutePath();
 	private static File log_file = log_path.toFile();
 	
-	private static FileWriter file_writer;
-	private static PrintWriter log_writer;
-	
 	private static boolean debugMode = true;
 
 	public static void initialise() {
@@ -36,9 +33,7 @@ public class LogManager {
 	}
 	
 	public static void writeLog(String log) {
-		try {
-			file_writer = new FileWriter(log_file, true);
-			log_writer = new PrintWriter(file_writer);
+		try (FileWriter file_writer = new FileWriter(log_file, true); PrintWriter log_writer = new PrintWriter(file_writer)){
 			log_writer.println(log);
 			
 			if(debugMode) {
@@ -46,9 +41,6 @@ public class LogManager {
 			}
 		} catch (IOException e){
 			System.out.println("Could not write to log file: " + e);
-		} finally {
-			log_writer.flush();
-			log_writer.close();
 		}
 	} 
 
