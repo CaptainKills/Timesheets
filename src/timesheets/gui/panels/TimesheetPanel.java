@@ -22,7 +22,7 @@ public class TimesheetPanel extends JPanel {
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setLayout(LayoutList.defaultLayout);
 		setBackground(Color.WHITE);
-		setVisible(true);
+		setVisible(false);
 		
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
