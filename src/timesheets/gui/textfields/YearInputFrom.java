@@ -18,7 +18,7 @@ public class YearInputFrom extends JTextField{
 	private static int length = 4;
 	
 	public YearInputFrom() {
-		super("yyyy", length);
+		super("yyyy", length-1);
 		setPreferredSize(DimensionList.dateDisplaySize_medium);
 		setFont(FontList.textDisplayFont);
 		setEnabled(false);

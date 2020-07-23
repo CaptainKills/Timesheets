@@ -23,7 +23,7 @@ public class DimensionList {
 	public static Dimension fieldSize_large = new Dimension(300, 35);
 	public static Dimension fieldSize_medium = new Dimension(145, 35);
 	
-	public static Dimension dateDisplaySize_large = new Dimension(165, 25);
-	public static Dimension dateDisplaySize_medium = new Dimension(105, 25);
-	public static Dimension dateDisplaySize_small = new Dimension(48, 25);
+	public static Dimension dateDisplaySize_large = new Dimension(50, 25);
+	public static Dimension dateDisplaySize_medium = new Dimension(20, 25);
+	public static Dimension dateDisplaySize_small = new Dimension(44, 25);
 }

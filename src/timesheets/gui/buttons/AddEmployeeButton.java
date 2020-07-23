@@ -28,10 +28,7 @@ public class AddEmployeeButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				PanelList.editPanel.setVisible(true);
-				//mainEmpLabelPanel.setVisible(true);
-				//mainEmpControlPanel.setVisible(true);
-				//dateControlPanel.setVisible(false);
-				//dateDisplayPanel.setVisible(false);
+				PanelList.timesheetPanel.setVisible(false);
 
 				ButtonList.submitButton.setText("Add Employee");
 				
@@ -47,7 +44,6 @@ public class AddEmployeeButton extends JButton{
 				UnusualsList.empBox.setSelectedIndex(-1);
 
 				ExtendedHandler.clearInputs();
-				//pack();
 			}
 		});
 		logger.debug("AddEmployeeButton initialised.");
