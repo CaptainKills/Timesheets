@@ -118,7 +118,7 @@ public class SubmitButton extends JButton {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
-					"Are you sure you want to saveDataToFiles this employee?", "Are you sure?",
+					"Are you sure you want to save this employee?", "Are you sure?",
 					JOptionPane.YES_NO_CANCEL_OPTION);
 			if (empBox.getSelectedItem() != null && menuChoice == JOptionPane.YES_OPTION) {
 				for (Employee emp : EmployeeList.values()) {
