@@ -108,7 +108,7 @@ public class DataHandler {
 				logger.info("Parent Directory of files does not exist.");
 				file.getParentFile().mkdirs();
 				logger.info("Parent Directory of files created.");
-			}
+			}			
 		} catch (Exception e) {
 			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
 		}
@@ -125,10 +125,8 @@ public class DataHandler {
 	
 	private void writeDefaultsToFile(File file) {
 		try(PrintWriter writer = new PrintWriter(file)){
-			if (file.getAbsolutePath() == path_Settings.toString()) {
-				logger.debug("Writing default settings to Settings file.");
-				writer.print(defaultSettings);
-			}
+			logger.debug("Writing default settings to Settings file.");
+			writer.print(defaultSettings);
 		} catch (IOException e){
 			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
 		}
@@ -203,14 +201,14 @@ public class DataHandler {
 				String value = segments[1];
 
 				settings.put(setting, value);
-				//logger.info("Added Setting " + setting + ", Value: " + value);
+				logger.info("Added Setting " + setting + ", Value: " + value);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("COULD NOT LOAD SETTINGS: " + e);
 		}
 	}
 
-//	public void saveDataToFiles() {
+	public void saveDataToFiles() {
 //		checkFiles();
 //
 //		logger.info("Saving Data to Files.");
@@ -232,7 +230,7 @@ public class DataHandler {
 //			employeeWriter.println(employee.toString());
 //			timeWriter.println(employee.getID_String() + "@" + employee.timeMapToString());
 //		}
-//	}
+	}
 
 	public int generateNewID() {
 		int newID = new Random().nextInt(100000); // Generate number from 00000 to 99999 - a five digit ID
