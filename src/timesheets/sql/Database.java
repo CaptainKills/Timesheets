@@ -231,7 +231,7 @@ public class Database {
 	}
 
 	public void updateTime(int id, LocalDate date, LocalTime start, LocalTime end, LocalTime br, LocalTime total) {
-		String sql = "UPDATE timedata SET start,end,break,total WHERE id = ? AND date = ? VALUES(?,?,?,?,?,?);";
+		String sql = "UPDATE timedata SET start,end,break,total VALUES(?,?,?,?) WHERE id = ? AND date = ?;";
 
 		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setTime(1, java.sql.Time.valueOf(start));
