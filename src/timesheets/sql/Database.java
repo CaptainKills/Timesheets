@@ -25,11 +25,13 @@ import timesheets.logging.Logger;
 public class Database {
 	private static final Logger logger = new Logger(Database.class.toString());
 
-	private final Path database_path = Paths.get("data" + File.separator + "Test.db").toAbsolutePath();
-	private final Path backup_path = Paths.get("data" + File.separator + "Test_backup.db").toAbsolutePath();
+	private final Path database_path = Paths.get("data" + File.separator + "Timesheets.db").toAbsolutePath();
+	private final Path backup_path = Paths.get("data" + File.separator + "Timesheets_backup.db").toAbsolutePath();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
+	
+	private boolean setup = true;
 
 	// @formatter:off
 		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
@@ -48,6 +50,9 @@ public class Database {
 				+ " total TIME NOT NULL,\n"
 				+ " PRIMARY KEY (id,date),\n"
 				+ " FOREIGN KEY (id) REFERENCES employees(id)" + ") WITHOUT ROWID;";
+		
+		private final String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
+		private final String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
 		// @formatter:on
 
 	private Connection connect() {
@@ -55,21 +60,35 @@ public class Database {
 
 		try {
 			checkDirectory(database_path);
-
 			String url = "jdbc:sqlite:" + database_path;
 
 			logger.info("Establishing connection to SQLite Database...");
 			conn = DriverManager.getConnection(url);
 			if (conn != null) {
 				logger.info("Connection to SQLite Database has been established.");
-				checkDatabase();
+				
+				if(setup == true) {
+					Statement stmt = conn.createStatement();
+					stmt.execute(employees_table);
+					stmt.execute(timedata_table);
+					
+					ResultSet rs = stmt.executeQuery(query_checkAdmin);
+					if (rs.next() == false) { // If there is no initial entry of administrator, add it.
+						stmt.executeUpdate(query_addAdmin);
+						logger.debug("Tables were new: Created Administrator account.");
+					}
+							
+					logger.debug("Checked SQLite Database file for missing Tables.");
+					stmt.close();
+					rs.close();
+					setup = false;
+				}
 			} else {
 				logger.warn("Connection to SQLite Database failed.");
 			}
 		} catch (SQLException e) {
 			logger.error("SQL CONNECTION ERROR: " + e);
 		}
-
 		return conn;
 	}
 
@@ -83,35 +102,6 @@ public class Database {
 			}
 		} catch (SecurityException e) {
 			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
-		}
-	}
-
-	private void checkDatabase() {
-		try (Connection conn = this.connect(); Statement stmt = conn.createStatement();) {
-			stmt.execute(employees_table);
-			stmt.execute(timedata_table);
-			logger.debug("Checked SQLite Database file for missing Tables.");
-
-			checkAdministrator();
-		} catch (SQLException e) {
-			logger.error("SQL DATABASE ERROR: " + e);
-		}
-	}
-
-	private void checkAdministrator() {
-		String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
-		String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
-
-		try (Connection conn = this.connect();
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query_checkAdmin)) {
-
-			if (rs.next() == false) { // If there is no initial entry of administrator, add it.
-				stmt.executeUpdate(query_addAdmin);
-				logger.debug("Tables were new: Created Administrator account.");
-			}
-		} catch (SQLException e) {
-			logger.error("SQL ERROR: " + e);
 		}
 	}
 
@@ -131,7 +121,7 @@ public class Database {
 				ResultSet rs_time;
 				try (PreparedStatement pstmt = conn.prepareStatement(query_time)) {
 					pstmt.setInt(1, employeeID);
-					rs_time = pstmt.executeQuery(query_time);
+					rs_time = pstmt.executeQuery();
 				}
 
 				TreeMap<LocalDate, LocalTime[]> shiftsMap = new TreeMap<LocalDate, LocalTime[]>();
