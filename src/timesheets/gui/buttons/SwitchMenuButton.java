@@ -41,7 +41,6 @@ public class SwitchMenuButton extends JButton{
 					displayAdminButtons(false);
 					setText(">>");
 				}
-				//pack();
 			}
 		});
 		

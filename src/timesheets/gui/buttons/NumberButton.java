@@ -27,7 +27,6 @@ public class NumberButton extends JButton{
 				if (field.getText().length() < 5) {
 					field.setText(field.getText() + number);
 				}
-				//pack();
 			}
 		});
 		

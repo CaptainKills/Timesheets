@@ -26,7 +26,6 @@ public class RemoveNumberButton extends JButton{
 				if (field.getText().length() > 0) {
 					field.setText(field.getText().substring(0, field.getText().length() - 1));
 				}
-				//pack();
 			}
 		});
 		

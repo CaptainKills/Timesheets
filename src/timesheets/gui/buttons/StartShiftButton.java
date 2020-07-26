@@ -39,7 +39,6 @@ public class StartShiftButton extends JButton{
 				
 				activeEmployee.setTimeStarted(currentTime);
 				ExtendedHandler.enableShiftButtons(false, true, true, false);
-				//pack();
 			}
 		});
 		

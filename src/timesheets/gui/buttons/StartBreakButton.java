@@ -40,7 +40,6 @@ public class StartBreakButton extends JButton{
 				
 				activeEmployee.setBreakStarted(currentTime);
 				ExtendedHandler.enableShiftButtons(false, false, false, true);
-				//pack();
 			}
 		});
 		

@@ -51,7 +51,6 @@ public class EmployeeBox<T> extends JComboBox<T>{
 				} else {
 					return;
 				}
-				//pack();
 			}
 		});
 		

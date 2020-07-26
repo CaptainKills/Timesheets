@@ -21,7 +21,6 @@ public class ClearButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				TextFieldList.inputField.setText("");
-				//pack();
 			}
 		});
 	}

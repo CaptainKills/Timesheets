@@ -66,7 +66,6 @@ public class LoginButton extends JButton{
 					}
 
 					ButtonList.logoutButton.setEnabled(true);
-					//pack();
 				} else {
 					logger.warn("Someone entered a non-existent ID.");
 					JOptionPane.showMessageDialog(PanelList.mainPanel, "Please enter correct ID!", "Incorrect ID",

@@ -53,7 +53,6 @@ public class EndBreakButton extends JButton{
 				activeEmployee.setBreakStarted(null);
 				activeEmployee.setBreakEnded(null);
 				ExtendedHandler.enableShiftButtons(false, true, true, false);
-				//pack();
 			}
 		});
 		logger.debug("EndBreakButton initialised.");
