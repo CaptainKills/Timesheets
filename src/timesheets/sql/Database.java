@@ -112,14 +112,13 @@ public class Database {
 			logger.info("Loading Database in program.");
 			while (rs.next()) {
 				int employeeID = rs.getInt("id");
-				logger.info("Loading Emp: " + employeeID);
+				logger.info("Loading Employee " + employeeID);
 
 				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
 				Employee employee = new Employee(employeeID, rs.getString("name"), rs.getInt("age"),
 						rs.getDouble("salary"), rs.getBoolean("admin"), timeMap);
 
 				EmployeeList.put(employeeID, employee);
-				logger.info("Employee Loaded: " + employee.getID_String());
 			}
 			logger.info("Loading Database Complete.");
 		} catch (SQLException e) {
