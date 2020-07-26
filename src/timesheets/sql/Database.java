@@ -105,34 +105,21 @@ public class Database {
 	}
 
 	public void loadDatabase() {
-		String query_emp = "SELECT id, name, age, salary, admin FROM employees;";
-		String query_time = "SELECT date,start,end,break,total FROM timedata WHERE id = ?;";
+		String query = "SELECT * FROM employees;";
 
 		try (Connection conn = this.connect();
 				Statement stmt = conn.createStatement();
-				ResultSet rs_emp = stmt.executeQuery(query_emp);) {
+				ResultSet rs = stmt.executeQuery(query);) {
 
 			logger.info("Loading Database in program.");
-			while (rs_emp.next()) {
-				int employeeID = rs_emp.getInt("id");
+			while (rs.next()) {
+				int employeeID = rs.getInt("id");
+				System.out.println("Loading Emp: " + employeeID);
 
-				ResultSet rs_time;
-				try (PreparedStatement pstmt = conn.prepareStatement(query_time)) {
-					pstmt.setInt(1, employeeID);
-					rs_time = pstmt.executeQuery();
-				}
+				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
+				Employee employee = new Employee(employeeID, rs.getString("name"), rs.getInt("age"),
+						rs.getDouble("salary"), rs.getBoolean("admin"), timeMap);
 
-				TreeMap<LocalDate, LocalTime[]> shiftsMap = new TreeMap<LocalDate, LocalTime[]>();
-				while (rs_time.next()) {
-					LocalTime[] workedHours = { rs_time.getTime("start").toLocalTime(),
-							rs_time.getTime("end").toLocalTime(), rs_time.getTime("break").toLocalTime(),
-							rs_time.getTime("total").toLocalTime() };
-
-					shiftsMap.put(rs_time.getDate("date").toLocalDate(), workedHours);
-				}
-
-				Employee employee = new Employee(employeeID, rs_emp.getString("name"), rs_emp.getInt("age"),
-						rs_emp.getDouble("salary"), rs_emp.getBoolean("admin"), shiftsMap);
 				EmployeeList.put(employeeID, employee);
 				logger.info("Employee Loaded: " + employee.getID_String());
 			}
@@ -140,6 +127,27 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("SQL DATABASE ERROR: " + e);
 		}
+	}
+
+	private TreeMap<LocalDate, LocalTime[]> loadTimeData(Connection c, int id) {
+		String query = "SELECT * FROM timedata WHERE id = " + id + ";";
+		TreeMap<LocalDate, LocalTime[]> timemap = new TreeMap<LocalDate, LocalTime[]>();
+
+		try (Statement stmt = c.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+			while (rs.next()) {
+				LocalTime[] workedHours = { rs.getTime("start").toLocalTime(), rs.getTime("end").toLocalTime(),
+						rs.getTime("break").toLocalTime(), rs.getTime("total").toLocalTime() };
+
+				logger.info("Loaded shift: " + workedHours[0] + ", " + workedHours[1] + ", " + workedHours[2] + ", "
+						+ workedHours[3] + "|" + rs.getDate("date").toLocalDate());
+
+				timemap.put(rs.getDate("date").toLocalDate(), workedHours);
+			}
+		} catch (SQLException e) {
+			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE: " + e);
+		}
+
+		return timemap;
 	}
 
 	public void backupDatabase() {
@@ -159,9 +167,9 @@ public class Database {
 	}
 
 	public void insertEmployee(Employee emp) {
-		String sql = "INSERT INTO employees(id,name,age,salary,admin) VALUES(?,?,?,?,?);";
+		String query = "INSERT INTO employees(id,name,age,salary,admin) VALUES(?,?,?,?,?);";
 
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setInt(1, emp.getID());
 			pstmt.setString(2, emp.getName());
 			pstmt.setInt(3, emp.getAge());
@@ -178,7 +186,7 @@ public class Database {
 	public void deleteEmployee(int id) {
 		String query_emp = "DELETE FROM employees\nWHERE id = ?;";
 		String query_time = "DELETE FROM timedata\nWHERE id = ?;";
-		
+
 		try (Connection conn = this.connect();
 				PreparedStatement pstmt_emp = conn.prepareStatement(query_emp);
 				PreparedStatement pstmt_time = conn.prepareStatement(query_time)) {
@@ -195,9 +203,9 @@ public class Database {
 	}
 
 	public void updateEmployee(int oldID, Employee new_emp) {
-		String sql = "UPDATE employees SET id = ?, name = ?, age = ?, salary = ?, admin = ? WHERE id = ?;";
+		String query = "UPDATE employees SET id = ?, name = ?, age = ?, salary = ?, admin = ? WHERE id = ?;";
 
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setInt(1, new_emp.getID());
 			pstmt.setString(2, new_emp.getName());
 			pstmt.setInt(3, new_emp.getAge());
