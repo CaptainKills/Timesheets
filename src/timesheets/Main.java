@@ -13,11 +13,15 @@ import timesheets.logging.Logger;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class.toString());
-	private final static ImageIcon img16 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom16.png"));
-	private final static ImageIcon img32 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom32.png"));
-	private final static ImageIcon img128 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom128.png"));
-	private final static ImageIcon img256 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom256.png"));
-	private final static ImageIcon img512 = new ImageIcon(Main.class.getClassLoader().getResource("timesheets/images/atom512.png"));
+	
+	private static final String resource_path = "timesheets/images/";
+	private static ClassLoader loader = Main.class.getClassLoader();
+	
+	private static final ImageIcon img16 = new ImageIcon(loader.getResource(resource_path + "atom16.png"));
+	private static final ImageIcon img32 = new ImageIcon(loader.getResource(resource_path + "atom32.png"));
+	private static final ImageIcon img128 = new ImageIcon(loader.getResource(resource_path + "atom128.png"));
+	private static final ImageIcon img256 = new ImageIcon(loader.getResource(resource_path + "atom256.png"));
+	private static final ImageIcon img512 = new ImageIcon(loader.getResource(resource_path + "atom512.png"));
 	
 	public static void main(String[] args) {
 		LogManager.initialise();
