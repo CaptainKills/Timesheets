@@ -28,8 +28,8 @@ public class Database {
 	private final Path backup_path = Paths.get("data" + File.separator + "Timesheets_backup.db").toAbsolutePath();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
-	
-	//private boolean setup = true;
+
+	// private boolean setup = true;
 
 	// @formatter:off
 		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
@@ -41,7 +41,7 @@ public class Database {
 
 		private final String timedata_table = "CREATE TABLE IF NOT EXISTS timedata (\n"
 				+ " id INTEGER NOT NULL,\n"
-				+ " date DATE NOT NULL UNIQUE,\n"
+				+ " date DATE NOT NULL,\n"
 				+ " start TIME NOT NULL,\n"
 				+ " end TIME NOT NULL,\n"
 				+ " break TIME NOT NULL,\n"
@@ -52,19 +52,19 @@ public class Database {
 		private final String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
 		private final String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
 	// @formatter:on
-		
+
 	public void setupDatabase() {
-		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()){
+		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
 			stmt.execute(timedata_table);
 			logger.debug("Checked SQLite Database file for missing Tables.");
-			
+
 			ResultSet rs = stmt.executeQuery(query_checkAdmin);
 			if (rs.next() == false) { // If there is no initial entry of administrator, add it.
 				stmt.executeUpdate(query_addAdmin);
 				logger.debug("Tables were new: Created Administrator account.");
-			}		
-			
+			}
+
 			rs.close();
 		} catch (SQLException e) {
 			logger.error("COULD NOT SET UP SQLite DATABASE: " + e);
@@ -146,16 +146,16 @@ public class Database {
 		try {
 			logger.info("Creating Backup of SQLite Database.");
 			File backup = backup_path.toFile();
-			if(backup.exists()) {
+			if (backup.exists()) {
 				logger.info("Current Backup File will be deleted.");
 				backup.delete();
 			}
-			
+
 			Files.copy(database_path, backup_path, StandardCopyOption.COPY_ATTRIBUTES);
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
-		} 
+		}
 	}
 
 	public void insertEmployee(Employee emp) {
@@ -176,12 +176,18 @@ public class Database {
 	}
 
 	public void deleteEmployee(int id) {
-		String sql = "DELETE FROM employees WHERE id = ?;";
+		String query_emp = "DELETE FROM employees\nWHERE id = ?;";
+		String query_time = "DELETE FROM timedata\nWHERE id = ?;";
+		
+		try (Connection conn = this.connect();
+				PreparedStatement pstmt_emp = conn.prepareStatement(query_emp);
+				PreparedStatement pstmt_time = conn.prepareStatement(query_time)) {
+			pstmt_emp.setInt(1, id);
+			pstmt_emp.executeUpdate();
 
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, id);
+			pstmt_time.setInt(1, id);
+			pstmt_time.executeUpdate();
 
-			pstmt.executeUpdate();
 			logger.info("Deleted Employee from Database: " + id);
 		} catch (SQLException e) {
 			logger.error("COULD NOT DELETE EMPLOYEE FROM DATABASE: " + e);
@@ -207,18 +213,18 @@ public class Database {
 	}
 
 	public void insertTime(int id, LocalDate date, LocalTime[] shift) {
-		String sql = "INSERT INTO timedata(id,date,start,end,break,total) VALUES(?,?,?,?,?,?)\n"
-				+ "ON CONFLICT(id,date) DO UPDATE SET (start,end,break,total) VALUES(?,?,?,?)"
-				+ " WHERE id = ? AND date = ?;";
+		String query = "INSERT INTO timedata(id,date,start,end,break,total) VALUES(?,?,?,?,?,?)\n"
+				+ "ON CONFLICT(id,date) DO UPDATE SET start = ?, end = ?, break = ?, total = ?\n"
+				+ "WHERE id = ? AND date = ?;";
 
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setInt(1, id);
 			pstmt.setDate(2, java.sql.Date.valueOf(date));
 			pstmt.setTime(3, java.sql.Time.valueOf(shift[0]));
 			pstmt.setTime(4, java.sql.Time.valueOf(shift[1]));
 			pstmt.setTime(5, java.sql.Time.valueOf(shift[2]));
 			pstmt.setTime(6, java.sql.Time.valueOf(shift[3]));
-			
+
 			pstmt.setTime(7, java.sql.Time.valueOf(shift[0]));
 			pstmt.setTime(8, java.sql.Time.valueOf(shift[1]));
 			pstmt.setTime(9, java.sql.Time.valueOf(shift[2]));
