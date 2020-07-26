@@ -33,19 +33,36 @@ public class LogoutButton extends JButton{
 				ButtonList.switchMenuButton.setEnabled(false);
 
 				ButtonList.loginButton.setEnabled(true);
+				
+				displayTimeButtons(true);
+				displayAdminButtons(false);
 				ExtendedHandler.enableShiftButtons(false, false, false, false);
 				setEnabled(false);
 
 				PanelList.numpadPanel.setVisible(true);
-				//PanelList.getAdminPanel().setVisible(false);
-				//dateControlPanel.setVisible(false);
-				//dateDisplayPanel.setVisible(false);
-				//pack();
+				PanelList.editPanel.setVisible(false);
+				PanelList.timesheetPanel.setVisible(false);
 				
 				logger.info("Employee has logged out.");
 			}
 		});
 		
 		logger.debug("LogoutButton initialised.");
+	}
+	
+	private void displayTimeButtons(Boolean bool) {
+		ButtonList.startShiftButton.setVisible(bool);
+		ButtonList.endShiftButton.setVisible(bool);
+		ButtonList.startBreakButton.setVisible(bool);
+		ButtonList.endBreakButton.setVisible(bool);
+	}
+
+	private void displayAdminButtons(Boolean bool) {
+		ButtonList.addEmployeeButton.setVisible(bool);
+		ButtonList.removeEmployeeButton.setVisible(bool);
+		ButtonList.editEmployeeButton.setVisible(bool);
+		ButtonList.printSheetsButton.setVisible(bool);
+		ButtonList.editSheetsButton.setVisible(bool);
+		ButtonList.exitButton.setVisible(bool);
 	}
 }
