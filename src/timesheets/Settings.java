@@ -19,54 +19,22 @@ public class Settings {
 	private File file_Settings = path_Settings.toFile();
 
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
-	private final String defaultSettings = "" + "fontsize=10\n" + "width=1000\n" + "height=360\n" + "" + "" + "" + ""
+
+	// @formatter:off
+		private final String defaultSettings = "" 
+			+ "fontsize=10\n" 
+			+ "width=1000\n" 
+			+ "height=360\n" 
+			+ "" 
+			+ "" 
+			+ "" 
+			+ ""
 			+ "";
-
-	private void checkFile() {
-		if (!file_Settings.exists()) {
-			logger.info("Settings file does not exist.");
-			createFile(file_Settings);
-		} else if (file_Settings.length() == 0) {
-			logger.info("Settings File is empty: Length=" + file_Settings.length());
-			writeDefaultsToFile(file_Settings);
-		} else {
-			logger.info("Settings file exists.");
-		}
-	}
-
-	private void createFile(File file) {
-		try {
-			if (!file.getParentFile().exists()) {
-				logger.info("Parent Directory of files does not exist.");
-				file.getParentFile().mkdirs();
-				logger.info("Parent Directory of files created.");
-			}			
-		} catch (Exception e) {
-			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
-		}
+	// @formatter:on
 		
-		try (PrintWriter writer = new PrintWriter(file)) {
-			file.createNewFile();
-			logger.info("New File created at " + file.toString());
-			writeDefaultsToFile(file);
-			logger.info("File creation succesfully completed.");
-		} catch (IOException e) {
-			logger.error("COULD NOT CREATE FILE: " + e);
-		}
-	}
-	
-	private void writeDefaultsToFile(File file) {
-		try(PrintWriter writer = new PrintWriter(file)){
-			logger.debug("Writing default settings to Settings file.");
-			writer.print(defaultSettings);
-		} catch (IOException e){
-			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
-		}
-	}
-
 	public void loadSettings() {
 		checkFile();
-		
+
 		try (BufferedReader reader = new BufferedReader(new FileReader(file_Settings))) {
 			String newline;
 			while ((newline = reader.readLine()) != null) {
@@ -79,6 +47,48 @@ public class Settings {
 			}
 		} catch (IOException e) {
 			logger.error("COULD NOT LOAD SETTINGS: " + e);
+		}
+	}
+
+	private void checkFile() {
+		if (!file_Settings.exists()) {
+			logger.info("Settings file does not exist.");
+			createFile(file_Settings);
+		} else if (file_Settings.length() == 0) {
+			logger.info("Settings File is empty: Length=" + file_Settings.length());
+			writeDefaultsToFile(file_Settings);
+		} else {
+			logger.info("Settings file exists: Length=" + file_Settings.length());
+		}
+	}
+
+	private void createFile(File file) {
+		try {
+			if (!file.getParentFile().exists()) {
+				logger.info("Parent Directory of files does not exist.");
+				file.getParentFile().mkdirs();
+				logger.info("Parent Directory of files created.");
+			}
+		} catch (Exception e) {
+			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
+		}
+
+		try (PrintWriter writer = new PrintWriter(file)) {
+			file.createNewFile();
+			logger.info("New File created at " + file.toString());
+			writeDefaultsToFile(file);
+			logger.info("File creation succesfully completed.");
+		} catch (IOException e) {
+			logger.error("COULD NOT CREATE FILE: " + e);
+		}
+	}
+
+	private void writeDefaultsToFile(File file) {
+		try (PrintWriter writer = new PrintWriter(file)) {
+			logger.debug("Writing default settings to Settings file.");
+			writer.print(defaultSettings);
+		} catch (IOException e) {
+			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
 		}
 	}
 }
