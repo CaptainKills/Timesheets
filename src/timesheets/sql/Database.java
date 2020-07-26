@@ -112,7 +112,7 @@ public class Database {
 			logger.info("Loading Database in program.");
 			while (rs.next()) {
 				int employeeID = rs.getInt("id");
-				System.out.println("Loading Emp: " + employeeID);
+				logger.info("Loading Emp: " + employeeID);
 
 				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
 				Employee employee = new Employee(employeeID, rs.getString("name"), rs.getInt("age"),
