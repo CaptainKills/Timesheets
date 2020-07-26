@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		super("Timesheets");
 		logger.info("Start MainFrame Setup.");
-		
+
 		settings.loadSettings();
 		database.setupDatabase();
 		database.loadDatabase();
