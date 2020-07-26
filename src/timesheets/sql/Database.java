@@ -147,7 +147,7 @@ public class Database {
 			logger.info("Creating Backup of SQLite Database.");
 			File backup = backup_path.toFile();
 			if(backup.exists()) {
-				logger.info("");
+				logger.info("Current Backup File will be deleted.");
 				backup.delete();
 			}
 			
