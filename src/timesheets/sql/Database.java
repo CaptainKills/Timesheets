@@ -29,8 +29,6 @@ public class Database {
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 
-	// private boolean setup = true;
-
 	// @formatter:off
 		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
 				+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
@@ -48,12 +46,12 @@ public class Database {
 				+ " total TIME NOT NULL,\n"
 				+ " PRIMARY KEY (id,date),\n"
 				+ " FOREIGN KEY (id) REFERENCES employees(id)" + ") WITHOUT ROWID;";
-		
-		private final String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
-		private final String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
 	// @formatter:on
 
 	public void setupDatabase() {
+		String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
+		String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
+
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
 			stmt.execute(timedata_table);
