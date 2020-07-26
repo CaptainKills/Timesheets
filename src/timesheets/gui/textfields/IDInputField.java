@@ -1,5 +1,8 @@
 package timesheets.gui.textfields;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -17,6 +20,15 @@ public class IDInputField extends JTextField{
 		setFont(FontList.normalFont);
 		setEditable(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
+		
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {				
+				if (getText().length() >= 5) {
+					e.consume();
+				}
+			}
+		});
 		
 		logger.debug("IDInputField initialised.");
 	}
