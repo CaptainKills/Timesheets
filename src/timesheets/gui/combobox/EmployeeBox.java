@@ -6,19 +6,19 @@ import java.util.Map;
 
 import javax.swing.JComboBox;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class EmployeeBox<T> extends JComboBox<T>{
 	private static final long serialVersionUID = -8247944843862213418L;
 	private static final Logger logger = new Logger(EmployeeBox.class.toString());
 	
-	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
+	private Map<Integer, Employee> EmployeeList = Database.EmployeeList;
 
 	public EmployeeBox() {
 		setPreferredSize(DimensionList.fieldSize_large);

@@ -10,7 +10,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.lists.DimensionList;
@@ -18,6 +17,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class DateWeekButton extends JRadioButton {
 
@@ -39,7 +39,7 @@ public class DateWeekButton extends JRadioButton {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					LabelList.weekLabel.setEnabled(true);
 
-					for (Employee emp : DataHandler.EmployeeList.values()) {
+					for (Employee emp : Database.EmployeeList.values()) {
 						display.append(emp.getName() + " (" + emp.getID() + ")\n");
 						if (emp.getWorkedTime() != null) {
 							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {

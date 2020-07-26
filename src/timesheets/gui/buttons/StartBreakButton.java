@@ -6,7 +6,6 @@ import java.time.LocalTime;
 
 import javax.swing.JButton;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
@@ -15,6 +14,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class StartBreakButton extends JButton{
 	private static final long serialVersionUID = 8689997860170245346L;
@@ -32,7 +32,7 @@ public class StartBreakButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
-				Employee activeEmployee = DataHandler.EmployeeList.get(id);
+				Employee activeEmployee = Database.EmployeeList.get(id);
 				
 				LocalTime currentTime = time.roundOffTime(time.getCurrentTime());
 				TextAreaList.loginTextArea.updateInfoText("Break has been started at: " + currentTime);

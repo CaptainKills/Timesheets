@@ -4,18 +4,17 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 
-import timesheets.DataHandler;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class IDGeneratorButton extends JButton{
 	private static final long serialVersionUID = -3233791224942503549L;
 	private static final Logger logger = new Logger(IDGeneratorButton.class.toString());
-	
-	private DataHandler data = new DataHandler();
 
 	public IDGeneratorButton() {
 		super("#");
@@ -26,13 +25,31 @@ public class IDGeneratorButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				String textID = String.format("%05d", data.generateNewID());
+				String textID = String.format("%05d", generateNewID());
 				TextFieldList.idField.setText(textID);
-				//pack();
 			}
 		});
 		
 		logger.debug("IDGeneratorButton initialised.");
+	}
+	
+	private int generateNewID() {
+		int newID = new Random().nextInt(100000); // Generate number from 00000 to 99999 - a five digit ID
+
+		if (isIdUsed(newID)) {
+			return generateNewID();
+		} else {
+			logger.debug("Generated new ID: " + newID);
+			return newID;
+		}
+	}
+
+	private Boolean isIdUsed(int id) {
+		if (Database.EmployeeList.get(id) != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
@@ -22,6 +21,7 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class SubmitButton extends JButton {
 	private static final long serialVersionUID = -2944959431303812446L;
@@ -34,8 +34,8 @@ public class SubmitButton extends JButton {
 	private JTextField salaryField = TextFieldList.salaryField;
 	private JComboBox<String> empBox = UnusualsList.empBox;
 	
-	private DataHandler data = new DataHandler();
-	private Map<Integer, Employee> EmployeeList = DataHandler.EmployeeList;
+	private Database database = new Database();
+	private Map<Integer, Employee> EmployeeList = Database.EmployeeList;
 	private Employee transferEmployee;
 
 	public SubmitButton() {
@@ -54,7 +54,6 @@ public class SubmitButton extends JButton {
 					saveEmployee();
 				}
 			}
-			// pack();
 		});
 		
 		logger.debug("SubmitButton initialised.");
@@ -75,10 +74,11 @@ public class SubmitButton extends JButton {
 				Integer.parseInt(ageField.getText()),
 				Double.parseDouble(salaryField.getText().replace(",", ".")), false, new TreeMap<LocalDate, LocalTime[]>());
 			}
+			
 			EmployeeList.put(transferEmployee.getID(), transferEmployee);
+			database.insertEmployee(transferEmployee);
 			logger.info("New Employee has been added: " + transferEmployee.getID_String());
 			
-			data.saveDataToFiles();
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
 					"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
 
@@ -100,9 +100,9 @@ public class SubmitButton extends JButton {
 			}
 			empBox.removeItem(empBox.getSelectedItem());
 			EmployeeList.remove(transferEmployee.getID());
+			database.deleteEmployee(transferEmployee.getID());
 			logger.info("Employee " + transferEmployee.getID_String() + " has been removed");
 			
-			data.saveDataToFiles();
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been removed!", "Successfull Removal!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else if (menuChoice == JOptionPane.CANCEL_OPTION) {
@@ -129,7 +129,9 @@ public class SubmitButton extends JButton {
 					}
 				}
 
-				EmployeeList.remove(transferEmployee.getID());
+				int oldID = transferEmployee.getID();
+				EmployeeList.remove(oldID);
+				
 				transferEmployee.setID(Integer.parseInt(idField.getText()));
 				transferEmployee.setName(nameField.getText());
 				transferEmployee.setAge(Integer.parseInt(ageField.getText()));
@@ -142,9 +144,9 @@ public class SubmitButton extends JButton {
 				}
 				
 				EmployeeList.put(transferEmployee.getID(), transferEmployee);
+				database.updateEmployee(oldID, transferEmployee);
 				logger.info("Employee " + transferEmployee.getID_String() + "'s data has been changed and saved.");
 				
-				data.saveDataToFiles();
 				JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
 						"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);
 

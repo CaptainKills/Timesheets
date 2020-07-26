@@ -7,7 +7,6 @@ import java.time.LocalTime;
 
 import javax.swing.JButton;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
@@ -16,12 +15,13 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class EndShiftButton extends JButton{
 	private static final long serialVersionUID = 1690125966086841320L;
 	private static final Logger logger = new Logger(EndShiftButton.class.toString());
 	
-	private DataHandler data = new DataHandler();
+	private Database database = new Database();
 	private TimeHandler time = new TimeHandler();
 	
 	private LocalTime[] previousShift, newShift;
@@ -38,7 +38,7 @@ public class EndShiftButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
-				Employee activeEmployee = DataHandler.EmployeeList.get(id);
+				Employee activeEmployee = Database.EmployeeList.get(id);
 				
 				currentDate = time.getCurrentDate();
 				currentTime = time.roundOffTime(time.getCurrentTime());
@@ -68,9 +68,9 @@ public class EndShiftButton extends JButton{
 
 				activeEmployee.setWorkedTime(currentDate, newShift);
 				activeEmployee.resetTime();
-				data.saveDataToFiles();
+				database.insertTime(id, currentDate, newShift);
+				
 				ExtendedHandler.enableShiftButtons(true, false, false, false);
-				//pack();
 			}
 		});
 		
