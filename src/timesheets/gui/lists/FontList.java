@@ -2,10 +2,10 @@ package timesheets.gui.lists;
 
 import java.awt.Font;
 
-import timesheets.DataHandler;
+import timesheets.Settings;
 
 public class FontList {
-	private static int fontSize = Integer.parseInt(DataHandler.settings.get("fontsize"));
+	private static int fontSize = Integer.parseInt(Settings.settings.get("fontsize"));
 
 	public static Font textfieldFont = new Font("Arial", Font.PLAIN, 35 + fontSize);
 	public static Font buttonFont = new Font("Arial", Font.PLAIN, 10 + fontSize);

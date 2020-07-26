@@ -1,10 +1,10 @@
 package timesheets.gui;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.sql.Database;
 
 public class ExtendedHandler {
 	
@@ -25,7 +25,7 @@ public class ExtendedHandler {
 	
 	public static void loadEmployeesInBox() {
 		UnusualsList.empBox.removeAllItems();
-		for (Employee emp : DataHandler.EmployeeList.values()) {
+		for (Employee emp : Database.EmployeeList.values()) {
 			UnusualsList.empBox.addItem(emp.getName());
 		}
 

@@ -9,6 +9,7 @@ bin/
 tmp/
 data/
 logs/
+lib/
 .settings/
 .recommenders/
 

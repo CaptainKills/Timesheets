@@ -32,14 +32,14 @@ public class RemoveEmployeeButton extends JButton{
 
 				ButtonList.submitButton.setText("Remove Employee");
 				
-				TextFieldList.idField.setEnabled(true);
-				ButtonList.idButton.setEnabled(true);
-				TextFieldList.nameField.setEnabled(true);
-				TextFieldList.ageField.setEnabled(true);
-				TextFieldList.salaryField.setEnabled(true);
+				TextFieldList.idField.setEnabled(false);
+				ButtonList.idButton.setEnabled(false);
+				TextFieldList.nameField.setEnabled(false);
+				TextFieldList.ageField.setEnabled(false);
+				TextFieldList.salaryField.setEnabled(false);
 				
-				ButtonList.adminEnableButton.setEnabled(true);
-				ButtonList.adminDisableButton.setEnabled(true);
+				ButtonList.adminEnableButton.setEnabled(false);
+				ButtonList.adminDisableButton.setEnabled(false);
 				UnusualsList.empBox.setEnabled(true);
 				ExtendedHandler.loadEmployeesInBox();
 

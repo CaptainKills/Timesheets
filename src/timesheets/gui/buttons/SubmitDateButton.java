@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
@@ -19,6 +18,7 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class SubmitDateButton extends JButton {
 
@@ -58,7 +58,7 @@ public class SubmitDateButton extends JButton {
 					display.setText("");
 				}
 
-				for (Employee emp : DataHandler.EmployeeList.values()) {
+				for (Employee emp : Database.EmployeeList.values()) {
 					display.append(emp.getName() + " (" + emp.getID() + ")\n");
 					if (!emp.getWorkedTime().isEmpty()) {
 						for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {

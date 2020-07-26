@@ -19,7 +19,8 @@ The program is built in Java 8. In order for the application to work, a working 
 ## Special Thanks
 
 * **Program Icon** - Adapted from [Skoll](https://game-icons.net/1x1/skoll/atom.html), under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* **JDBC SQLite Driver** - by [Taro L. Saito](https://bitbucket.org/xerial/sqlite-jdbc/downloads/), under [Apache License Terms](https://bitbucket.org/xerial/sqlite-jdbc/src/default/LICENSE)
 
 ## Authors
 
-* **Danick Triantis** - Creator - [CaptainKills](https://github.com/CaptainKills)
+* **Danick Triantis** - Creator and Developer - [CaptainKills](https://github.com/CaptainKills)

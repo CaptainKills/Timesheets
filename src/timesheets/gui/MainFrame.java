@@ -6,21 +6,25 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import timesheets.DataHandler;
+import timesheets.Settings;
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 01L;
 	private static final Logger logger = new Logger(MainFrame.class.toString());
 	
-	private DataHandler data = new DataHandler();
+	private Database database = new Database();
+	private Settings settings = new Settings();
 
 	public MainFrame() {
 		super("Timesheets");
 		logger.info("Start MainFrame Setup.");
-		
-		data.loadDataFromFiles();
+
+		settings.loadSettings();
+		database.setupDatabase();
+		database.loadDatabase();
 
 		PanelList.mainPanel.setupPanel();
 		getContentPane().add(PanelList.mainPanel);
@@ -30,7 +34,7 @@ public class MainFrame extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				if (JOptionPane.showConfirmDialog(getContentPane(), "Are you sure?") == JOptionPane.YES_OPTION) {
 					logger.info("Closing Application...");
-					data.saveDataToFiles();
+					database.backupDatabase();
 					logger.info("Application Closed.\n");
 					System.exit(0);
 				}

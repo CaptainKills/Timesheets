@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import timesheets.DataHandler;
 import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
@@ -15,13 +14,13 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class LoginButton extends JButton{
 	private static final long serialVersionUID = 8434083962194467158L;
 	private static final Logger logger = new Logger(LoginButton.class.toString());
 	
-	private DataHandler data = new DataHandler();
-	private int id = 0;
+	private int id;
 
 	public LoginButton() {
 		super("Login");
@@ -36,8 +35,8 @@ public class LoginButton extends JButton{
 				}
 				id = Integer.parseInt(TextFieldList.inputField.getText());
 				
-				if (data.isIdUsed(id)) {
-					Employee activeEmployee = DataHandler.EmployeeList.get(id);
+				if (Database.EmployeeList.containsKey(id)) {
+					Employee activeEmployee = Database.EmployeeList.get(id);
 					
 					TextAreaList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
 					logger.info("Employee " + activeEmployee.getID_String() + " has logged in.");
