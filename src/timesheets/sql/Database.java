@@ -145,11 +145,17 @@ public class Database {
 	public void backupDatabase() {
 		try {
 			logger.info("Creating Backup of SQLite Database.");
+			File backup = backup_path.toFile();
+			if(backup.exists()) {
+				logger.info("");
+				backup.delete();
+			}
+			
 			Files.copy(database_path, backup_path, StandardCopyOption.COPY_ATTRIBUTES);
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
-		}
+		} 
 	}
 
 	public void insertEmployee(Employee emp) {
