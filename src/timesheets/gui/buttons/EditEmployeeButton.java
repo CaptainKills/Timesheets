@@ -30,7 +30,7 @@ public class EditEmployeeButton extends JButton{
 				PanelList.editPanel.setVisible(true);
 				PanelList.timesheetPanel.setVisible(false);
 
-				ButtonList.submitButton.setText("Edit Employee");
+				ButtonList.submitButton.setText("Save Employee");
 				
 				TextFieldList.idField.setEnabled(true);
 				ButtonList.idButton.setEnabled(true);
