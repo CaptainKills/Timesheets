@@ -5,6 +5,8 @@ $RECYCLE.BIN/
 
 # Eclipse Java Folders
 .metadata
+.classpath
+.project
 bin/
 tmp/
 data/
@@ -20,3 +22,7 @@ lib/
 # Package Files
 *.zip
 *.rar
+
+# GitHub config files
+.gitattributes
+.gitignore
