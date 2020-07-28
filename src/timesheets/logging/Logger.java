@@ -6,32 +6,39 @@ import java.time.LocalDate;
 public class Logger {
 	private String className;
 	
-	public Logger(String className) {
-		this.className = className;
+	enum Level {
+		DEBUG,
+		INFO,
+		WARN,
+		ERROR
 	}
 	
-	public void info(String msg) {
-		String log = formatMessage("INFO", msg);
-		LogManager.writeLog(log);
+	public Logger(String className) {
+		this.className = className.substring(6); //remove 'class ' from text.
 	}
 	
 	public void debug(String msg) {
-		String log = formatMessage("DEBUG", msg);
+		String log = formatMessage(Level.DEBUG, msg);
 		LogManager.writeLog(log);
 	}
 	
-	public void error(String msg) {
-		String log = formatMessage("ERROR", msg);
+	public void info(String msg) {
+		String log = formatMessage(Level.INFO, msg);
 		LogManager.writeLog(log);
 	}
 	
 	public void warn(String msg) {
-		String log = formatMessage("FATAL", msg);
+		String log = formatMessage(Level.WARN, msg);
 		LogManager.writeLog(log);
 	}
 	
-	private String formatMessage(String level, String msg) {
-		return String.format("%s %s [%s] %s -> %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
+	public void error(String msg) {
+		String log = formatMessage(Level.ERROR, msg);
+		LogManager.writeLog(log);
+	}
+	
+	private String formatMessage(Level level, String msg) {
+		return String.format("%s %s\t[%s]\t%s   ->   %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
 	}
 
 }
