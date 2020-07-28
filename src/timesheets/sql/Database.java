@@ -23,9 +23,11 @@ import timesheets.logging.Logger;
 
 public class Database {
 	private static final Logger logger = new Logger(Database.class.toString());
+	private static final String enc_key = "HWEupmmPvjfwlUk6";
 
 	private final Path database_path = Paths.get("data" + File.separator + "Timesheets.db").toAbsolutePath();
-	private final Path backup_path = Paths.get("data" + File.separator + "Timesheets_backup.db").toAbsolutePath();
+	private final Path encrypted_path = Paths.get("data" + File.separator + "Timesheets.encrypted").toAbsolutePath();
+	private final Path backup_path = Paths.get("data" + File.separator + "Timesheets_backup.encrypted").toAbsolutePath();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 
@@ -51,7 +53,7 @@ public class Database {
 	public void setupDatabase() {
 		String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
 		String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
-
+		
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
 			stmt.execute(timedata_table);
@@ -74,6 +76,7 @@ public class Database {
 
 		try {
 			checkDirectory();
+			Encryption.decrypt(enc_key, encrypted_path, database_path);
 			String url = "jdbc:sqlite:" + database_path;
 
 			logger.info("Establishing connection to SQLite Database...");
@@ -86,6 +89,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("SQL CONNECTION ERROR: " + e);
 		}
+		
 		return conn;
 	}
 
@@ -123,6 +127,8 @@ public class Database {
 			logger.info("Loading Database Complete.");
 		} catch (SQLException e) {
 			logger.error("SQL DATABASE ERROR: " + e);
+		} finally {
+			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
 	}
 
@@ -143,7 +149,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE: " + e);
 		}
-
+		
 		return timemap;
 	}
 
@@ -156,7 +162,7 @@ public class Database {
 				backup.delete();
 			}
 
-			Files.copy(database_path, backup_path, StandardCopyOption.COPY_ATTRIBUTES);
+			Files.copy(encrypted_path, backup_path, StandardCopyOption.COPY_ATTRIBUTES);
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
@@ -177,6 +183,8 @@ public class Database {
 			logger.info("Added Employee to Database: " + emp.getID());
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT EMPLOYEE INTO DATABASE: " + e);
+		} finally {
+			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
 	}
 
@@ -196,6 +204,8 @@ public class Database {
 			logger.info("Deleted Employee from Database: " + id);
 		} catch (SQLException e) {
 			logger.error("COULD NOT DELETE EMPLOYEE FROM DATABASE: " + e);
+		} finally {
+			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
 	}
 
@@ -214,6 +224,8 @@ public class Database {
 			logger.info("Updated Employee in Database: " + oldID + " -> " + new_emp.getID());
 		} catch (SQLException e) {
 			logger.error("COULD NOT UPDATE EMPLOYEE IN DATABASE: " + e);
+		} finally {
+			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
 	}
 
@@ -241,6 +253,8 @@ public class Database {
 			logger.info("Succesfully logged Time: " + id + " - " + date);
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT TIME INTO DATABASE: " + e);
+		} finally {
+			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
 	}
 
