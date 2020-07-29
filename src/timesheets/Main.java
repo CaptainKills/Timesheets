@@ -25,7 +25,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		LogManager.initialise();
+		logger.info("Initialising Program.");
+		
 		Settings.loadSettings();
+		LogManager.checkLogs();
 		
 		logger.info("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {
