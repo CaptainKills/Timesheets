@@ -34,6 +34,7 @@ public class Settings {
 	// @formatter:on
 		
 	public static void loadSettings() {
+		logger.info("Loading Settings File.");
 		checkFile();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(file_Settings))) {
