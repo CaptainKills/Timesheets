@@ -6,7 +6,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import timesheets.Settings;
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -16,13 +15,11 @@ public class MainFrame extends JFrame {
 	private static final Logger logger = new Logger(MainFrame.class.toString());
 	
 	private Database database = new Database();
-	private Settings settings = new Settings();
 
 	public MainFrame() {
 		super("Timesheets");
 		logger.info("Start MainFrame Setup.");
 
-		settings.loadSettings();
 		database.setupDatabase();
 		database.loadDatabase();
 

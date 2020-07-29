@@ -15,24 +15,25 @@ import timesheets.logging.Logger;
 public class Settings {
 	private static final Logger logger = new Logger(Settings.class.toString());
 
-	private final Path path_Settings = Paths.get("data" + File.separator + "Settings.dat").toAbsolutePath();
-	private File file_Settings = path_Settings.toFile();
+	private final static Path path_Settings = Paths.get("data" + File.separator + "settings.properties").toAbsolutePath();
+	private static File file_Settings = path_Settings.toFile();
 
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
 
 	// @formatter:off
-		private final String defaultSettings = "" 
+		private final static String defaultSettings = "" 
 			+ "fontsize=10\n" 
 			+ "width=1000\n" 
 			+ "height=360\n" 
-			+ "" 
-			+ "" 
+			+ "amount_of_logs=20\n"
+			+ "delete_logs=false\n"
+			+ "amount_of_backups=5\n" 
 			+ "" 
 			+ ""
 			+ "";
 	// @formatter:on
 		
-	public void loadSettings() {
+	public static void loadSettings() {
 		checkFile();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(file_Settings))) {
@@ -50,7 +51,7 @@ public class Settings {
 		}
 	}
 
-	private void checkFile() {
+	private static void checkFile() {
 		if (!file_Settings.exists()) {
 			logger.info("Settings file does not exist.");
 			createFile(file_Settings);
@@ -62,7 +63,7 @@ public class Settings {
 		}
 	}
 
-	private void createFile(File file) {
+	private static void createFile(File file) {
 		try {
 			if (!file.getParentFile().exists()) {
 				logger.info("Parent Directory of files does not exist.");
@@ -83,7 +84,7 @@ public class Settings {
 		}
 	}
 
-	private void writeDefaultsToFile(File file) {
+	private static void writeDefaultsToFile(File file) {
 		try (PrintWriter writer = new PrintWriter(file)) {
 			logger.debug("Writing default settings to Settings file.");
 			writer.print(defaultSettings);
