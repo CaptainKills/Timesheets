@@ -21,16 +21,16 @@ public class LogManager {
 	private static LocalTime initial_time = LocalTime.now();
 	private static LocalDate initial_date = LocalDate.now();
 
-	private static String filename = "Timesheets Log " + initial_date + ".txt";
-	private static String zipname = "Timesheets Log.zip";
+	private static String activeLog = "Timesheets Log " + initial_date + ".txt";
 	private static String directoryName = "logs";
 
 	private static final Path directory_path = Paths.get(directoryName).toAbsolutePath();
-	private static final Path log_path = Paths.get(directoryName + File.separator + filename).toAbsolutePath();
-	private static File directory_file = directory_path.toFile();
+	private static final Path log_path = Paths.get(directoryName + File.separator + activeLog).toAbsolutePath();
+	private static File directory = directory_path.toFile();
 	private static File log_file = log_path.toFile();
 
 	private static boolean debugMode = true;
+	private static String[] directory_files = directory.list();
 
 	public static void initialise() {
 		try {
@@ -45,54 +45,8 @@ public class LogManager {
 		}
 
 		writeLog("---Timesheets Log created [" + initial_date + " " + initial_time + "]---\n");
-	}
-
-	public static void checkLogs() {
-		int amount_of_logs = Integer.parseInt(Settings.settings.get("amount_of_logs"));
-		boolean delete_logs = Boolean.parseBoolean(Settings.settings.get("delete_logs"));
-
-		String[] log_files = directory_file.list();
-
-		if (log_files.length > amount_of_logs) {
-			logger.info(
-					"Log files reached maximum amount: allowed=" + amount_of_logs + ", present=" + log_files.length);
-
-			int difference = log_files.length - amount_of_logs;
-			for (int i = 0; i < difference; i++) {
-
-				if (delete_logs == true) {
-					logger.info("Removing " + log_files[i]);
-					File f = new File(directoryName + File.separator + log_files[i]);
-					f.delete();
-				} else {
-					logger.info("Archiving " + log_files[i]);
-					//archiveLog(log_files[i]);
-					// File f = new File(directoryName + File.separator + log_files[i]);
-					// f.delete();
-				}
-			}
-		}
-	}
-
-	private static void archiveLog(String fileName) {
-		try (FileOutputStream fos = new FileOutputStream(directoryName + File.separator + zipname, true);
-				ZipOutputStream zos = new ZipOutputStream(fos);) {
-
-			Path p = Paths.get(directoryName + File.separator + fileName).toAbsolutePath();
-			zos.putNextEntry(new ZipEntry(p.toFile().getName()));
-
-			FileInputStream fis = new FileInputStream(p.toFile());
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = fis.read(buffer)) > 0) {
-                zos.write(buffer, 0, len);
-            }
-			
-			zos.closeEntry();
-			fis.close();
-		} catch (IOException e) {
-			logger.error("COULD NOT ARCHIVE FILE: " + e);
-		}
+		logger.info("LogManager Initialised.");
+		archiveLogs();
 	}
 
 	public static void writeLog(String log) {
@@ -108,5 +62,63 @@ public class LogManager {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void archiveLogs() {
+		logger.info("Archiving Log Files.");
+		for (String log : directory_files) {
+			if (log.contains(".zip") || log.equals(activeLog)) {
+				continue;
+			} else {
+				logger.info("Archiving " + log);
+				createZip(log);
+				File f = new File(directoryName + File.separator + log);
+				f.delete();
+			}
+		}
+	}
 
+	private static void createZip(String fileName) {
+		String zipName = fileName.substring(0, fileName.length()-4).concat(".zip");
+
+		try (FileOutputStream fos = new FileOutputStream(directoryName + File.separator + zipName, true);
+				ZipOutputStream zos = new ZipOutputStream(fos);) {
+
+			Path p = Paths.get(directoryName + File.separator + fileName).toAbsolutePath();
+			zos.putNextEntry(new ZipEntry(p.toFile().getName()));
+
+			FileInputStream fis = new FileInputStream(p.toFile());
+			byte[] buffer = new byte[1024];
+			int len;
+			while ((len = fis.read(buffer)) > 0) {
+				zos.write(buffer, 0, len);
+			}
+
+			zos.closeEntry();
+			fis.close();
+		} catch (IOException e) {
+			logger.error("COULD NOT ARCHIVE FILE: " + e);
+		}
+	}
+	
+	public static void cleanDirectory() {
+		boolean delete_logs = Boolean.parseBoolean(Settings.settings.get("delete_logs"));
+		int number_of_logs = Integer.parseInt(Settings.settings.get("number_of_logs"));
+		
+		logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
+		
+		if(delete_logs == true) {
+			int difference = directory_files.length - number_of_logs;
+			logger.info("Log deletion is enabeled. There are currently " + difference + "  logs too many.");
+			
+			for (int i = 0; i < difference; i++) {
+				logger.info("Removing " + directory_files[i]);
+				File f = new File(directoryName + File.separator + directory_files[i]);
+				f.delete();
+			}
+			logger.info("Log Directory Clean finished.");
+		} else {
+			logger.info("Log deletion is disabled. No logs will be deleted.");
+			return;
+		}
+	}
 }

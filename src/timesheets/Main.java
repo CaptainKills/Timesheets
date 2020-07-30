@@ -28,7 +28,7 @@ public class Main {
 		logger.info("Initialising Program.");
 		
 		Settings.loadSettings();
-		LogManager.checkLogs();
+		LogManager.cleanDirectory();
 		
 		logger.info("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {

@@ -25,9 +25,9 @@ public class Settings {
 			+ "fontsize=10\n" 
 			+ "width=1000\n" 
 			+ "height=360\n" 
-			+ "amount_of_logs=20\n"
 			+ "delete_logs=false\n"
-			+ "amount_of_backups=5\n" 
+			+ "number_of_logs=20\n"
+			+ "number_of_backups=5\n" 
 			+ "" 
 			+ ""
 			+ "";
