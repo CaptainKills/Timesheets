@@ -62,7 +62,7 @@ public class Encryption {
 
 		} catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | BadPaddingException
 				| IllegalBlockSizeException | IOException e) {
-			throw new EncryptionException("Error encrypting/decrypting file", e);
+			throw new EncryptionException(e.getMessage(), e);
 		}
 	}
 }
