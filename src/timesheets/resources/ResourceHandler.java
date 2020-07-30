@@ -5,7 +5,10 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
+import timesheets.logging.Logger;
+
 public class ResourceHandler {
+	private static final Logger logger = new Logger(ResourceHandler.class.toString());
 
 	private static final String images_path = "timesheets/resources/images/";
 	private static ClassLoader loader = ResourceHandler.class.getClassLoader();
@@ -24,6 +27,7 @@ public class ResourceHandler {
 		list.add(img256.getImage());
 		list.add(img512.getImage());
 		
+		logger.info("Loaded Program Icons.");
 		return list;
 	}
 }
