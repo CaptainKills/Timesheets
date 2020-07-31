@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.logging.Logger;
 
@@ -24,10 +24,7 @@ public class EditSheetsButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				PanelList.editPanel.setVisible(false);
-				PanelList.timesheetPanel.setVisible(true);
-				PanelList.settingsPanel.setVisible(false);
-
+				ExtendedHandler.displayAdminPanels(false, false, true, false);
 				TextAreaList.timesheetDisplay.setText("");
 			}
 		});

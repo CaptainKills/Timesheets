@@ -9,8 +9,6 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
@@ -27,24 +25,11 @@ public class AddEmployeeButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				PanelList.editPanel.setVisible(true);
-				PanelList.timesheetPanel.setVisible(false);
-				PanelList.settingsPanel.setVisible(false);
+				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
 				ButtonList.submitButton.setText("Add Employee");
-				
-				TextFieldList.idField.setEnabled(true);
-				ButtonList.idButton.setEnabled(true);
-				TextFieldList.nameField.setEnabled(true);
-				TextFieldList.ageField.setEnabled(true);
-				TextFieldList.salaryField.setEnabled(true);
-				
-				ButtonList.adminEnableButton.setEnabled(true);
-				ButtonList.adminDisableButton.setEnabled(true);
-				UnusualsList.empBox.setEnabled(false);
+				ExtendedHandler.setupEditPanel(true, false);
 				UnusualsList.empBox.setSelectedIndex(-1);
-
-				ExtendedHandler.clearInputs();
 			}
 		});
 		logger.debug("AddEmployeeButton initialised.");

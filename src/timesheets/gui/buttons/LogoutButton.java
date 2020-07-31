@@ -9,7 +9,6 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
@@ -34,15 +33,12 @@ public class LogoutButton extends JButton{
 
 				ButtonList.loginButton.setEnabled(true);
 				
-				displayTimeButtons(true);
-				displayAdminButtons(false);
+				ExtendedHandler.displayTimeButtons(true);
+				ExtendedHandler.displayAdminButtons(false);
 				ExtendedHandler.enableShiftButtons(false, false, false, false);
-				setEnabled(false);
-
-				PanelList.numpadPanel.setVisible(true);
-				PanelList.editPanel.setVisible(false);
-				PanelList.timesheetPanel.setVisible(false);
+				ExtendedHandler.displayAdminPanels(true, false, false, false);
 				
+				setEnabled(false);
 				logger.info("Employee has logged out.");
 			}
 		});
@@ -50,19 +46,7 @@ public class LogoutButton extends JButton{
 		logger.debug("LogoutButton initialised.");
 	}
 	
-	private void displayTimeButtons(Boolean bool) {
-		ButtonList.startShiftButton.setVisible(bool);
-		ButtonList.endShiftButton.setVisible(bool);
-		ButtonList.startBreakButton.setVisible(bool);
-		ButtonList.endBreakButton.setVisible(bool);
-	}
+	
 
-	private void displayAdminButtons(Boolean bool) {
-		ButtonList.addEmployeeButton.setVisible(bool);
-		ButtonList.removeEmployeeButton.setVisible(bool);
-		ButtonList.editEmployeeButton.setVisible(bool);
-		ButtonList.printSheetsButton.setVisible(bool);
-		ButtonList.editSheetsButton.setVisible(bool);
-		ButtonList.exitButton.setVisible(bool);
-	}
+
 }

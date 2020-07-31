@@ -7,9 +7,9 @@ import java.util.Map;
 import javax.swing.JButton;
 
 import timesheets.Settings;
+import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
@@ -28,10 +28,7 @@ public class SettingsButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				PanelList.editPanel.setVisible(false);
-				PanelList.timesheetPanel.setVisible(false);
-				PanelList.settingsPanel.setVisible(true);
-				
+				ExtendedHandler.displayAdminPanels(false, false, false, true);
 				loadSettingsFields();
 			}
 		});
@@ -43,6 +40,7 @@ public class SettingsButton extends JButton{
 		TextFieldList.fontsizeInput.setText(settings.get("fontsize"));
 		
 		TextFieldList.logCountInput.setText(settings.get("number_of_logs"));
+		TextFieldList.backupCountInput.setText(settings.get("number_of_backups"));
 		
 	}
 

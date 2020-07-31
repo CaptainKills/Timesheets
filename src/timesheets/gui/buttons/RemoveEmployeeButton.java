@@ -9,9 +9,6 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.TextFieldList;
-import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
 public class RemoveEmployeeButton extends JButton{
@@ -27,24 +24,12 @@ public class RemoveEmployeeButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				PanelList.editPanel.setVisible(true);
-				PanelList.timesheetPanel.setVisible(false);
-				PanelList.settingsPanel.setVisible(false);
+				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
 				ButtonList.submitButton.setText("Remove Employee");
 				
-				TextFieldList.idField.setEnabled(false);
-				ButtonList.idButton.setEnabled(false);
-				TextFieldList.nameField.setEnabled(false);
-				TextFieldList.ageField.setEnabled(false);
-				TextFieldList.salaryField.setEnabled(false);
-				
-				ButtonList.adminEnableButton.setEnabled(false);
-				ButtonList.adminDisableButton.setEnabled(false);
-				UnusualsList.empBox.setEnabled(true);
+				ExtendedHandler.setupEditPanel(false, true);
 				ExtendedHandler.loadEmployeesInBox();
-
-				ExtendedHandler.clearInputs();
 			}
 		});
 		

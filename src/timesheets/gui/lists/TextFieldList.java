@@ -21,5 +21,6 @@ public class TextFieldList {
 	
 	public static JTextField fontsizeInput = new FontsizeInput();
 	public static JTextField logCountInput = new LogCountInput();
+	public static JTextField backupCountInput = new BackupCountInput();
 
 }
