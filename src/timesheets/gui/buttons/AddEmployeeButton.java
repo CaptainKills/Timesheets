@@ -29,6 +29,7 @@ public class AddEmployeeButton extends JButton{
 			public void actionPerformed(ActionEvent event) {
 				PanelList.editPanel.setVisible(true);
 				PanelList.timesheetPanel.setVisible(false);
+				PanelList.settingsPanel.setVisible(false);
 
 				ButtonList.submitButton.setText("Add Employee");
 				

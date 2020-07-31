@@ -9,6 +9,7 @@ public class PanelList {
 	public static MenuPanel menuPanel = new MenuPanel();
 	public static DataEditPanel editPanel = new DataEditPanel();
 	public static TimesheetPanel timesheetPanel = new TimesheetPanel();
+	public static SettingsPanel settingsPanel = new SettingsPanel();
 	
 	public static TestingPanel testPanel = new TestingPanel();
 }

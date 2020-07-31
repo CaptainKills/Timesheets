@@ -43,6 +43,10 @@ public class MenuPanel extends JPanel{
 						
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(ButtonList.editEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								)
+						
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(ButtonList.settingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								.addComponent(ButtonList.exitButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						
@@ -73,6 +77,10 @@ public class MenuPanel extends JPanel{
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.editEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
+				
+				.addGroup(layout.createParallelGroup()
+						.addComponent(ButtonList.settingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(ButtonList.exitButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				

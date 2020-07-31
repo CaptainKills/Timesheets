@@ -26,6 +26,7 @@ public class EditSheetsButton extends JButton{
 			public void actionPerformed(ActionEvent event) {
 				PanelList.editPanel.setVisible(false);
 				PanelList.timesheetPanel.setVisible(true);
+				PanelList.settingsPanel.setVisible(false);
 
 				TextAreaList.timesheetDisplay.setText("");
 			}

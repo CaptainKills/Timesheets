@@ -18,5 +18,8 @@ public class TextFieldList {
 	public static JTextField monthInput_to = new MonthInputTo();
 	public static JTextField dayInput_from = new DayInputFrom();
 	public static JTextField dayInput_to = new DayInputTo();
+	
+	public static JTextField fontsizeInput = new FontsizeInput();
+	public static JTextField logCountInput = new LogCountInput();
 
 }

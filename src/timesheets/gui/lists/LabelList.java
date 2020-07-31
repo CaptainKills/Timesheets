@@ -24,4 +24,8 @@ public class LabelList {
 	public static JLabel fromDateLabel = new FromDateLabel();
 	public static JLabel toDateLabel = new ToDateLabel();
 	
+	public static JLabel fontsizeLabel = new FontsizeLabel();
+	public static JLabel logLabel = new LogLabel();
+	public static JLabel backupLabel = new BackupLabel();
+	
 }

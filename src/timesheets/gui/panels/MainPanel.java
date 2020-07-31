@@ -33,6 +33,7 @@ public class MainPanel extends JPanel{
 		add(PanelList.menuPanel);
 		add(PanelList.editPanel);
 		add(PanelList.timesheetPanel);
+		add(PanelList.settingsPanel);
 		
 		logger.debug("Panel Setup Complete.");
 	}
