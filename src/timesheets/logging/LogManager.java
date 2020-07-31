@@ -62,23 +62,27 @@ public class LogManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void archiveLogs() {
 		logger.info("Archiving Log Files.");
-		for (String log : directory_files) {
-			if (log.contains(".zip") || log.equals(activeLog)) {
-				continue;
-			} else {
-				logger.info("Archiving " + log);
-				createZip(log);
-				File f = new File(directoryName + File.separator + log);
-				f.delete();
+		if (directory_files != null) {
+			for (String log : directory_files) {
+				if (log.contains(".zip") || log.equals(activeLog)) {
+					continue;
+				} else {
+					logger.info("Archiving " + log);
+					createZip(log);
+					File f = new File(directoryName + File.separator + log);
+					f.delete();
+				}
 			}
+		} else {
+			logger.info("There are currently no log files present. Archiving will be skipped.");
 		}
 	}
 
 	private static void createZip(String fileName) {
-		String zipName = fileName.substring(0, fileName.length()-4).concat(".zip");
+		String zipName = fileName.substring(0, fileName.length() - 4).concat(".zip");
 
 		try (FileOutputStream fos = new FileOutputStream(directoryName + File.separator + zipName, true);
 				ZipOutputStream zos = new ZipOutputStream(fos);) {
@@ -99,26 +103,30 @@ public class LogManager {
 			logger.error("COULD NOT ARCHIVE FILE: " + e);
 		}
 	}
-	
+
 	public static void cleanDirectory() {
 		boolean delete_logs = Boolean.parseBoolean(Settings.settings.get("delete_logs"));
 		int number_of_logs = Integer.parseInt(Settings.settings.get("number_of_logs"));
-		
-		logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
-		
-		if(delete_logs == true) {
-			int difference = directory_files.length - number_of_logs;
-			logger.info("Log deletion is enabeled. There are currently " + difference + "  logs too many.");
-			
-			for (int i = 0; i < difference; i++) {
-				logger.info("Removing " + directory_files[i]);
-				File f = new File(directoryName + File.separator + directory_files[i]);
-				f.delete();
+
+		if(directory_files != null) {
+			logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
+
+			if (delete_logs == true) {
+				int difference = directory_files.length - number_of_logs;
+				logger.info("Log deletion is enabeled. There are currently " + difference + "  logs too many.");
+
+				for (int i = 0; i < difference; i++) {
+					logger.info("Removing " + directory_files[i]);
+					File f = new File(directoryName + File.separator + directory_files[i]);
+					f.delete();
+				}
+				logger.info("Log Directory Clean finished.");
+			} else {
+				logger.info("Log deletion is disabled. No logs will be deleted.");
+				return;
 			}
-			logger.info("Log Directory Clean finished.");
 		} else {
-			logger.info("Log deletion is disabled. No logs will be deleted.");
-			return;
+			logger.info("Log files in Directory: 0, directory is empty.");
 		}
 	}
 }

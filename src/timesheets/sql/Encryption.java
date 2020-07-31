@@ -23,25 +23,34 @@ public class Encryption {
 	private static final String ALGORITHM = "AES";
 	private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
 
-	public static void encrypt(String key, Path inputFile, Path outputFile) {
-		logger.info("Encrypting file: " + inputFile.getFileName());
+	public static void encrypt(String key, Path inputPath, Path outputPath) {
+		logger.info("Encrypting file: " + inputPath.getFileName());
 		
-		try {
-			doCrypto(Cipher.ENCRYPT_MODE, key, inputFile.toFile(), outputFile.toFile());
-			inputFile.toFile().delete();
-		} catch (EncryptionException | SecurityException e) {
-			logger.error("COULD NOT ENCRYPT FILE: " + e);
+		File inputFile = inputPath.toFile();
+		if(inputFile.exists()) {
+			try {
+				doCrypto(Cipher.ENCRYPT_MODE, key, inputFile, outputPath.toFile());
+				inputFile.delete();
+			} catch (EncryptionException | SecurityException e) {
+				logger.error("COULD NOT ENCRYPT FILE: " + e);
+			}
+		} else {
+			logger.warn("Encryption Warning: input file does not exist!");
 		}
-		
 	}
 
-	public static void decrypt(String key, Path inputFile, Path outputFile) {
-		logger.info("Decrypting file: " + inputFile.getFileName());
+	public static void decrypt(String key, Path inputPath, Path outputPath) {
+		logger.info("Decrypting file: " + inputPath.getFileName());
 		
-		try {
-			doCrypto(Cipher.DECRYPT_MODE, key, inputFile.toFile(), outputFile.toFile());
-		} catch (EncryptionException e) {
-			logger.error("COULD NOT DECRYPT FILE: " + e);
+		File inputFile = inputPath.toFile();
+		if(inputFile.exists()) {
+			try {
+				doCrypto(Cipher.DECRYPT_MODE, key, inputFile, outputPath.toFile());
+			} catch (EncryptionException e) {
+				logger.error("COULD NOT DECRYPT FILE: " + e);
+			}
+		} else {
+			logger.warn("Decryption Warning: input file does not exist!");
 		}
 	}
 
