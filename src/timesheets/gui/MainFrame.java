@@ -4,7 +4,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
@@ -29,12 +28,7 @@ public class MainFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (JOptionPane.showConfirmDialog(getContentPane(), "Are you sure?") == JOptionPane.YES_OPTION) {
-					logger.info("Closing Application...");
-					database.backupDatabase();
-					logger.info("Application Closed.\n");
-					System.exit(0);
-				}
+				ExtendedHandler.exitApplication(getContentPane());
 			}
 		});
 		

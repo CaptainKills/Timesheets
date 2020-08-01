@@ -1,14 +1,31 @@
 package timesheets.gui;
 
+import java.awt.Container;
+
+import javax.swing.JOptionPane;
+
 import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
 public class ExtendedHandler {
+	
+	private static final Logger logger = new Logger(ExtendedHandler.class.toString());
+	private static Database database = new Database();
+	
+	public static void exitApplication(Container rootPane) {
+		if (JOptionPane.showConfirmDialog(rootPane, "Are you sure?") == JOptionPane.YES_OPTION) {
+			logger.info("Closing Application...");
+			database.backupDatabase();
+			logger.info("Application Closed.\n");
+			System.exit(0);
+		}
+	}
 	
 	public static void enableShiftButtons(Boolean start, Boolean end, Boolean startbreak, Boolean endbreak) {
 		ButtonList.startShiftButton.setEnabled(start);
