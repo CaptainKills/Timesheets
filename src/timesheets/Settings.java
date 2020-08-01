@@ -15,7 +15,8 @@ import timesheets.logging.Logger;
 public class Settings {
 	private static final Logger logger = new Logger(Settings.class.toString());
 
-	private final static Path path_Settings = Paths.get("data" + File.separator + "settings.properties").toAbsolutePath();
+	private final static Path path_Settings = Paths.get("data" + File.separator + "settings.properties")
+			.toAbsolutePath();
 	private static File file_Settings = path_Settings.toFile();
 
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
@@ -32,7 +33,7 @@ public class Settings {
 			+ ""
 			+ "";
 	// @formatter:on
-		
+
 	public static void loadSettings() {
 		logger.info("Loading Settings File.");
 		checkFile();
@@ -91,6 +92,17 @@ public class Settings {
 			writer.print(defaultSettings);
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
+		}
+	}
+
+	public static void saveSettings() {
+		logger.info("Saving settings to file.");
+		try (PrintWriter writer = new PrintWriter(file_Settings)) {
+			for (Map.Entry<String, String> entry : settings.entrySet()) {
+				writer.println(entry.getKey() + "=" + entry.getValue());
+			}
+		} catch (IOException e) {
+			logger.error("COULD NOT SAVE SETTINGS TO FILE: " + e);
 		}
 	}
 }

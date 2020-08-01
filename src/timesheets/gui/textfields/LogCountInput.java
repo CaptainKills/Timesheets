@@ -12,10 +12,10 @@ public class LogCountInput extends JTextField{
 	private static final Logger logger = new Logger(LogCountInput.class.toString());
 	
 	public LogCountInput() {
-		super("");
+		super("", 4);
 		setPreferredSize(DimensionList.dateDisplaySize_small);
 		setFont(FontList.textDisplayFont);
-		setEditable(true);
+		setEnabled(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		
 		logger.debug("LogCountInput initialised.");

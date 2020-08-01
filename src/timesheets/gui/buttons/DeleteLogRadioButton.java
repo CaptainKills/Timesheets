@@ -17,7 +17,7 @@ public class DeleteLogRadioButton extends JRadioButton{
 
 	public DeleteLogRadioButton(String text, Boolean onoff) {
 		super(text, onoff);
-		setPreferredSize(DimensionList.fieldSize_medium);
+		setPreferredSize(DimensionList.dateDisplaySize_medium);
 		setFont(FontList.normalFont);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -25,9 +25,9 @@ public class DeleteLogRadioButton extends JRadioButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				if(text.equals("Yes")) {
-					TextFieldList.logCountInput.setEditable(true);
+					TextFieldList.logCountInput.setEnabled(true);
 				} else if(text.equals("No")) {
-					TextFieldList.logCountInput.setEditable(false);
+					TextFieldList.logCountInput.setEnabled(false);
 				}
 			}
 		});

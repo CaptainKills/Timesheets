@@ -12,10 +12,10 @@ public class FontsizeInput extends JTextField{
 	private static final Logger logger = new Logger(FontsizeInput.class.toString());
 	
 	public FontsizeInput() {
-		super("");
+		super("", 3);
 		setPreferredSize(DimensionList.dateDisplaySize_small);
 		setFont(FontList.textDisplayFont);
-		setEditable(true);
+		setEnabled(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		
 		logger.debug("FontsizeInput initialised.");

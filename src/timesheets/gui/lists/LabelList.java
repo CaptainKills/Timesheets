@@ -24,10 +24,17 @@ public class LabelList {
 	public static JLabel fromDateLabel = new FromDateLabel();
 	public static JLabel toDateLabel = new ToDateLabel();
 	
+	public static JLabel fontLabel = new FontLabel();
 	public static JLabel fontsizeLabel = new FontsizeLabel();
 	public static JLabel logLabel = new LogLabel();
 	public static JLabel numberOfLogsLabel = new NumberOfLogsLabel();
 	public static JLabel backupLabel = new BackupLabel();
 	public static JLabel numberOfBackupsLabel = new NumberOfBackupsLabel();
+	public static JLabel widthLabel = new WidthLabel();
+	public static JLabel heightLabel = new HeightLabel();
+	public static JLabel dimensionLabel = new AppDimensionLabel();
+	
+	
+	public static JLabel testLabel = new TestLabel();
 	
 }

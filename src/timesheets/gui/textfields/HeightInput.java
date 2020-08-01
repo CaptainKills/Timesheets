@@ -7,18 +7,18 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class BackupCountInput extends JTextField{
-	private static final long serialVersionUID = -5606731836124670339L;
-	private static final Logger logger = new Logger(BackupCountInput.class.toString());
-	
-	public BackupCountInput() {
-		super("", 3);
+public class HeightInput extends JTextField {
+	private static final long serialVersionUID = -387410479178733551L;
+	private static final Logger logger = new Logger(HeightInput.class.toString());
+
+	public HeightInput() {
+		super("", 4);
 		setPreferredSize(DimensionList.dateDisplaySize_small);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
-		
-		logger.debug("BackupCountInput initialised.");
+
+		logger.debug("HeightInput initialised.");
 	}
 
 }

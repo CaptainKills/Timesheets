@@ -22,5 +22,7 @@ public class TextFieldList {
 	public static JTextField fontsizeInput = new FontsizeInput();
 	public static JTextField logCountInput = new LogCountInput();
 	public static JTextField backupCountInput = new BackupCountInput();
+	public static JTextField widthInput = new WidthInput();
+	public static JTextField heightInput = new HeightInput();
 
 }

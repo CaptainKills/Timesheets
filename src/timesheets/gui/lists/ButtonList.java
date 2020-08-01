@@ -55,4 +55,6 @@ public class ButtonList {
 	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton("Yes", false);
 	public static JRadioButton deleteLogDisabledButton = new DeleteLogRadioButton("No", true);
 	public static ButtonGroup logGroup = new DeleteLogSelectionGroup();
+	
+	public static JButton saveSettingsButton = new SaveSettingsButton();
 }

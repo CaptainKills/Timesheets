@@ -44,11 +44,14 @@ public class SettingsButton extends JButton{
 		boolean deleteLogs = Boolean.parseBoolean(settings.get("delete_logs"));
 		if(deleteLogs == true) {
 			ButtonList.deleteLogEnabledButton.setSelected(true);
-			TextFieldList.logCountInput.setEditable(true);
+			TextFieldList.logCountInput.setEnabled(true);
 		} else {
 			ButtonList.deleteLogDisabledButton.setSelected(true);
-			TextFieldList.logCountInput.setEditable(false);
+			TextFieldList.logCountInput.setEnabled(false);
 		}
+		
+		TextFieldList.widthInput.setText(settings.get("width"));
+		TextFieldList.heightInput.setText(settings.get("height"));
 		
 		TextFieldList.backupCountInput.setText(settings.get("number_of_backups"));
 		

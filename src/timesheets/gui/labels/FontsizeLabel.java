@@ -1,7 +1,6 @@
 package timesheets.gui.labels;
 
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
@@ -12,10 +11,10 @@ public class FontsizeLabel extends JLabel{
 	private static final Logger logger = new Logger(FontsizeLabel.class.toString());
 
 	public FontsizeLabel() {
-		super("Font size:");
-		setPreferredSize(DimensionList.labelSize_small);
-		setHorizontalAlignment(SwingConstants.LEFT);
-		setFont(FontList.labelFont);
+		super("Size:");
+		setPreferredSize(DimensionList.dateDisplaySize_small);
+		setFont(FontList.textDisplayFont);
+		setEnabled(false);
 		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 		
 		logger.debug("FontsizeLabel initialised.");
