@@ -25,7 +25,6 @@ public class Main {
 				MainFrame frame = new MainFrame();
 				
 				logger.info("Setting Frame Parameters.");
-				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				frame.setResizable(true);
 				frame.pack();
 				frame.setLocationRelativeTo(null);
