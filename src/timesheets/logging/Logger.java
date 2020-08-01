@@ -37,12 +37,6 @@ public class Logger {
 		LogManager.writeLog(log);
 	}
 	
-	public void format(Level level, String msg, Object... args) {
-		String message = String.format(msg, args);
-		String log = formatMessage(Level.ERROR, message);
-		LogManager.writeLog(log);
-	}
-	
 	private String formatMessage(Level level, String msg) {
 		return String.format("%s %s\t[%s]\t%s   ->   %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
 	}
