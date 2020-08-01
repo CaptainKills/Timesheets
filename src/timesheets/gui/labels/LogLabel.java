@@ -12,7 +12,7 @@ public class LogLabel extends JLabel{
 	private static final Logger logger = new Logger(LogLabel.class.toString());
 
 	public LogLabel() {
-		super("Logs:");
+		super("Delete Logs:");
 		setPreferredSize(DimensionList.labelSize_small);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);

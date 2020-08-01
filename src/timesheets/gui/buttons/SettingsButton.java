@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import timesheets.Settings;
 import timesheets.gui.ExtendedHandler;
+import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
@@ -40,7 +41,18 @@ public class SettingsButton extends JButton{
 		TextFieldList.fontsizeInput.setText(settings.get("fontsize"));
 		
 		TextFieldList.logCountInput.setText(settings.get("number_of_logs"));
+		boolean deleteLogs = Boolean.parseBoolean(settings.get("delete_logs"));
+		if(deleteLogs == true) {
+			ButtonList.deleteLogEnabledButton.setSelected(true);
+			TextFieldList.logCountInput.setEditable(true);
+		} else {
+			ButtonList.deleteLogDisabledButton.setSelected(true);
+			TextFieldList.logCountInput.setEditable(false);
+		}
+		
 		TextFieldList.backupCountInput.setText(settings.get("number_of_backups"));
+		
+		
 		
 	}
 

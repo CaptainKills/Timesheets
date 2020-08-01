@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
+import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
@@ -30,10 +31,21 @@ public class SettingsPanel extends JPanel{
 							.addComponent(LabelList.fontsizeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 							.addComponent(TextFieldList.fontsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 							.addComponent(LabelList.logLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(TextFieldList.logCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+							
+							.addGroup(layout.createSequentialGroup()
+									.addComponent(ButtonList.deleteLogEnabledButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									.addComponent(ButtonList.deleteLogDisabledButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									)
+							.addGroup(layout.createSequentialGroup()
+									.addComponent(LabelList.numberOfLogsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									.addComponent(TextFieldList.logCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									)
+
 							.addComponent(LabelList.backupLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							.addComponent(TextFieldList.backupCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-							)
+							.addGroup(layout.createSequentialGroup()
+									.addComponent(LabelList.numberOfBackupsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									.addComponent(TextFieldList.backupCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+									))
 				);
 		
 		layout.setVerticalGroup(
@@ -41,9 +53,21 @@ public class SettingsPanel extends JPanel{
 				.addComponent(LabelList.fontsizeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				.addComponent(TextFieldList.fontsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				.addComponent(LabelList.logLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-				.addComponent(TextFieldList.logCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+				
+				.addGroup(layout.createParallelGroup()
+						.addComponent(ButtonList.deleteLogEnabledButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.deleteLogDisabledButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(LabelList.numberOfLogsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(TextFieldList.logCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
+				
 				.addComponent(LabelList.backupLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-				.addComponent(TextFieldList.backupCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(LabelList.numberOfBackupsLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(TextFieldList.backupCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
 				);
 		setLayout(layout);
 		

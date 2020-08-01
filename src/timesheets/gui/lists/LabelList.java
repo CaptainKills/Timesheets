@@ -26,6 +26,8 @@ public class LabelList {
 	
 	public static JLabel fontsizeLabel = new FontsizeLabel();
 	public static JLabel logLabel = new LogLabel();
+	public static JLabel numberOfLogsLabel = new NumberOfLogsLabel();
 	public static JLabel backupLabel = new BackupLabel();
+	public static JLabel numberOfBackupsLabel = new NumberOfBackupsLabel();
 	
 }

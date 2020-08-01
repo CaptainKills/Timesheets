@@ -12,7 +12,7 @@ public class BackupLabel extends JLabel{
 	private static final Logger logger = new Logger(BackupLabel.class.toString());
 
 	public BackupLabel() {
-		super("Backup:");
+		super("Backups:");
 		setPreferredSize(DimensionList.labelSize_small);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);

@@ -35,7 +35,7 @@ public class ButtonList {
 	
 	public static JRadioButton adminEnableButton = new AdminRadioButton("Enable", false);
 	public static JRadioButton adminDisableButton = new AdminRadioButton("Disable", true);
-	public static ButtonGroup group = new AdminSelectionGroup();
+	public static ButtonGroup adminGroup = new AdminSelectionGroup();
 	
 	public static JButton addEmployeeButton = new AddEmployeeButton();
 	public static JButton removeEmployeeButton = new RemoveEmployeeButton();
@@ -51,4 +51,8 @@ public class ButtonList {
 	public static JRadioButton dateSpecificButton = new DateSpecificButton();
 	public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
 	public static JButton submitDateButton = new SubmitDateButton();
+	
+	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton("Yes", false);
+	public static JRadioButton deleteLogDisabledButton = new DeleteLogRadioButton("No", true);
+	public static ButtonGroup logGroup = new DeleteLogSelectionGroup();
 }
