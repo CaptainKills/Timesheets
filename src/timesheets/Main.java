@@ -1,6 +1,5 @@
 package timesheets;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import timesheets.gui.MainFrame;
