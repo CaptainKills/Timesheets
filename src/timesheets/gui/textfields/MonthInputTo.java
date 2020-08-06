@@ -38,5 +38,9 @@ public class MonthInputTo extends JTextField{
 		
 		logger.debug("MonthInputTo initialised.");
 	}
+	
+	public void updateText() {
+		setText(Integer.toString(time.getCurrentDate().getMonthValue()));
+	}
 
 }

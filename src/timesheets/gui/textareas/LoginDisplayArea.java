@@ -2,12 +2,9 @@ package timesheets.gui.textareas;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
 
 import timesheets.TimeHandler;
 import timesheets.gui.lists.FontList;
@@ -29,13 +26,6 @@ public class LoginDisplayArea extends JTextArea{
 		
 		setText("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n" + "Please enter ID to log in...");
 		
-		new Timer(500, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				updateTimeText();
-			}
-		}).start();
-		
 		logger.debug("LoginDisplayArea initialised.");
 	}
 	
@@ -47,7 +37,7 @@ public class LoginDisplayArea extends JTextArea{
 		setText(timeText + infoText);
 	}
 	
-	private void updateTimeText() {
+	public void updateTimeText() {
 		String timeText = "| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n";
 		String infoText = getInfoText(getText());
 		

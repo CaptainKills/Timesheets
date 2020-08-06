@@ -25,5 +25,9 @@ public class MonthLabel extends JLabel{
 		
 		logger.debug("MonthLabel initialised.");
 	}
+	
+	public void updateText() {
+		setText(time.getCurrentDate().getMonth().toString());
+	}
 
 }

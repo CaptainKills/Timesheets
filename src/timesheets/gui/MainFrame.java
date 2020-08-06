@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import timesheets.gui.lists.PanelList;
+import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
@@ -24,6 +25,7 @@ public class MainFrame extends JFrame {
 
 		PanelList.mainPanel.setupPanel();
 		getContentPane().add(PanelList.mainPanel);
+		UnusualsList.updateTimer.start();
 
 		addWindowListener(new WindowAdapter() {
 			@Override

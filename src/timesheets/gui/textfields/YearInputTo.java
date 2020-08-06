@@ -38,5 +38,9 @@ public class YearInputTo extends JTextField{
 		
 		logger.debug("YearInputTo initialised.");
 	}
+	
+	public void updateText() {
+		setText(Integer.toString(time.getCurrentDate().getYear()));
+	}
 
 }

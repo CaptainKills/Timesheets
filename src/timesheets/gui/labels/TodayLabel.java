@@ -25,5 +25,9 @@ public class TodayLabel extends JLabel {
 		
 		logger.debug("TodayLabel initialised.");
 	}
+	
+	public void updateText() {
+		setText(time.getCurrentDate().getDayOfWeek().toString());
+	}
 
 }

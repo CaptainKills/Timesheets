@@ -38,5 +38,9 @@ public class DayInputTo extends JTextField{
 		
 		logger.debug("DayInputTo initialised.");
 	}
+	
+	public void updateText() {
+		setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
+	}
 
 }

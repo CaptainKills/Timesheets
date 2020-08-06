@@ -18,9 +18,9 @@ public class LabelList {
 	public static JLabel sep4Label = new SeperatorLabel(":");
 	public static JLabel sep5Label = new SeperatorLabel(":");
 	
-	public static JLabel todayLabel = new TodayLabel();
-	public static JLabel weekLabel = new WeekLabel();
-	public static JLabel monthLabel = new MonthLabel();
+	public static TodayLabel todayLabel = new TodayLabel();
+	public static WeekLabel weekLabel = new WeekLabel();
+	public static MonthLabel monthLabel = new MonthLabel();
 	public static JLabel fromDateLabel = new FromDateLabel();
 	public static JLabel toDateLabel = new ToDateLabel();
 	
@@ -33,8 +33,5 @@ public class LabelList {
 	public static JLabel widthLabel = new WidthLabel();
 	public static JLabel heightLabel = new HeightLabel();
 	public static JLabel dimensionLabel = new AppDimensionLabel();
-	
-	
-	public static JLabel testLabel = new TestLabel();
 	
 }

@@ -25,5 +25,9 @@ public class WeekLabel extends JLabel{
 		
 		logger.debug("WeekLabel initialised.");
 	}
+	
+	public void updateText() {
+		setText(time.getWeekStart().toString());
+	}
 
 }
