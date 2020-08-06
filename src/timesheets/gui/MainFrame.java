@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.gui.panels.MainPanel;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
@@ -15,6 +16,7 @@ public class MainFrame extends JFrame {
 	private static final Logger logger = new Logger(MainFrame.class.toString());
 	
 	private Database database = new Database();
+	private MainPanel mainPanel = PanelList.mainPanel;
 
 	public MainFrame() {
 		super("Timesheets");
@@ -23,8 +25,8 @@ public class MainFrame extends JFrame {
 		database.setupDatabase();
 		database.loadDatabase();
 
-		PanelList.mainPanel.setupPanel();
-		getContentPane().add(PanelList.mainPanel);
+		mainPanel.setupPanel();
+		getContentPane().add(mainPanel);
 		UnusualsList.updateTimer.start();
 
 		addWindowListener(new WindowAdapter() {
@@ -36,4 +38,5 @@ public class MainFrame extends JFrame {
 		
 		logger.info("MainFrame Setup Complete.");
 	}
+	
 }
