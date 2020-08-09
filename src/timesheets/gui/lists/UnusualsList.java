@@ -13,6 +13,7 @@ import timesheets.gui.textareas.scrollpanes.ScrollPane;
 public class UnusualsList {
 
 	public static EmployeeBox<String> empBox = new EmployeeBox<String>();
+	public static BackupBox<String> backupBox = new BackupBox<String>();
 	
 	public static JScrollPane scrollPane = new ScrollPane();
 	

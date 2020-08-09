@@ -163,7 +163,7 @@ public class Database {
 	public void backupDatabase() {
 		try {			
 			logger.info("Creating Backup of SQLite Database.");
-			String fileName = "Timesheets_backup " + time.getCurrentDate();
+			String fileName = "Timesheets Backup " + time.getCurrentDate();
 			
 			Path backup_path = Paths.get("data" + File.separator + fileName + ".encrypted").toAbsolutePath();
 			File backup = backup_path.toFile();
@@ -292,6 +292,10 @@ public class Database {
 		} finally {
 			Encryption.encrypt(enc_key, database_path, encrypted_path);
 		}
+	}
+	
+	public static String[] getDirectoryFiles() {
+		return directory.list();
 	}
 
 }

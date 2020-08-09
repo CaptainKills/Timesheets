@@ -9,6 +9,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
 public class SettingsPanel extends JPanel{
@@ -67,6 +68,9 @@ public class SettingsPanel extends JPanel{
 											)
 									)
 							)
+					.addGroup(layout.createSequentialGroup()
+							.addComponent(UnusualsList.backupBox, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+							)
 					
 					.addGroup(layout.createSequentialGroup()
 							.addComponent(ButtonList.saveSettingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
@@ -109,9 +113,12 @@ public class SettingsPanel extends JPanel{
 						
 						)
 				.addGroup(layout.createSequentialGroup()
-						.addComponent(ButtonList.saveSettingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(UnusualsList.backupBox, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(ButtonList.saveSettingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
 				);
 		setLayout(layout);
 		

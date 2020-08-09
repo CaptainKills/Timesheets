@@ -12,6 +12,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
 public class SettingsButton extends JButton{
@@ -55,8 +56,7 @@ public class SettingsButton extends JButton{
 		
 		TextFieldList.backupCountInput.setText(settings.get("number_of_backups"));
 		
-		
-		
+		UnusualsList.backupBox.loadBackupsInBox();
 	}
 
 }
