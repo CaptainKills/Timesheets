@@ -19,15 +19,22 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import timesheets.Employee;
+import timesheets.Settings;
+import timesheets.TimeHandler;
 import timesheets.logging.Logger;
 
 public class Database {
 	private static final Logger logger = new Logger(Database.class.toString());
+	private TimeHandler time = new TimeHandler();
 	private static final String enc_key = "HWEupmmPvjfwlUk6";
+	
+	private static String directoryName = "data";
 
-	private final Path database_path = Paths.get("data" + File.separator + "Timesheets.db").toAbsolutePath();
-	private final Path encrypted_path = Paths.get("data" + File.separator + "Timesheets.encrypted").toAbsolutePath();
-	private final Path backup_path = Paths.get("data" + File.separator + "Timesheets_backup.encrypted").toAbsolutePath();
+	private static final Path database_path = Paths.get(directoryName + File.separator + "Timesheets.db").toAbsolutePath();
+	private static final Path encrypted_path = Paths.get(directoryName + File.separator + "Timesheets.encrypted").toAbsolutePath();
+	private static final Path directory_path = Paths.get(directoryName).toAbsolutePath();
+	private static File directory = directory_path.toFile();
+	private static String[] directory_files = directory.list();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
 
@@ -154,9 +161,13 @@ public class Database {
 	}
 
 	public void backupDatabase() {
-		try {
+		try {			
 			logger.info("Creating Backup of SQLite Database.");
+			String fileName = "Timesheets_backup " + time.getCurrentDate();
+			
+			Path backup_path = Paths.get("data" + File.separator + fileName + ".encrypted").toAbsolutePath();
 			File backup = backup_path.toFile();
+			
 			if (backup.exists()) {
 				logger.info("Current Backup File will be deleted.");
 				backup.delete();
@@ -166,6 +177,31 @@ public class Database {
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
+		}
+	}
+	
+	public static void cleanDirectory() {
+		int number_of_backups = Integer.parseInt(Settings.settings.get("number_of_backups"));
+
+		if(directory_files != null) {
+			logger.info("Backup files in Directory: " + (directory_files.length-2) + ", # of Files allowed: " + number_of_backups);
+			
+			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings file are not included.
+			if(difference > 0) {
+				logger.info("There are currently " + difference + "  backups too many.");
+				for (int i = 0; i < difference; i++) {
+					if(directory_files[i].contains("backup")) {
+						logger.info("Removing " + directory_files[i]);
+						File f = new File(directoryName + File.separator + directory_files[i]);
+						f.delete();
+					}
+				}
+				logger.info("Backup Directory Clean finished.");
+			} else {
+				logger.info("Backup Limit has not been reached yet. Cleaning Backup Directory skipped.");
+			}
+		} else {
+			logger.info("Backup files in Directory: 0, directory is empty.");
 		}
 	}
 

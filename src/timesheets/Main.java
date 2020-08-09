@@ -6,6 +6,7 @@ import timesheets.gui.MainFrame;
 import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
+import timesheets.sql.Database;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class.toString());
@@ -16,6 +17,7 @@ public class Main {
 		
 		Settings.loadSettings();
 		LogManager.cleanDirectory();
+		Database.cleanDirectory();
 		
 		logger.info("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {
