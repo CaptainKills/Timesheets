@@ -13,10 +13,10 @@ import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
 public class ExtendedHandler {
-	
+
 	private static final Logger logger = new Logger(ExtendedHandler.class.toString());
 	private static Database database = new Database();
-	
+
 	public static void exitApplication(Container rootPane) {
 		if (JOptionPane.showConfirmDialog(rootPane, "Are you sure?") == JOptionPane.YES_OPTION) {
 			logger.info("Closing Application...");
@@ -25,28 +25,28 @@ public class ExtendedHandler {
 			System.exit(0);
 		}
 	}
-	
+
 	public static void enableShiftButtons(Boolean start, Boolean end, Boolean startbreak, Boolean endbreak) {
 		ButtonList.startShiftButton.setEnabled(start);
 		ButtonList.endShiftButton.setEnabled(end);
 		ButtonList.startBreakButton.setEnabled(startbreak);
 		ButtonList.endBreakButton.setEnabled(endbreak);
 	}
-	
+
 	public static void setupEditPanel(boolean fields, boolean combo) {
 		TextFieldList.idField.setEnabled(fields);
 		ButtonList.idButton.setEnabled(fields);
 		TextFieldList.nameField.setEnabled(fields);
 		TextFieldList.ageField.setEnabled(fields);
 		TextFieldList.salaryField.setEnabled(fields);
-		
+
 		ButtonList.adminEnableButton.setEnabled(fields);
 		ButtonList.adminDisableButton.setEnabled(fields);
 		UnusualsList.empBox.setEnabled(combo);
-		
+
 		clearInputs();
 	}
-	
+
 	public static void clearInputs() {
 		TextFieldList.idField.setText("");
 		TextFieldList.nameField.setText("");
@@ -54,7 +54,7 @@ public class ExtendedHandler {
 		TextFieldList.salaryField.setText("");
 		ButtonList.adminDisableButton.setSelected(true);
 	}
-	
+
 	public static void displayTimeButtons(boolean bool) {
 		TextAreaList.loginTextArea.setVisible(bool);
 		ButtonList.startShiftButton.setVisible(bool);
@@ -62,7 +62,7 @@ public class ExtendedHandler {
 		ButtonList.startBreakButton.setVisible(bool);
 		ButtonList.endBreakButton.setVisible(bool);
 	}
-	
+
 	public static void displayAdminButtons(boolean bool) {
 		ButtonList.addEmployeeButton.setVisible(bool);
 		ButtonList.removeEmployeeButton.setVisible(bool);
@@ -72,7 +72,7 @@ public class ExtendedHandler {
 		ButtonList.settingsButton.setVisible(bool);
 		ButtonList.exitButton.setVisible(bool);
 	}
-	
+
 	public static void displayAdminPanels(boolean numpad, boolean edit, boolean timesheet, boolean settings) {
 		PanelList.numpadPanel.setVisible(numpad);
 		PanelList.editPanel.setVisible(edit);
