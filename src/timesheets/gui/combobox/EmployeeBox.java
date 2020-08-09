@@ -11,6 +11,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
@@ -43,7 +44,7 @@ public class EmployeeBox<T> extends JComboBox<T>{
 								ButtonList.adminDisableButton.setSelected(true);
 							}
 							
-							logger.info("Properties succesfully loaded into fields.");
+							logger.info("Employee succesfully loaded into fields.");
 						} else {
 							continue;
 						}
@@ -55,6 +56,14 @@ public class EmployeeBox<T> extends JComboBox<T>{
 		});
 		
 		logger.debug("EmployeeBox initialised.");
+	}
+	
+	public void loadEmployeesInBox() {
+		UnusualsList.empBox.removeAllItems();
+		for (Employee emp : Database.EmployeeList.values()) {
+			UnusualsList.empBox.addItem(emp.getName());
+		}
+
 	}
 
 }

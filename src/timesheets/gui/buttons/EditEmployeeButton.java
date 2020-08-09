@@ -9,6 +9,7 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
 public class EditEmployeeButton extends JButton{
@@ -29,7 +30,7 @@ public class EditEmployeeButton extends JButton{
 				ButtonList.submitButton.setText("Save Employee");
 				
 				ExtendedHandler.setupEditPanel(true, true);
-				ExtendedHandler.loadEmployeesInBox();
+				UnusualsList.empBox.loadEmployeesInBox();
 			}
 		});
 		

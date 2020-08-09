@@ -4,7 +4,6 @@ import java.awt.Container;
 
 import javax.swing.JOptionPane;
 
-import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextAreaList;
@@ -54,14 +53,6 @@ public class ExtendedHandler {
 		TextFieldList.ageField.setText("");
 		TextFieldList.salaryField.setText("");
 		ButtonList.adminDisableButton.setSelected(true);
-	}
-	
-	public static void loadEmployeesInBox() {
-		UnusualsList.empBox.removeAllItems();
-		for (Employee emp : Database.EmployeeList.values()) {
-			UnusualsList.empBox.addItem(emp.getName());
-		}
-
 	}
 	
 	public static void displayTimeButtons(boolean bool) {
