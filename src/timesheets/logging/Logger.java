@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Logger {
 	private String className;
 	
-	enum Level {
+	enum LogLevel {
 		DEBUG,
 		INFO,
 		WARN,
@@ -18,26 +18,26 @@ public class Logger {
 	}
 	
 	public void debug(String msg) {
-		String log = formatMessage(Level.DEBUG, msg);
+		String log = formatMessage(LogLevel.DEBUG, msg);
 		LogManager.writeLog(log);
 	}
 	
 	public void info(String msg) {
-		String log = formatMessage(Level.INFO, msg);
+		String log = formatMessage(LogLevel.INFO, msg);
 		LogManager.writeLog(log);
 	}
 	
 	public void warn(String msg) {
-		String log = formatMessage(Level.WARN, msg);
+		String log = formatMessage(LogLevel.WARN, msg);
 		LogManager.writeLog(log);
 	}
 	
 	public void error(String msg) {
-		String log = formatMessage(Level.ERROR, msg);
+		String log = formatMessage(LogLevel.ERROR, msg);
 		LogManager.writeLog(log);
 	}
 	
-	private String formatMessage(Level level, String msg) {
+	private String formatMessage(LogLevel level, String msg) {
 		return String.format("%s %s\t[%s]\t%s   ->   %s", LocalDate.now(), LocalTime.now(), level, className, msg); 
 	}
 
