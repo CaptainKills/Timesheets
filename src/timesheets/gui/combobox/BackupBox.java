@@ -17,7 +17,7 @@ public class BackupBox<T> extends JComboBox<String> {
 	private static String[] directory_files = ResourceHandler.data_directory_path.toFile().list();
 
 	public BackupBox() {
-		setPreferredSize(DimensionList.fieldSize_large);
+		setPreferredSize(DimensionList.fieldSize_medium);
 		setFont(FontList.normalFont);
 		setVisible(true);
 		setEnabled(true);

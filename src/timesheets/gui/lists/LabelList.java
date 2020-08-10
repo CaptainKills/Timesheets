@@ -30,6 +30,8 @@ public class LabelList {
 	public static JLabel numberOfLogsLabel = new NumberOfLogsLabel();
 	public static JLabel backupLabel = new BackupLabel();
 	public static JLabel numberOfBackupsLabel = new NumberOfBackupsLabel();
+	public static JLabel selectBackupLabel = new SelectBackupLabel();
+	public static JLabel emptyLabel = new EmptyLabel();
 	public static JLabel widthLabel = new WidthLabel();
 	public static JLabel heightLabel = new HeightLabel();
 	public static JLabel dimensionLabel = new AppDimensionLabel();
