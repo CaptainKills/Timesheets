@@ -15,12 +15,11 @@ import timesheets.sql.Database;
 public class ExtendedHandler {
 
 	private static final Logger logger = new Logger(ExtendedHandler.class.toString());
-	private static Database database = new Database();
 
 	public static void exitApplication(Container rootPane) {
 		if (JOptionPane.showConfirmDialog(rootPane, "Are you sure?") == JOptionPane.YES_OPTION) {
 			logger.info("Closing Application...");
-			database.backupDatabase();
+			Database.backupDatabase();
 			logger.info("Application Closed.\n");
 			System.exit(0);
 		}

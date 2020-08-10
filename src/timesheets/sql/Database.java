@@ -18,15 +18,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.swing.JOptionPane;
+
 import timesheets.Employee;
 import timesheets.Settings;
 import timesheets.TimeHandler;
+import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
 
 public class Database {
 	private static final Logger logger = new Logger(Database.class.toString());
-	private TimeHandler time = new TimeHandler();
+	private static TimeHandler time = new TimeHandler();
 	private static final String enc_key = "HWEupmmPvjfwlUk6";
 
 	private static final File database_file = ResourceHandler.database_path.toFile();
@@ -157,7 +160,7 @@ public class Database {
 		return timemap;
 	}
 
-	public void backupDatabase() {
+	public static void backupDatabase() {
 		try {
 			logger.info("Creating Backup of SQLite Database.");
 			String fileName = "Timesheets Backup " + time.getCurrentDate();
@@ -175,6 +178,24 @@ public class Database {
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
+		}
+	}
+	
+	public static void revertBackup(String backupName) {
+		try {
+			backupDatabase();
+			logger.info("Reverting Backup of SQLite Database.");
+			Path backup_path = Paths.get(directory + File.separator + backupName + ".encrypted").toAbsolutePath();
+
+			Files.copy(backup_path, encrypted_file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			logger.info("Backup of SQLite Database Reverted.");
+			
+			JOptionPane.showMessageDialog(PanelList.mainPanel, "Backup has succesfully been reverted!", "Successfull Reversion!",
+					JOptionPane.INFORMATION_MESSAGE);
+		} catch (IOException e) {
+			logger.error("COULD NOT REVERT BACKUP: " + e);
+			JOptionPane.showMessageDialog(PanelList.mainPanel, "Unable to revert Backup!", "Unsuccesfull Reversion!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
