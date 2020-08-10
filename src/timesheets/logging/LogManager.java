@@ -14,6 +14,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import timesheets.Settings;
+import timesheets.resources.ResourceHandler;
 
 public class LogManager {
 	private static final Logger logger = new Logger(LogManager.class.toString());
@@ -22,15 +23,13 @@ public class LogManager {
 	private static LocalDate initial_date = LocalDate.now();
 
 	private static String activeLog = "Timesheets Log " + initial_date + ".txt";
-	private static String directoryName = "logs";
 
-	private static final Path directory_path = Paths.get(directoryName).toAbsolutePath();
-	private static final Path log_path = Paths.get(directoryName + File.separator + activeLog).toAbsolutePath();
-	private static File directory = directory_path.toFile();
-	private static File log_file = log_path.toFile();
+	private static final Path log_directory = ResourceHandler.log_directory_path;
+	private static final Path log_path = Paths.get(log_directory + File.separator + activeLog).toAbsolutePath();
+	private static final File log_file = log_path.toFile();
 
 	private static boolean debugMode = true;
-	private static String[] directory_files = directory.list();
+	private static String[] directory_files = log_directory.toFile().list();
 
 	public static void initialise() {
 		try {
@@ -72,7 +71,7 @@ public class LogManager {
 				} else {
 					logger.info("Archiving " + log);
 					createZip(log);
-					File f = new File(directoryName + File.separator + log);
+					File f = new File(log_directory + File.separator + log);
 					f.delete();
 				}
 			}
@@ -84,10 +83,10 @@ public class LogManager {
 	private static void createZip(String fileName) {
 		String zipName = fileName.substring(0, fileName.length() - 4).concat(".zip");
 
-		try (FileOutputStream fos = new FileOutputStream(directoryName + File.separator + zipName, true);
+		try (FileOutputStream fos = new FileOutputStream(log_directory + File.separator + zipName, true);
 				ZipOutputStream zos = new ZipOutputStream(fos);) {
 
-			Path p = Paths.get(directoryName + File.separator + fileName).toAbsolutePath();
+			Path p = Paths.get(log_directory + File.separator + fileName).toAbsolutePath();
 			zos.putNextEntry(new ZipEntry(p.toFile().getName()));
 
 			FileInputStream fis = new FileInputStream(p.toFile());
@@ -117,7 +116,7 @@ public class LogManager {
 
 				for (int i = 0; i < difference; i++) {
 					logger.info("Removing " + directory_files[i]);
-					File f = new File(directoryName + File.separator + directory_files[i]);
+					File f = new File(log_directory + File.separator + directory_files[i]);
 					f.delete();
 				}
 				logger.info("Log Directory Clean finished.");

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,13 +22,12 @@ public class Encryption {
 	private static final String ALGORITHM = "AES";
 	private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
 
-	public static void encrypt(String key, Path inputPath, Path outputPath) {
-		logger.info("Encrypting file: " + inputPath.getFileName());
+	public static void encrypt(String key, File inputFile, File outputFile) {
+		logger.info("Encrypting file: " + inputFile.getName());
 		
-		File inputFile = inputPath.toFile();
 		if(inputFile.exists()) {
 			try {
-				doCrypto(Cipher.ENCRYPT_MODE, key, inputFile, outputPath.toFile());
+				doCrypto(Cipher.ENCRYPT_MODE, key, inputFile, outputFile);
 				inputFile.delete();
 			} catch (EncryptionException | SecurityException e) {
 				logger.error("COULD NOT ENCRYPT FILE: " + e);
@@ -39,13 +37,12 @@ public class Encryption {
 		}
 	}
 
-	public static void decrypt(String key, Path inputPath, Path outputPath) {
-		logger.info("Decrypting file: " + inputPath.getFileName());
+	public static void decrypt(String key, File inputFile, File outputFile) {
+		logger.info("Decrypting file: " + inputFile.getName());
 		
-		File inputFile = inputPath.toFile();
 		if(inputFile.exists()) {
 			try {
-				doCrypto(Cipher.DECRYPT_MODE, key, inputFile, outputPath.toFile());
+				doCrypto(Cipher.DECRYPT_MODE, key, inputFile, outputFile);
 			} catch (EncryptionException e) {
 				logger.error("COULD NOT DECRYPT FILE: " + e);
 			}

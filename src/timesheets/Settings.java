@@ -5,20 +5,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import timesheets.logging.Logger;
+import timesheets.resources.ResourceHandler;
 
 public class Settings {
 	private static final Logger logger = new Logger(Settings.class.toString());
 
-	private final static Path path_Settings = Paths.get("data" + File.separator + "settings.properties")
-			.toAbsolutePath();
-	private static File file_Settings = path_Settings.toFile();
-
+	private static File settings_file = ResourceHandler.settings_path.toFile();
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();
 
 	// @formatter:off
@@ -38,7 +34,7 @@ public class Settings {
 		logger.info("Loading Settings File.");
 		checkFile();
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(file_Settings))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(settings_file))) {
 			String newline;
 			while ((newline = reader.readLine()) != null) {
 				String[] segments = newline.split("=");
@@ -54,14 +50,14 @@ public class Settings {
 	}
 
 	private static void checkFile() {
-		if (!file_Settings.exists()) {
+		if (!settings_file.exists()) {
 			logger.info("Settings file does not exist.");
-			createFile(file_Settings);
-		} else if (file_Settings.length() == 0) {
-			logger.info("Settings File is empty: Length=" + file_Settings.length());
-			writeDefaultsToFile(file_Settings);
+			createFile(settings_file);
+		} else if (settings_file.length() == 0) {
+			logger.info("Settings File is empty: Length=" + settings_file.length());
+			writeDefaultsToFile(settings_file);
 		} else {
-			logger.info("Settings file exists: Length=" + file_Settings.length());
+			logger.info("Settings file exists: Length=" + settings_file.length());
 		}
 	}
 
@@ -97,7 +93,7 @@ public class Settings {
 
 	public static void saveSettings() {
 		logger.info("Saving settings to file.");
-		try (PrintWriter writer = new PrintWriter(file_Settings)) {
+		try (PrintWriter writer = new PrintWriter(settings_file)) {
 			for (Map.Entry<String, String> entry : settings.entrySet()) {
 				writer.println(entry.getKey() + "=" + entry.getValue());
 			}

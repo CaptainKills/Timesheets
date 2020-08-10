@@ -22,18 +22,16 @@ import timesheets.Employee;
 import timesheets.Settings;
 import timesheets.TimeHandler;
 import timesheets.logging.Logger;
+import timesheets.resources.ResourceHandler;
 
 public class Database {
 	private static final Logger logger = new Logger(Database.class.toString());
 	private TimeHandler time = new TimeHandler();
 	private static final String enc_key = "HWEupmmPvjfwlUk6";
-	
-	private static String directoryName = "data";
 
-	private static final Path database_path = Paths.get(directoryName + File.separator + "Timesheets.db").toAbsolutePath();
-	private static final Path encrypted_path = Paths.get(directoryName + File.separator + "Timesheets.encrypted").toAbsolutePath();
-	private static final Path directory_path = Paths.get(directoryName).toAbsolutePath();
-	private static File directory = directory_path.toFile();
+	private static final File database_file = ResourceHandler.database_path.toFile();
+	private static final File encrypted_file = ResourceHandler.encrypted_path.toFile();
+	private static final File directory = ResourceHandler.data_directory_path.toFile();
 	private static String[] directory_files = directory.list();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
@@ -60,7 +58,7 @@ public class Database {
 	public void setupDatabase() {
 		String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
 		String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
-		
+
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
 			stmt.execute(timedata_table);
@@ -83,8 +81,8 @@ public class Database {
 
 		try {
 			checkDirectory();
-			Encryption.decrypt(enc_key, encrypted_path, database_path);
-			String url = "jdbc:sqlite:" + database_path;
+			Encryption.decrypt(enc_key, encrypted_file, database_file);
+			String url = "jdbc:sqlite:" + database_file;
 
 			logger.info("Establishing connection to SQLite Database...");
 			conn = DriverManager.getConnection(url);
@@ -96,16 +94,15 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("SQL CONNECTION ERROR: " + e);
 		}
-		
+
 		return conn;
 	}
 
 	private void checkDirectory() {
 		try {
-			File f = database_path.toFile();
-			if (!f.getParentFile().exists()) {
+			if (!database_file.getParentFile().exists()) {
 				logger.info("Parent Directory of Database does not exist.");
-				f.getParentFile().mkdir();
+				database_file.getParentFile().mkdir();
 				logger.info("Parent Directory of Database created.");
 			}
 		} catch (SecurityException e) {
@@ -135,7 +132,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("SQL DATABASE ERROR: " + e);
 		} finally {
-			Encryption.encrypt(enc_key, database_path, encrypted_path);
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
 	}
 
@@ -156,43 +153,47 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE: " + e);
 		}
-		
+
 		return timemap;
 	}
 
 	public void backupDatabase() {
-		try {			
+		try {
 			logger.info("Creating Backup of SQLite Database.");
 			String fileName = "Timesheets Backup " + time.getCurrentDate();
-			
-			Path backup_path = Paths.get("data" + File.separator + fileName + ".encrypted").toAbsolutePath();
+			String directory = ResourceHandler.data_directory_path.toString();
+
+			Path backup_path = Paths.get(directory + File.separator + fileName + ".encrypted").toAbsolutePath();
 			File backup = backup_path.toFile();
-			
+
 			if (backup.exists()) {
 				logger.info("Current Backup File will be deleted.");
 				backup.delete();
 			}
 
-			Files.copy(encrypted_path, backup_path, StandardCopyOption.COPY_ATTRIBUTES);
+			Files.copy(encrypted_file.toPath(), backup_path, StandardCopyOption.COPY_ATTRIBUTES);
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP: " + e);
 		}
 	}
-	
+
 	public static void cleanDirectory() {
 		int number_of_backups = Integer.parseInt(Settings.settings.get("number_of_backups"));
+		String directory = ResourceHandler.data_directory_path.toString();
 
-		if(directory_files != null) {
-			logger.info("Backup files in Directory: " + (directory_files.length-2) + ", # of Files allowed: " + number_of_backups);
-			
-			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings file are not included.
-			if(difference > 0) {
+		if (directory_files != null) {
+			logger.info("Backup files in Directory: " + (directory_files.length - 2) + ", # of Files allowed: "
+					+ number_of_backups);
+
+			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings
+																				// file are not included.
+			if (difference > 0) {
 				logger.info("There are currently " + difference + "  backups too many.");
 				for (int i = 0; i < difference; i++) {
-					if(directory_files[i].contains("backup")) {
+					if (directory_files[i].contains("backup")) {
 						logger.info("Removing " + directory_files[i]);
-						File f = new File(directoryName + File.separator + directory_files[i]);
+						File f = new File(directory + File.separator + directory_files[i]);
 						f.delete();
 					}
 				}
@@ -220,7 +221,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT EMPLOYEE INTO DATABASE: " + e);
 		} finally {
-			Encryption.encrypt(enc_key, database_path, encrypted_path);
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
 	}
 
@@ -241,7 +242,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT DELETE EMPLOYEE FROM DATABASE: " + e);
 		} finally {
-			Encryption.encrypt(enc_key, database_path, encrypted_path);
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
 	}
 
@@ -261,7 +262,7 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT UPDATE EMPLOYEE IN DATABASE: " + e);
 		} finally {
-			Encryption.encrypt(enc_key, database_path, encrypted_path);
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
 	}
 
@@ -290,10 +291,10 @@ public class Database {
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT TIME INTO DATABASE: " + e);
 		} finally {
-			Encryption.encrypt(enc_key, database_path, encrypted_path);
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
 	}
-	
+
 	public static String[] getDirectoryFiles() {
 		return directory.list();
 	}
