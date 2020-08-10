@@ -14,7 +14,7 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class EmployeeBox<T> extends JComboBox<T>{
+public class EmployeeBox<T> extends JComboBox<String>{
 	private static final long serialVersionUID = -8247944843862213418L;
 	private static final Logger logger = new Logger(EmployeeBox.class.toString());
 	
@@ -57,11 +57,10 @@ public class EmployeeBox<T> extends JComboBox<T>{
 		logger.debug("EmployeeBox initialised.");
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void loadEmployeesInBox() {
 		removeAllItems();
 		for (Employee emp : Database.EmployeeList.values()) {
-			addItem((T) emp.getName());
+			addItem(emp.getName());
 		}
 
 	}

@@ -10,7 +10,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
 
-public class BackupBox<T> extends JComboBox<T> {
+public class BackupBox<T> extends JComboBox<String> {
 	private static final long serialVersionUID = -229433229070533167L;
 	private static final Logger logger = new Logger(BackupBox.class.toString());
 
@@ -41,12 +41,11 @@ public class BackupBox<T> extends JComboBox<T> {
 		logger.debug("BackupBox initialised.");
 	}
 
-	@SuppressWarnings("unchecked")
 	public void loadBackupsInBox() {
 		removeAllItems();
 		for (String backup : directory_files) {
 			if (backup.contains("Backup")) {
-				addItem((T) backup.substring(0, backup.length() - 10));
+				addItem(backup.substring(0, backup.length() - 10));
 			}
 		}
 		setSelectedItem(-1);
