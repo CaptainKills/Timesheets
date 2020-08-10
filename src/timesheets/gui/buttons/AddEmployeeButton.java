@@ -26,6 +26,7 @@ public class AddEmployeeButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
 				ButtonList.submitButton.setText("Add Employee");

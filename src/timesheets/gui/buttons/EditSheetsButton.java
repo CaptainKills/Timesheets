@@ -24,6 +24,7 @@ public class EditSheetsButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, false, true, false);
 				TextAreaList.timesheetDisplay.setText("");
 			}

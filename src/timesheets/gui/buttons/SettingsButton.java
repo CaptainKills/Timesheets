@@ -30,6 +30,7 @@ public class SettingsButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, false, false, true);
 				loadSettingsFields();
 			}
