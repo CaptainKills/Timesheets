@@ -295,8 +295,4 @@ public class Database {
 		}
 	}
 
-	public static String[] getDirectoryFiles() {
-		return directory.list();
-	}
-
 }
