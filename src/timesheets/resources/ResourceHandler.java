@@ -15,9 +15,8 @@ public class ResourceHandler {
 
 	private static ClassLoader loader = ResourceHandler.class.getClassLoader();
 
-	private static final String images_path = "timesheets/resources/images/";
-	private static final String data_directory = "data";
-	private static final String log_directory = "logs";
+	private static String data_directory = "data";
+	private static String log_directory = "logs";
 
 	public static final Path settings_path = Paths.get(data_directory + File.separator + "settings.properties")
 			.toAbsolutePath();
@@ -29,6 +28,7 @@ public class ResourceHandler {
 	public static final Path data_directory_path = Paths.get(data_directory).toAbsolutePath();
 	public static final Path log_directory_path = Paths.get(log_directory).toAbsolutePath();
 
+	private static final String images_path = "timesheets/resources/images/";
 	private static final ImageIcon img16 = new ImageIcon(loader.getResource(images_path + "atom16.png"));
 	private static final ImageIcon img32 = new ImageIcon(loader.getResource(images_path + "atom32.png"));
 	private static final ImageIcon img128 = new ImageIcon(loader.getResource(images_path + "atom128.png"));
