@@ -99,4 +99,26 @@ public class DataEditPanel extends JPanel {
 		
 		logger.debug("DataEditPanel initialised.");
 	}
+	
+	public void setupEditPanel(boolean fields, boolean combo) {
+		TextFieldList.idField.setEnabled(fields);
+		ButtonList.idButton.setEnabled(fields);
+		TextFieldList.nameField.setEnabled(fields);
+		TextFieldList.ageField.setEnabled(fields);
+		TextFieldList.salaryField.setEnabled(fields);
+
+		ButtonList.adminEnableButton.setEnabled(fields);
+		ButtonList.adminDisableButton.setEnabled(fields);
+		UnusualsList.empBox.setEnabled(combo);
+
+		clearInputs();
+	}
+
+	public void clearInputs() {
+		TextFieldList.idField.setText("");
+		TextFieldList.nameField.setText("");
+		TextFieldList.ageField.setText("");
+		TextFieldList.salaryField.setText("");
+		ButtonList.adminDisableButton.setSelected(true);
+	}
 }

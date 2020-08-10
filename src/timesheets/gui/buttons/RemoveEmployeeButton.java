@@ -9,6 +9,7 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
@@ -29,7 +30,7 @@ public class RemoveEmployeeButton extends JButton{
 
 				ButtonList.submitButton.setText("Remove Employee");
 				
-				ExtendedHandler.setupEditPanel(false, true);
+				PanelList.editPanel.setupEditPanel(false, true);
 				UnusualsList.empBox.loadEmployeesInBox();
 			}
 		});

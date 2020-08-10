@@ -1,14 +1,16 @@
 package timesheets.gui.buttons;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
+import timesheets.sql.Database;
 
 public class ExitButton extends JButton{
 	private static final long serialVersionUID = -5805705893852029673L;
@@ -23,11 +25,20 @@ public class ExitButton extends JButton{
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				ExtendedHandler.exitApplication(getRootPane());
+				exitApplication(getRootPane());
 			}
 		});
 		
 		logger.debug("ExitButton initialised.");
+	}
+	
+	public void exitApplication(Container rootPane) {
+		if (JOptionPane.showConfirmDialog(rootPane, "Are you sure?") == JOptionPane.YES_OPTION) {
+			logger.info("Closing Application...");
+			Database.backupDatabase();
+			logger.info("Application Closed.\n");
+			System.exit(0);
+		}
 	}
 
 }

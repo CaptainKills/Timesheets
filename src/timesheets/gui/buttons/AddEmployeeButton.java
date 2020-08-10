@@ -9,6 +9,7 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
+import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
@@ -28,7 +29,7 @@ public class AddEmployeeButton extends JButton{
 				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
 				ButtonList.submitButton.setText("Add Employee");
-				ExtendedHandler.setupEditPanel(true, false);
+				PanelList.editPanel.setupEditPanel(true, false);
 				UnusualsList.empBox.setSelectedIndex(-1);
 			}
 		});

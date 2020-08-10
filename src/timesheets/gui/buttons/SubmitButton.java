@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import timesheets.Employee;
-import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
@@ -82,7 +81,7 @@ public class SubmitButton extends JButton {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
 					"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
 
-			ExtendedHandler.clearInputs();
+			PanelList.editPanel.clearInputs();
 		}
 	}
 
@@ -150,7 +149,7 @@ public class SubmitButton extends JButton {
 				JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
 						"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);
 
-				ExtendedHandler.clearInputs();
+				PanelList.editPanel.clearInputs();
 			} else if (menuChoice == JOptionPane.CANCEL_OPTION) {
 				return;
 			}
