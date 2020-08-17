@@ -10,13 +10,13 @@ import timesheets.TimeHandler;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class LoginDisplayArea extends JTextArea{
+public class LoginDisplay extends JTextArea{
 	private static final long serialVersionUID = -8427377108410611993L;
-	private static final Logger logger = new Logger(LoginDisplayArea.class.toString());
+	private static final Logger logger = new Logger(LoginDisplay.class.toString());
 	
 	private TimeHandler time = new TimeHandler();
 
-	public LoginDisplayArea() {
+	public LoginDisplay() {
 		super();
 		setFont(FontList.infolabelFont);
 		setPreferredSize(new Dimension(460, 61));
@@ -26,7 +26,7 @@ public class LoginDisplayArea extends JTextArea{
 		
 		setText("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n" + "Please enter ID to log in...");
 		
-		logger.debug("LoginDisplayArea initialised.");
+		logger.debug("LoginDisplay initialised.");
 	}
 	
 	public void updateInfoText(String newText) {
