@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.Map;
 
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import timesheets.Employee;
@@ -24,7 +24,7 @@ public class DateTodayButton extends JRadioButton{
 	private static final Logger logger = new Logger(DateTodayButton.class.toString());
 	private static TimeHandler time = new TimeHandler();
 	
-	private static JTextArea display = TextAreaList.timesheetDisplay;
+	private static JTextPane display = TextAreaList.timesheetDisplay;
 
 	public DateTodayButton() {
 		super("Date Today", false);

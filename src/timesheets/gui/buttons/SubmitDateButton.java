@@ -8,8 +8,8 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import timesheets.Employee;
 import timesheets.gui.lists.DimensionList;
@@ -25,7 +25,7 @@ public class SubmitDateButton extends JButton {
 	private static final long serialVersionUID = 2083380215334310336L;
 	private static final Logger logger = new Logger(SubmitDateButton.class.toString());
 	
-	private static JTextArea display = TextAreaList.timesheetDisplay;
+	private static JTextPane display = TextAreaList.timesheetDisplay;
 	private static JTextField yearInput_from = TextFieldList.yearInput_from;
 	private static JTextField yearInput_to = TextFieldList.yearInput_from;
 	private static JTextField monthInput_from = TextFieldList.monthInput_from;
