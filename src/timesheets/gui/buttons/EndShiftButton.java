@@ -12,7 +12,7 @@ import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -47,9 +47,9 @@ public class EndShiftButton extends JButton{
 				differenceTime = time.calculateDifference(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(), activeEmployee.getTimePaused());
 				
 				if(activeEmployee.getTimePaused() != null) {
-					TextAreaList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", and " + activeEmployee.getTimePaused() + " of breaktime.");
+					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", and " + activeEmployee.getTimePaused() + " of breaktime.");
 				} else if(activeEmployee.getTimePaused() == null){
-					TextAreaList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
+					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
 				}
 				logger.info("Employee " + activeEmployee.getID_String() + " ended their shift at: " + currentTime);
 				

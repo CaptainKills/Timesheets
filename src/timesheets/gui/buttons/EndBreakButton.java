@@ -11,7 +11,7 @@ import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -47,7 +47,7 @@ public class EndBreakButton extends JButton{
 				} else {
 					newTime = differenceTime;
 				}
-				TextAreaList.loginTextArea.updateInfoText("Total break taken this shift: " + differenceTime);
+				DisplayList.loginTextArea.updateInfoText("Total break taken this shift: " + differenceTime);
 
 				activeEmployee.setTimePaused(newTime);
 				activeEmployee.setBreakStarted(null);

@@ -11,7 +11,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
@@ -67,7 +67,7 @@ public class DateSpecificButton extends JRadioButton {
 					TextFieldList.dayInput_to.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
 					
 					ButtonList.submitDateButton.setEnabled(false);
-					TextAreaList.timesheetDisplay.setText("");
+					DisplayList.timesheetDisplay.setText("");
 				}
 			}
 		});

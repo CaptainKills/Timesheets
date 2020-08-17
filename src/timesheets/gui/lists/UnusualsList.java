@@ -22,7 +22,7 @@ public class UnusualsList {
 		public void actionPerformed(ActionEvent evt) {
 			//Update all time-related GUI Elements.
 			
-			TextAreaList.loginTextArea.updateTimeText();
+			DisplayList.loginTextArea.updateTimeText();
 			LabelList.todayLabel.updateText();
 			LabelList.weekLabel.updateText();
 			LabelList.monthLabel.updateText();

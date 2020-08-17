@@ -9,7 +9,7 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
@@ -27,7 +27,7 @@ public class LogoutButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				TextFieldList.inputField.setText("");
-				TextAreaList.loginTextArea.updateInfoText("Please enter ID to log in...");
+				DisplayList.loginTextArea.updateInfoText("Please enter ID to log in...");
 				ButtonList.switchMenuButton.setText(">>");
 				ButtonList.switchMenuButton.setEnabled(false);
 

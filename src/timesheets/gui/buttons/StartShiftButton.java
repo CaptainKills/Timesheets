@@ -11,7 +11,7 @@ import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -34,7 +34,7 @@ public class StartShiftButton extends JButton{
 				Employee activeEmployee = Database.EmployeeList.get(id);
 				
 				LocalTime currentTime = time.roundOffTime(time.getCurrentTime());
-				TextAreaList.loginTextArea.updateInfoText("Workshift has been started at: " + currentTime);
+				DisplayList.loginTextArea.updateInfoText("Workshift has been started at: " + currentTime);
 				logger.info("Employee " + activeEmployee.getID_String() + " has started their shift at " + currentTime);
 				
 				activeEmployee.setTimeStarted(currentTime);

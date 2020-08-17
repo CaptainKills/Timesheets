@@ -2,7 +2,7 @@ package timesheets.gui;
 
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 
 public class ExtendedHandler {
 
@@ -21,7 +21,7 @@ public class ExtendedHandler {
 	}
 
 	public static void displayTimeButtons(boolean bool) {
-		TextAreaList.loginTextArea.setVisible(bool);
+		DisplayList.loginTextArea.setVisible(bool);
 		ButtonList.startShiftButton.setVisible(bool);
 		ButtonList.endShiftButton.setVisible(bool);
 		ButtonList.startBreakButton.setVisible(bool);

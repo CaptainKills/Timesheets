@@ -15,7 +15,7 @@ import timesheets.TimeHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
@@ -25,7 +25,7 @@ public class DateMonthButton extends JRadioButton{
 	private static final Logger logger = new Logger(DateMonthButton.class.toString());
 	private static TimeHandler time = new TimeHandler();
 	
-	private static JTextPane display = TextAreaList.timesheetDisplay;
+	private static JTextPane display = DisplayList.timesheetDisplay;
 
 	public DateMonthButton() {
 		super("Current Month", false);

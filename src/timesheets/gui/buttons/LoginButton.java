@@ -11,7 +11,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -38,7 +38,7 @@ public class LoginButton extends JButton{
 				if (Database.EmployeeList.containsKey(id)) {
 					Employee activeEmployee = Database.EmployeeList.get(id);
 					
-					TextAreaList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
+					DisplayList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
 					logger.info("Employee " + activeEmployee.getID_String() + " has logged in.");
 					setEnabled(false);
 

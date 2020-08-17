@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 
 public class PrintSheetsButton extends JButton{
@@ -26,7 +26,7 @@ public class PrintSheetsButton extends JButton{
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, false, true, false);
-				TextAreaList.timesheetDisplay.setText("");
+				DisplayList.timesheetDisplay.setText("");
 			}
 		});
 		

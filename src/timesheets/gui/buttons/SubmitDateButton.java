@@ -15,7 +15,7 @@ import timesheets.Employee;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.TextAreaList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -25,7 +25,7 @@ public class SubmitDateButton extends JButton {
 	private static final long serialVersionUID = 2083380215334310336L;
 	private static final Logger logger = new Logger(SubmitDateButton.class.toString());
 	
-	private static JTextPane display = TextAreaList.timesheetDisplay;
+	private static JTextPane display = DisplayList.timesheetDisplay;
 	private static JTextField yearInput_from = TextFieldList.yearInput_from;
 	private static JTextField yearInput_to = TextFieldList.yearInput_from;
 	private static JTextField monthInput_from = TextFieldList.monthInput_from;
