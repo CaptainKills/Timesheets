@@ -26,6 +26,8 @@ public class SubmitDateButton extends JButton {
 	private static final Logger logger = new Logger(SubmitDateButton.class.toString());
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
+	private StringBuilder builder = new StringBuilder();
+	
 	private static JTextField yearInput_from = TextFieldList.yearInput_from;
 	private static JTextField yearInput_to = TextFieldList.yearInput_from;
 	private static JTextField monthInput_from = TextFieldList.monthInput_from;
@@ -59,20 +61,21 @@ public class SubmitDateButton extends JButton {
 				}
 
 				for (Employee emp : Database.EmployeeList.values()) {
-					display.append(emp.getName() + " (" + emp.getID() + ")\n");
+					builder.append(emp.getName() + " (" + emp.getID() + ")\n");
 					if (!emp.getWorkedTime().isEmpty()) {
 						for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
 							if (entry.getKey().isAfter(beginDate) && entry.getKey().isBefore(endDate)) {
-								display.append(
+								builder.append(
 										entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-" + entry.getValue()[1]
 												+ ", P-" + entry.getValue()[2] + ", W-" + entry.getValue()[3] + "\n");
 							} else {
-								display.append("----------------------------------------------------\n");
+								builder.append("----------------------------------------------------\n");
 								continue;
 							}
 						}
 					}
-					display.append("----------------------------------------------------\n");
+					builder.append("----------------------------------------------------\n");
+					display.setText(builder.toString());
 				}
 			}
 		});

@@ -26,6 +26,7 @@ public class DateWeekButton extends JRadioButton {
 	private static TimeHandler time = new TimeHandler();
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
+	private StringBuilder builder = new StringBuilder();
 
 	public DateWeekButton() {
 		super("Current Week", false);
@@ -40,12 +41,12 @@ public class DateWeekButton extends JRadioButton {
 					LabelList.weekLabel.setEnabled(true);
 
 					for (Employee emp : Database.EmployeeList.values()) {
-						display.append(emp.getName() + " (" + emp.getID() + ")\n");
+						builder.append(emp.getName() + " (" + emp.getID() + ")\n");
 						if (emp.getWorkedTime() != null) {
 							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
 								if (entry.getKey().isAfter(time.getWeekStart().minusDays(1))
 										&& entry.getKey().isBefore(time.getWeekEnd().plusDays(1))) {
-									display.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
+									builder.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
 											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
 											+ entry.getValue()[3] + "\n");
 								} else {
@@ -53,10 +54,11 @@ public class DateWeekButton extends JRadioButton {
 								}
 							}
 						} else {
-							display.append("----------------------------------------------------\n");
+							builder.append("----------------------------------------------------\n");
 							continue;
 						}
-						display.append("----------------------------------------------------\n");
+						builder.append("----------------------------------------------------\n");
+						display.setText(builder.toString());
 					}
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.weekLabel.setEnabled(false);
