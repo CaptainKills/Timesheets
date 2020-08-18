@@ -30,18 +30,6 @@ public class Employee {
 	public String toString() {
 		return getID_String() + "/" + Name + "/" + Age + "/" + Salary + "/" + Admin;
 	}
-	
-	public String timeMapToString() {
-		String mapOutput = "";
-		for(Map.Entry<LocalDate, LocalTime[]> entry : WorkedTime.entrySet()) {
-			mapOutput += entry.getKey() + "=" + entry.getValue()[0] + "|" + entry.getValue()[1] + "|" + entry.getValue()[2] + "|" + entry.getValue()[3];
-			
-			if(entry.getKey() != WorkedTime.lastKey()){
-				mapOutput += ",";
-			}
-		}
-		return mapOutput;
-	}
 
 	public int getID() {
 		return ID;
