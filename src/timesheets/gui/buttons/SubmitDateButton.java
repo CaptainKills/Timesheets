@@ -3,22 +3,19 @@ package timesheets.gui.buttons;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-import timesheets.Employee;
 import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.textareas.DisplayOutput;
 import timesheets.logging.Logger;
-import timesheets.sql.Database;
 
 public class SubmitDateButton extends JButton {
 
@@ -26,7 +23,6 @@ public class SubmitDateButton extends JButton {
 	private static final Logger logger = new Logger(SubmitDateButton.class.toString());
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
-	private StringBuilder builder = new StringBuilder();
 	
 	private static JTextField yearInput_from = TextFieldList.yearInput_from;
 	private static JTextField yearInput_to = TextFieldList.yearInput_from;
@@ -59,24 +55,9 @@ public class SubmitDateButton extends JButton {
 				} finally {
 					display.setText("");
 				}
-
-				for (Employee emp : Database.EmployeeList.values()) {
-					builder.append(emp.getName() + " (" + emp.getID() + ")\n");
-					if (!emp.getWorkedTime().isEmpty()) {
-						for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-							if (entry.getKey().isAfter(beginDate) && entry.getKey().isBefore(endDate)) {
-								builder.append(
-										entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-" + entry.getValue()[1]
-												+ ", P-" + entry.getValue()[2] + ", W-" + entry.getValue()[3] + "\n");
-							} else {
-								builder.append("----------------------------------------------------\n");
-								continue;
-							}
-						}
-					}
-					builder.append("----------------------------------------------------\n");
-					display.setText(builder.toString());
-				}
+				
+				String display_text = DisplayOutput.build(beginDate, endDate);
+				display.setText(display_text);
 			}
 		});
 		

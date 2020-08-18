@@ -2,31 +2,25 @@ package timesheets.gui.buttons;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Map;
 
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-import timesheets.Employee;
-import timesheets.TimeHandler;
 import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.lists.DisplayList;
+import timesheets.gui.textareas.DisplayOutput;
+import timesheets.gui.textareas.DisplayOutput.OutputType;
 import timesheets.logging.Logger;
-import timesheets.sql.Database;
 
 public class DateWeekButton extends JRadioButton {
 
 	private static final long serialVersionUID = -2102233715141535919L;
 	private static final Logger logger = new Logger(DateWeekButton.class.toString());
-	private static TimeHandler time = new TimeHandler();
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
-	private StringBuilder builder = new StringBuilder();
 
 	public DateWeekButton() {
 		super("Current Week", false);
@@ -40,26 +34,8 @@ public class DateWeekButton extends JRadioButton {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					LabelList.weekLabel.setEnabled(true);
 
-					for (Employee emp : Database.EmployeeList.values()) {
-						builder.append(emp.getName() + " (" + emp.getID() + ")\n");
-						if (emp.getWorkedTime() != null) {
-							for (Map.Entry<LocalDate, LocalTime[]> entry : emp.getWorkedTime().entrySet()) {
-								if (entry.getKey().isAfter(time.getWeekStart().minusDays(1))
-										&& entry.getKey().isBefore(time.getWeekEnd().plusDays(1))) {
-									builder.append(entry.getKey() + " : \nS-" + entry.getValue()[0] + ", E-"
-											+ entry.getValue()[1] + ", P-" + entry.getValue()[2] + ", W-"
-											+ entry.getValue()[3] + "\n");
-								} else {
-									continue;
-								}
-							}
-						} else {
-							builder.append("----------------------------------------------------\n");
-							continue;
-						}
-						builder.append("----------------------------------------------------\n");
-						display.setText(builder.toString());
-					}
+					String display_text = DisplayOutput.build(OutputType.WEEK);
+					display.setText(display_text);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.weekLabel.setEnabled(false);
 					display.setText("");

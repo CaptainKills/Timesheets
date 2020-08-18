@@ -11,11 +11,9 @@ public class TimesheetDisplay extends JTextPane{
 	private static final Logger logger = new Logger(TimesheetDisplay.class.toString());
 	
 	public TimesheetDisplay() {
-		//super(17,20);
 		setFont(FontList.normalFont);
-		setEditable(false);
 		setContentType("text/html");
-		
+		setEditable(false);
 		
 		logger.debug("TimesheetDisplay initialised.");
 	}
