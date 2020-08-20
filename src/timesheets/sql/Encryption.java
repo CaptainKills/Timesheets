@@ -14,6 +14,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import timesheets.exceptions.EncryptionException;
 import timesheets.logging.Logger;
 
 public class Encryption {

@@ -1,4 +1,4 @@
-package timesheets.sql;
+package timesheets.exceptions;
 
 public class EncryptionException extends Exception {
 	
