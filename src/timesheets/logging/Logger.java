@@ -1,6 +1,9 @@
 package timesheets.logging;
 
 import java.time.LocalTime;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.time.LocalDate;
 
 public class Logger {
@@ -13,8 +16,9 @@ public class Logger {
 		ERROR
 	}
 	
-	public Logger(String className) {
-		this.className = className.substring(6); //remove 'class ' from text.
+	@SuppressWarnings("rawtypes")
+	public Logger(Class c) {
+		this.className = c.getName();
 	}
 	
 	public void debug(String msg) {
@@ -35,6 +39,18 @@ public class Logger {
 	public void error(String msg) {
 		String log = formatMessage(LogLevel.ERROR, msg);
 		LogManager.writeLog(log);
+	}
+	
+	public void error(String msg, Throwable e) {
+		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw);){
+			e.printStackTrace(pw);
+			msg += " >>> " + sw.toString(); 
+			
+			String log = formatMessage(LogLevel.ERROR, msg);
+			LogManager.writeLog(log);
+		} catch (IOException e1) {
+			LogManager.writeLog("COULD NOT LOG STACKTRACE! " + e1);
+		}
 	}
 	
 	private String formatMessage(LogLevel level, String msg) {

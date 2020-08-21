@@ -17,7 +17,7 @@ import timesheets.Settings;
 import timesheets.resources.ResourceHandler;
 
 public class LogManager {
-	private static final Logger logger = new Logger(LogManager.class.toString());
+	private static final Logger logger = new Logger(LogManager.class);
 
 	private static LocalTime initial_time = LocalTime.now();
 	private static LocalDate initial_date = LocalDate.now();
@@ -57,7 +57,7 @@ public class LogManager {
 				System.out.println(log);
 			}
 		} catch (IOException e) {
-			logger.error("COULD NOT WRITE TO LOG FILE: " + e);
+			logger.error("COULD NOT WRITE TO LOG FILE!", e);
 		}
 	}
 
