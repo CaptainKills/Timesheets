@@ -12,7 +12,7 @@ import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
 
 public class Settings {
-	private static final Logger logger = new Logger(Settings.class.toString());
+	private static final Logger logger = new Logger(Settings.class);
 
 	private static File settings_file = ResourceHandler.settings_path.toFile();
 	public static Map<String, String> settings = new LinkedHashMap<String, String>();

@@ -10,7 +10,7 @@ import timesheets.logging.Logger;
 public class EmptyLabel extends JLabel {
 
 	private static final long serialVersionUID = 6460338296988979470L;
-	private static final Logger logger = new Logger(EmptyLabel.class.toString());
+	private static final Logger logger = new Logger(EmptyLabel.class);
 
 	public EmptyLabel() {
 		super("");

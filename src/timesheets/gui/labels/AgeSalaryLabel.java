@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class AgeSalaryLabel extends JLabel{
 	private static final long serialVersionUID = -8131209570006669940L;
-	private static final Logger logger = new Logger(AgeSalaryLabel.class.toString());
+	private static final Logger logger = new Logger(AgeSalaryLabel.class);
 
 	public AgeSalaryLabel() {
 		super("Age | Salary");

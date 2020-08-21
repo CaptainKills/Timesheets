@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class AdminLabel extends JLabel{
 	private static final long serialVersionUID = -7230745815968369475L;
-	private static final Logger logger = new Logger(AdminLabel.class.toString());
+	private static final Logger logger = new Logger(AdminLabel.class);
 
 	public AdminLabel() {
 		super("Admin");

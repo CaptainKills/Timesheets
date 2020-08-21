@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class AppDimensionLabel extends JLabel{
 	private static final long serialVersionUID = 3012688302533129418L;
-	private static final Logger logger = new Logger(AppDimensionLabel.class.toString());
+	private static final Logger logger = new Logger(AppDimensionLabel.class);
 
 	public AppDimensionLabel() {
 		super("Dimensions:");

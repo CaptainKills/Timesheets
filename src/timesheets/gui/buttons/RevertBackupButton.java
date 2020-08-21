@@ -16,7 +16,7 @@ import timesheets.sql.Database;
 public class RevertBackupButton extends JButton {
 	
 	private static final long serialVersionUID = 3714748366642217763L;
-	private static final Logger logger = new Logger(RevertBackupButton.class.toString());
+	private static final Logger logger = new Logger(RevertBackupButton.class);
 	
 	public RevertBackupButton() {
 		super("Revert Backup");

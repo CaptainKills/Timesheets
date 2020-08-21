@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class FontLabel extends JLabel{
 	private static final long serialVersionUID = 3153734607755987762L;
-	private static final Logger logger = new Logger(FontLabel.class.toString());
+	private static final Logger logger = new Logger(FontLabel.class);
 
 	public FontLabel() {
 		super("Font:");

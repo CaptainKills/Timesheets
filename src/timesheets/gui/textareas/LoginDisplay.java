@@ -12,7 +12,7 @@ import timesheets.logging.Logger;
 
 public class LoginDisplay extends JTextArea{
 	private static final long serialVersionUID = -8427377108410611993L;
-	private static final Logger logger = new Logger(LoginDisplay.class.toString());
+	private static final Logger logger = new Logger(LoginDisplay.class);
 	
 	private TimeHandler time = new TimeHandler();
 

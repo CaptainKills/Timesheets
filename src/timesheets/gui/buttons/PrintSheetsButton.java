@@ -13,7 +13,7 @@ import timesheets.logging.Logger;
 
 public class PrintSheetsButton extends JButton{
 	private static final long serialVersionUID = 2103797465124170334L;
-	private static final Logger logger = new Logger(PrintSheetsButton.class.toString());
+	private static final Logger logger = new Logger(PrintSheetsButton.class);
 
 	public PrintSheetsButton() {
 		super("Print Timesheets");

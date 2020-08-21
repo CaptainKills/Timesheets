@@ -18,7 +18,7 @@ import timesheets.logging.Logger;
 public class DateWeekButton extends JRadioButton {
 
 	private static final long serialVersionUID = -2102233715141535919L;
-	private static final Logger logger = new Logger(DateWeekButton.class.toString());
+	private static final Logger logger = new Logger(DateWeekButton.class);
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
 

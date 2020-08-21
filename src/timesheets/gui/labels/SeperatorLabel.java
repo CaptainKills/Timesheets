@@ -10,7 +10,7 @@ import timesheets.logging.Logger;
 
 public class SeperatorLabel extends JLabel{
 	private static final long serialVersionUID = 6505078244088230911L;
-	private static final Logger logger = new Logger(SeperatorLabel.class.toString());
+	private static final Logger logger = new Logger(SeperatorLabel.class);
 
 	public SeperatorLabel(String c) {
 		super(c);

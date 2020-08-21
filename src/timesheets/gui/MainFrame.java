@@ -14,7 +14,7 @@ import timesheets.sql.Database;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 01L;
-	private static final Logger logger = new Logger(MainFrame.class.toString());
+	private static final Logger logger = new Logger(MainFrame.class);
 
 	private Database database = new Database();
 	private MainPanel mainPanel = PanelList.mainPanel;

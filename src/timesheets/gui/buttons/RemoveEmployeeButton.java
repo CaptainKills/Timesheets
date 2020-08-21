@@ -15,7 +15,7 @@ import timesheets.logging.Logger;
 
 public class RemoveEmployeeButton extends JButton{
 	private static final long serialVersionUID = 4105654947299367234L;
-	private static final Logger logger = new Logger(RemoveEmployeeButton.class.toString());
+	private static final Logger logger = new Logger(RemoveEmployeeButton.class);
 
 	public RemoveEmployeeButton() {
 		super("Remove Employee");

@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class AdminRadioButton extends JRadioButton{
 	private static final long serialVersionUID = 6317798246219219156L;
-	private static final Logger logger = new Logger(AdminRadioButton.class.toString());
+	private static final Logger logger = new Logger(AdminRadioButton.class);
 
 	public AdminRadioButton(String text, Boolean onoff) {
 		super(text, onoff);

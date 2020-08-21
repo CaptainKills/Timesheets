@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class LogCountInput extends JTextField{
 	private static final long serialVersionUID = -4631438193119479926L;
-	private static final Logger logger = new Logger(LogCountInput.class.toString());
+	private static final Logger logger = new Logger(LogCountInput.class);
 	
 	public LogCountInput() {
 		super("", 4);

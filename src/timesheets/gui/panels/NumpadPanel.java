@@ -12,7 +12,7 @@ import timesheets.logging.Logger;
 
 public class NumpadPanel extends JPanel{
 	private static final long serialVersionUID = -3100897625894870435L;
-	private static final Logger logger = new Logger(NumpadPanel.class.toString());
+	private static final Logger logger = new Logger(NumpadPanel.class);
 
 	public NumpadPanel() {
 		super();

@@ -11,7 +11,7 @@ import timesheets.logging.Logger;
 public class MonthLabel extends JLabel{
 
 	private static final long serialVersionUID = -6481359066540061446L;
-	private static final Logger logger = new Logger(MonthLabel.class.toString());
+	private static final Logger logger = new Logger(MonthLabel.class);
 	private static TimeHandler time = new TimeHandler();
 	
 	private static String month = time.getCurrentDate().getMonth().toString();

@@ -7,7 +7,7 @@ import timesheets.gui.lists.DisplayList;
 public class ExtendedHandler {
 
 	// private static final Logger logger = new
-	// Logger(ExtendedHandler.class.toString());
+	// Logger(ExtendedHandler.class);
 
 	public static void enableShiftButtons(Boolean start, Boolean end, Boolean startbreak, Boolean endbreak) {
 		ButtonList.startShiftButton.setEnabled(start);

@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class FontsizeInput extends JTextField{
 	private static final long serialVersionUID = 3754150334860596593L;
-	private static final Logger logger = new Logger(FontsizeInput.class.toString());
+	private static final Logger logger = new Logger(FontsizeInput.class);
 	
 	public FontsizeInput() {
 		super("", 3);

@@ -18,7 +18,7 @@ import timesheets.sql.Database;
 
 public class StartShiftButton extends JButton{
 	private static final long serialVersionUID = -3218652731101113395L;
-	private static final Logger logger = new Logger(StartShiftButton.class.toString());
+	private static final Logger logger = new Logger(StartShiftButton.class);
 	
 	private TimeHandler time = new TimeHandler();
 

@@ -12,7 +12,7 @@ import timesheets.resources.ResourceHandler;
 
 public class BackupBox<T> extends JComboBox<String> {
 	private static final long serialVersionUID = -229433229070533167L;
-	private static final Logger logger = new Logger(BackupBox.class.toString());
+	private static final Logger logger = new Logger(BackupBox.class);
 
 	private static String[] directory_files = ResourceHandler.data_directory_path.toFile().list();
 

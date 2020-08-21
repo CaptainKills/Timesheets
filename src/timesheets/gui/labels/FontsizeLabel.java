@@ -8,7 +8,7 @@ import timesheets.logging.Logger;
 
 public class FontsizeLabel extends JLabel{
 	private static final long serialVersionUID = -1773885514926890347L;
-	private static final Logger logger = new Logger(FontsizeLabel.class.toString());
+	private static final Logger logger = new Logger(FontsizeLabel.class);
 
 	public FontsizeLabel() {
 		super("Size:");

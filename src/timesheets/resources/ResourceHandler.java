@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import timesheets.logging.Logger;
 
 public class ResourceHandler {
-	private static final Logger logger = new Logger(ResourceHandler.class.toString());
+	private static final Logger logger = new Logger(ResourceHandler.class);
 
 	private static ClassLoader loader = ResourceHandler.class.getClassLoader();
 

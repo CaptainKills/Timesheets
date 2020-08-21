@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class IDLabel extends JLabel{
 	private static final long serialVersionUID = 4398690736312288268L;
-	private static final Logger logger = new Logger(IDLabel.class.toString());
+	private static final Logger logger = new Logger(IDLabel.class);
 
 	public IDLabel() {
 		super("ID");

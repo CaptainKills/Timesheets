@@ -28,7 +28,7 @@ import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
 
 public class Database {
-	private static final Logger logger = new Logger(Database.class.toString());
+	private static final Logger logger = new Logger(Database.class);
 	private static TimeHandler time = new TimeHandler();
 	private static final String enc_key = "HWEupmmPvjfwlUk6";
 

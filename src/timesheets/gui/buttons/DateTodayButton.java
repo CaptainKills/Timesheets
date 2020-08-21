@@ -17,7 +17,7 @@ import timesheets.logging.Logger;
 
 public class DateTodayButton extends JRadioButton{
 	private static final long serialVersionUID = 4966799733565135084L;
-	private static final Logger logger = new Logger(DateTodayButton.class.toString());
+	private static final Logger logger = new Logger(DateTodayButton.class);
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
 

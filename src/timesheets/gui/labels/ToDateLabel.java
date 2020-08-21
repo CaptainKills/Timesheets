@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 public class ToDateLabel extends JLabel{
 
 	private static final long serialVersionUID = 6808647604405530632L;
-	private static final Logger logger = new Logger(ToDateLabel.class.toString());
+	private static final Logger logger = new Logger(ToDateLabel.class);
 
 	public ToDateLabel() {
 		super("To:");

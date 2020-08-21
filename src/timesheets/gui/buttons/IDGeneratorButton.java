@@ -14,7 +14,7 @@ import timesheets.sql.Database;
 
 public class IDGeneratorButton extends JButton{
 	private static final long serialVersionUID = -3233791224942503549L;
-	private static final Logger logger = new Logger(IDGeneratorButton.class.toString());
+	private static final Logger logger = new Logger(IDGeneratorButton.class);
 
 	public IDGeneratorButton() {
 		super("#");

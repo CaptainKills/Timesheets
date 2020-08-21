@@ -11,7 +11,7 @@ import timesheets.logging.Logger;
 
 public class MainPanel extends JPanel{
 	private static final long serialVersionUID = 7649238192790429353L;
-	private static final Logger logger = new Logger(MainPanel.class.toString());
+	private static final Logger logger = new Logger(MainPanel.class);
 
 	public MainPanel() {
 		setVisible(true);

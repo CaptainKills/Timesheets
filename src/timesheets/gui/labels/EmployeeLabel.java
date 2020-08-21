@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class EmployeeLabel extends JLabel {
 	private static final long serialVersionUID = 570599185293754786L;
-	private static final Logger logger = new Logger(EmployeeLabel.class.toString());
+	private static final Logger logger = new Logger(EmployeeLabel.class);
 
 	public EmployeeLabel() {
 		super("Employee");

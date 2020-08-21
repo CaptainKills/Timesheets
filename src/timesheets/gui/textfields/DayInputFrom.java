@@ -13,7 +13,7 @@ import timesheets.logging.Logger;
 public class DayInputFrom extends JTextField{
 
 	private static final long serialVersionUID = -2119226465394770263L;
-	private static final Logger logger = new Logger(DayInputFrom.class.toString());
+	private static final Logger logger = new Logger(DayInputFrom.class);
 
 	private static int length = 2;
 	

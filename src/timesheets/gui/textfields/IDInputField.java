@@ -12,7 +12,7 @@ import timesheets.logging.Logger;
 
 public class IDInputField extends JTextField{
 	private static final long serialVersionUID = -7437435542193984592L;
-	private static final Logger logger = new Logger(IDInputField.class.toString());
+	private static final Logger logger = new Logger(IDInputField.class);
 
 	public IDInputField() {
 		super("");

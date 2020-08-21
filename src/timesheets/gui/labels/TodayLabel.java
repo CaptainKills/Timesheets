@@ -11,7 +11,7 @@ import timesheets.logging.Logger;
 public class TodayLabel extends JLabel {
 	
 	private static final long serialVersionUID = 53890497082589527L;
-	private static final Logger logger = new Logger(TodayLabel.class.toString());
+	private static final Logger logger = new Logger(TodayLabel.class);
 	private static TimeHandler time = new TimeHandler();
 	
 	private static String today = time.getCurrentDate().getDayOfWeek().toString();

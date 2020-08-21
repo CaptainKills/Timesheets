@@ -14,7 +14,7 @@ import timesheets.logging.Logger;
 
 public class DataEditPanel extends JPanel {
 	private static final long serialVersionUID = 5115383729678262568L;
-	private static final Logger logger = new Logger(DataEditPanel.class.toString());
+	private static final Logger logger = new Logger(DataEditPanel.class);
 
 	public DataEditPanel() {
 		super();

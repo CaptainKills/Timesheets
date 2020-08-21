@@ -10,7 +10,7 @@ import timesheets.logging.Logger;
 public class SelectBackupLabel extends JLabel {
 
 	private static final long serialVersionUID = -607485097021634039L;
-	private static final Logger logger = new Logger(SelectBackupLabel.class.toString());
+	private static final Logger logger = new Logger(SelectBackupLabel.class);
 
 	public SelectBackupLabel() {
 		super("Select Backup:");

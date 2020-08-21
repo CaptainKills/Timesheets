@@ -19,7 +19,7 @@ import timesheets.sql.Database;
 
 public class EndShiftButton extends JButton{
 	private static final long serialVersionUID = 1690125966086841320L;
-	private static final Logger logger = new Logger(EndShiftButton.class.toString());
+	private static final Logger logger = new Logger(EndShiftButton.class);
 	
 	private Database database = new Database();
 	private TimeHandler time = new TimeHandler();

@@ -20,7 +20,7 @@ import timesheets.logging.Logger;
 public class SubmitDateButton extends JButton {
 
 	private static final long serialVersionUID = 2083380215334310336L;
-	private static final Logger logger = new Logger(SubmitDateButton.class.toString());
+	private static final Logger logger = new Logger(SubmitDateButton.class);
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
 	

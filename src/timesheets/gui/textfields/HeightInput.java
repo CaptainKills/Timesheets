@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class HeightInput extends JTextField {
 	private static final long serialVersionUID = -387410479178733551L;
-	private static final Logger logger = new Logger(HeightInput.class.toString());
+	private static final Logger logger = new Logger(HeightInput.class);
 
 	public HeightInput() {
 		super("", 4);

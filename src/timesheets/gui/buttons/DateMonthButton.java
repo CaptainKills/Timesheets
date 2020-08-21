@@ -18,7 +18,7 @@ import timesheets.logging.Logger;
 public class DateMonthButton extends JRadioButton{
 
 	private static final long serialVersionUID = 960145533543341180L;
-	private static final Logger logger = new Logger(DateMonthButton.class.toString());
+	private static final Logger logger = new Logger(DateMonthButton.class);
 	
 	private static JTextPane display = DisplayList.timesheetDisplay;
 

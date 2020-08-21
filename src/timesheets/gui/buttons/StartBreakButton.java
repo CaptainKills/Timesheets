@@ -18,7 +18,7 @@ import timesheets.sql.Database;
 
 public class StartBreakButton extends JButton{
 	private static final long serialVersionUID = 8689997860170245346L;
-	private static final Logger logger = new Logger(StartBreakButton.class.toString());
+	private static final Logger logger = new Logger(StartBreakButton.class);
 	
 	private TimeHandler time = new TimeHandler();
 

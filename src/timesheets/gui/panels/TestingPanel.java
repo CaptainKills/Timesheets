@@ -8,7 +8,7 @@ import timesheets.logging.Logger;
 
 public class TestingPanel extends JPanel {
 	private static final long serialVersionUID = -3152890576497459265L;
-	private static final Logger logger = new Logger(TestingPanel.class.toString());
+	private static final Logger logger = new Logger(TestingPanel.class);
 
 	public TestingPanel() {
 		super();

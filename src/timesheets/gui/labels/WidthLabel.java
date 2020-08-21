@@ -8,7 +8,7 @@ import timesheets.logging.Logger;
 
 public class WidthLabel extends JLabel{
 	private static final long serialVersionUID = -8955312753411703189L;
-	private static final Logger logger = new Logger(WidthLabel.class.toString());
+	private static final Logger logger = new Logger(WidthLabel.class);
 
 	public WidthLabel() {
 		super("Width:");

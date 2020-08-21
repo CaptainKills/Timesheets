@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class LogLabel extends JLabel{
 	private static final long serialVersionUID = -3521919778502204622L;
-	private static final Logger logger = new Logger(LogLabel.class.toString());
+	private static final Logger logger = new Logger(LogLabel.class);
 
 	public LogLabel() {
 		super("Delete Logs:");

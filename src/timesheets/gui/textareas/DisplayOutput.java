@@ -12,7 +12,7 @@ import timesheets.sql.Database;
 
 public class DisplayOutput {
 
-	private static final Logger logger = new Logger(DisplayOutput.class.toString());
+	private static final Logger logger = new Logger(DisplayOutput.class);
 	private static TimeHandler time = new TimeHandler();
 
 	public enum OutputType {

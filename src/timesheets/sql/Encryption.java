@@ -18,7 +18,7 @@ import timesheets.exceptions.EncryptionException;
 import timesheets.logging.Logger;
 
 public class Encryption {
-	private static final Logger logger = new Logger(Encryption.class.toString());
+	private static final Logger logger = new Logger(Encryption.class);
 	
 	private static final String ALGORITHM = "AES";
 	private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";

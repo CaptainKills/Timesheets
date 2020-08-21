@@ -11,7 +11,7 @@ import timesheets.resources.ResourceHandler;
 import timesheets.sql.Database;
 
 public class Main {
-	private static final Logger logger = new Logger(Main.class.toString());
+	private static final Logger logger = new Logger(Main.class);
 	
 	public static void main(String[] args) {
 		LogManager.initialise();

@@ -8,7 +8,7 @@ import timesheets.logging.Logger;
 public class TimesheetDisplay extends JTextPane{
 	
 	private static final long serialVersionUID = -5510955245847604938L;
-	private static final Logger logger = new Logger(TimesheetDisplay.class.toString());
+	private static final Logger logger = new Logger(TimesheetDisplay.class);
 	
 	public TimesheetDisplay() {
 		setFont(FontList.normalFont);

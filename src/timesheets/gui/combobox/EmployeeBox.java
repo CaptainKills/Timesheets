@@ -16,7 +16,7 @@ import timesheets.sql.Database;
 
 public class EmployeeBox<T> extends JComboBox<String>{
 	private static final long serialVersionUID = -8247944843862213418L;
-	private static final Logger logger = new Logger(EmployeeBox.class.toString());
+	private static final Logger logger = new Logger(EmployeeBox.class);
 	
 	private Map<Integer, Employee> EmployeeList = Database.EmployeeList;
 

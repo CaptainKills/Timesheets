@@ -19,7 +19,7 @@ import timesheets.logging.Logger;
 
 public class SaveSettingsButton extends JButton {
 	private static final long serialVersionUID = 8704736175682340957L;
-	private static final Logger logger = new Logger(SaveSettingsButton.class.toString());
+	private static final Logger logger = new Logger(SaveSettingsButton.class);
 
 	private JTextField fontsizeInput = TextFieldList.fontsizeInput;
 	private JTextField logCountInput = TextFieldList.logCountInput;

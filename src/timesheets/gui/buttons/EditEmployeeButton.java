@@ -15,7 +15,7 @@ import timesheets.logging.Logger;
 
 public class EditEmployeeButton extends JButton{
 	private static final long serialVersionUID = 2496130667584435874L;
-	private static final Logger logger = new Logger(EditEmployeeButton.class.toString());
+	private static final Logger logger = new Logger(EditEmployeeButton.class);
 
 	public EditEmployeeButton() {
 		super("Edit Employee");

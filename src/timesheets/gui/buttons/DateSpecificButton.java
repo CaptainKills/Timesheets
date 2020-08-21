@@ -18,7 +18,7 @@ import timesheets.logging.Logger;
 public class DateSpecificButton extends JRadioButton {
 
 	private static final long serialVersionUID = 8877741355348581691L;
-	private static final Logger logger = new Logger(DateSpecificButton.class.toString());
+	private static final Logger logger = new Logger(DateSpecificButton.class);
 	private static TimeHandler time = new TimeHandler();
 	
 

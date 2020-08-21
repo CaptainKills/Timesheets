@@ -24,7 +24,7 @@ import timesheets.sql.Database;
 
 public class SubmitButton extends JButton {
 	private static final long serialVersionUID = -2944959431303812446L;
-	private static final Logger logger = new Logger(SubmitButton.class.toString());
+	private static final Logger logger = new Logger(SubmitButton.class);
 	
 	private int menuChoice;
 	private JTextField idField = TextFieldList.idField;

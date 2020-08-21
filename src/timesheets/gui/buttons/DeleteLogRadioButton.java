@@ -13,7 +13,7 @@ import timesheets.logging.Logger;
 
 public class DeleteLogRadioButton extends JRadioButton{
 	private static final long serialVersionUID = 8835755808458717978L;
-	private static final Logger logger = new Logger(DeleteLogRadioButton.class.toString());
+	private static final Logger logger = new Logger(DeleteLogRadioButton.class);
 
 	public DeleteLogRadioButton(String text, Boolean onoff) {
 		super(text, onoff);

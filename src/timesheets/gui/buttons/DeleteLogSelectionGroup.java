@@ -7,7 +7,7 @@ import timesheets.logging.Logger;
 
 public class DeleteLogSelectionGroup extends ButtonGroup{
 	private static final long serialVersionUID = 1511311307594019717L;
-	private static final Logger logger = new Logger(DeleteLogSelectionGroup.class.toString());
+	private static final Logger logger = new Logger(DeleteLogSelectionGroup.class);
 
 	public DeleteLogSelectionGroup() {
 		add(ButtonList.deleteLogEnabledButton);

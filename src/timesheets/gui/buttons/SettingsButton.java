@@ -17,7 +17,7 @@ import timesheets.logging.Logger;
 
 public class SettingsButton extends JButton{
 	private static final long serialVersionUID = -3562889450672410185L;
-	private static final Logger logger = new Logger(SettingsButton.class.toString());
+	private static final Logger logger = new Logger(SettingsButton.class);
 	
 	private static Map<String, String> settings = Settings.settings;
 

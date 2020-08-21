@@ -14,7 +14,7 @@ import timesheets.sql.Database;
 
 public class ExitButton extends JButton{
 	private static final long serialVersionUID = -5805705893852029673L;
-	private static final Logger logger = new Logger(ExitButton.class.toString());
+	private static final Logger logger = new Logger(ExitButton.class);
 
 	public ExitButton() {
 		super("Exit");

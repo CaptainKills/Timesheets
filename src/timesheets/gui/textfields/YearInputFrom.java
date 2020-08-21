@@ -13,7 +13,7 @@ import timesheets.logging.Logger;
 public class YearInputFrom extends JTextField{
 	
 	private static final long serialVersionUID = 3544458880537219183L;
-	private static final Logger logger = new Logger(YearInputFrom.class.toString());
+	private static final Logger logger = new Logger(YearInputFrom.class);
 
 	private static int length = 4;
 	

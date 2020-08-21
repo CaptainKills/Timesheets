@@ -18,7 +18,7 @@ import timesheets.sql.Database;
 
 public class LoginButton extends JButton{
 	private static final long serialVersionUID = 8434083962194467158L;
-	private static final Logger logger = new Logger(LoginButton.class.toString());
+	private static final Logger logger = new Logger(LoginButton.class);
 	
 	private int id;
 

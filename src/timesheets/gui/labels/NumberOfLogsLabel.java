@@ -8,7 +8,7 @@ import timesheets.logging.Logger;
 
 public class NumberOfLogsLabel extends JLabel{
 	private static final long serialVersionUID = 2419773811473470507L;
-	private static final Logger logger = new Logger(NumberOfLogsLabel.class.toString());
+	private static final Logger logger = new Logger(NumberOfLogsLabel.class);
 
 	public NumberOfLogsLabel() {
 		super("# of logs:");

@@ -12,7 +12,7 @@ import timesheets.logging.Logger;
 
 public class MenuPanel extends JPanel{
 	private static final long serialVersionUID = 6491634731585216891L;
-	private static final Logger logger = new Logger(MenuPanel.class.toString());
+	private static final Logger logger = new Logger(MenuPanel.class);
 
 	public MenuPanel() {
 		setPreferredSize(DimensionList.defaultPanelSize);

@@ -9,7 +9,7 @@ import timesheets.logging.Logger;
 
 public class AgeInputField extends JTextField{
 	private static final long serialVersionUID = -3950876451954224558L;
-	private static final Logger logger = new Logger(AgeInputField.class.toString());
+	private static final Logger logger = new Logger(AgeInputField.class);
 
 	public AgeInputField() {
 		super("");

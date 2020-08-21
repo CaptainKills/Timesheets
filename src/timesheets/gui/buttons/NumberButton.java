@@ -13,7 +13,7 @@ import timesheets.logging.Logger;
 
 public class NumberButton extends JButton{
 	private static final long serialVersionUID = -4962990327179565242L;
-	private static final Logger logger = new Logger(NumberButton.class.toString());
+	private static final Logger logger = new Logger(NumberButton.class);
 
 	public NumberButton(String number) {
 		super(number);
