@@ -36,11 +36,6 @@ public class Logger {
 		LogManager.writeLog(log);
 	}
 	
-	public void error(String msg) {
-		String log = formatMessage(LogLevel.ERROR, msg);
-		LogManager.writeLog(log);
-	}
-	
 	public void error(String msg, Throwable e) {
 		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw);){
 			e.printStackTrace(pw);
@@ -58,9 +53,3 @@ public class Logger {
 	}
 
 }
-
-/*
- * Example log Script: 
- * 22:26:51.523 [AWT-EventQueue-0] ERROR timesheets.logging.LoggingTest - This is an error message!
- * 22:26:51.526 [AWT-EventQueue-0] FATAL timesheets.logging.LoggingTest - This is a fatal message! Program will terminate!
- */

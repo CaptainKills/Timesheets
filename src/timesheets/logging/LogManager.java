@@ -98,7 +98,7 @@ public class LogManager {
 			zos.closeEntry();
 			fis.close();
 		} catch (IOException e) {
-			logger.error("COULD NOT ARCHIVE FILE: " + e);
+			logger.error("COULD NOT ARCHIVE FILE!", e);
 		}
 	}
 
