@@ -43,12 +43,18 @@ public class SaveSettingsButton extends JButton {
 							"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
+				
+				int menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel, "Are you sure you want to save these settings?",
+						"Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
 
-				updateSettings();
-
-				JOptionPane.showMessageDialog(PanelList.mainPanel,
-						"Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect.",
-						"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
+				if(menuChoice == JOptionPane.YES_OPTION) {
+					updateSettings();
+					JOptionPane.showMessageDialog(PanelList.mainPanel,
+							"Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect.",
+							"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					return;
+				}
 			}
 		});
 
