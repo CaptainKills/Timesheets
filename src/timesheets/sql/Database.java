@@ -123,7 +123,7 @@ public class Database {
 			logger.info("Loading Database in program.");
 			while (rs.next()) {
 				int employeeID = rs.getInt("id");
-				logger.info("Loading Employee " + employeeID);
+				//logger.info("Loading Employee " + employeeID);
 
 				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
 				Employee employee = new Employee(employeeID, rs.getString("name"), rs.getInt("age"),
@@ -148,8 +148,8 @@ public class Database {
 				LocalTime[] workedHours = { rs.getTime("start").toLocalTime(), rs.getTime("end").toLocalTime(),
 						rs.getTime("break").toLocalTime(), rs.getTime("total").toLocalTime() };
 
-				logger.info("Loaded shift: " + workedHours[0] + ", " + workedHours[1] + ", " + workedHours[2] + ", "
-						+ workedHours[3] + "|" + rs.getDate("date").toLocalDate());
+				//logger.info("Loaded shift: " + workedHours[0] + ", " + workedHours[1] + ", " + workedHours[2] + ", "
+				//		+ workedHours[3] + "|" + rs.getDate("date").toLocalDate());
 
 				timemap.put(rs.getDate("date").toLocalDate(), workedHours);
 			}
