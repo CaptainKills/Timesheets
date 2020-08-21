@@ -45,7 +45,7 @@ public class Settings {
 				logger.info("Added Setting " + setting + ", Value: " + value);
 			}
 		} catch (IOException e) {
-			logger.error("COULD NOT LOAD SETTINGS!", e);
+			logger.error("COULD NOT LOAD SETTINGS: " + e);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class Settings {
 				logger.info("Parent Directory of files created.");
 			}
 		} catch (Exception e) {
-			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
+			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
 		}
 
 		try (PrintWriter writer = new PrintWriter(file)) {
@@ -78,7 +78,7 @@ public class Settings {
 			writeDefaultsToFile(file);
 			logger.info("File creation succesfully completed.");
 		} catch (IOException e) {
-			logger.error("COULD NOT CREATE FILE!", e);
+			logger.error("COULD NOT CREATE FILE: " + e);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class Settings {
 			logger.debug("Writing default settings to Settings file.");
 			writer.print(defaultSettings);
 		} catch (IOException e) {
-			logger.error("COULD NOT WRITE DEFAULTS TO FILE!", e);
+			logger.error("COULD NOT WRITE DEFAULTS TO FILE: " + e);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class Settings {
 				writer.println(entry.getKey() + "=" + entry.getValue());
 			}
 		} catch (IOException e) {
-			logger.error("COULD NOT SAVE SETTINGS TO FILE!", e);
+			logger.error("COULD NOT SAVE SETTINGS TO FILE: " + e);
 		}
 	}
 }

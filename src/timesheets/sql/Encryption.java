@@ -31,7 +31,7 @@ public class Encryption {
 				doCrypto(Cipher.ENCRYPT_MODE, key, inputFile, outputFile);
 				inputFile.delete();
 			} catch (EncryptionException | SecurityException e) {
-				logger.error("COULD NOT ENCRYPT FILE!", e);
+				logger.error("COULD NOT ENCRYPT FILE: " + e);
 			}
 		} else {
 			logger.warn("Encryption Warning: input file does not exist!");
@@ -45,7 +45,7 @@ public class Encryption {
 			try {
 				doCrypto(Cipher.DECRYPT_MODE, key, inputFile, outputFile);
 			} catch (EncryptionException e) {
-				logger.error("COULD NOT DECRYPT FILE!", e);
+				logger.error("COULD NOT DECRYPT FILE: " + e);
 			}
 		} else {
 			logger.warn("Decryption Warning: input file does not exist!");

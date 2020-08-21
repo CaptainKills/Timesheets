@@ -75,7 +75,7 @@ public class Database {
 
 			rs.close();
 		} catch (SQLException e) {
-			logger.error("COULD NOT SET UP SQLite DATABASE!", e);
+			logger.error("COULD NOT SET UP SQLite DATABASE: " + e);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class Database {
 				logger.warn("Connection to SQLite Database failed.");
 			}
 		} catch (SQLException e) {
-			logger.error("SQL CONNECTION ERROR!", e);
+			logger.error("SQL CONNECTION ERROR: " + e);
 		}
 
 		return conn;
@@ -109,7 +109,7 @@ public class Database {
 				logger.info("Parent Directory of Database created.");
 			}
 		} catch (SecurityException e) {
-			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
+			logger.error("COULD NOT CREATE PARENT DIRECTORY: " + e);
 		}
 	}
 
@@ -133,7 +133,7 @@ public class Database {
 			}
 			logger.info("Loading Database Complete.");
 		} catch (SQLException e) {
-			logger.error("SQL DATABASE ERROR!", e);
+			logger.error("SQL DATABASE ERROR: " + e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
@@ -154,7 +154,7 @@ public class Database {
 				timemap.put(rs.getDate("date").toLocalDate(), workedHours);
 			}
 		} catch (SQLException e) {
-			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE!", e);
+			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE: " + e);
 		}
 
 		return timemap;
@@ -177,7 +177,7 @@ public class Database {
 			Files.copy(encrypted_file.toPath(), backup_path, StandardCopyOption.COPY_ATTRIBUTES);
 			logger.info("Backup of SQLite Database Created.");
 		} catch (IOException e) {
-			logger.error("COULD NOT CREATE BACKUP!", e);
+			logger.error("COULD NOT CREATE BACKUP: " + e);
 		}
 	}
 	
@@ -193,7 +193,7 @@ public class Database {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Backup has succesfully been reverted!", "Successfull Reversion!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} catch (IOException e) {
-			logger.error("COULD NOT REVERT BACKUP!", e);
+			logger.error("COULD NOT REVERT BACKUP: " + e);
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Unable to revert Backup!", "Unsuccesfull Reversion!",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -240,7 +240,7 @@ public class Database {
 			pstmt.executeUpdate();
 			logger.info("Added Employee to Database: " + emp.getID());
 		} catch (SQLException e) {
-			logger.error("COULD NOT INSERT EMPLOYEE INTO DATABASE!", e);
+			logger.error("COULD NOT INSERT EMPLOYEE INTO DATABASE: " + e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
@@ -261,7 +261,7 @@ public class Database {
 
 			logger.info("Deleted Employee from Database: " + id);
 		} catch (SQLException e) {
-			logger.error("COULD NOT DELETE EMPLOYEE FROM DATABASE!", e);
+			logger.error("COULD NOT DELETE EMPLOYEE FROM DATABASE: " + e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
@@ -281,7 +281,7 @@ public class Database {
 			pstmt.executeUpdate();
 			logger.info("Updated Employee in Database: " + oldID + " -> " + new_emp.getID());
 		} catch (SQLException e) {
-			logger.error("COULD NOT UPDATE EMPLOYEE IN DATABASE!", e);
+			logger.error("COULD NOT UPDATE EMPLOYEE IN DATABASE: " + e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
@@ -310,7 +310,7 @@ public class Database {
 			pstmt.executeUpdate();
 			logger.info("Succesfully logged Time: " + id + " - " + date);
 		} catch (SQLException e) {
-			logger.error("COULD NOT INSERT TIME INTO DATABASE!", e);
+			logger.error("COULD NOT INSERT TIME INTO DATABASE: " + e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
