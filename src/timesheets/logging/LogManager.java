@@ -57,8 +57,7 @@ public class LogManager {
 				System.out.println(log);
 			}
 		} catch (IOException e) {
-			System.err.println("Could not write to log file: " + e);
-			e.printStackTrace();
+			logger.error("COULD NOT WRITE TO LOG FILE: " + e);
 		}
 	}
 
