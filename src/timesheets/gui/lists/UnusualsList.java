@@ -26,10 +26,6 @@ public class UnusualsList {
 			LabelList.todayLabel.updateText();
 			LabelList.weekLabel.updateText();
 			LabelList.monthLabel.updateText();
-			
-			TextFieldList.dayInput_to.updateText();
-			TextFieldList.monthInput_to.updateText();
-			TextFieldList.yearInput_to.updateText();
 		}
 	});
 

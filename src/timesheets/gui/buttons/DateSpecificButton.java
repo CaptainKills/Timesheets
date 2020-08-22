@@ -6,21 +6,18 @@ import java.awt.event.ItemListener;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import timesheets.TimeHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
 public class DateSpecificButton extends JRadioButton {
 
 	private static final long serialVersionUID = 8877741355348581691L;
-	private static final Logger logger = new Logger(DateSpecificButton.class);
-	private static TimeHandler time = new TimeHandler();
-	
+	private static final Logger logger = new Logger(DateSpecificButton.class);	
 
 	public DateSpecificButton() {
 		super("Specific Date", false);
@@ -33,38 +30,18 @@ public class DateSpecificButton extends JRadioButton {
 			public void itemStateChanged(ItemEvent event) {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					LabelList.fromDateLabel.setEnabled(true);
-					TextFieldList.yearInput_from.setEnabled(true);
-					TextFieldList.yearInput_from.setText("yyyy");
-					TextFieldList.monthInput_from.setEnabled(true);
-					TextFieldList.monthInput_from.setText("mm");
-					TextFieldList.dayInput_from.setEnabled(true);
-					TextFieldList.dayInput_from.setText("dd");
+					TextFieldList.startingDateInput.setEnabled(true);
 
 					LabelList.toDateLabel.setEnabled(true);
-					TextFieldList.yearInput_to.setEnabled(true);
-					TextFieldList.yearInput_to.setText(Integer.toString(time.getCurrentDate().getYear()));
-					TextFieldList.monthInput_to.setEnabled(true);
-					TextFieldList.monthInput_to.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
-					TextFieldList.dayInput_to.setEnabled(true);
-					TextFieldList.dayInput_to.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
+					TextFieldList.endingDateInput.setEnabled(true);
 					
 					ButtonList.submitDateButton.setEnabled(true);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.fromDateLabel.setEnabled(false);
-					TextFieldList.yearInput_from.setEnabled(false);
-					TextFieldList.yearInput_from.setText("yyyy");
-					TextFieldList.monthInput_from.setEnabled(false);
-					TextFieldList.monthInput_from.setText("mm");
-					TextFieldList.dayInput_from.setEnabled(false);
-					TextFieldList.dayInput_from.setText("dd");
+					TextFieldList.startingDateInput.setEnabled(false);
 
 					LabelList.toDateLabel.setEnabled(false);
-					TextFieldList.yearInput_to.setEnabled(false);
-					TextFieldList.yearInput_to.setText(Integer.toString(time.getCurrentDate().getYear()));
-					TextFieldList.monthInput_to.setEnabled(false);
-					TextFieldList.monthInput_to.setText(Integer.toString(time.getCurrentDate().getMonthValue()));
-					TextFieldList.dayInput_to.setEnabled(false);
-					TextFieldList.dayInput_to.setText(Integer.toString(time.getCurrentDate().getDayOfMonth()));
+					TextFieldList.endingDateInput.setEnabled(false);
 					
 					ButtonList.submitDateButton.setEnabled(false);
 					DisplayList.timesheetDisplay.setText("");

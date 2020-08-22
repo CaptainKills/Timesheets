@@ -12,22 +12,22 @@ import timesheets.sql.Database;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class);
-	
+
 	public static void main(String[] args) {
 		LogManager.initialise();
 		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
 		logger.info("Initialising Program.");
-		
+
 		Settings.loadSettings();
 		LogManager.cleanDirectory();
 		Database.cleanDirectory();
-		
+
 		logger.info("Initialising SwingUtilities.");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				logger.info("Initialising Mainframe.");
 				MainFrame frame = new MainFrame();
-				
+
 				logger.info("Setting Frame Parameters.");
 				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				frame.setResizable(true);
