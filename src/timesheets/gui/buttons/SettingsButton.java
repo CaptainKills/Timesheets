@@ -40,10 +40,8 @@ public class SettingsButton extends JButton{
 	}
 	
 	private void loadSettingsFields() {
-		TextFieldList.fontsizeInput.setText(settings.get("fontsize"));
-		
-		TextFieldList.logCountInput.setText(settings.get("number_of_logs"));
 		boolean deleteLogs = Boolean.parseBoolean(settings.get("delete_logs"));
+		
 		if(deleteLogs == true) {
 			ButtonList.deleteLogEnabledButton.setSelected(true);
 			TextFieldList.logCountInput.setEnabled(true);
@@ -51,11 +49,6 @@ public class SettingsButton extends JButton{
 			ButtonList.deleteLogDisabledButton.setSelected(true);
 			TextFieldList.logCountInput.setEnabled(false);
 		}
-		
-		TextFieldList.widthInput.setText(settings.get("width"));
-		TextFieldList.heightInput.setText(settings.get("height"));
-		
-		TextFieldList.backupCountInput.setText(settings.get("number_of_backups"));
 		
 		UnusualsList.backupBox.loadBackupsInBox();
 	}

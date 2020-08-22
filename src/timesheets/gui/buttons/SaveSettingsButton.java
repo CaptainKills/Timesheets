@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JSpinner;
 
 import timesheets.Settings;
 import timesheets.gui.lists.ButtonList;
@@ -21,11 +21,11 @@ public class SaveSettingsButton extends JButton {
 	private static final long serialVersionUID = 8704736175682340957L;
 	private static final Logger logger = new Logger(SaveSettingsButton.class);
 
-	private JTextField fontsizeInput = TextFieldList.fontsizeInput;
-	private JTextField logCountInput = TextFieldList.logCountInput;
-	private JTextField backupCountInput = TextFieldList.backupCountInput;
-	private JTextField widthInput = TextFieldList.widthInput;
-	private JTextField heightInput = TextFieldList.heightInput;
+	private JSpinner fontsizeInput = TextFieldList.fontsizeInput;
+	private JSpinner logCountInput = TextFieldList.logCountInput;
+	private JSpinner backupCountInput = TextFieldList.backupCountInput;
+	private JSpinner widthInput = TextFieldList.widthInput;
+	private JSpinner heightInput = TextFieldList.heightInput;
 	private JRadioButton deleteLogEnabledButton = ButtonList.deleteLogEnabledButton;
 
 	private Map<String, String> settings = Settings.settings;
@@ -37,13 +37,7 @@ public class SaveSettingsButton extends JButton {
 
 		addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent event) {
-				if (fontsizeInput.getText().equals("") || logCountInput.getText().equals("")) {
-					JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
-							"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-				
+			public void actionPerformed(ActionEvent event) {				
 				int menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel, "Are you sure you want to save these settings?",
 						"Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
 
@@ -62,19 +56,19 @@ public class SaveSettingsButton extends JButton {
 	}
 
 	private void updateSettings() {
-		settings.put("fontsize", fontsizeInput.getText());
+		settings.put("fontsize", Integer.toString((Integer) fontsizeInput.getValue()));
 		
 		if (deleteLogEnabledButton.isSelected()) {
 			settings.put("delete_logs", "true");
-			settings.put("number_of_logs", logCountInput.getText());
+			settings.put("number_of_logs", Integer.toString((Integer) logCountInput.getValue()));
 		} else {
 			settings.put("delete_logs", "false");
 		}
 		
-		settings.put("number_of_backups", backupCountInput.getText());
+		settings.put("number_of_backups", Integer.toString((Integer) backupCountInput.getValue()));
 		
-		settings.put("width", widthInput.getText());
-		settings.put("height", heightInput.getText());
+		settings.put("width", Integer.toString((Integer) widthInput.getValue()));
+		settings.put("height", Integer.toString((Integer) heightInput.getValue()));
 
 		Settings.saveSettings();
 	}

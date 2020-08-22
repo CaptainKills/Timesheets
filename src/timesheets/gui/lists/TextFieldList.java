@@ -1,5 +1,6 @@
 package timesheets.gui.lists;
 
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import timesheets.gui.textfields.*;
@@ -19,10 +20,10 @@ public class TextFieldList {
 	public static JTextField dayInput_from = new DayInputFrom();
 	public static DayInputTo dayInput_to = new DayInputTo();
 	
-	public static JTextField fontsizeInput = new FontsizeInput();
-	public static JTextField logCountInput = new LogCountInput();
-	public static JTextField backupCountInput = new BackupCountInput();
-	public static JTextField widthInput = new WidthInput();
-	public static JTextField heightInput = new HeightInput();
+	public static JSpinner fontsizeInput = new FontsizeInput();
+	public static JSpinner logCountInput = new LogCountInput();
+	public static JSpinner backupCountInput = new BackupCountInput();
+	public static JSpinner widthInput = new WidthInput();
+	public static JSpinner heightInput = new HeightInput();
 
 }
