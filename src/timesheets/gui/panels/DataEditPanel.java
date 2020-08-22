@@ -117,8 +117,8 @@ public class DataEditPanel extends JPanel {
 	public void clearInputs() {
 		TextFieldList.idField.setText("");
 		TextFieldList.nameField.setText("");
-		TextFieldList.ageField.setText("");
-		TextFieldList.salaryField.setText("");
+		TextFieldList.ageField.setValue(20);
+		TextFieldList.salaryField.setValue(0);
 		ButtonList.adminDisableButton.setSelected(true);
 	}
 }
