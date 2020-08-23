@@ -14,6 +14,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import timesheets.Settings;
+import timesheets.exceptions.CrashExceptionHandler;
 import timesheets.resources.ResourceHandler;
 
 public class LogManager {
@@ -46,6 +47,9 @@ public class LogManager {
 		writeLog("---Timesheets Log created [" + initial_date + " " + initial_time + "]---\n");
 		logger.info("LogManager Initialised.");
 		archiveLogs();
+		
+		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
+		logger.info("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
 	}
 
 	public static void writeLog(String log) {

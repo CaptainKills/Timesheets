@@ -3,7 +3,6 @@ package timesheets;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import timesheets.exceptions.CrashExceptionHandler;
 import timesheets.gui.MainFrame;
 import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
@@ -15,7 +14,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		LogManager.initialise();
-		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
 		logger.info("Initialising Program.");
 
 		Settings.loadSettings();
