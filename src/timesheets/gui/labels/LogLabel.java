@@ -13,7 +13,7 @@ public class LogLabel extends JLabel{
 
 	public LogLabel() {
 		super("Delete Logs:");
-		setPreferredSize(DimensionList.labelSize_small);
+		setPreferredSize(DimensionList.labelSize);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
 		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));

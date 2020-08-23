@@ -14,7 +14,7 @@ public class EmptyLabel extends JLabel {
 
 	public EmptyLabel() {
 		super("");
-		setPreferredSize(DimensionList.labelSize_small);
+		setPreferredSize(DimensionList.labelSize);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
 		// setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));

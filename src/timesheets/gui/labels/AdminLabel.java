@@ -13,7 +13,7 @@ public class AdminLabel extends JLabel{
 
 	public AdminLabel() {
 		super("Admin");
-		setPreferredSize(DimensionList.labelSize_small);
+		setPreferredSize(DimensionList.labelSize);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
 		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));

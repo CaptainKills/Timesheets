@@ -14,7 +14,7 @@ public class SelectBackupLabel extends JLabel {
 
 	public SelectBackupLabel() {
 		super("Select Backup:");
-		setPreferredSize(DimensionList.labelSize_small);
+		setPreferredSize(DimensionList.labelSize);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
 		// setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
