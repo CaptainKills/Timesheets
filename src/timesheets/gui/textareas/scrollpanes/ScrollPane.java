@@ -12,7 +12,7 @@ public class ScrollPane extends JScrollPane {
 	private static final long serialVersionUID = 4507250274917970495L;
 
 	public ScrollPane() {
-		super(DisplayList.timesheetDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		super(DisplayList.timesheetDisplay, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		setPreferredSize(new Dimension(250,330));
 	}
 

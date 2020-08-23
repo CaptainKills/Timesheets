@@ -25,5 +25,5 @@ public class DimensionList {
 	public static Dimension dateDisplaySize_large = new Dimension(50, 25);
 	public static Dimension dateDisplaySize_medium = new Dimension(20, 25);
 	public static Dimension dateDisplaySize_small = new Dimension(44, 25);
-	public static Dimension dateSpinnerSize = new Dimension(85, 25);
+	public static Dimension dateSpinnerSize = new Dimension(90, 25);
 }
