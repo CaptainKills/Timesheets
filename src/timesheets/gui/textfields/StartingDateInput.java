@@ -19,7 +19,7 @@ public class StartingDateInput extends JSpinner {
 	private LocalDate max = null;
 
 	public StartingDateInput() {
-		setPreferredSize(DimensionList.fieldSize_medium);
+		setPreferredSize(DimensionList.dateSpinnerSize);
 		setFont(FontList.normalFont);
 		
 		SpinnerTemporalModel<LocalDate> model = new SpinnerTemporalModel<LocalDate>(current, min, max, ChronoUnit.DAYS);
