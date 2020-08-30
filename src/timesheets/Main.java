@@ -50,7 +50,7 @@ public class Main {
 				System.out.println("\tFor more info, visit https:/github.com/CaptainKills/Timesheets");
 				System.exit(0);
 			} else if (arg.equals("--version")) {
-				System.out.println("\nTimesheets Version: Beta v0.4.4");
+				System.out.println("\nTimesheets Version: Beta v0.5");
 				System.out.println("For updates, visit https:/github.com/CaptainKills/Timesheets/releases\n");
 				System.exit(0);
 			} else if (arg.equals("-debug") || arg.equals("-d")) {
