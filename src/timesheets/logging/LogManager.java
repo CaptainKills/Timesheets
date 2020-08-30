@@ -29,7 +29,7 @@ public class LogManager {
 	private static final Path log_path = Paths.get(log_directory + File.separator + activeLog).toAbsolutePath();
 	private static final File log_file = log_path.toFile();
 
-	private static boolean debugMode = true;
+	private static boolean debugMode = false;
 	private static String[] directory_files = log_directory.toFile().list();
 
 	public static void initialise() {
@@ -47,7 +47,7 @@ public class LogManager {
 		writeLog("---Timesheets Log created [" + initial_date + " " + initial_time + "]---\n");
 		logger.info("LogManager Initialised.");
 		archiveLogs();
-		
+
 		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
 		logger.info("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
 	}
@@ -110,8 +110,9 @@ public class LogManager {
 		boolean delete_logs = Boolean.parseBoolean(Settings.settings.get("delete_logs"));
 		int number_of_logs = Integer.parseInt(Settings.settings.get("number_of_logs"));
 
-		if(directory_files != null) {
-			logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
+		if (directory_files != null) {
+			logger.info(
+					"Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
 
 			if (delete_logs == true) {
 				int difference = directory_files.length - number_of_logs;
@@ -130,5 +131,9 @@ public class LogManager {
 		} else {
 			logger.info("Log files in Directory: 0, directory is empty.");
 		}
+	}
+
+	public static void setDebugMode(boolean mode) {
+		debugMode = mode;
 	}
 }

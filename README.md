@@ -1,4 +1,5 @@
 # Timesheets
+
  A program that can keep track of working hours of employees. By logging start- and end-times the program is able to determine how long the employee has worked, en at what times the employee has clocked in and out.
 
  ```
@@ -12,6 +13,13 @@ The application can be downloaded as a .jar file from the build folder. The appl
 ```
 java -jar Timesheets.jar
 ```
+The program also has a few command line arguments that can be passed trough, such as:
+```
+--version	Prints program version
+--help or -h	List all possible launch configurations
+-debug or -d	Enables debugging mode (prints logs to command line, etc)
+```
+
 ## Prerequisites
 
 The program is built in Java 8. In order for the application to work, a working installation of Java version 8 or higher is therefore necessary.
