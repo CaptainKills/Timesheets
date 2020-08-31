@@ -1,24 +1,28 @@
 # Timesheets
 
- A program that can keep track of working hours of employees. By logging start- and end-times the program is able to determine how long the employee has worked, en at what times the employee has clocked in and out.
+A program that can keep track of working hours of employees. By logging start- and end-times the program is able to determine how long the employee has worked, and at what times the employee has clocked in and out.
 
- ```
- This program is not intended to be used by real businesses. 
- This is just a fun project I've been working on and is not meant to be used in practise.
- ```
+The program tracks its data via a encrypted MySQL database in order to keep its data secure. Every start and exit of the program will backup its database. If neccesary, a backup can be reversed from the settings menu
+
+All program activities are logged locally in order to track program errors when neccesary, ensuring the ability to quickly fix errors.
+
+The program offers a few settings that can be tweaked by the user, such as the amount of logs/backups that have to be kept; whether or not logs should be deleted; etc.
 
 ## Getting Started
 
-The application can be downloaded as a .jar file from the build folder. The application can then be launched by opening a command line and typing:
-```
-java -jar Timesheets.jar
-```
-The program also has a few command line arguments that can be passed trough, such as:
-```
---version	Prints program version
---help or -h	List all possible launch configurations
--debug or -d	Enables debugging mode (prints logs to command line, etc)
-```
+The application can be downloaded as a .jar file, or as an executable from the build folder. 
+* For the .exe file: Simply double click the file to open the program.
+
+* For the .jar file: The application can then be launched by opening a command line and typing:
+	```
+	java -jar Timesheets.jar
+	```
+	The program also has a few command line arguments that can be passed trough, such as:
+	```
+	--version	Prints program version
+	--help or -h	List all possible launch configurations
+	-debug or -d	Enables debugging mode (prints logs to command line, etc)
+	```
 
 ## Prerequisites
 
