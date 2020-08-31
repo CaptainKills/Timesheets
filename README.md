@@ -10,7 +10,7 @@ The program offers a few settings that can be tweaked by the user, such as the a
 
 ## Getting Started
 
-The application can be downloaded as a .jar file, or as an executable from the build folder. 
+The latest version (Full Release 1.0.0) of the application can be downloaded as a .jar file, or as an executable from the build folder. 
 * For the .exe file: Simply double click the file to open the program.
 
 * For the .jar file: The application can then be launched by opening a command line and typing:
