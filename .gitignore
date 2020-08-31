@@ -2,6 +2,7 @@
 [Dd]esktop.ini
 $RECYCLE.BIN/
 *.lnk
+*.ico
 
 # Eclipse Java Folders
 .metadata
