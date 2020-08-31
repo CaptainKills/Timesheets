@@ -7,7 +7,7 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class NameInputField extends JTextField{
+public class NameInputField extends JTextField {
 	private static final long serialVersionUID = -9125512445184520959L;
 	private static final Logger logger = new Logger(NameInputField.class);
 
@@ -17,7 +17,7 @@ public class NameInputField extends JTextField{
 		setFont(FontList.normalFont);
 		setEditable(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		logger.debug("NameInputField initialised.");
 	}
 

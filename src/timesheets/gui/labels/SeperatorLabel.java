@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class SeperatorLabel extends JLabel{
+public class SeperatorLabel extends JLabel {
 	private static final long serialVersionUID = 6505078244088230911L;
 	private static final Logger logger = new Logger(SeperatorLabel.class);
 
@@ -17,8 +17,8 @@ public class SeperatorLabel extends JLabel{
 		setPreferredSize(new Dimension(1, 1));
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setFont(FontList.labelFont);
-		//setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
-		
+		// setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+
 		logger.debug("SeperatorLabel initialised.");
 	}
 

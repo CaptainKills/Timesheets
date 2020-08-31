@@ -37,11 +37,12 @@ public class SaveSettingsButton extends JButton {
 
 		addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent event) {				
-				int menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel, "Are you sure you want to save these settings?",
-						"Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
+			public void actionPerformed(ActionEvent event) {
+				int menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
+						"Are you sure you want to save these settings?", "Are you sure?",
+						JOptionPane.YES_NO_CANCEL_OPTION);
 
-				if(menuChoice == JOptionPane.YES_OPTION) {
+				if (menuChoice == JOptionPane.YES_OPTION) {
 					updateSettings();
 					JOptionPane.showMessageDialog(PanelList.mainPanel,
 							"Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect.",
@@ -57,16 +58,16 @@ public class SaveSettingsButton extends JButton {
 
 	private void updateSettings() {
 		settings.put("fontsize", Integer.toString((Integer) fontsizeInput.getValue()));
-		
+
 		if (deleteLogEnabledButton.isSelected()) {
 			settings.put("delete_logs", "true");
 			settings.put("number_of_logs", Integer.toString((Integer) logCountInput.getValue()));
 		} else {
 			settings.put("delete_logs", "false");
 		}
-		
+
 		settings.put("number_of_backups", Integer.toString((Integer) backupCountInput.getValue()));
-		
+
 		settings.put("width", Integer.toString((Integer) widthInput.getValue()));
 		settings.put("height", Integer.toString((Integer) heightInput.getValue()));
 

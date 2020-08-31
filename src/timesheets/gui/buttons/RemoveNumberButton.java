@@ -11,7 +11,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
-public class RemoveNumberButton extends JButton{
+public class RemoveNumberButton extends JButton {
 	private static final long serialVersionUID = -6376697726067622946L;
 	private static final Logger logger = new Logger(RemoveNumberButton.class);
 
@@ -21,6 +21,7 @@ public class RemoveNumberButton extends JButton{
 		setFont(FontList.buttonFont);
 		addActionListener(new ActionListener() {
 			JTextField field = TextFieldList.inputField;
+
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				if (field.getText().length() > 0) {
@@ -28,8 +29,8 @@ public class RemoveNumberButton extends JButton{
 				}
 			}
 		});
-		
+
 		logger.debug("RemoveNumberButton initialised.");
 	}
-	
+
 }

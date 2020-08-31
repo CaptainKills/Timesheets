@@ -12,7 +12,7 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
-public class SettingsPanel extends JPanel{
+public class SettingsPanel extends JPanel {
 	private static final long serialVersionUID = 8313230141682785085L;
 	private static final Logger logger = new Logger(SettingsPanel.class);
 
@@ -21,11 +21,12 @@ public class SettingsPanel extends JPanel{
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setBackground(Color.WHITE);
 		setVisible(false);
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
-		
+
+		// @formatter:off
 		layout.setHorizontalGroup(
 				layout.createParallelGroup()
 					.addGroup(layout.createSequentialGroup()
@@ -134,8 +135,9 @@ public class SettingsPanel extends JPanel{
 						.addComponent(ButtonList.saveSettingsButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				);
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("SettingsPanel initialised.");
 	}
 

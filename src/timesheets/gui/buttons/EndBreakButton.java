@@ -16,12 +16,12 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class EndBreakButton extends JButton{
+public class EndBreakButton extends JButton {
 	private static final long serialVersionUID = -7484190806366816954L;
 	private static final Logger logger = new Logger(EndBreakButton.class);
 
 	private TimeHandler time = new TimeHandler();
-	
+
 	private LocalTime currentTime, differenceTime, newTime;
 
 	public EndBreakButton() {
@@ -29,18 +29,19 @@ public class EndBreakButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
 				Employee activeEmployee = Database.EmployeeList.get(id);
-				
+
 				currentTime = time.roundOffTime(time.getCurrentTime());
 				activeEmployee.setBreakEnded(currentTime);
 				logger.info("Employee " + activeEmployee.getID_String() + " has ended their break at: " + currentTime);
-				
-				differenceTime = time.calculateDifference(activeEmployee.getBreakStarted(), activeEmployee.getBreakEnded());
+
+				differenceTime = time.calculateDifference(activeEmployee.getBreakStarted(),
+						activeEmployee.getBreakEnded());
 
 				if (activeEmployee.getTimePaused() != null) {
 					newTime = time.addUp(activeEmployee.getTimePaused(), differenceTime);

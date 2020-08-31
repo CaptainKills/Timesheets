@@ -12,7 +12,7 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class IDGeneratorButton extends JButton{
+public class IDGeneratorButton extends JButton {
 	private static final long serialVersionUID = -3233791224942503549L;
 	private static final Logger logger = new Logger(IDGeneratorButton.class);
 
@@ -21,7 +21,7 @@ public class IDGeneratorButton extends JButton{
 		setPreferredSize(new Dimension(48, 30));
 		setFont(new Font("Arial", Font.PLAIN, 14));
 		setEnabled(true);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -29,10 +29,10 @@ public class IDGeneratorButton extends JButton{
 				TextFieldList.idField.setText(textID);
 			}
 		});
-		
+
 		logger.debug("IDGeneratorButton initialised.");
 	}
-	
+
 	private int generateNewID() {
 		int newID = new Random().nextInt(100000); // Generate number from 00000 to 99999 - a five digit ID
 

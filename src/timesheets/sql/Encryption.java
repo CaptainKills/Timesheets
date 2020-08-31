@@ -19,14 +19,14 @@ import timesheets.logging.Logger;
 
 public class Encryption {
 	private static final Logger logger = new Logger(Encryption.class);
-	
+
 	private static final String ALGORITHM = "AES";
 	private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
 
 	public static void encrypt(String key, File inputFile, File outputFile) {
 		logger.info("Encrypting file: " + inputFile.getName());
-		
-		if(inputFile.exists()) {
+
+		if (inputFile.exists()) {
 			try {
 				doCrypto(Cipher.ENCRYPT_MODE, key, inputFile, outputFile);
 				inputFile.delete();
@@ -40,8 +40,8 @@ public class Encryption {
 
 	public static void decrypt(String key, File inputFile, File outputFile) {
 		logger.info("Decrypting file: " + inputFile.getName());
-		
-		if(inputFile.exists()) {
+
+		if (inputFile.exists()) {
 			try {
 				doCrypto(Cipher.DECRYPT_MODE, key, inputFile, outputFile);
 			} catch (EncryptionException e) {
@@ -56,7 +56,7 @@ public class Encryption {
 			throws EncryptionException {
 		try (FileInputStream inputStream = new FileInputStream(inputFile);
 				FileOutputStream outputStream = new FileOutputStream(outputFile);) {
-			
+
 			SecretKey secretKey = new SecretKeySpec(key.getBytes(), ALGORITHM);
 			Cipher cipher = Cipher.getInstance(TRANSFORMATION);
 			cipher.init(cipherMode, secretKey);

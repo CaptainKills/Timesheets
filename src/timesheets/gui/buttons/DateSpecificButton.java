@@ -17,14 +17,14 @@ import timesheets.logging.Logger;
 public class DateSpecificButton extends JRadioButton {
 
 	private static final long serialVersionUID = 8877741355348581691L;
-	private static final Logger logger = new Logger(DateSpecificButton.class);	
+	private static final Logger logger = new Logger(DateSpecificButton.class);
 
 	public DateSpecificButton() {
 		super("Specific Date", false);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -34,7 +34,7 @@ public class DateSpecificButton extends JRadioButton {
 
 					LabelList.toDateLabel.setEnabled(true);
 					TextFieldList.endingDateInput.setEnabled(true);
-					
+
 					ButtonList.submitDateButton.setEnabled(true);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.fromDateLabel.setEnabled(false);
@@ -42,13 +42,13 @@ public class DateSpecificButton extends JRadioButton {
 
 					LabelList.toDateLabel.setEnabled(false);
 					TextFieldList.endingDateInput.setEnabled(false);
-					
+
 					ButtonList.submitDateButton.setEnabled(false);
 					DisplayList.timesheetDisplay.setText("");
 				}
 			}
 		});
-		
+
 		logger.debug("DateSpecificButton initialised.");
 	}
 

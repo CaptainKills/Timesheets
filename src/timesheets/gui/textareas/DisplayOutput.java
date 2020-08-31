@@ -83,8 +83,7 @@ public class DisplayOutput {
 		builder.append("font-size:" + fontsize + "px;");
 		builder.append("font-family:Arial;");
 		builder.append("\">");
-		
-		
+
 		builder.append("<b>");
 		builder.append(emp.getName() + " (" + emp.getID_String() + ")");
 		builder.append("</b><br>");

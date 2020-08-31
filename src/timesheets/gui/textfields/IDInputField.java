@@ -10,7 +10,7 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class IDInputField extends JTextField{
+public class IDInputField extends JTextField {
 	private static final long serialVersionUID = -7437435542193984592L;
 	private static final Logger logger = new Logger(IDInputField.class);
 
@@ -20,16 +20,16 @@ public class IDInputField extends JTextField{
 		setFont(FontList.normalFont);
 		setEditable(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {				
+			public void keyTyped(KeyEvent e) {
 				if (getText().length() >= 5) {
 					e.consume();
 				}
 			}
 		});
-		
+
 		logger.debug("IDInputField initialised.");
 	}
 

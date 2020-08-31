@@ -24,7 +24,7 @@ public class ResourceHandler {
 			.toAbsolutePath();
 	public static final Path encrypted_path = Paths.get(data_directory + File.separator + "Timesheets.encrypted")
 			.toAbsolutePath();
-	
+
 	public static final Path data_directory_path = Paths.get(data_directory).toAbsolutePath();
 	public static final Path log_directory_path = Paths.get(log_directory).toAbsolutePath();
 

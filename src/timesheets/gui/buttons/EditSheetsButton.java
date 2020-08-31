@@ -11,7 +11,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 
-public class EditSheetsButton extends JButton{
+public class EditSheetsButton extends JButton {
 	private static final long serialVersionUID = 7930622460066225999L;
 	private static final Logger logger = new Logger(EditSheetsButton.class);
 
@@ -20,7 +20,7 @@ public class EditSheetsButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -29,7 +29,7 @@ public class EditSheetsButton extends JButton{
 				DisplayList.timesheetDisplay.setText("");
 			}
 		});
-		
+
 		logger.debug("EditSheetsButton initialised.");
 	}
 

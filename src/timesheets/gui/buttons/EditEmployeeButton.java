@@ -13,7 +13,7 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
-public class EditEmployeeButton extends JButton{
+public class EditEmployeeButton extends JButton {
 	private static final long serialVersionUID = 2496130667584435874L;
 	private static final Logger logger = new Logger(EditEmployeeButton.class);
 
@@ -30,12 +30,12 @@ public class EditEmployeeButton extends JButton{
 				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
 				ButtonList.submitButton.setText("Save Employee");
-				
+
 				PanelList.editPanel.setupEditPanel(true, true);
 				UnusualsList.empBox.loadEmployeesInBox();
 			}
 		});
-		
+
 		logger.debug("EditEmployeeButton initialised.");
 	}
 

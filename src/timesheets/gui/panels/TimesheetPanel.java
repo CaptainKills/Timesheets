@@ -23,11 +23,12 @@ public class TimesheetPanel extends JPanel {
 		setLayout(LayoutList.defaultLayout);
 		setBackground(Color.WHITE);
 		setVisible(false);
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 
+		// @formatter:off
 		layout.setHorizontalGroup(
 				layout.createSequentialGroup()
 				.addGroup(layout.createParallelGroup()
@@ -73,8 +74,9 @@ public class TimesheetPanel extends JPanel {
 						)
 				.addComponent(UnusualsList.scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				);
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("TimesheetPanel initialised.");
 	}
 

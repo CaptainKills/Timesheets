@@ -11,7 +11,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 
-public class PrintSheetsButton extends JButton{
+public class PrintSheetsButton extends JButton {
 	private static final long serialVersionUID = 2103797465124170334L;
 	private static final Logger logger = new Logger(PrintSheetsButton.class);
 
@@ -20,7 +20,7 @@ public class PrintSheetsButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
@@ -29,7 +29,7 @@ public class PrintSheetsButton extends JButton{
 				DisplayList.timesheetDisplay.setText("");
 			}
 		});
-		
+
 		logger.debug("PrintSheetsButton initialised.");
 	}
 

@@ -13,11 +13,12 @@ public class TestingPanel extends JPanel {
 	public TestingPanel() {
 		super();
 		setPreferredSize(DimensionList.defaultPanelSize);
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 
+		// @formatter:off
 		layout.setHorizontalGroup(
 				layout.createSequentialGroup()
 				
@@ -27,8 +28,9 @@ public class TestingPanel extends JPanel {
 				layout.createParallelGroup()
 					
 				);
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("TestingPanel initialised.");
 	}
 }

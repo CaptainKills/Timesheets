@@ -13,11 +13,9 @@ public class TextFieldList {
 	public static JSpinner ageField = new AgeInputField();
 	public static JSpinner salaryField = new SalaryInputField();
 
-	
 	public static JSpinner startingDateInput = new StartingDateInput();
 	public static JSpinner endingDateInput = new EndingDateInput();
-	
-	
+
 	public static JSpinner fontsizeInput = new FontsizeInput();
 	public static JSpinner logCountInput = new LogCountInput();
 	public static JSpinner backupCountInput = new BackupCountInput();

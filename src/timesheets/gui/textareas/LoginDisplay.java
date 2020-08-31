@@ -10,10 +10,10 @@ import timesheets.TimeHandler;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class LoginDisplay extends JTextArea{
+public class LoginDisplay extends JTextArea {
 	private static final long serialVersionUID = -8427377108410611993L;
 	private static final Logger logger = new Logger(LoginDisplay.class);
-	
+
 	private TimeHandler time = new TimeHandler();
 
 	public LoginDisplay() {
@@ -23,31 +23,31 @@ public class LoginDisplay extends JTextArea{
 		setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 		setEditable(false);
 		setLineWrap(true);
-		
+
 		setText("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n" + "Please enter ID to log in...");
-		
+
 		logger.debug("LoginDisplay initialised.");
 	}
-	
+
 	public void updateInfoText(String newText) {
 		String timeText = "| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n";
 		String infoText = newText;
-		
+
 		setText("");
 		setText(timeText + infoText);
 	}
-	
+
 	public void updateTimeText() {
 		String timeText = "| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n";
 		String infoText = getInfoText(getText());
-		
+
 		setText("");
 		setText(timeText + infoText);
 	}
-	
+
 	private String getInfoText(String currentText) {
 		String[] parts = currentText.split("\n");
-		return parts[parts.length-1];
+		return parts[parts.length - 1];
 	}
 
 }

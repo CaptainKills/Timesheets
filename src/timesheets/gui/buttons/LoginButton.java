@@ -16,28 +16,28 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class LoginButton extends JButton{
+public class LoginButton extends JButton {
 	private static final long serialVersionUID = 8434083962194467158L;
 	private static final Logger logger = new Logger(LoginButton.class);
-	
+
 	private int id;
 
 	public LoginButton() {
 		super("Login");
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				if(TextFieldList.inputField.getText().equals("")) {
+				if (TextFieldList.inputField.getText().equals("")) {
 					return;
 				}
 				id = Integer.parseInt(TextFieldList.inputField.getText());
-				
+
 				if (Database.EmployeeList.containsKey(id)) {
 					Employee activeEmployee = Database.EmployeeList.get(id);
-					
+
 					DisplayList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
 					logger.info("Employee " + activeEmployee.getID_String() + " has logged in.");
 					setEnabled(false);
@@ -45,11 +45,11 @@ public class LoginButton extends JButton{
 					if (activeEmployee.getTimeStarted() == null) {
 						ButtonList.startShiftButton.setEnabled(true);
 					}
-					
+
 					if (activeEmployee.getTimeStarted() != null && activeEmployee.getTimePaused() != null) {
 						ButtonList.endShiftButton.setEnabled(true);
-					} else if (activeEmployee.getTimeStarted() != null && (activeEmployee.getTimePaused() == null
-							&& activeEmployee.getBreakStarted() == null)) {
+					} else if (activeEmployee.getTimeStarted() != null
+							&& (activeEmployee.getTimePaused() == null && activeEmployee.getBreakStarted() == null)) {
 						ButtonList.endShiftButton.setEnabled(true);
 					}
 
@@ -73,7 +73,7 @@ public class LoginButton extends JButton{
 				}
 			}
 		});
-		
+
 		logger.debug("LoginButton initialised.");
 	}
 }

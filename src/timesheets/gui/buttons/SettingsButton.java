@@ -15,10 +15,10 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
-public class SettingsButton extends JButton{
+public class SettingsButton extends JButton {
 	private static final long serialVersionUID = -3562889450672410185L;
 	private static final Logger logger = new Logger(SettingsButton.class);
-	
+
 	private static Map<String, String> settings = Settings.settings;
 
 	public SettingsButton() {
@@ -35,21 +35,21 @@ public class SettingsButton extends JButton{
 				loadSettingsFields();
 			}
 		});
-		
+
 		logger.debug("SettingsButton initialised.");
 	}
-	
+
 	private void loadSettingsFields() {
 		boolean deleteLogs = Boolean.parseBoolean(settings.get("delete_logs"));
-		
-		if(deleteLogs == true) {
+
+		if (deleteLogs == true) {
 			ButtonList.deleteLogEnabledButton.setSelected(true);
 			TextFieldList.logCountInput.setEnabled(true);
 		} else {
 			ButtonList.deleteLogDisabledButton.setSelected(true);
 			TextFieldList.logCountInput.setEnabled(false);
 		}
-		
+
 		UnusualsList.backupBox.loadBackupsInBox();
 	}
 

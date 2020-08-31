@@ -10,7 +10,7 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
-public class NumpadPanel extends JPanel{
+public class NumpadPanel extends JPanel {
 	private static final long serialVersionUID = -3100897625894870435L;
 	private static final Logger logger = new Logger(NumpadPanel.class);
 
@@ -18,11 +18,12 @@ public class NumpadPanel extends JPanel{
 		super();
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setBackground(Color.WHITE);
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
-		
+
+		// @formatter:off
 		layout.setHorizontalGroup(
 				layout.createParallelGroup()
 				.addComponent(TextFieldList.inputField, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
@@ -81,8 +82,9 @@ public class NumpadPanel extends JPanel{
 						)
 				.addComponent(ButtonList.loginButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 				);
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("NumpadPanel initialised.");
 	}
 

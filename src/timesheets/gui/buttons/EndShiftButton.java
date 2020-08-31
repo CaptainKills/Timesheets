@@ -17,13 +17,13 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class EndShiftButton extends JButton{
+public class EndShiftButton extends JButton {
 	private static final long serialVersionUID = 1690125966086841320L;
 	private static final Logger logger = new Logger(EndShiftButton.class);
-	
+
 	private Database database = new Database();
 	private TimeHandler time = new TimeHandler();
-	
+
 	private LocalTime[] previousShift, newShift;
 	private LocalTime currentTime, differenceTime, additionalBreakTime, newTime;
 	private LocalDate currentDate;
@@ -33,56 +33,62 @@ public class EndShiftButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
 				Employee activeEmployee = Database.EmployeeList.get(id);
-				
+
 				currentDate = time.getCurrentDate();
 				currentTime = time.roundOffTime(time.getCurrentTime());
 				activeEmployee.setTimeEnded(currentTime);
-				
-				differenceTime = time.calculateDifference(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(), activeEmployee.getTimePaused());
-				
-				if(activeEmployee.getTimePaused() != null) {
-					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", and " + activeEmployee.getTimePaused() + " of breaktime.");
-				} else if(activeEmployee.getTimePaused() == null){
-					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
+
+				differenceTime = time.calculateDifference(activeEmployee.getTimeStarted(),
+						activeEmployee.getTimeEnded(), activeEmployee.getTimePaused());
+
+				if (activeEmployee.getTimePaused() != null) {
+					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime
+							+ ", and " + activeEmployee.getTimePaused() + " of breaktime.");
+				} else if (activeEmployee.getTimePaused() == null) {
+					DisplayList.loginTextArea
+							.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
 				}
 				logger.info("Employee " + activeEmployee.getID_String() + " ended their shift at: " + currentTime);
-				
+
 				if (activeEmployee.getWorkedTime().containsKey(currentDate)) {
-					previousShift = activeEmployee.getWorkedTime().get(currentDate);					
+					previousShift = activeEmployee.getWorkedTime().get(currentDate);
 					newTime = time.addUp(previousShift[3], differenceTime);
-					
+
 					additionalBreakTime = time.calculateDifference(previousShift[1], activeEmployee.getTimeStarted());
-					activeEmployee.setTimePaused(time.addUp(previousShift[2], additionalBreakTime, activeEmployee.getTimePaused()));
-					
-					addToShift(previousShift[0], activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(), newTime);
+					activeEmployee.setTimePaused(
+							time.addUp(previousShift[2], additionalBreakTime, activeEmployee.getTimePaused()));
+
+					addToShift(previousShift[0], activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(),
+							newTime);
 				} else {
 					newTime = differenceTime;
-					addToShift(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(), newTime);
+					addToShift(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(),
+							activeEmployee.getTimePaused(), newTime);
 				}
 
 				activeEmployee.setWorkedTime(currentDate, newShift);
 				activeEmployee.resetTime();
 				database.insertTime(id, currentDate, newShift);
-				
+
 				ExtendedHandler.enableShiftButtons(true, false, false, false);
 			}
 		});
-		
+
 		logger.debug("EndShiftButton initialised.");
 	}
-	
+
 	private void addToShift(LocalTime start, LocalTime end, LocalTime paused, LocalTime difference) {
 		newShift = new LocalTime[4];
 		newShift[0] = start;
 		newShift[1] = end;
-		
-		if(paused == null) {
+
+		if (paused == null) {
 			newShift[2] = LocalTime.of(0, 0);
 		} else {
 			newShift[2] = paused;

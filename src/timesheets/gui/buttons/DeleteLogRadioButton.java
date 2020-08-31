@@ -11,7 +11,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
-public class DeleteLogRadioButton extends JRadioButton{
+public class DeleteLogRadioButton extends JRadioButton {
 	private static final long serialVersionUID = 8835755808458717978L;
 	private static final Logger logger = new Logger(DeleteLogRadioButton.class);
 
@@ -20,18 +20,18 @@ public class DeleteLogRadioButton extends JRadioButton{
 		setPreferredSize(DimensionList.dateDisplaySize_medium);
 		setFont(FontList.normalFont);
 		setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				if(text.equals("Yes")) {
+				if (text.equals("Yes")) {
 					TextFieldList.logCountInput.setEnabled(true);
-				} else if(text.equals("No")) {
+				} else if (text.equals("No")) {
 					TextFieldList.logCountInput.setEnabled(false);
 				}
 			}
 		});
-		
+
 		logger.debug("DeleteLogRadioButton initialised.");
 	}
 

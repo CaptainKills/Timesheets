@@ -15,10 +15,10 @@ import timesheets.gui.textareas.DisplayOutput;
 import timesheets.gui.textareas.DisplayOutput.OutputType;
 import timesheets.logging.Logger;
 
-public class DateTodayButton extends JRadioButton{
+public class DateTodayButton extends JRadioButton {
 	private static final long serialVersionUID = 4966799733565135084L;
 	private static final Logger logger = new Logger(DateTodayButton.class);
-	
+
 	private static JTextPane display = DisplayList.timesheetDisplay;
 
 	public DateTodayButton() {
@@ -26,7 +26,7 @@ public class DateTodayButton extends JRadioButton{
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -41,7 +41,7 @@ public class DateTodayButton extends JRadioButton{
 				}
 			}
 		});
-		
+
 		logger.debug("DateTodayButton initialised.");
 	}
 

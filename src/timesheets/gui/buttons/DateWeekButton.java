@@ -19,7 +19,7 @@ public class DateWeekButton extends JRadioButton {
 
 	private static final long serialVersionUID = -2102233715141535919L;
 	private static final Logger logger = new Logger(DateWeekButton.class);
-	
+
 	private static JTextPane display = DisplayList.timesheetDisplay;
 
 	public DateWeekButton() {
@@ -27,7 +27,7 @@ public class DateWeekButton extends JRadioButton {
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -42,7 +42,7 @@ public class DateWeekButton extends JRadioButton {
 				}
 			}
 		});
-		
+
 		logger.debug("DateWeekButton initialised.");
 	}
 

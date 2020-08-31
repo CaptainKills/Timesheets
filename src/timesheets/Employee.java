@@ -3,21 +3,22 @@ package timesheets;
 import java.util.*;
 import java.time.*;
 
-public class Employee {	
+public class Employee {
 	private int ID;
 	private String Name;
 	private int Age;
 	private double Salary;
 	private boolean Admin;
 	private TreeMap<LocalDate, LocalTime[]> WorkedTime = new TreeMap<LocalDate, LocalTime[]>();
-	
+
 	private LocalTime TimeStarted = null;
 	private LocalTime TimeEnded = null;
 	private LocalTime TimePaused = null;
 	private LocalTime BreakStarted = null;
 	private LocalTime BreakEnded = null;
-	
-	public Employee(int id, String name, int age, double salary, boolean admin, TreeMap<LocalDate, LocalTime[]> timeMap) {
+
+	public Employee(int id, String name, int age, double salary, boolean admin,
+			TreeMap<LocalDate, LocalTime[]> timeMap) {
 		this.ID = id;
 		this.Name = name;
 		this.Age = age;
@@ -25,7 +26,7 @@ public class Employee {
 		this.Admin = admin;
 		this.WorkedTime = timeMap;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getID_String() + "/" + Name + "/" + Age + "/" + Salary + "/" + Admin;
@@ -34,7 +35,7 @@ public class Employee {
 	public int getID() {
 		return ID;
 	}
-	
+
 	public String getID_String() {
 		return String.format("%05d", ID);
 	}
@@ -58,31 +59,31 @@ public class Employee {
 	public void setAge(int age) {
 		this.Age = age;
 	}
-	
+
 	public double getSalary() {
 		return Salary;
 	}
-	
+
 	public void setSalary(double salary) {
 		this.Salary = salary;
 	}
-	
+
 	public boolean getAdmin() {
 		return Admin;
 	}
-	
+
 	public void setAdmin(boolean admin) {
 		this.Admin = admin;
 	}
-	
-	public Map<LocalDate, LocalTime[]> getWorkedTime(){
+
+	public Map<LocalDate, LocalTime[]> getWorkedTime() {
 		return WorkedTime;
 	}
 
 	public void setWorkedTime(LocalDate date, LocalTime[] time) {
 		WorkedTime.put(date, time);
 	}
-	
+
 	public LocalTime getTimeStarted() {
 		return TimeStarted;
 	}
@@ -122,7 +123,7 @@ public class Employee {
 	public void setBreakEnded(LocalTime time) {
 		this.BreakEnded = time;
 	}
-	
+
 	public void resetTime() {
 		setTimeStarted(null);
 		setTimeEnded(null);

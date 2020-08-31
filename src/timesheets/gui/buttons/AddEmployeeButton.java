@@ -13,7 +13,7 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
 
-public class AddEmployeeButton extends JButton{
+public class AddEmployeeButton extends JButton {
 	private static final long serialVersionUID = -3510275592566235838L;
 	private static final Logger logger = new Logger(AddEmployeeButton.class);
 
@@ -22,7 +22,7 @@ public class AddEmployeeButton extends JButton{
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

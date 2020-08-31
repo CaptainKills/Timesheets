@@ -14,10 +14,10 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class EmployeeBox<T> extends JComboBox<String>{
+public class EmployeeBox<T> extends JComboBox<String> {
 	private static final long serialVersionUID = -8247944843862213418L;
 	private static final Logger logger = new Logger(EmployeeBox.class);
-	
+
 	private Map<Integer, Employee> EmployeeList = Database.EmployeeList;
 
 	public EmployeeBox() {
@@ -25,7 +25,7 @@ public class EmployeeBox<T> extends JComboBox<String>{
 		setFont(FontList.normalFont);
 		setVisible(true);
 		setEnabled(false);
-		
+
 		addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -36,13 +36,13 @@ public class EmployeeBox<T> extends JComboBox<String>{
 							TextFieldList.nameField.setText(emp.getName());
 							TextFieldList.ageField.setValue(emp.getAge());
 							TextFieldList.salaryField.setValue((Double) emp.getSalary());
-							
+
 							if (emp.getAdmin() == true) {
 								ButtonList.adminEnableButton.setSelected(true);
 							} else if (emp.getAdmin() == false) {
 								ButtonList.adminDisableButton.setSelected(true);
 							}
-							
+
 							logger.info("Employee succesfully loaded into fields.");
 						} else {
 							continue;
@@ -53,10 +53,10 @@ public class EmployeeBox<T> extends JComboBox<String>{
 				}
 			}
 		});
-		
+
 		logger.debug("EmployeeBox initialised.");
 	}
-	
+
 	public void loadEmployeesInBox() {
 		removeAllItems();
 		for (Employee emp : Database.EmployeeList.values()) {

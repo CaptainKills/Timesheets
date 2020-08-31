@@ -26,6 +26,7 @@ public class DataEditPanel extends JPanel {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 
+		// @formatter:off
 		layout.setHorizontalGroup(
 				layout.createSequentialGroup()
 					.addGroup(layout.createParallelGroup()
@@ -95,11 +96,12 @@ public class DataEditPanel extends JPanel {
 						.addComponent(ButtonList.submitButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				);
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("DataEditPanel initialised.");
 	}
-	
+
 	public void setupEditPanel(boolean fields, boolean combo) {
 		TextFieldList.idField.setEnabled(fields);
 		ButtonList.idButton.setEnabled(fields);

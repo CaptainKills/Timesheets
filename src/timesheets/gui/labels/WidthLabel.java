@@ -6,7 +6,7 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class WidthLabel extends JLabel{
+public class WidthLabel extends JLabel {
 	private static final long serialVersionUID = -8955312753411703189L;
 	private static final Logger logger = new Logger(WidthLabel.class);
 
@@ -15,7 +15,7 @@ public class WidthLabel extends JLabel{
 		setPreferredSize(DimensionList.dateDisplaySize_small);
 		setFont(FontList.textDisplayFont);
 		setEnabled(false);
-		
+
 		logger.debug("WidthLabel initialised.");
 	}
 
