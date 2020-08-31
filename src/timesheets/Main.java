@@ -8,6 +8,7 @@ import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
 import timesheets.resources.ResourceHandler;
 import timesheets.sql.Database;
+import timesheets.update.Update;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class);
@@ -37,6 +38,12 @@ public class Main {
 				logger.info("Initialisation of SwingUtilities Complete.");
 			}
 		});
+
+		new Thread(new Runnable() {
+			public void run() {
+				Update.checkForUpdates();
+			}
+		}).start();
 	}
 
 	private static void setupCommandLineParameters(String[] args) {
@@ -50,7 +57,7 @@ public class Main {
 				System.out.println("\tFor more info, visit https:/github.com/CaptainKills/Timesheets");
 				System.exit(0);
 			} else if (arg.equals("--version")) {
-				System.out.println("\nTimesheets Version: Beta v0.5");
+				System.out.println("\nTimesheets Version Full Release: " + Update.getCurrentVersion());
 				System.out.println("For updates, visit https:/github.com/CaptainKills/Timesheets/releases\n");
 				System.exit(0);
 			} else if (arg.equals("-debug") || arg.equals("-d")) {

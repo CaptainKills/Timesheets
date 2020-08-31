@@ -10,18 +10,19 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 
-public class MenuPanel extends JPanel{
+public class MenuPanel extends JPanel {
 	private static final long serialVersionUID = 6491634731585216891L;
 	private static final Logger logger = new Logger(MenuPanel.class);
 
 	public MenuPanel() {
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setBackground(Color.WHITE);
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 
+		// @formatter:off
 		layout.setHorizontalGroup(layout.createParallelGroup()
 					.addComponent(DisplayList.loginTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 					.addComponent(ButtonList.startShiftButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
@@ -41,6 +42,7 @@ public class MenuPanel extends JPanel{
 						
 					.addGroup(layout.createSequentialGroup()
 							.addComponent(ButtonList.editEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+							.addComponent(ButtonList.updateButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 							)
 						
 					.addGroup(layout.createSequentialGroup()
@@ -74,6 +76,7 @@ public class MenuPanel extends JPanel{
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.editEmployeeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.updateButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
 				.addGroup(layout.createParallelGroup()
@@ -86,9 +89,9 @@ public class MenuPanel extends JPanel{
 						.addComponent(ButtonList.switchMenuButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				);
-		
+		// @formatter:on
 		setLayout(layout);
-		
+
 		logger.debug("MenuPanel initalised.");
 	}
 

@@ -1,8 +1,8 @@
 package timesheets.gui;
 
 import timesheets.gui.lists.ButtonList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.PanelList;
 
 public class ExtendedHandler {
 
@@ -36,6 +36,7 @@ public class ExtendedHandler {
 		ButtonList.editEmployeeButton.setVisible(bool);
 		ButtonList.printSheetsButton.setVisible(bool);
 		ButtonList.editSheetsButton.setVisible(bool);
+		ButtonList.updateButton.setVisible(bool);
 		ButtonList.settingsButton.setVisible(bool);
 		ButtonList.exitButton.setVisible(bool);
 
