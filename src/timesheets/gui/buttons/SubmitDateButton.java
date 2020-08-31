@@ -18,7 +18,7 @@ public class SubmitDateButton extends JButton {
 
 	private static final long serialVersionUID = 2083380215334310336L;
 	private static final Logger logger = new Logger(SubmitDateButton.class);
-	
+
 	private static JTextPane display = DisplayList.timesheetDisplay;
 
 	public SubmitDateButton() {
@@ -26,18 +26,18 @@ public class SubmitDateButton extends JButton {
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setEnabled(false);
-		
+
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
 				LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
-				
+
 				String display_text = DisplayOutput.build(beginDate, endDate);
 				display.setText(display_text);
 			}
 		});
-		
+
 		logger.debug("SubmitDateButton initialised.");
 	}
 
