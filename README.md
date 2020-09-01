@@ -10,10 +10,10 @@ The program offers a few settings that can be tweaked by the user, such as the a
 
 ## Getting Started
 
-The latest version (Full Release 1.0.0) of the application can be downloaded as a .jar file, or as an executable from the build folder. 
-* For the .exe file: Simply double click the file to open the program.
+The latest version (Full Release 1.0.0) of the application can be downloaded as a .jar file, including an executable wrapper from the build folder. 
+* From Executable: Simply double click the .exe file to open the program. (.jar file has to be in the same folder as the .exe wrapper)
 
-* For the .jar file: The application can then be launched by opening a command line and typing:
+* From Console: The application can then be launched by opening your command line and typing:
 	```
 	java -jar Timesheets.jar
 	```
