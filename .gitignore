@@ -13,12 +13,14 @@ tmp/
 data/
 logs/
 lib/
+launch4j/
 .settings/
 .recommenders/
 
 # Java Files
 *.class
 *.dat
+*.encrypted
 
 # Package Files
 *.zip
