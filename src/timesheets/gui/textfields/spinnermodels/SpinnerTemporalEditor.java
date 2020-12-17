@@ -1,5 +1,5 @@
 /**
- * @(#)SpinnerTemporalEditor.java	1.0 2014/12/15
+ * @(#)SpinnerTemporalEditor.java 1.0 2014/12/15
  */
 package timesheets.gui.textfields.spinnermodels;
 
@@ -33,7 +33,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 	 * 
 	 */
 	private static final long serialVersionUID = 5271945727481943722L;
-	
+
 	@SuppressWarnings("rawtypes")
 	private final SpinnerTemporalModel model;
 	private final DateTimeFormatter formatter;
@@ -90,16 +90,16 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 			TemporalAccessor ta;
 			try {
 				ta = formatter.parse(text);
-			} catch (DateTimeParseException dtpe) {
+			} catch(DateTimeParseException dtpe) {
 				return model.getValue();
 			}
 			Temporal value = (Temporal) model.getValue();
-			for (ChronoField field : ChronoField.values()) {
-				if (field.isSupportedBy(value) && ta.isSupported(field)) {
+			for(ChronoField field : ChronoField.values()) {
+				if(field.isSupportedBy(value) && ta.isSupported(field)) {
 					value = field.adjustInto(value, ta.getLong(field));
 				}
 			}
-			if ((getMinimum() != null && getMinimum().compareTo(value) > 0)
+			if((getMinimum() != null && getMinimum().compareTo(value) > 0)
 					|| (getMaximum() != null && getMaximum().compareTo(value) < 0)) {
 				throw new ParseException("Value out of range", 0);
 			}
@@ -108,7 +108,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 
 		@Override
 		public String valueToString(Object value) {
-			if (formatter == null) {
+			if(formatter == null) {
 				return value.toString();
 			}
 			return formatter.format((TemporalAccessor) value);
@@ -120,7 +120,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 			model.setMin(min);
 		}
 
-		@SuppressWarnings("rawtypes")
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Comparable getMinimum() {
 			return (Comparable) model.getMin();
@@ -132,7 +132,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 			model.setMax(max);
 		}
 
-		@SuppressWarnings("rawtypes")
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Comparable getMaximum() {
 			return (Comparable) model.getMax();
