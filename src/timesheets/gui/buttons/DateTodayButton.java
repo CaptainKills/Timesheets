@@ -4,11 +4,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JRadioButton;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.logging.Logger;
@@ -20,7 +18,6 @@ public class DateTodayButton extends JRadioButton {
 	private static final long serialVersionUID = 4966799733565135084L;
 	private static final Logger logger = new Logger(DateTodayButton.class);
 
-	private static JTextPane display = DisplayList.timesheetDisplay;
 
 	public DateTodayButton() {
 		super("Date Today", false);
@@ -35,11 +32,9 @@ public class DateTodayButton extends JRadioButton {
 					LabelList.todayLabel.setEnabled(true);
 
 					String display_text = ReportFormatter.build(OutputType.TODAY);
-					display.setText(display_text);
 					Reporter.createReport(display_text);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.todayLabel.setEnabled(false);
-					display.setText("");
 				}
 			}
 		});

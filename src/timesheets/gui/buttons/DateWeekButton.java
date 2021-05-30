@@ -4,11 +4,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JRadioButton;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.logging.Logger;
@@ -20,8 +18,7 @@ public class DateWeekButton extends JRadioButton {
 
 	private static final long serialVersionUID = -2102233715141535919L;
 	private static final Logger logger = new Logger(DateWeekButton.class);
-
-	private static JTextPane display = DisplayList.timesheetDisplay;
+	
 
 	public DateWeekButton() {
 		super("Current Week", false);
@@ -36,11 +33,9 @@ public class DateWeekButton extends JRadioButton {
 					LabelList.weekLabel.setEnabled(true);
 
 					String display_text = ReportFormatter.build(OutputType.WEEK);
-					display.setText(display_text);
 					Reporter.createReport(display_text);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.weekLabel.setEnabled(false);
-					display.setText("");
 				}
 			}
 		});

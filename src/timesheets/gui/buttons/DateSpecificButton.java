@@ -8,7 +8,6 @@ import javax.swing.SwingConstants;
 
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
@@ -44,7 +43,6 @@ public class DateSpecificButton extends JRadioButton {
 					TextFieldList.endingDateInput.setEnabled(false);
 
 					ButtonList.submitDateButton.setEnabled(false);
-					DisplayList.timesheetDisplay.setText("");
 				}
 			}
 		});

@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.logging.Logger;
 
 public class EditSheetsButton extends JButton {
@@ -19,6 +18,7 @@ public class EditSheetsButton extends JButton {
 		super("Edit Timesheets");
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
+		setEnabled(false);
 		setVisible(false);
 
 		addActionListener(new ActionListener() {
@@ -26,7 +26,6 @@ public class EditSheetsButton extends JButton {
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, false, true, false);
-				DisplayList.timesheetDisplay.setText("");
 			}
 		});
 
