@@ -15,7 +15,7 @@ public class ReportFormatter {
 	private static TimeHandler time = new TimeHandler();
 
 	public enum OutputType {
-		TODAY, WEEK, MONTH
+		TODAY, WEEK, MONTH, SPECIFIC
 	}
 
 	public static String build(OutputType t) {
@@ -98,9 +98,9 @@ public class ReportFormatter {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("\t\t\t\t<tr>\n");
-		builder.append("\t\t\t\t\t<td>");
+		builder.append("\t\t\t\t\t<td><i>");
 		builder.append(entry.getKey());
-		builder.append("</td>\n");
+		builder.append("</i></td>\n");
 		
 		for(int i = 0; i < 4; i++) {
 			builder.append("\t\t\t\t\t<td>");

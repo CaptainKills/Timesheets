@@ -1,11 +1,15 @@
 package timesheets.report;
 
+import java.time.LocalDate;
+
+import timesheets.report.ReportFormatter.OutputType;
+
 public class Reporter {
 	
-	public static void createReport(String body) {
+	public static void createReport(String body, OutputType type) {
 		StringBuilder report = new StringBuilder();
 		
-		report.append(getReportHeader());
+		report.append(getReportHeader(type));
 		report.append(body);
 		report.append(getReportFooter());
 		
@@ -13,7 +17,7 @@ public class Reporter {
 		ReportManager.writeToFile(report.toString());
 	}
 	
-	private static String getReportHeader() {
+	private static String getReportHeader(OutputType type) {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("<!DOCTYPE HTML>\n");
@@ -21,6 +25,7 @@ public class Reporter {
 		builder.append("\t<head>\n");
 		builder.append("\t\t<link rel=\"stylesheet\" href=\"style.css\" />\n");
 		builder.append("\t\t<h1>Company Name: </h1>\n");
+		builder.append("\t\t<p>Timesheets Report " + LocalDate.now() + " for OutputType: " + type + "</p><br>\n");
 		builder.append("\t</head>\n");
 		builder.append("\t<body>\n");
 		
