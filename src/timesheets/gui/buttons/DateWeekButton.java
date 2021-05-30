@@ -11,9 +11,10 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.textareas.DisplayOutput;
-import timesheets.gui.textareas.DisplayOutput.OutputType;
 import timesheets.logging.Logger;
+import timesheets.report.ReportFormatter;
+import timesheets.report.ReportFormatter.OutputType;
+import timesheets.report.Reporter;
 
 public class DateWeekButton extends JRadioButton {
 
@@ -34,8 +35,9 @@ public class DateWeekButton extends JRadioButton {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					LabelList.weekLabel.setEnabled(true);
 
-					String display_text = DisplayOutput.build(OutputType.WEEK);
+					String display_text = ReportFormatter.build(OutputType.WEEK);
 					display.setText(display_text);
+					Reporter.createReport(display_text);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.weekLabel.setEnabled(false);
 					display.setText("");

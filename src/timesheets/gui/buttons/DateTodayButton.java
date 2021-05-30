@@ -11,9 +11,10 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.textareas.DisplayOutput;
-import timesheets.gui.textareas.DisplayOutput.OutputType;
 import timesheets.logging.Logger;
+import timesheets.report.ReportFormatter;
+import timesheets.report.ReportFormatter.OutputType;
+import timesheets.report.Reporter;
 
 public class DateTodayButton extends JRadioButton {
 	private static final long serialVersionUID = 4966799733565135084L;
@@ -33,8 +34,9 @@ public class DateTodayButton extends JRadioButton {
 				if (event.getStateChange() == ItemEvent.SELECTED) {
 					LabelList.todayLabel.setEnabled(true);
 
-					String display_text = DisplayOutput.build(OutputType.TODAY);
+					String display_text = ReportFormatter.build(OutputType.TODAY);
 					display.setText(display_text);
+					Reporter.createReport(display_text);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.todayLabel.setEnabled(false);
 					display.setText("");

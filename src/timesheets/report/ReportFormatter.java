@@ -1,4 +1,4 @@
-package timesheets.gui.textareas;
+package timesheets.report;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,9 +10,9 @@ import timesheets.TimeHandler;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
 
-public class DisplayOutput {
+public class ReportFormatter {
 
-	private static final Logger logger = new Logger(DisplayOutput.class);
+	private static final Logger logger = new Logger(ReportFormatter.class);
 	private static TimeHandler time = new TimeHandler();
 
 	public enum OutputType {

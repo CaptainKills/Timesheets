@@ -11,8 +11,9 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
-import timesheets.gui.textareas.DisplayOutput;
 import timesheets.logging.Logger;
+import timesheets.report.ReportFormatter;
+import timesheets.report.Reporter;
 
 public class SubmitDateButton extends JButton {
 
@@ -33,8 +34,9 @@ public class SubmitDateButton extends JButton {
 				LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
 				LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
 
-				String display_text = DisplayOutput.build(beginDate, endDate);
+				String display_text = ReportFormatter.build(beginDate, endDate);
 				display.setText(display_text);
+				Reporter.createReport(display_text);
 			}
 		});
 
