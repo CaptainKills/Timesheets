@@ -12,6 +12,7 @@ bin/
 tmp/
 data/
 logs/
+reports/
 lib/
 launch4j/
 .settings/
