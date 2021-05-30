@@ -21,6 +21,7 @@ public class EndingDateInput extends JSpinner {
 	public EndingDateInput() {
 		setPreferredSize(DimensionList.dateSpinnerSize);
 		setFont(FontList.normalFont);
+		setEnabled(false);
 
 		SpinnerTemporalModel<LocalDate> model = new SpinnerTemporalModel<LocalDate>(current, min, max, ChronoUnit.DAYS);
 		setModel(model);
