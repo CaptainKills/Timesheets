@@ -20,7 +20,7 @@ public class Reporter {
 		builder.append("<html>\n");
 		builder.append("\t<head>\n");
 		builder.append("\t\t<link rel=\"stylesheet\" href=\"style.css\" />\n");
-		builder.append("\t\tCompany Name:\n");
+		builder.append("\t\t<h1>Company Name: </h1>\n");
 		builder.append("\t</head>\n");
 		builder.append("\t<body>\n");
 		

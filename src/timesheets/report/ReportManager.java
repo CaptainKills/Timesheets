@@ -18,6 +18,7 @@ public class ReportManager {
 	private static String report_name_postfix = ".html";
 
 	private static final Path report_directory = ResourceHandler.report_directory_path;
+	private static final Path report_style_path = ResourceHandler.report_style_path;
 	private static Path report_path;
 	private static File report_file;
 	
@@ -29,7 +30,7 @@ public class ReportManager {
 				PrintWriter report_writer = new PrintWriter(file_writer)) {
 			logger.debug("Writing to Report file.");
 			report_writer.println(report);
-			logger.debug("Fnished writing to Report file.");
+			logger.debug("Finished writing to Report file.");
 			
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO REPORT FILE!", e);
@@ -48,6 +49,12 @@ public class ReportManager {
 			if (!report_file.getParentFile().exists()) {
 				logger.debug("Parent Directory of Report File does not exist.");
 				report_file.getParentFile().mkdirs();
+			}
+			
+			if(!report_style_path.toFile().exists() || report_style_path.toFile().length() == 0) {
+				File report_style_file = report_style_path.toFile();
+				report_style_file.createNewFile();
+				StyleFormatter.initFile(report_style_file);
 			}
 
 			logger.info("Creating Report File.");

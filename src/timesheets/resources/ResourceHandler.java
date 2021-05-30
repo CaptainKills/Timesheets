@@ -19,12 +19,10 @@ public class ResourceHandler {
 	private static String log_directory = "logs";
 	private static String report_directory = "reports";
 
-	public static final Path settings_path = Paths.get(data_directory + File.separator + "settings.properties")
-			.toAbsolutePath();
-	public static final Path database_path = Paths.get(data_directory + File.separator + "Timesheets.db")
-			.toAbsolutePath();
-	public static final Path encrypted_path = Paths.get(data_directory + File.separator + "Timesheets.encrypted")
-			.toAbsolutePath();
+	public static final Path settings_path = Paths.get(data_directory + File.separator + "settings.properties").toAbsolutePath();
+	public static final Path database_path = Paths.get(data_directory + File.separator + "Timesheets.db").toAbsolutePath();
+	public static final Path encrypted_path = Paths.get(data_directory + File.separator + "Timesheets.encrypted").toAbsolutePath();
+	public static final Path report_style_path = Paths.get(report_directory + File.separator + "style.css").toAbsolutePath();
 
 	public static final Path data_directory_path = Paths.get(data_directory).toAbsolutePath();
 	public static final Path log_directory_path = Paths.get(log_directory).toAbsolutePath();

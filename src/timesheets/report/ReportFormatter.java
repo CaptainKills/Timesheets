@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.Map;
 
 import timesheets.Employee;
-import timesheets.Settings;
 import timesheets.TimeHandler;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -50,7 +49,8 @@ public class ReportFormatter {
 				}
 			}
 
-			builder.append("</p>");
+			String footer_text = buildFooter();
+			builder.append(footer_text);
 		}
 
 		return builder.toString();
@@ -70,23 +70,26 @@ public class ReportFormatter {
 				builder.append(time_text);
 			}
 		}
-
-		builder.append("</p>");
+		
 		return builder.toString();
 	}
 
 	private static String buildEmployee(Employee emp) {
 		StringBuilder builder = new StringBuilder();
-		int fontsize = Integer.parseInt(Settings.settings.get("fontsize")) + 1;
-
-		builder.append("<p style=\"");
-		builder.append("font-size:" + fontsize + "px;");
-		builder.append("font-family:Arial;");
-		builder.append("\">");
-
-		builder.append("<b>");
+		
+		builder.append("\t\t<p>\n");
+		builder.append("\t\t\t<table style=\"width:50%\">\n");
+		builder.append("\t\t\t\t<caption><b>");
 		builder.append(emp.getName() + " (" + emp.getID_String() + ")");
-		builder.append("</b><br>");
+		builder.append("</b></caption>\n");
+		
+		builder.append("\t\t\t\t<tr>\n");
+		builder.append("\t\t\t\t\t<th>Date:</th>\n");
+		builder.append("\t\t\t\t\t<th>Start Time:</th>\n");
+		builder.append("\t\t\t\t\t<th>End Time:</th>\n");
+		builder.append("\t\t\t\t\t<th>Break Time:</th>\n");
+		builder.append("\t\t\t\t\t<th>Total Time:</th>\n");
+		builder.append("\t\t\t\t</tr>\n");
 
 		return builder.toString();
 	}
@@ -94,21 +97,28 @@ public class ReportFormatter {
 	private static String buildEntry(Map.Entry<LocalDate, LocalTime[]> entry) {
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("<i>");
+		builder.append("\t\t\t\t<tr>\n");
+		builder.append("\t\t\t\t\t<td>");
 		builder.append(entry.getKey());
-		builder.append(":</i> ");
+		builder.append("</td>\n");
+		
+		for(int i = 0; i < 4; i++) {
+			builder.append("\t\t\t\t\t<td>");
+			builder.append(entry.getValue()[i]);
+			builder.append("</td>\n");
+		}
+		
+		builder.append("\t\t\t\t</tr>\n");
 
-		String seperator = " | ";
-		builder.append(entry.getValue()[0]);
-		builder.append(seperator);
-		builder.append(entry.getValue()[1]);
-		builder.append(seperator);
-		builder.append(entry.getValue()[2]);
-		builder.append(seperator);
-		builder.append(entry.getValue()[3]);
-
-		builder.append("<br>");
-
+		return builder.toString();
+	}
+	
+	private static String buildFooter() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("\t\t\t</table>\n");
+		builder.append("\t\t</p><br>\n\n");
+		
 		return builder.toString();
 	}
 
