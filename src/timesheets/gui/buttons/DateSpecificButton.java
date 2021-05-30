@@ -6,7 +6,6 @@ import java.awt.event.ItemListener;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
@@ -33,16 +32,12 @@ public class DateSpecificButton extends JRadioButton {
 
 					LabelList.toDateLabel.setEnabled(true);
 					TextFieldList.endingDateInput.setEnabled(true);
-
-					ButtonList.submitDateButton.setEnabled(true);
 				} else if (event.getStateChange() == ItemEvent.DESELECTED) {
 					LabelList.fromDateLabel.setEnabled(false);
 					TextFieldList.startingDateInput.setEnabled(false);
 
 					LabelList.toDateLabel.setEnabled(false);
 					TextFieldList.endingDateInput.setEnabled(false);
-
-					ButtonList.submitDateButton.setEnabled(false);
 				}
 			}
 		});

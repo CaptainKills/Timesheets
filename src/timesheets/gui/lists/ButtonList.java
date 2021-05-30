@@ -25,6 +25,7 @@ import timesheets.gui.buttons.IDGeneratorButton;
 import timesheets.gui.buttons.LoginButton;
 import timesheets.gui.buttons.LogoutButton;
 import timesheets.gui.buttons.NumberButton;
+import timesheets.gui.buttons.PrintReportButton;
 import timesheets.gui.buttons.PrintSheetsButton;
 import timesheets.gui.buttons.RemoveEmployeeButton;
 import timesheets.gui.buttons.RemoveNumberButton;
@@ -34,7 +35,6 @@ import timesheets.gui.buttons.SettingsButton;
 import timesheets.gui.buttons.StartBreakButton;
 import timesheets.gui.buttons.StartShiftButton;
 import timesheets.gui.buttons.SubmitButton;
-import timesheets.gui.buttons.SubmitDateButton;
 import timesheets.gui.buttons.SwitchMenuButton;
 
 public class ButtonList {
@@ -82,7 +82,7 @@ public class ButtonList {
 	public static JRadioButton dateMonthButton = new DateMonthButton();
 	public static JRadioButton dateSpecificButton = new DateSpecificButton();
 	public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
-	public static JButton submitDateButton = new SubmitDateButton();
+	public static JButton printReportButton = new PrintReportButton();
 
 	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton("Yes", false);
 	public static JRadioButton deleteLogDisabledButton = new DeleteLogRadioButton("No", true);
