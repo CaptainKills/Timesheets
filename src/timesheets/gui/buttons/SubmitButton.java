@@ -63,50 +63,53 @@ public class SubmitButton extends JButton {
 		if (idField.getText().equals("") || nameField.getText().equals("")) {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
 					"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			if (ButtonList.adminEnableButton.isSelected()) {
-				transferEmployee = new Employee(Integer.parseInt(idField.getText()), nameField.getText(),
-						(Integer) ageField.getValue(), (Double) salaryField.getValue(), true,
-						new TreeMap<LocalDate, LocalTime[]>());
-			} else if (ButtonList.adminDisableButton.isSelected()) {
-				transferEmployee = new Employee(Integer.parseInt(idField.getText()), nameField.getText(),
-						(Integer) ageField.getValue(), (Double) salaryField.getValue(), false,
-						new TreeMap<LocalDate, LocalTime[]>());
-			}
-
-			EmployeeList.put(transferEmployee.getID(), transferEmployee);
-			database.insertEmployee(transferEmployee);
-			logger.info("New Employee has been added: " + transferEmployee.getID_String());
-
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
-					"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
-
-			PanelList.editPanel.clearInputs();
+			return;
 		}
+		
+		int id = Integer.parseInt(idField.getText());
+		String name = nameField.getText();
+		int age = Integer.parseInt(ageField.getValue().toString());
+		double salary = Double.parseDouble(salaryField.getValue().toString());
+		
+		boolean admin = false;
+		if(ButtonList.adminEnableButton.isSelected()) {
+			admin = true;
+		}
+		
+		transferEmployee = new Employee(id, name, age, salary, admin, new TreeMap<LocalDate, LocalTime[]>());
+
+		EmployeeList.put(transferEmployee.getID(), transferEmployee);
+		database.insertEmployee(transferEmployee);
+		logger.info("New Employee has been added: " + transferEmployee.getID_String());
+
+		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
+				"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
+
+		PanelList.editPanel.clearInputs();
 	}
 
 	private void removeEmployee() {
 
 		menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
 				"Are you sure you want to remove this employee?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
-		if (UnusualsList.empBox.getSelectedItem() != null && menuChoice == JOptionPane.YES_OPTION) {
-			for (Employee emp : EmployeeList.values()) {
-				if (empBox.getSelectedItem().toString().equals(emp.getName())) {
-					transferEmployee = emp;
-				} else {
-					continue;
-				}
-			}
-			empBox.removeItem(empBox.getSelectedItem());
-			EmployeeList.remove(transferEmployee.getID());
-			database.deleteEmployee(transferEmployee.getID());
-			logger.info("Employee " + transferEmployee.getID_String() + " has been removed");
-
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been removed!",
-					"Successfull Removal!", JOptionPane.INFORMATION_MESSAGE);
-		} else if (menuChoice == JOptionPane.CANCEL_OPTION) {
+		if (UnusualsList.empBox.getSelectedItem() == null || menuChoice != JOptionPane.YES_OPTION) {
 			return;
 		}
+		
+		for (Employee emp : EmployeeList.values()) {
+			if (empBox.getSelectedItem().toString().equals(emp.getName())) {
+				transferEmployee = emp;
+			} else {
+				continue;
+			}
+		}
+		empBox.removeItem(empBox.getSelectedItem());
+		EmployeeList.remove(transferEmployee.getID());
+		database.deleteEmployee(transferEmployee.getID());
+		logger.info("Employee " + transferEmployee.getID_String() + " has been removed");
+
+		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been removed!",
+				"Successfull Removal!", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	private void saveEmployee() {
@@ -114,43 +117,45 @@ public class SubmitButton extends JButton {
 		if (idField.getText().equals("") || nameField.getText().equals("")) {
 			JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
 					"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
-					"Are you sure you want to save this employee?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
-			if (empBox.getSelectedItem() != null && menuChoice == JOptionPane.YES_OPTION) {
-				for (Employee emp : EmployeeList.values()) {
-					if (empBox.getSelectedItem().toString().equals(emp.getName())) {
-						transferEmployee = emp;
-					} else {
-						continue;
-					}
-				}
-
-				int oldID = transferEmployee.getID();
-				EmployeeList.remove(oldID);
-
-				transferEmployee.setID(Integer.parseInt(idField.getText()));
-				transferEmployee.setName(nameField.getText());
-				transferEmployee.setAge((Integer) ageField.getValue());
-				transferEmployee.setSalary((Double) salaryField.getValue());
-
-				if (ButtonList.adminEnableButton.isSelected()) {
-					transferEmployee.setAdmin(true);
-				} else if (ButtonList.adminDisableButton.isSelected()) {
-					transferEmployee.setAdmin(false);
-				}
-
-				EmployeeList.put(transferEmployee.getID(), transferEmployee);
-				database.updateEmployee(oldID, transferEmployee);
-				logger.info("Employee " + transferEmployee.getID_String() + "'s data has been changed and saved.");
-
-				JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
-						"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);
-
-				PanelList.editPanel.clearInputs();
-			} else if (menuChoice == JOptionPane.CANCEL_OPTION) {
-				return;
+			return;
+		}
+		
+		menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
+				"Are you sure you want to save this employee?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
+		if (empBox.getSelectedItem() == null || menuChoice != JOptionPane.YES_OPTION) {
+			return;
+		}
+		
+		
+		for (Employee emp : EmployeeList.values()) {
+			if (empBox.getSelectedItem().toString().equals(emp.getName())) {
+				transferEmployee = emp;
+			} else {
+				continue;
 			}
 		}
+
+		int oldID = transferEmployee.getID();
+		EmployeeList.remove(oldID);
+
+		transferEmployee.setID(Integer.parseInt(idField.getText()));
+		transferEmployee.setName(nameField.getText());
+		transferEmployee.setAge(Integer.parseInt(ageField.getValue().toString()));
+		transferEmployee.setSalary(Double.parseDouble(salaryField.getValue().toString()));
+
+		if (ButtonList.adminEnableButton.isSelected()) {
+			transferEmployee.setAdmin(true);
+		} else if (ButtonList.adminDisableButton.isSelected()) {
+			transferEmployee.setAdmin(false);
+		}
+
+		EmployeeList.put(transferEmployee.getID(), transferEmployee);
+		database.updateEmployee(oldID, transferEmployee);
+		logger.info("Employee " + transferEmployee.getID_String() + "'s data has been changed and saved.");
+
+		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
+				"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);
+
+		PanelList.editPanel.clearInputs();
 	}
 }

@@ -35,7 +35,7 @@ public class EmployeeBox<T> extends JComboBox<String> {
 							TextFieldList.idField.setText(emp.getID_String());
 							TextFieldList.nameField.setText(emp.getName());
 							TextFieldList.ageField.setValue(emp.getAge());
-							TextFieldList.salaryField.setValue((Double) emp.getSalary());
+							TextFieldList.salaryField.setValue(emp.getSalary());
 
 							if (emp.getAdmin() == true) {
 								ButtonList.adminEnableButton.setSelected(true);
