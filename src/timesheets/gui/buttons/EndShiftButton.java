@@ -11,8 +11,8 @@ import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.sql.Database;
@@ -51,8 +51,7 @@ public class EndShiftButton extends JButton {
 					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime
 							+ ", and " + activeEmployee.getTimePaused() + " of breaktime.");
 				} else if (activeEmployee.getTimePaused() == null) {
-					DisplayList.loginTextArea
-							.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
+					DisplayList.loginTextArea.updateInfoText("Total time worked this shift: " + differenceTime + ", without a break.");
 				}
 				logger.info("Employee " + activeEmployee.getID_String() + " ended their shift at: " + currentTime);
 
@@ -61,15 +60,12 @@ public class EndShiftButton extends JButton {
 					newTime = time.addUp(previousShift[3], differenceTime);
 
 					additionalBreakTime = time.calculateDifference(previousShift[1], activeEmployee.getTimeStarted());
-					activeEmployee.setTimePaused(
-							time.addUp(previousShift[2], additionalBreakTime, activeEmployee.getTimePaused()));
+					activeEmployee.setTimePaused(time.addUp(previousShift[2], additionalBreakTime, activeEmployee.getTimePaused()));
 
-					addToShift(previousShift[0], activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(),
-							newTime);
+					addToShift(previousShift[0], activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(), newTime);
 				} else {
 					newTime = differenceTime;
-					addToShift(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(),
-							activeEmployee.getTimePaused(), newTime);
+					addToShift(activeEmployee.getTimeStarted(), activeEmployee.getTimeEnded(), activeEmployee.getTimePaused(), newTime);
 				}
 
 				activeEmployee.setWorkedTime(currentDate, newShift);
