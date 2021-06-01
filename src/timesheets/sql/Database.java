@@ -213,7 +213,7 @@ public class Database {
 			if (difference > 0) {
 				logger.info("There are currently " + difference + "  backups too many.");
 				for (int i = 0; i < difference; i++) {
-					if (directory_files[i].contains("backup")) {
+					if (directory_files[i].contains("Backup")) {
 						logger.info("Removing " + directory_files[i]);
 						File f = new File(directory + File.separator + directory_files[i]);
 						f.delete();
