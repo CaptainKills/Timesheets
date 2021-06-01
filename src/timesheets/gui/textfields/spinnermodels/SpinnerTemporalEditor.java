@@ -120,7 +120,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 			model.setMin(min);
 		}
 
-		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@SuppressWarnings({ "rawtypes" })
 		@Override
 		public Comparable getMinimum() {
 			return (Comparable) model.getMin();
@@ -132,7 +132,7 @@ public class SpinnerTemporalEditor extends JSpinner.DefaultEditor {
 			model.setMax(max);
 		}
 
-		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@SuppressWarnings({ "rawtypes" })
 		@Override
 		public Comparable getMaximum() {
 			return (Comparable) model.getMax();
