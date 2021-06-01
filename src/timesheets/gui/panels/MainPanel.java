@@ -1,8 +1,5 @@
 package timesheets.gui.panels;
 
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -14,16 +11,9 @@ public class MainPanel extends JPanel {
 	private static final Logger logger = new Logger(MainPanel.class);
 
 	public MainPanel() {
+		super();
 		setVisible(true);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				// logger.info("Application resized to: width=" + e.getComponent().getWidth() +
-				// ", height=" + e.getComponent().getHeight());
-			}
-		});
 
 		logger.debug("MainPanel initialised.");
 	}
