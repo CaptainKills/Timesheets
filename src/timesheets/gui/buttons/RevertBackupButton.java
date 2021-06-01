@@ -20,7 +20,7 @@ public class RevertBackupButton extends JButton {
 
 	public RevertBackupButton() {
 		super("Revert Backup");
-		setPreferredSize(DimensionList.fieldSize_medium);
+		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);
 

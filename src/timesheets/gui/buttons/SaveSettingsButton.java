@@ -32,7 +32,7 @@ public class SaveSettingsButton extends JButton {
 
 	public SaveSettingsButton() {
 		super("Save Settings");
-		setPreferredSize(DimensionList.buttonSize_medium);
+		setPreferredSize(DimensionList.fieldSize_medium);
 		setFont(FontList.buttonFont);
 
 		addActionListener(new ActionListener() {
