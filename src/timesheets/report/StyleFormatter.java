@@ -12,12 +12,12 @@ public class StyleFormatter {
 	
 	public static void initFile(File style_file) {
 		try (FileWriter file_writer = new FileWriter(style_file, false);
-				PrintWriter report_writer = new PrintWriter(file_writer)) {
+				PrintWriter css_writer = new PrintWriter(file_writer)) {
 			logger.debug("Writing to CSS file.");
 			
 			String css_text = buildCSS();
-			report_writer.print(css_text);
-			logger.debug("Fnished writing to CSS file.");
+			css_writer.print(css_text);
+			logger.debug("Finished writing to CSS file.");
 			
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO CSS FILE!", e);
