@@ -21,7 +21,7 @@ public class Settings {
 		private final static String defaultSettings = "" 
 			+ "fontsize=10\n" 
 			+ "width=1000\n" 
-			+ "height=360\n" 
+			+ "height=560\n" 
 			+ "delete_logs=false\n"
 			+ "number_of_logs=20\n"
 			+ "number_of_backups=5\n" 
