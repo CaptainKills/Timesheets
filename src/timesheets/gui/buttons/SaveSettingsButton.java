@@ -46,7 +46,7 @@ public class SaveSettingsButton extends JButton {
 					updateSettings();
 					JOptionPane.showMessageDialog(PanelList.mainPanel,
 							"Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect.",
-							"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
+							"Settings Saved!", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					return;
 				}
