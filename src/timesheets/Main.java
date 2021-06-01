@@ -2,6 +2,7 @@ package timesheets;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import timesheets.gui.MainFrame;
 import timesheets.logging.LogManager;
@@ -26,6 +27,14 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				logger.info("Initialising Mainframe.");
+				
+				try {
+					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+					logger.info("Look And Feel Set.");
+				} catch(Exception e) {
+					logger.error("COULD NOT SET LOOK AND FEEL!", e);
+				}
+				
 				MainFrame frame = new MainFrame();
 
 				logger.info("Setting Frame Parameters.");
