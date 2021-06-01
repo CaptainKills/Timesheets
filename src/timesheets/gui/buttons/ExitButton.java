@@ -33,7 +33,9 @@ public class ExitButton extends JButton {
 	}
 
 	public void exitApplication(Container rootPane) {
-		if (JOptionPane.showConfirmDialog(rootPane, "Are you sure?") == JOptionPane.YES_OPTION) {
+		int decision = JOptionPane.showConfirmDialog(rootPane, "Are you sure?", "Exit Application", JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		if (decision == JOptionPane.YES_OPTION) {
 			logger.info("Closing Application...");
 			Database.backupDatabase();
 			logger.info("Application Closed.\n");
