@@ -19,13 +19,11 @@ public class TestingPanel extends JPanel {
 		layout.setAutoCreateContainerGaps(true);
 
 		// @formatter:off
-		layout.setHorizontalGroup(
-				layout.createSequentialGroup()
+		layout.setHorizontalGroup(layout.createSequentialGroup()
 				
 				);
 
-		layout.setVerticalGroup(
-				layout.createParallelGroup()
+		layout.setVerticalGroup(layout.createSequentialGroup()
 					
 				);
 		// @formatter:on
