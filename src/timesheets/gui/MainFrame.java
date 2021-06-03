@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
 		mainPanel.setupPanel();
 		getContentPane().add(mainPanel);
 		UnusualsList.updateTimer.start();
+		UnusualsList.backupTimer.start();
 
 		addWindowListener(new WindowAdapter() {
 			@Override

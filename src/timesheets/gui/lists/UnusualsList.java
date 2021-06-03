@@ -7,6 +7,7 @@ import javax.swing.Timer;
 
 import timesheets.gui.combobox.BackupBox;
 import timesheets.gui.combobox.EmployeeBox;
+import timesheets.sql.Database;
 
 public class UnusualsList {
 
@@ -24,6 +25,16 @@ public class UnusualsList {
 			LabelList.weekLabel.updateText();
 			LabelList.monthLabel.updateText();
 		}
+	});
+	
+	public static Timer backupTimer = new Timer(3600000, new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Backup database every hour.
+			
+			Database.backupDatabase();
+		}
+		
 	});
 
 }
