@@ -31,18 +31,12 @@ public class TimeHandler {
 	}
 
 	public LocalTime addUp(LocalTime initial, LocalTime timeToAdd) {
-		LocalTime newTime = initial.plusHours(timeToAdd.getHour()).plusMinutes(timeToAdd.getMinute());
-		return newTime;
-	}
-
-	public LocalTime addUp(LocalTime initialTime, LocalTime finalTime, LocalTime pausedTime) {
 		LocalTime newTime;
 		
-		if (pausedTime != null) {
-			newTime = initialTime.plusHours(finalTime.getHour()).plusMinutes(finalTime.getMinute());
-			newTime = newTime.plusHours(pausedTime.getHour()).plusMinutes(pausedTime.getMinute());
+		if(timeToAdd != null) {
+			newTime = initial.plusHours(timeToAdd.getHour()).plusMinutes(timeToAdd.getMinute());
 		} else {
-			newTime = initialTime.plusHours(finalTime.getHour()).plusMinutes(finalTime.getMinute());
+			newTime = initial;
 		}
 		
 		return newTime;
