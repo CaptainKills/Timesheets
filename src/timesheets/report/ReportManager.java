@@ -66,6 +66,9 @@ public class ReportManager {
 		logger.info("Report File Successfully Initialised.");
 	}
 	
-	
+	public static String getReportName() {
+		String report_name = report_name_prefix + LocalDate.now() + report_name_postfix;
+		return report_name;
+	}
 
 }

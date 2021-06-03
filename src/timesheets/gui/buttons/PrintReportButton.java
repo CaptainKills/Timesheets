@@ -1,7 +1,12 @@
 package timesheets.gui.buttons;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
@@ -15,7 +20,9 @@ import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 import timesheets.report.ReportFormatter;
 import timesheets.report.ReportFormatter.OutputType;
+import timesheets.report.ReportManager;
 import timesheets.report.Reporter;
+import timesheets.resources.ResourceHandler;
 
 public class PrintReportButton extends JButton {
 
@@ -27,6 +34,8 @@ public class PrintReportButton extends JButton {
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);
+		
+		Object[] options = {"Ok", "Open Report"};
 
 		addActionListener(new ActionListener() {
 			@Override
@@ -56,8 +65,22 @@ public class PrintReportButton extends JButton {
 				}
 				
 				Reporter.createReport(report_text, type);
-				JOptionPane.showMessageDialog(PanelList.mainPanel, "Report has been successfully created!",
-						"Successful Report!", JOptionPane.INFORMATION_MESSAGE);
+				
+				int status = JOptionPane.showOptionDialog(PanelList.mainPanel, "Report has been successfully created!", "Success Report!", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+				if(status == JOptionPane.NO_OPTION) {
+					logger.info("Opening report with desktop.");
+					
+					Path report_directory = ResourceHandler.report_directory_path;
+					String report_name = ReportManager.getReportName();
+					Path report_path = Paths.get(report_directory + File.separator + report_name).toAbsolutePath();
+					File report_file = report_path.toFile();
+					
+					try {
+						Desktop.getDesktop().open(report_file);
+					} catch(IOException e) {
+						logger.error("COULD NOT OPEN FILE WITH DESKTOP!", e);
+					}
+				}
 			}
 		});
 
