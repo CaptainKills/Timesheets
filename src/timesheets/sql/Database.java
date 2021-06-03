@@ -166,8 +166,9 @@ public class Database {
 			logger.info("Creating Backup of SQLite Database.");
 			String fileName = "Timesheets Backup " + time.getCurrentDate();
 			String directory = ResourceHandler.data_directory_path.toString();
+			String postfix = ResourceHandler.encrypted_postfix;
 
-			Path backup_path = Paths.get(directory + File.separator + fileName + ".encrypted").toAbsolutePath();
+			Path backup_path = Paths.get(directory + File.separator + fileName + postfix).toAbsolutePath();
 			File backup = backup_path.toFile();
 
 			if (backup.exists()) {
@@ -186,7 +187,9 @@ public class Database {
 		try {
 			backupDatabase();
 			logger.info("Reverting Backup of SQLite Database.");
-			Path backup_path = Paths.get(directory + File.separator + backupName + ".encrypted").toAbsolutePath();
+			String postfix = ResourceHandler.encrypted_postfix;
+
+			Path backup_path = Paths.get(directory + File.separator + backupName + postfix).toAbsolutePath();
 
 			Files.copy(backup_path, encrypted_file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			logger.info("Backup of SQLite Database Reverted.");
