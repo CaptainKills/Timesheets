@@ -111,8 +111,7 @@ public class LogManager {
 		int number_of_logs = Integer.parseInt(Settings.settings.get("number_of_logs"));
 
 		if (directory_files != null) {
-			logger.info(
-					"Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
+			logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
 
 			if (delete_logs == true) {
 				int difference = directory_files.length - number_of_logs;
