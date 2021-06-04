@@ -13,7 +13,6 @@ public class Reporter {
 		report.append(body);
 		report.append(getReportFooter());
 		
-		
 		ReportManager.writeToFile(report.toString());
 	}
 	
