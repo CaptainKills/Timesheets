@@ -40,6 +40,6 @@ public class UpdateMessagePane extends JEditorPane {
 			}
 		});
 
-		logger.debug("TimesheetDisplay initialised.");
+		logger.debug("UpdateMessagePanel initialised.");
 	}
 }
