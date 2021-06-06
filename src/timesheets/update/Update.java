@@ -18,7 +18,7 @@ import timesheets.logging.Logger;
 public class Update {
 
 	private static final Logger logger = new Logger(Update.class);
-	private static Version current_version = new Version("1.0.0");
+	private static Version current_version = new Version("2.0.0");
 	private static Version latest_version = new Version("0.0.0");
 
 	private final static String url = "https://api.github.com/repos/CaptainKills/Timesheets/releases";
