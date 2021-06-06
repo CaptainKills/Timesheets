@@ -10,12 +10,12 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
 
-public class PrintSheetsButton extends JButton {
+public class ReportButton extends JButton {
 	private static final long serialVersionUID = 2103797465124170334L;
-	private static final Logger logger = new Logger(PrintSheetsButton.class);
+	private static final Logger logger = new Logger(ReportButton.class);
 
-	public PrintSheetsButton() {
-		super("Print Timesheets");
+	public ReportButton() {
+		super("Reports");
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);

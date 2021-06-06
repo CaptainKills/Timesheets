@@ -34,7 +34,7 @@ public class ExtendedHandler {
 		ButtonList.addEmployeeButton.setVisible(bool);
 		ButtonList.removeEmployeeButton.setVisible(bool);
 		ButtonList.editEmployeeButton.setVisible(bool);
-		ButtonList.printSheetsButton.setVisible(bool);
+		ButtonList.reportButton.setVisible(bool);
 		ButtonList.editSheetsButton.setVisible(bool);
 		ButtonList.updateButton.setVisible(bool);
 		ButtonList.settingsButton.setVisible(bool);
