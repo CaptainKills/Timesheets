@@ -23,7 +23,7 @@ logout_button="Uitloggen"
 print_report_button="Rapport Printen"
 remove_employee_button="Medewerker Verwijderen"
 report_button="Rapporten"
-revert_backup_button="Backup Terugzetten"
+revert_backup_button="Backup Herstellen"
 save_settings_button="Instellingen Opslaan"
 settings_button="Instellingen"
 start_break_button="Pauze Starten"
@@ -75,10 +75,3 @@ table_total_time="Totale Tijd:"
 
 
 ## Dialog Panes:
-
-
-
-
-
-
-
