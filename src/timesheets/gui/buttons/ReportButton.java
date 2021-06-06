@@ -9,13 +9,16 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class ReportButton extends JButton {
 	private static final long serialVersionUID = 2103797465124170334L;
 	private static final Logger logger = new Logger(ReportButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("report_button");
 
 	public ReportButton() {
-		super("Reports");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);

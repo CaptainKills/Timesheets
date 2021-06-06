@@ -22,15 +22,18 @@ import timesheets.report.ReportFormatter;
 import timesheets.report.ReportFormatter.OutputType;
 import timesheets.report.ReportManager;
 import timesheets.report.Reporter;
+import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
 public class PrintReportButton extends JButton {
 
 	private static final long serialVersionUID = 2083380215334310336L;
 	private static final Logger logger = new Logger(PrintReportButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("print_report_button");
 
 	public PrintReportButton() {
-		super("Print Report");
+		super(buttonText);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);

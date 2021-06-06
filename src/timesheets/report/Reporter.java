@@ -8,15 +8,16 @@ public class Reporter {
 	
 	public static void createReport(String body, OutputType type) {
 		StringBuilder report = new StringBuilder();
+		String usedType = ReportManager.typeFormat(type);
 		
-		report.append(getReportHeader(type));
+		report.append(getReportHeader(usedType));
 		report.append(body);
 		report.append(getReportFooter());
 		
-		ReportManager.writeToFile(report.toString());
+		ReportManager.writeToFile(report.toString(), type);
 	}
 	
-	private static String getReportHeader(OutputType type) {
+	private static String getReportHeader(String type) {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("<!DOCTYPE HTML>\n");

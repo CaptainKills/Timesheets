@@ -10,10 +10,11 @@ import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class StartBreakButton extends JButton {
@@ -21,9 +22,10 @@ public class StartBreakButton extends JButton {
 	private static final Logger logger = new Logger(StartBreakButton.class);
 
 	private TimeHandler time = new TimeHandler();
+	private static String buttonText = LanguageManager.language.get("start_break_button");
 
 	public StartBreakButton() {
-		super("Start Break");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);

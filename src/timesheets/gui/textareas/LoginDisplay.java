@@ -9,12 +9,14 @@ import javax.swing.JTextArea;
 import timesheets.TimeHandler;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class LoginDisplay extends JTextArea {
 	private static final long serialVersionUID = -8427377108410611993L;
 	private static final Logger logger = new Logger(LoginDisplay.class);
 
 	private TimeHandler time = new TimeHandler();
+	private static String enterIdText = LanguageManager.language.get("enter_id_text");
 
 	public LoginDisplay() {
 		super();
@@ -24,7 +26,7 @@ public class LoginDisplay extends JTextArea {
 		setEditable(false);
 		setLineWrap(true);
 
-		setText("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n" + "Please enter ID to log in...");
+		setText("| " + time.getCurrentDate() + " - " + time.getCurrentTime() + " |\n" + enterIdText);
 
 		logger.debug("LoginDisplay initialised.");
 	}

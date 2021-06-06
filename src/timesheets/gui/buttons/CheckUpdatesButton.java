@@ -11,14 +11,17 @@ import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.update.Update;
 
 public class CheckUpdatesButton extends JButton {
 	private static final long serialVersionUID = -1498236342567587430L;
 	private static final Logger logger = new Logger(CheckUpdatesButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("check_updates_button");
 
 	public CheckUpdatesButton() {
-		super("Check For Updates");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);

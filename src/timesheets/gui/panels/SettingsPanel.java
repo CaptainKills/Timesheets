@@ -59,7 +59,7 @@ public class SettingsPanel extends JPanel {
 								.addComponent(TextFieldList.backupCountInput, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								)
 						
-						.addComponent(LabelList.logLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(LabelList.deleteLogLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(ButtonList.deleteLogEnabledButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
@@ -92,7 +92,7 @@ public class SettingsPanel extends JPanel {
 				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(LabelList.dimensionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-						.addComponent(LabelList.logLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(LabelList.deleteLogLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						)
 				
 				.addGroup(layout.createParallelGroup()

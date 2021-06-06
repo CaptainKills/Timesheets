@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import timesheets.logging.Logger;
+import timesheets.report.ReportFormatter.OutputType;
+import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
 public class ReportManager {
@@ -22,9 +24,12 @@ public class ReportManager {
 	private static Path report_path;
 	private static File report_file;
 	
+	private static String lastUsedType;
 	
-	public static void writeToFile(String report) {
-		initialiseFile();
+	
+	public static void writeToFile(String report, OutputType type) {
+		lastUsedType = typeFormat(type);
+		initialiseFile(lastUsedType);
 		
 		try (FileWriter file_writer = new FileWriter(report_file, false);
 				PrintWriter report_writer = new PrintWriter(file_writer)) {
@@ -37,12 +42,12 @@ public class ReportManager {
 		}
 	}
 	
-	public static void initialiseFile() {
+	public static void initialiseFile(String type) {
 		try {
 			logger.info("Initialising Report File.");
 			LocalDate initial_date = LocalDate.now();
 			
-			String reportName = report_name_prefix + initial_date + report_name_postfix;
+			String reportName = report_name_prefix + initial_date + " " + type + report_name_postfix;
 			report_path = Paths.get(report_directory + File.separator + reportName).toAbsolutePath();
 			report_file = report_path.toFile();
 			
@@ -67,8 +72,35 @@ public class ReportManager {
 	}
 	
 	public static String getReportName() {
-		String report_name = report_name_prefix + LocalDate.now() + report_name_postfix;
+		String report_name = report_name_prefix + LocalDate.now()  + " " + lastUsedType + report_name_postfix;
 		return report_name;
+	}
+	
+	public static String typeFormat(OutputType type) {
+		String s = "";
+		
+		switch(type) {
+		case TODAY:
+			s = LanguageManager.language.get("today_const");
+			break;
+			
+		case WEEK:
+			s = LanguageManager.language.get("week_const");
+			break;
+			
+		case MONTH:
+			s = LanguageManager.language.get("month_const");
+			break;
+			
+		case SPECIFIC:
+			s = LanguageManager.language.get("specific_const");
+			break;
+			
+		default:
+			break;
+		}
+		
+		return s;
 	}
 
 }

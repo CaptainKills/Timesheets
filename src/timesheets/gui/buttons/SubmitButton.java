@@ -21,6 +21,7 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class SubmitButton extends JButton {
@@ -37,20 +38,23 @@ public class SubmitButton extends JButton {
 	private Database database = new Database();
 	private Map<Integer, Employee> EmployeeList = Database.EmployeeList;
 	private Employee transferEmployee;
+	
+	private static Map<String, String> lang = LanguageManager.language;
+	private static String buttonText = lang.get("submit_button");
 
 	public SubmitButton() {
-		super("Submit");
+		super(buttonText);
 		setPreferredSize(DimensionList.fieldSize_large);
 		setFont(FontList.buttonFont);
 
 		addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent event) {
-				if (getText().equals("Add Employee")) {
+			public void actionPerformed(ActionEvent event) {				
+				if (getText().equals(lang.get("submit_button_add"))) {
 					addEmployee();
-				} else if (getText().equals("Remove Employee")) {
+				} else if (getText().equals(lang.get("submit_button_remove"))) {
 					removeEmployee();
-				} else if (getText().equals("Save Employee")) {
+				} else if (getText().equals(lang.get("submit_button_edit"))) {
 					saveEmployee();
 				}
 			}

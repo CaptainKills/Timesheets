@@ -10,14 +10,17 @@ import javax.swing.JOptionPane;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class ExitButton extends JButton {
 	private static final long serialVersionUID = -5805705893852029673L;
 	private static final Logger logger = new Logger(ExitButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("exit_button");
 
 	public ExitButton() {
-		super("Exit");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);

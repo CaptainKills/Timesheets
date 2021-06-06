@@ -8,17 +8,21 @@ import javax.swing.JButton;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class LogoutButton extends JButton {
 	private static final long serialVersionUID = -6786090739017183076L;
 	private static final Logger logger = new Logger(LogoutButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("logout_button");
+	private static String enterIdText = LanguageManager.language.get("enter_id_text");
 
 	public LogoutButton() {
-		super("Logout");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_medium);
 		setFont(FontList.buttonFont);
 		setEnabled(false);
@@ -27,7 +31,7 @@ public class LogoutButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				TextFieldList.inputField.setText("");
-				DisplayList.loginTextArea.updateInfoText("Please enter ID to log in...");
+				DisplayList.loginTextArea.updateInfoText(enterIdText);
 				ButtonList.switchMenuButton.setText(">>");
 				ButtonList.switchMenuButton.setEnabled(false);
 

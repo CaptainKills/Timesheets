@@ -11,14 +11,17 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class DateSpecificButton extends JRadioButton {
 
 	private static final long serialVersionUID = 8877741355348581691L;
 	private static final Logger logger = new Logger(DateSpecificButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("date_specific_button");
 
 	public DateSpecificButton() {
-		super("Specific Date", false);
+		super(buttonText, false);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);

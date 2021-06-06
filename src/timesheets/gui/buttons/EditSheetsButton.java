@@ -9,13 +9,16 @@ import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class EditSheetsButton extends JButton {
 	private static final long serialVersionUID = 7930622460066225999L;
 	private static final Logger logger = new Logger(EditSheetsButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("edit_sheets_button");
 
 	public EditSheetsButton() {
-		super("Edit Timesheets");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setEnabled(false);

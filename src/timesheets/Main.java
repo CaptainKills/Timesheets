@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import timesheets.gui.MainFrame;
 import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 import timesheets.sql.Database;
 import timesheets.update.Update;
@@ -20,6 +21,7 @@ public class Main {
 		logger.info("Initialising Program.");
 
 		Settings.loadSettings();
+		LanguageManager.initialise();
 		LogManager.cleanDirectory();
 		Database.cleanDirectory();
 

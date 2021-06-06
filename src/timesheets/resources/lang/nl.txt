@@ -1,0 +1,84 @@
+### Timesheets Language File: NEDERLANDS (DUTCH)
+
+
+## Buttons:
+add_employee_button="Medewerker Toevoegen"
+admin_radio_button_enable="Aan"
+admin_radio_button_disable="Uit"
+check_updates_button="Update Zoeken"
+clear_button="Reset"
+date_month_button="Huidge Maand"
+date_specific_button="Specifieke Datum"
+date_today_button="Vandaag"
+date_week_button="Huidge Week"
+delete_log_enabled_button="Ja"
+delete_log_disabled_button="Nee"
+edit_employee_button="Medewerker Wijzigen"
+edit_sheets_button="Wijzig Timesheets"
+end_break_button="Pauze Beëindigen"
+end_shift_button="Uitklokken"
+exit_button="Afsluiten"
+login_button="Inloggen"
+logout_button="Uitloggen"
+print_report_button="Rapport Printen"
+remove_employee_button="Medewerker Verwijderen"
+report_button="Rapporten"
+revert_backup_button="Backup Terugzetten"
+save_settings_button="Instellingen Opslaan"
+settings_button="Instellingen"
+start_break_button="Pauze Starten"
+start_shift_button="Inklokken"
+submit_button="Indienen"
+submit_button_add="Medewerker Toevoegen"
+submit_button_remove="Medewerker Verwijderen"
+submit_button_edit="Medewerker Wijzigen"
+
+
+## Labels:
+admin_label="Admin"
+age_salary_label="Leeftijd | Salaris"
+app_dimension_label="Dimensies:"
+backup_label="Backups:"
+delete_log_label="Logs Verwijderen:"
+employee_label="Medewerker"
+font_label="Lettertype:"
+font_size_label="Grootte:"
+from_date_label="Vanaf:"
+height_label="Hoogte:"
+id_label="ID"
+# TBD: month_label=""
+name_label="Naam"
+number_of_backups_label="Aantal Backups:"
+number_of_logs_label="Aantal Logs:"
+select_backup_label="Selecteer Backup:"
+to_date_label="Tot:"
+# TBD: today_label=""
+# TBD: week_label=""
+width_label="Breedte:"
+
+
+## TextAreas:
+welcome_text="Welkom"
+enter_id_text="Log in met uw ID a.u.b..."
+
+
+## Report:
+today_const="Vandaag"
+week_const="Week"
+month_const="Maand"
+specific_const="Specifiek"
+table_date="Datum:"
+table_start_time="Starttijd:"
+table_end_time="Eindtijd:"
+table_break_time="Pauzetijd:"
+table_total_time="Totale Tijd:"
+
+
+## Dialog Panes:
+
+
+
+
+
+
+

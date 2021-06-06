@@ -7,12 +7,14 @@ import java.util.Map;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class ReportFormatter {
 
 	private static final Logger logger = new Logger(ReportFormatter.class);
 	private static TimeHandler time = new TimeHandler();
+	private static Map<String, String> lang = LanguageManager.language;
 
 	public enum OutputType {
 		TODAY, WEEK, MONTH, SPECIFIC
@@ -78,17 +80,17 @@ public class ReportFormatter {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("\t\t<p>\n");
-		builder.append("\t\t\t<table style=\"width:50%\">\n");
+		builder.append("\t\t\t<table style=\"table-layout:fixed; width:50%\">\n");
 		builder.append("\t\t\t\t<caption><b>");
 		builder.append(emp.getName() + " (" + emp.getID_String() + ")");
 		builder.append("</b></caption>\n");
 		
 		builder.append("\t\t\t\t<tr>\n");
-		builder.append("\t\t\t\t\t<th>Date:</th>\n");
-		builder.append("\t\t\t\t\t<th>Start Time:</th>\n");
-		builder.append("\t\t\t\t\t<th>End Time:</th>\n");
-		builder.append("\t\t\t\t\t<th>Break Time:</th>\n");
-		builder.append("\t\t\t\t\t<th>Total Time:</th>\n");
+		builder.append("\t\t\t\t\t<th>"+ lang.get("table_date") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>"+ lang.get("table_start_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_end_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_break_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_total_time") + "</th>\n");
 		builder.append("\t\t\t\t</tr>\n");
 
 		return builder.toString();

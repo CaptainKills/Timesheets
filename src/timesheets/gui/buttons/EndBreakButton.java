@@ -10,10 +10,11 @@ import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class EndBreakButton extends JButton {
@@ -21,11 +22,12 @@ public class EndBreakButton extends JButton {
 	private static final Logger logger = new Logger(EndBreakButton.class);
 
 	private TimeHandler time = new TimeHandler();
-
 	private LocalTime currentTime, differenceTime, newTime;
+	
+	private static String buttonText = LanguageManager.language.get("end_break_button");
 
 	public EndBreakButton() {
-		super("End Break");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);

@@ -16,6 +16,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class SaveSettingsButton extends JButton {
 	private static final long serialVersionUID = 8704736175682340957L;
@@ -29,9 +30,10 @@ public class SaveSettingsButton extends JButton {
 	private JRadioButton deleteLogEnabledButton = ButtonList.deleteLogEnabledButton;
 
 	private Map<String, String> settings = Settings.settings;
+	private static String buttonText = LanguageManager.language.get("save_settings_button");
 
 	public SaveSettingsButton() {
-		super("Save Settings");
+		super(buttonText);
 		setPreferredSize(DimensionList.fieldSize_medium);
 		setFont(FontList.buttonFont);
 

@@ -12,13 +12,17 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class RemoveEmployeeButton extends JButton {
 	private static final long serialVersionUID = 4105654947299367234L;
 	private static final Logger logger = new Logger(RemoveEmployeeButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("remove_employee_button");
+	private static String submitButtonText = LanguageManager.language.get("submit_button_remove");
 
 	public RemoveEmployeeButton() {
-		super("Remove Employee");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);
@@ -29,7 +33,7 @@ public class RemoveEmployeeButton extends JButton {
 				logger.info("Button Clicked.");
 				ExtendedHandler.displayAdminPanels(false, true, false, false);
 
-				ButtonList.submitButton.setText("Remove Employee");
+				ButtonList.submitButton.setText(submitButtonText);
 
 				PanelList.editPanel.setupEditPanel(false, true);
 				UnusualsList.empBox.loadEmployeesInBox();

@@ -14,15 +14,17 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class SettingsButton extends JButton {
 	private static final long serialVersionUID = -3562889450672410185L;
 	private static final Logger logger = new Logger(SettingsButton.class);
 
 	private static Map<String, String> settings = Settings.settings;
+	private static String buttonText = LanguageManager.language.get("settings_button");
 
 	public SettingsButton() {
-		super("Settings");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
 		setVisible(false);

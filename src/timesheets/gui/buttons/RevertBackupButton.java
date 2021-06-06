@@ -11,15 +11,18 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class RevertBackupButton extends JButton {
 
 	private static final long serialVersionUID = 3714748366642217763L;
 	private static final Logger logger = new Logger(RevertBackupButton.class);
+	
+	private static String buttonText = LanguageManager.language.get("revert_backup_button");
 
 	public RevertBackupButton() {
-		super("Revert Backup");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);

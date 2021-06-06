@@ -1,0 +1,90 @@
+### Timesheets Language File: LANGUAGE (LANG ENGLISH)
+
+
+## Buttons:
+add_employee_button=
+admin_radio_button_enable=
+admin_radio_button_disable=
+check_updates_button=
+clear_button=
+date_month_button=
+date_specific_button=
+date_today_button=
+date_week_button=
+delete_log_enabled_button=
+delete_log_disabled_button=
+edit_employee_button=
+edit_sheets_button=
+end_break_button=
+end_shift_button=
+exit_button=
+login_button=
+logout_button=
+print_report_button=
+remove_employee_button=
+report_button=
+revert_backup_button=
+save_settings_button=
+settings_button=
+start_break_button=
+start_shift_button=
+submit_button=
+submit_button_add=
+submit_button_remove=
+submit_button_edit=
+
+
+## Labels:
+admin_label=
+age_salary_label=
+app_dimension_label=
+backup_label=
+delete_log_label=
+employee_label=
+font_label=
+font_size_label=
+from_date_label=
+height_label=
+id_label=
+# TBD: month_label=
+name_label=
+number_of_backups_label=
+number_of_logs_label=
+select_backup_label=
+to_date_label=
+# TBD: today_label=""
+# TBD: week_label=""
+width_label=
+
+
+## TextAreas:
+welcome_text=
+enter_id_text=
+
+
+## Report:
+today_const=
+week_const=
+month_const=
+specific_const=
+table_date=
+table_start_time=
+table_end_time=
+table_break_time=
+table_total_time=
+
+
+## Dialog Pane: CrashExceptionHandler
+# TBD: jop_ceh_title=
+
+## Dialog Pane: CheckUpdatesButton/UpdateMessagePane
+jop_cub_update_available_title=
+jop_cub_update_unavailable_title=
+jop_update_available_title=
+
+
+
+
+
+
+

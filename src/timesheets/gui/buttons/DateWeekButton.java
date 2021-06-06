@@ -10,15 +10,17 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class DateWeekButton extends JRadioButton {
 
 	private static final long serialVersionUID = -2102233715141535919L;
 	private static final Logger logger = new Logger(DateWeekButton.class);
 	
+	private static String buttonText = LanguageManager.language.get("date_week_button");
 
 	public DateWeekButton() {
-		super("Current Week", false);
+		super(buttonText, false);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);

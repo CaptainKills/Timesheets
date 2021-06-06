@@ -15,6 +15,7 @@ import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class EndShiftButton extends JButton {
@@ -23,11 +24,12 @@ public class EndShiftButton extends JButton {
 
 	private Database database = new Database();
 	private TimeHandler time = new TimeHandler();
-	
 	private LocalTime[] newShift;
+	
+	private static String buttonText = LanguageManager.language.get("end_shift_button");
 
 	public EndShiftButton() {
-		super("End Shift");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);

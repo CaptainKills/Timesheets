@@ -1,0 +1,84 @@
+### Timesheets Language File: ENGLISH (ENGLISH)
+
+
+## Buttons:
+add_employee_button="Add Employee"
+admin_radio_button_enable="Enable"
+admin_radio_button_disable="Disable"
+check_updates_button="Check For Updates"
+clear_button="Clear"
+date_month_button="Current Month"
+date_specific_button="Specific Date"
+date_today_button="Date Today"
+date_week_button="Current Week"
+delete_log_enabled_button="Yes"
+delete_log_disabled_button="No"
+edit_employee_button="Edit Employee"
+edit_sheets_button="Edit Timesheets"
+end_break_button="End Break"
+end_shift_button="End Shift"
+exit_button="Exit"
+login_button="Login"
+logout_button="Logout"
+print_report_button="Print Report"
+remove_employee_button="Remove Employee"
+report_button="Reports"
+revert_backup_button="Revert Backup"
+save_settings_button="Save Settings"
+settings_button="Settings"
+start_break_button="Start Break"
+start_shift_button="Start Shift"
+submit_button="Submit"
+submit_button_add="Add Employee"
+submit_button_remove="Remove Employee"
+submit_button_edit="Update Employee"
+
+
+## Labels:
+admin_label="Admin"
+age_salary_label="Age | Salary"
+app_dimension_label="Dimensions:"
+backup_label="Backups:"
+delete_log_label="Delete Logs:"
+employee_label="Employee"
+font_label="Font:"
+font_size_label="Size:"
+from_date_label="From:"
+height_label="Height:"
+id_label="ID"
+# TBD: month_label=""
+name_label="Name"
+number_of_backups_label="# of backups:"
+number_of_logs_label="# of logs:"
+select_backup_label="Select Backup:"
+to_date_label="To:"
+# TBD: today_label=""
+# TBD: week_label=""
+width_label="Width:"
+
+
+## TextAreas:
+welcome_text="Welcome"
+enter_id_text="Please enter ID to log in..."
+
+
+## Report:
+today_const="Today"
+week_const="Week"
+month_const="Month"
+specific_const="Specific"
+table_date="Date:"
+table_start_time="Start Time:"
+table_end_time="End Time:"
+table_break_time="Break Time:"
+table_total_time="Total Time:"
+
+
+## Dialog Panes:
+
+
+
+
+
+
+

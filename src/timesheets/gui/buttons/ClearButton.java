@@ -8,12 +8,15 @@ import javax.swing.JButton;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.resources.LanguageManager;
 
 public class ClearButton extends JButton {
 	private static final long serialVersionUID = -6774862779006432309L;
+	
+	private static String buttonText = LanguageManager.language.get("clear_button");
 
 	public ClearButton() {
-		super("Clear");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_numbers);
 		setFont(FontList.buttonFont);
 

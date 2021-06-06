@@ -2,6 +2,7 @@ package timesheets.resources;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -31,6 +32,11 @@ public class ResourceHandler {
 	public static final Path data_directory_path = Paths.get(data_directory).toAbsolutePath();
 	public static final Path log_directory_path = Paths.get(log_directory).toAbsolutePath();
 	public static final Path report_directory_path = Paths.get(report_directory).toAbsolutePath();
+	
+	private static final String lang_path = "timesheets/resources/lang/";
+	public static final InputStream lang_base = loader.getResourceAsStream(lang_path + "base.txt");
+	public static final InputStream lang_en = loader.getResourceAsStream(lang_path + "en.txt");
+	public static final InputStream lang_nl = loader.getResourceAsStream(lang_path + "nl.txt");
 
 	private static final String images_path = "timesheets/resources/images/";
 	private static final ImageIcon img16 = new ImageIcon(loader.getResource(images_path + "atom16.png"));

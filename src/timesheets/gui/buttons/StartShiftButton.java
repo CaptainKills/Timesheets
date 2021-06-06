@@ -10,10 +10,11 @@ import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.gui.ExtendedHandler;
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.DisplayList;
+import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class StartShiftButton extends JButton {
@@ -21,9 +22,10 @@ public class StartShiftButton extends JButton {
 	private static final Logger logger = new Logger(StartShiftButton.class);
 
 	private TimeHandler time = new TimeHandler();
+	private static String buttonText = LanguageManager.language.get("start_shift_button");
 
 	public StartShiftButton() {
-		super("Start Shift");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 		setEnabled(false);

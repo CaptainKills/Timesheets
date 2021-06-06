@@ -1,43 +1,17 @@
 package timesheets.gui.lists;
 
+import java.util.Map;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-import timesheets.gui.buttons.AddEmployeeButton;
-import timesheets.gui.buttons.AdminRadioButton;
-import timesheets.gui.buttons.AdminSelectionGroup;
-import timesheets.gui.buttons.CheckUpdatesButton;
-import timesheets.gui.buttons.ClearButton;
-import timesheets.gui.buttons.DateMonthButton;
-import timesheets.gui.buttons.DateSelectionGroup;
-import timesheets.gui.buttons.DateSpecificButton;
-import timesheets.gui.buttons.DateTodayButton;
-import timesheets.gui.buttons.DateWeekButton;
-import timesheets.gui.buttons.DeleteLogRadioButton;
-import timesheets.gui.buttons.DeleteLogSelectionGroup;
-import timesheets.gui.buttons.EditEmployeeButton;
-import timesheets.gui.buttons.EditSheetsButton;
-import timesheets.gui.buttons.EndBreakButton;
-import timesheets.gui.buttons.EndShiftButton;
-import timesheets.gui.buttons.ExitButton;
-import timesheets.gui.buttons.IDGeneratorButton;
-import timesheets.gui.buttons.LoginButton;
-import timesheets.gui.buttons.LogoutButton;
-import timesheets.gui.buttons.NumberButton;
-import timesheets.gui.buttons.PrintReportButton;
-import timesheets.gui.buttons.RemoveEmployeeButton;
-import timesheets.gui.buttons.RemoveNumberButton;
-import timesheets.gui.buttons.ReportButton;
-import timesheets.gui.buttons.RevertBackupButton;
-import timesheets.gui.buttons.SaveSettingsButton;
-import timesheets.gui.buttons.SettingsButton;
-import timesheets.gui.buttons.StartBreakButton;
-import timesheets.gui.buttons.StartShiftButton;
-import timesheets.gui.buttons.SubmitButton;
-import timesheets.gui.buttons.SwitchMenuButton;
+import timesheets.gui.buttons.*;
+import timesheets.resources.LanguageManager;
 
 public class ButtonList {
+	
+	private static Map<String, String> lang = LanguageManager.language;
 
 	public static JButton numberButton0 = new NumberButton("0");
 	public static JButton numberButton1 = new NumberButton("1");
@@ -64,8 +38,8 @@ public class ButtonList {
 	public static JButton idButton = new IDGeneratorButton();
 	public static JButton submitButton = new SubmitButton();
 
-	public static JRadioButton adminEnableButton = new AdminRadioButton("Enable", false);
-	public static JRadioButton adminDisableButton = new AdminRadioButton("Disable", true);
+	public static JRadioButton adminEnableButton = new AdminRadioButton(lang.get("admin_radio_button_enable"), false);
+	public static JRadioButton adminDisableButton = new AdminRadioButton(lang.get("admin_radio_button_disable"), true);
 	public static ButtonGroup adminGroup = new AdminSelectionGroup();
 
 	public static JButton addEmployeeButton = new AddEmployeeButton();
@@ -84,8 +58,8 @@ public class ButtonList {
 	public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
 	public static JButton printReportButton = new PrintReportButton();
 
-	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton("Yes", false);
-	public static JRadioButton deleteLogDisabledButton = new DeleteLogRadioButton("No", true);
+	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton(lang.get("delete_log_enabled_button"), false);
+	public static JRadioButton deleteLogDisabledButton = new DeleteLogRadioButton(lang.get("delete_log_disabled_button"), true);
 	public static ButtonGroup logGroup = new DeleteLogSelectionGroup();
 	public static JButton revertBackupButton = new RevertBackupButton();
 

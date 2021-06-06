@@ -10,14 +10,16 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class DateTodayButton extends JRadioButton {
 	private static final long serialVersionUID = 4966799733565135084L;
 	private static final Logger logger = new Logger(DateTodayButton.class);
 
+	private static String buttonText = LanguageManager.language.get("date_today_button");
 
 	public DateTodayButton() {
-		super("Date Today", false);
+		super(buttonText, false);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);

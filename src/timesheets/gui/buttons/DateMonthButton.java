@@ -10,15 +10,17 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.LabelList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class DateMonthButton extends JRadioButton {
 
 	private static final long serialVersionUID = 960145533543341180L;
 	private static final Logger logger = new Logger(DateMonthButton.class);
 
+	private static String buttonText = LanguageManager.language.get("date_month_button");
 
 	public DateMonthButton() {
-		super("Current Month", false);
+		super(buttonText, false);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setHorizontalAlignment(SwingConstants.LEFT);

@@ -9,11 +9,12 @@ import javax.swing.JOptionPane;
 import timesheets.Employee;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
+import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
 public class LoginButton extends JButton {
@@ -21,9 +22,11 @@ public class LoginButton extends JButton {
 	private static final Logger logger = new Logger(LoginButton.class);
 
 	private int id;
+	private static String buttonText = LanguageManager.language.get("login_button");
+	private static String welcomeText = LanguageManager.language.get("welcome_text");
 
 	public LoginButton() {
-		super("Login");
+		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_large);
 		setFont(FontList.buttonFont);
 
@@ -38,7 +41,7 @@ public class LoginButton extends JButton {
 				if (Database.EmployeeList.containsKey(id)) {
 					Employee activeEmployee = Database.EmployeeList.get(id);
 
-					DisplayList.loginTextArea.updateInfoText("Welcome " + activeEmployee.getName());
+					DisplayList.loginTextArea.updateInfoText(welcomeText + " " + activeEmployee.getName());
 					logger.info("Employee " + activeEmployee.getID_String() + " has logged in.");
 					setEnabled(false);
 
