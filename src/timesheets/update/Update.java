@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
@@ -58,7 +59,9 @@ public class Update {
 			}
 			latest_version = getNewestVersion(responseContent.toString());
 			checkVersion();
-		} catch (IOException e) {
+		} catch(UnknownHostException e) {
+			logger.warn("Could not resolve hostname! Probably not internet connection.");
+		}catch (IOException e) {
 			logger.error("COULD NOT CHECK FOR UPDATES!", e);
 		} finally {
 			conn.disconnect();
