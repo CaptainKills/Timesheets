@@ -1,5 +1,7 @@
 package timesheets;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -32,6 +34,7 @@ public class Main {
 				
 				try {
 					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+					UIManager.getLookAndFeelDefaults().put("Panel.background", Color.WHITE);
 					logger.info("Set Look And Feel.");
 				} catch(Exception e) {
 					logger.error("COULD NOT SET LOOK AND FEEL!", e);
