@@ -75,12 +75,24 @@ table_total_time=
 
 
 ## Dialog Pane: CrashExceptionHandler
-# TBD: jop_ceh_title=
+jop_ceh_title=
+
+## Dialog Pane: ExitButton
+jop_eb_title=
+jop_eb_msg=
+
+## Dialog Pane: LoginButton
+jop_lb_title=
+jop_lb_msg=
+
+## Dialog Pane: RevertBackupButton
+jop_rbb_title=
+jop_rbb_msg=
 
 ## Dialog Pane: CheckUpdatesButton/UpdateMessagePane
 jop_cub_update_available_title=
 jop_cub_update_unavailable_title=
-jop_update_available_title=
+jop_update_available_title=n
 
 
 

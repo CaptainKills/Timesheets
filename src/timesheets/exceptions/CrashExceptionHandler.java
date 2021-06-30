@@ -2,8 +2,9 @@ package timesheets.exceptions;
 
 import javax.swing.JOptionPane;
 
-import timesheets.gui.lists.PanelList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class CrashExceptionHandler implements Thread.UncaughtExceptionHandler {
 
@@ -12,9 +13,12 @@ public class CrashExceptionHandler implements Thread.UncaughtExceptionHandler {
 	@Override
 	public void uncaughtException(Thread t, Throwable e) {
 		logger.error("AN UNEXPECTED ERROR OCCURED!", e);
+		String msgErrorTitle = LanguageManager.language.get("jop_ceh_title");
 		
-		JOptionPane.showMessageDialog(PanelList.mainPanel, e.getMessage(),
-				"An Error Occured!", JOptionPane.ERROR_MESSAGE);
+		CustomOptionPane cop = new CustomOptionPane();
+		cop.setText(msgErrorTitle, e.getMessage());
+		cop.setOptions(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+		cop.showDialog();
 	}
 
 }

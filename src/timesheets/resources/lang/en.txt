@@ -74,7 +74,20 @@ table_break_time="Break Time:"
 table_total_time="Total Time:"
 
 
-## Dialog Panes:
+## Dialog Pane: CrashExceptionHandler
+jop_ceh_title="An Error Occurred!"
+
+## Dialog Pane: ExitButton
+jop_eb_title="Are you sure?"
+jop_eb_msg="Exit Application?"
+
+## Dialog Pane: LoginButton
+jop_lb_title="Incorrect ID!"
+jop_lb_msg="Please enter a correct ID."
+
+## Dialog Pane: RevertBackupButton
+jop_rbb_title="Are you sure?"
+jop_rbb_msg="Are you sure you want to revert this backup?"
 
 
 

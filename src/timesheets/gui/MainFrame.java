@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				ButtonList.exitButton.exitApplication(getContentPane());
+				ButtonList.exitButton.exitApplication();
 			}
 		});
 

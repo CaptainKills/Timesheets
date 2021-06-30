@@ -74,4 +74,24 @@ table_break_time="Pauzetijd:"
 table_total_time="Totale Tijd:"
 
 
-## Dialog Panes:
+## Dialog Pane: CrashExceptionHandler
+jop_ceh_title="Foutmelding!"
+
+## Dialog Pane: ExitButton
+jop_eb_title="Weet u het zeker?"
+jop_eb_msg="Programma Afsluiten?"
+
+## Dialog Pane: LoginButton
+jop_lb_title="Ongeldig ID!"
+jop_lb_msg="Vul een geldig ID in alstublieft."
+
+## Dialog Pane: RevertBackupButton
+jop_rbb_title="Weet u het zeker?"
+jop_rbb_msg="Weet u zeker dat u deze backup wilt terugzetten?"
+
+
+
+
+
+
+

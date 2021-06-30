@@ -2,6 +2,7 @@ package timesheets.gui.buttons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -11,8 +12,8 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
@@ -20,10 +21,14 @@ import timesheets.sql.Database;
 public class LoginButton extends JButton {
 	private static final long serialVersionUID = 8434083962194467158L;
 	private static final Logger logger = new Logger(LoginButton.class);
+	private static Map<String, String> lang = LanguageManager.language;
 
 	private int id;
-	private static String buttonText = LanguageManager.language.get("login_button");
-	private static String welcomeText = LanguageManager.language.get("welcome_text");
+	private static String buttonText = lang.get("login_button");
+	private static String welcomeText = lang.get("welcome_text");
+	
+	private static String dialogTitle = lang.get("jop_lb_title");
+	private static String dialogMsg = lang.get("jop_lb_msg");
 
 	public LoginButton() {
 		super(buttonText);
@@ -71,8 +76,11 @@ public class LoginButton extends JButton {
 					ButtonList.logoutButton.setEnabled(true);
 				} else {
 					logger.warn("Someone entered a non-existent ID.");
-					JOptionPane.showMessageDialog(PanelList.mainPanel, "Please enter correct ID!", "Incorrect ID",
-							JOptionPane.INFORMATION_MESSAGE);
+					
+					CustomOptionPane cop = new CustomOptionPane();
+					cop.setText(dialogTitle, dialogMsg);
+					cop.setOptions(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+					cop.showDialog();
 				}
 			}
 		});
