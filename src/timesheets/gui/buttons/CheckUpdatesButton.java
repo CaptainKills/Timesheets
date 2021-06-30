@@ -4,12 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 import timesheets.gui.lists.DimensionList;
-import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.update.Update;
@@ -30,17 +27,7 @@ public class CheckUpdatesButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
-				Update.checkForUpdates();
-				boolean new_version = Update.hasNewVersion();
-
-				if (new_version) {
-					JOptionPane.showMessageDialog(PanelList.mainPanel, DisplayList.updateMessagePane,
-							"New Update Available!", JOptionPane.PLAIN_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(PanelList.mainPanel,
-							"There are no new updates. The latest version is currently installed.",
-							"No Update Available.", JOptionPane.PLAIN_MESSAGE);
-				}
+				Update.checkForUpdates(true);
 			}
 		});
 		logger.debug("CheckUpdatesButton initialised.");

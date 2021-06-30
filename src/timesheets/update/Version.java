@@ -6,9 +6,9 @@ public class Version {
 	private int patch;
 
 	public Version(int major, int minor, int patch) {
-		this.setMajorVersion(major);
-		this.setMinorVersion(minor);
-		this.setPatchVersion(patch);
+		this.major = major;
+		this.minor = minor;
+		this.patch = patch;
 	}
 
 	@Override
@@ -22,11 +22,11 @@ public class Version {
 
 		if (tag_versions.length == 1) {
 			int major = Integer.parseInt(tag_versions[0]);
-			version = new Version(major);
+			version = new Version(major, 0, 0);
 		} else if (tag_versions.length == 2) {
 			int major = Integer.parseInt(tag_versions[0]);
 			int minor = Integer.parseInt(tag_versions[1]);
-			version = new Version(major, minor);
+			version = new Version(major, minor, 0);
 		} else if (tag_versions.length == 3) {
 			int major = Integer.parseInt(tag_versions[0]);
 			int minor = Integer.parseInt(tag_versions[1]);
@@ -39,7 +39,7 @@ public class Version {
 		return version;
 	}
 
-	public boolean isNewer(Version current) {
+	public boolean isNewerThan(Version current) {
 		boolean isNewer = false;
 
 		if (this.getMajorVersion() > current.getMajorVersion()) {
@@ -56,47 +56,23 @@ public class Version {
 		return isNewer;
 	}
 
-	public Version(int major, int minor) {
-		this.setMajorVersion(major);
-		this.setMinorVersion(minor);
-		this.setPatchVersion(0);
-	}
-
-	public Version(int major) {
-		this.setMajorVersion(major);
-		this.setMinorVersion(0);
-		this.setPatchVersion(0);
-	}
-
 	public Version(String version) {
 		Version v = Version.parse(version);
-		this.setMajorVersion(v.getMajorVersion());
-		this.setMinorVersion(v.getMinorVersion());
-		this.setPatchVersion(v.getPatchVersion());
+		this.major = v.getMajorVersion();
+		this.minor = v.getMinorVersion();
+		this.patch = v.getPatchVersion();
 	}
 
 	public int getMajorVersion() {
-		return major;
-	}
-
-	public void setMajorVersion(int major) {
-		this.major = major;
+		return this.major;
 	}
 
 	public int getMinorVersion() {
-		return minor;
-	}
-
-	public void setMinorVersion(int minor) {
-		this.minor = minor;
+		return this.minor;
 	}
 
 	public int getPatchVersion() {
-		return patch;
-	}
-
-	public void setPatchVersion(int patch) {
-		this.patch = patch;
+		return this.patch;
 	}
 
 }

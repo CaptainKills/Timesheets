@@ -32,7 +32,7 @@ public class Main {
 				
 				try {
 					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-					logger.info("Look And Feel Set.");
+					logger.info("Set Look And Feel.");
 				} catch(Exception e) {
 					logger.error("COULD NOT SET LOOK AND FEEL!", e);
 				}
@@ -52,7 +52,7 @@ public class Main {
 
 		new Thread(new Runnable() {
 			public void run() {
-				Update.checkForUpdates();
+				Update.checkForUpdates(false);
 			}
 		}).start();
 	}
