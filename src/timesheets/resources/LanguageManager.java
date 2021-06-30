@@ -34,7 +34,7 @@ public class LanguageManager {
 					String value = segments[1].replaceAll("\"", "");
 
 					language.put(object, value);
-					System.out.println("Object: " + object + ", Value: " + value);
+					//System.out.println("Object: " + object + ", Value: " + value);
 				}
 			}
 		} catch(IOException e) {
