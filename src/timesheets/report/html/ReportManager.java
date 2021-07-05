@@ -1,4 +1,4 @@
-package timesheets.report;
+package timesheets.report.html;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import timesheets.logging.Logger;
-import timesheets.report.ReportFormatter.OutputType;
+import timesheets.report.html.ReportFormatter.OutputType;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 

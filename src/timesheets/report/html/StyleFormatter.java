@@ -1,4 +1,4 @@
-package timesheets.report;
+package timesheets.report.html;
 
 import java.io.File;
 import java.io.FileWriter;

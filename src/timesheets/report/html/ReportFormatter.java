@@ -1,4 +1,4 @@
-package timesheets.report;
+package timesheets.report.html;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

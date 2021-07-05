@@ -1,8 +1,8 @@
-package timesheets.report;
+package timesheets.report.html;
 
 import java.time.LocalDate;
 
-import timesheets.report.ReportFormatter.OutputType;
+import timesheets.report.html.ReportFormatter.OutputType;
 
 public class Reporter {
 	
