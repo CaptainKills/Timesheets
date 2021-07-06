@@ -13,8 +13,8 @@ import timesheets.Settings;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 
@@ -30,7 +30,13 @@ public class SaveSettingsButton extends JButton {
 	private JRadioButton deleteLogEnabledButton = ButtonList.deleteLogEnabledButton;
 
 	private Map<String, String> settings = Settings.settings;
-	private static String buttonText = LanguageManager.language.get("save_settings_button");
+	private static Map<String, String> lang = LanguageManager.language;
+	
+	private static String buttonText = lang.get("save_settings_button");
+	private static String dialogTitleConfirm = lang.get("jop_ssb_title_confirm");
+	private static String dialogMsgConfirm = lang.get("jop_ssb_msg_confirm");
+	private static String dialogTitleSuccess = lang.get("jop_ssb_title_success");
+	private static String dialogMsgSuccess = lang.get("jop_ssb_msg_success");
 
 	public SaveSettingsButton() {
 		super(buttonText);
@@ -40,15 +46,18 @@ public class SaveSettingsButton extends JButton {
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				int menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
-						"Are you sure you want to save these settings?", "Are you sure?",
-						JOptionPane.YES_NO_CANCEL_OPTION);
+				CustomOptionPane cop = new CustomOptionPane("SaveSettingsButton");
+				cop.setText(dialogTitleConfirm, dialogMsgConfirm);
+				cop.setConfig(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+				
+				int menuChoice = cop.showDialog();
 
 				if (menuChoice == JOptionPane.YES_OPTION) {
 					updateSettings();
-					JOptionPane.showMessageDialog(PanelList.mainPanel,
-							"Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect.",
-							"Settings Saved!", JOptionPane.INFORMATION_MESSAGE);
+					
+					cop.setText(dialogTitleSuccess, dialogMsgSuccess);
+					cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+					cop.showDialog();
 				} else {
 					return;
 				}
@@ -63,11 +72,11 @@ public class SaveSettingsButton extends JButton {
 
 		if (deleteLogEnabledButton.isSelected()) {
 			settings.put("delete_logs", "true");
-			settings.put("number_of_logs", Integer.toString((Integer) logCountInput.getValue()));
 		} else {
 			settings.put("delete_logs", "false");
 		}
 
+		settings.put("number_of_logs", Integer.toString((Integer) logCountInput.getValue()));
 		settings.put("number_of_backups", Integer.toString((Integer) backupCountInput.getValue()));
 
 		settings.put("width", Integer.toString((Integer) widthInput.getValue()));

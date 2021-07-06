@@ -36,9 +36,9 @@ public class RevertBackupButton extends JButton {
 			public void actionPerformed(ActionEvent event) {
 				String backup = UnusualsList.backupBox.getSelectedItem().toString();
 				
-				CustomOptionPane cop = new CustomOptionPane();
+				CustomOptionPane cop = new CustomOptionPane("RevertBackupButton");
 				cop.setText(dialogTitle, dialogMsg);
-				cop.setOptions(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+				cop.setConfig(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
 				
 				int menuChoice = cop.showDialog();
 

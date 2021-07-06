@@ -15,9 +15,9 @@ public class CrashExceptionHandler implements Thread.UncaughtExceptionHandler {
 		logger.error("AN UNEXPECTED ERROR OCCURED!", e);
 		String msgErrorTitle = LanguageManager.language.get("jop_ceh_title");
 		
-		CustomOptionPane cop = new CustomOptionPane();
+		CustomOptionPane cop = new CustomOptionPane("CrashExceptionHandler");
 		cop.setText(msgErrorTitle, e.getMessage());
-		cop.setOptions(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+		cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
 		cop.showDialog();
 	}
 

@@ -6,34 +6,42 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import timesheets.gui.lists.PanelList;
+import timesheets.logging.Logger;
 
 public class CustomOptionPane extends JOptionPane {
 
 	private static final long serialVersionUID = -7341742724337883119L;
-	private String title;
+	private static final Logger logger = new Logger(CustomOptionPane.class);
 	
-	public CustomOptionPane() {
+	private String id;
+	private String title;
+	private String okeOption;
+	
+	public CustomOptionPane(String id) {
+		this.id = id;
 		setBackground(Color.WHITE);
 	}
 	
-//	public CustomOptionPane(String title, String msg, int msgType, int optionType) {
-//		this.title = title;
-//		setMessage(msg);
-//		setMessageType(msgType);
-//		setOptionType(optionType);
-//		setBackground(Color.WHITE);
-//	}
-	
 	public int showDialog() {
+		logger.info(id + ": Showing Dialog.");
+		
 		JDialog dialog = createDialog(PanelList.mainPanel, title);
 		dialog.pack();
 		dialog.setVisible(true);
 		
-		if(this.getValue() == null) {
+		Object obj = this.getValue();
+		
+		if(obj == null) {	// If user closes dialog
 			return JOptionPane.CANCEL_OPTION;
+		} else if(obj.getClass() == String.class) {
+			if(((String) obj) == okeOption){
+				return JOptionPane.YES_OPTION;
+			}
+			
+			return JOptionPane.NO_OPTION;
 		}
 		
-		int value = ((Integer) this.getValue()).intValue();
+		int value = ((Integer) obj).intValue();
 		return value;
 	}
 	
@@ -42,9 +50,15 @@ public class CustomOptionPane extends JOptionPane {
 		setMessage(msg);
 	}
 	
-	public void setOptions(int msgType, int optionType) {
+	public void setConfig(int msgType, int optionType) {
 		setMessageType(msgType);
 		setOptionType(optionType);
+	}
+	
+	public void setButtons(Object[] options) {
+		setOptions(options);
+		this.okeOption = (String) options[0];
+		setInitialValue(options[0]);
 	}
 
 }

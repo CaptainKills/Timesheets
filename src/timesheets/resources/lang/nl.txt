@@ -89,9 +89,52 @@ jop_lb_msg="Vul een geldig ID in alstublieft."
 jop_rbb_title="Weet u het zeker?"
 jop_rbb_msg="Weet u zeker dat u deze backup wilt terugzetten?"
 
+## Dialog Pane: PrintReportButton (Incomplete Input)
+jop_prb_title_fail="Geen Optie Geselecteerd!"
+jop_prb_msg_fail="Selecteer het type uitdraai voordat u een rapport maakt alstublieft!"
+## Dialog Pane: PrintReportButton (Success)
+jop_prb_title_success="Rapport Gegenereerd!"
+jop_prb_msg_success="Het rapport is succesvol gegenereerd."
+jop_prb_option_oke="Oke"
+jop_prb_option_open="Open Rapport"
 
+## Dialog Pane: Update (Success)
+jop_update_title_success="Nieuwe Update Beschikbaar!"
+jop_update_msg_success="Een nieuwe versie van de software is beschikbaar."
+jop_update_option_ok="Oke"
+jop_update_option_open="Download Update"
+## Dialog Pane: Update (Fail)
+jop_update_title_fail="Geen Nieuwe Updates Gevonden."
+jop_update_msg_fail="Er zijn geen nieuwe updates. The nieuwste versie is al geïnstalleerd."
 
+## Dialog Pane: SaveSettingsButton (Confirm)
+jop_ssb_title_confirm="Weet u het zeker?"
+jop_ssb_msg_confirm="Weet u zeker dat u deze instellingen wilt opslaan?"
+## Dialog Pane: SaveSettingsButton (Success)
+jop_ssb_title_success="Instellingen Opgeslagen!"
+jop_ssb_msg_success="Instellingen zijn succesvol opgeslagen. Herstart de applicatie om van de nieuwe instellingen gebruik te maken."
 
+## Dialog Pane: Database (Success)
+jop_db_title_success="Backup Succesvol Teruggezet!"
+jop_db_msg_success="De backup is succesvol teruggezet!"
+## Dailog Pane: Database (Fail)
+jop_db_title_fail="Fout Backup Terugzetten!"
+jop_db_msg_fail="Kan de backup niet terugzetten!"
 
-
-
+## Dialog Pane: SubmitButton (Add)
+jop_sb_title_add_success="Succesvol Toegevoegd!"
+jop_sb_msg_add_success="De werknemer is succesvol toegevoegd."
+jop_sb_title_add_fail="Leeg Veld!"
+jop_sb_msg_add_fail="Vul alle velden in alstublieft."
+## Dialog Pane: SubmitButton (Remove)
+jop_sb_title_remove_success="Succesvol Verwijderd!"
+jop_sb_msg_remove_success="De werknemer is succesvol verwijderd."
+jop_sb_title_remove_confirm="Weet u het zeker?"
+jop_sb_msg_remove_confirm="Weet u zeker dat is deze werknemer wilt verwijderen?"
+## Dialog Pane: SubmitButton (Edit)
+jop_sb_title_edit_success="Succesvol Gewijzigd!"
+jop_sb_msg_edit_success="De werknemer is succesvol gewijzigd."
+jop_sb_title_edit_confirm="Weet u het zeker?"
+jop_sb_msg_edit_confirm="Weet u zeker dat u deze werkenemer wilt bewerken?"
+jop_sb_title_edit_fail="Leeg Veld!"
+jop_sb_msg_edit_fail="Vul alle velden in alstublieft."

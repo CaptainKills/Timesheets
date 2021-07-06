@@ -77,9 +77,9 @@ public class LoginButton extends JButton {
 				} else {
 					logger.warn("Someone entered a non-existent ID.");
 					
-					CustomOptionPane cop = new CustomOptionPane();
+					CustomOptionPane cop = new CustomOptionPane("Login Wrong ID");
 					cop.setText(dialogTitle, dialogMsg);
-					cop.setOptions(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+					cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
 					cop.showDialog();
 				}
 			}

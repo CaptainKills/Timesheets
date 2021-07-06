@@ -20,6 +20,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
@@ -41,6 +42,23 @@ public class SubmitButton extends JButton {
 	
 	private static Map<String, String> lang = LanguageManager.language;
 	private static String buttonText = lang.get("submit_button");
+	
+	private static String dialogTitleAddSuccess = lang.get("jop_sb_title_add_success");
+	private static String dialogMsgAddSuccess = lang.get("jop_sb_msg_add_success");
+	private static String dialogTitleAddFail = lang.get("jop_sb_title_add_fail");
+	private static String dialogMsgAddFail = lang.get("jop_sb_msg_add_fail");
+	
+	private static String dialogTitleRemoveSuccess = lang.get("jop_sb_title_remove_success");
+	private static String dialogMsgRemoveSuccess = lang.get("jop_sb_msg_remove_success");
+	private static String dialogTitleRemoveConfirm = lang.get("jop_sb_title_remove_confirm");
+	private static String dialogMsgRemoveConfirm = lang.get("jop_sb_msg_remove_confirm");
+	
+	private static String dialogTitleEditSuccess = lang.get("jop_sb_title_edit_success");
+	private static String dialogMsgEditSuccess = lang.get("jop_sb_msg_edit_success");
+	private static String dialogTitleEditConfirm = lang.get("jop_sb_title_edit_confirm");
+	private static String dialogMsgEditConfirm = lang.get("jop_sb_msg_edit_confirm");
+	private static String dialogTitleEditFail = lang.get("jop_sb_title_edit_fail");
+	private static String dialogMsgEditFail = lang.get("jop_sb_msg_edit_fail");
 
 	public SubmitButton() {
 		super(buttonText);
@@ -65,8 +83,11 @@ public class SubmitButton extends JButton {
 
 	private void addEmployee() {
 		if (idField.getText().equals("") || nameField.getText().equals("")) {
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
-					"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
+			CustomOptionPane cop = new CustomOptionPane("SubmitButton (Add, Fail)");
+			cop.setText(dialogTitleAddFail, dialogMsgAddFail);
+			cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+			cop.showDialog();
+			
 			return;
 		}
 		
@@ -85,17 +106,22 @@ public class SubmitButton extends JButton {
 		EmployeeList.put(transferEmployee.getID(), transferEmployee);
 		database.insertEmployee(transferEmployee);
 		logger.info("New Employee has been added: " + transferEmployee.getID_String());
-
-		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been created!",
-				"Successful Creation!", JOptionPane.INFORMATION_MESSAGE);
+		
+		CustomOptionPane cop = new CustomOptionPane("SubmitButton (Add, Success)");
+		cop.setText(dialogTitleAddSuccess, dialogMsgAddSuccess);
+		cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+		cop.showDialog();
 
 		PanelList.editPanel.clearInputs();
 	}
 
 	private void removeEmployee() {
+		CustomOptionPane cop = new CustomOptionPane("SubmitButton (Remove, Confirm)");
+		cop.setText(dialogTitleRemoveConfirm, dialogMsgRemoveConfirm);
+		cop.setConfig(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+		
 
-		menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
-				"Are you sure you want to remove this employee?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
+		menuChoice = cop.showDialog();
 		if (UnusualsList.empBox.getSelectedItem() == null || menuChoice != JOptionPane.YES_OPTION) {
 			return;
 		}
@@ -112,20 +138,28 @@ public class SubmitButton extends JButton {
 		database.deleteEmployee(transferEmployee.getID());
 		logger.info("Employee " + transferEmployee.getID_String() + " has been removed");
 
-		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been removed!",
-				"Successfull Removal!", JOptionPane.INFORMATION_MESSAGE);
+		
+		cop = new CustomOptionPane("SubmitButton (Remove, Success)");
+		cop.setText(dialogTitleRemoveSuccess, dialogMsgRemoveSuccess);
+		cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+		cop.showDialog();
 	}
 
 	private void saveEmployee() {
-
 		if (idField.getText().equals("") || nameField.getText().equals("")) {
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Please fill in all fields before submitting!",
-					"Empty Field!", JOptionPane.INFORMATION_MESSAGE);
+			CustomOptionPane cop = new CustomOptionPane("SubmitButton (Edit, Fail)");
+			cop.setText(dialogTitleEditFail, dialogMsgEditFail);
+			cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+			cop.showDialog();
+			
 			return;
 		}
 		
-		menuChoice = JOptionPane.showConfirmDialog(PanelList.mainPanel,
-				"Are you sure you want to save this employee?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
+		CustomOptionPane cop = new CustomOptionPane("SubmitButton (Edit, Confirm)");
+		cop.setText(dialogTitleEditConfirm, dialogMsgEditConfirm);
+		cop.setConfig(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		menuChoice = cop.showDialog();
 		if (empBox.getSelectedItem() == null || menuChoice != JOptionPane.YES_OPTION) {
 			return;
 		}
@@ -157,8 +191,11 @@ public class SubmitButton extends JButton {
 		database.updateEmployee(oldID, transferEmployee);
 		logger.info("Employee " + transferEmployee.getID_String() + "'s data has been changed and saved.");
 
-		JOptionPane.showMessageDialog(PanelList.mainPanel, "Employee has succesfully been saved!",
-				"Successful Edit!", JOptionPane.INFORMATION_MESSAGE);
+		
+		cop = new CustomOptionPane("SubmitButton (Edit, Success)");
+		cop.setText(dialogTitleEditSuccess, dialogMsgEditSuccess);
+		cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+		cop.showDialog();
 
 		PanelList.editPanel.clearInputs();
 	}

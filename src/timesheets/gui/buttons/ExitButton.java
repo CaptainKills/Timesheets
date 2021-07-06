@@ -40,9 +40,9 @@ public class ExitButton extends JButton {
 	}
 
 	public void exitApplication() {
-		CustomOptionPane cop = new CustomOptionPane();
+		CustomOptionPane cop = new CustomOptionPane("Exit Application");
 		cop.setText(dialogTitle, dialogMsg);
-		cop.setOptions(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+		cop.setConfig(JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
 		
 		int decision = cop.showDialog();
 		

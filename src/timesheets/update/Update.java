@@ -1,28 +1,39 @@
 package timesheets.update;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import timesheets.gui.lists.DisplayList;
-import timesheets.gui.lists.PanelList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 
 public class Update {
 
 	private static final Logger logger = new Logger(Update.class);
 	private static Version currentVersion = new Version("2.0.0");
 	
-	private final static String url = "https://api.github.com/repos/CaptainKills/Timesheets/releases";
+	private final static String API_URL = "https://api.github.com/repos/CaptainKills/Timesheets/releases";
+	private final static String DOWNLOAD_URL = "https://github.com/CaptainKills/Timesheets/releases";
 	private static HttpURLConnection conn;
+	
+	private static Map<String, String> lang = LanguageManager.language;
+	private static String dialogTitleSuccess = lang.get("jop_update_title_success");
+	private static String dialogMsgSuccess = lang.get("jop_update_msg_success");
+	private static String dialogTitleFail = lang.get("jop_update_title_fail");
+	private static String dialogMsgFail = lang.get("jop_update_msg_fail");
+	private static Object[] buttonOptions = {lang.get("jop_update_option_ok"), lang.get("jop_update_option_open")};
 
 	public static void checkForUpdates(boolean displayOnFail) {
 		logger.info("Checking for program updates...");
@@ -30,14 +41,28 @@ public class Update {
 		
 		if(latestVersion.isNewerThan(currentVersion)) {
 			logger.info("New version available! Current=" + currentVersion + ", Latest=" + latestVersion);
-			JOptionPane.showMessageDialog(PanelList.mainPanel, DisplayList.updateMessagePane,
-					latestVersion + " Available!", JOptionPane.PLAIN_MESSAGE);
+			
+			CustomOptionPane cop = new CustomOptionPane("Update Success");
+			cop.setText(dialogTitleSuccess, dialogMsgSuccess);
+			cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
+			cop.setButtons(buttonOptions);
+			
+			int status = cop.showDialog();
+			if(status == JOptionPane.NO_OPTION) {
+				try {
+					logger.info("Opening URL with desktop.");
+					Desktop.getDesktop().browse(URI.create(DOWNLOAD_URL));
+				} catch(IOException e) {
+					logger.error("COULD NOT OPEN URL WITH DESKTOP!", e);
+				}
+			}
 		} else {
 			logger.info("No new version available.");
 			if(displayOnFail) {
-				JOptionPane.showMessageDialog(PanelList.mainPanel,
-						"There are no new updates. The latest version is currently installed.",
-						"No Update Available.", JOptionPane.PLAIN_MESSAGE);
+				CustomOptionPane cop = new CustomOptionPane("Update Fail");
+				cop.setText(dialogTitleFail, dialogMsgFail);
+				cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+				cop.showDialog();
 			}
 		}
 		
@@ -51,7 +76,7 @@ public class Update {
 
 		try {
 			logger.info("API Opening Connection...");
-			URL apiURL = new URL(url);
+			URL apiURL = new URL(API_URL);
 			conn = (HttpURLConnection) apiURL.openConnection();
 
 			conn.setRequestMethod("GET");
@@ -95,18 +120,6 @@ public class Update {
 		String tag = latest_release.getString("tag_name");
 
 		return new Version(tag);
-	}
-
-	public static String getUpdateText() {
-		StringBuilder builder = new StringBuilder();
-
-		builder.append("<html><body style=\"font-family:Arial;font-size:18; text-align:center\">");
-		builder.append("A new update is available!<br>");
-		builder.append("You can download the new release via:<br>");
-		builder.append("<a href=\"https:/github.com/CaptainKills/Timesheets/releases/\">www.github.com</a>");
-		builder.append("</body></html>");
-
-		return builder.toString();
 	}
 
 	public static Version getCurrentVersion() {

@@ -23,8 +23,9 @@ import javax.swing.JOptionPane;
 import timesheets.Employee;
 import timesheets.Settings;
 import timesheets.TimeHandler;
-import timesheets.gui.lists.PanelList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
+import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
 public class Database {
@@ -38,6 +39,12 @@ public class Database {
 	private static String[] directory_files = directory.list();
 
 	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
+	private static Map<String, String> lang = LanguageManager.language;
+	
+	private static String dialogTitleSuccess = lang.get("jop_db_title_success");
+	private static String dialogMsgSuccess = lang.get("jop_db_msg_success");
+	private static String dialogTitleFail = lang.get("jop_db_title_fail");
+	private static String dialogMsgFail = lang.get("jop_db_msg_fail");
 
 	// @formatter:off
 		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
@@ -193,13 +200,18 @@ public class Database {
 
 			Files.copy(backup_path, encrypted_file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			logger.info("Backup of SQLite Database Reverted.");
-
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Backup has succesfully been reverted!",
-					"Successfull Reversion!", JOptionPane.INFORMATION_MESSAGE);
+			
+			CustomOptionPane cop = new CustomOptionPane("DB Backup Success");
+			cop.setText(dialogTitleSuccess, dialogMsgSuccess);
+			cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+			cop.showDialog();
 		} catch (IOException e) {
 			logger.error("COULD NOT REVERT BACKUP!", e);
-			JOptionPane.showMessageDialog(PanelList.mainPanel, "Unable to revert Backup!", "Unsuccesfull Reversion!",
-					JOptionPane.ERROR_MESSAGE);
+			
+			CustomOptionPane cop = new CustomOptionPane("DB Backup Fail");
+			cop.setText(dialogTitleFail, dialogMsgFail);
+			cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+			cop.showDialog();
 		}
 	}
 

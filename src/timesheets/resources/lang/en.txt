@@ -89,9 +89,52 @@ jop_lb_msg="Please enter a correct ID."
 jop_rbb_title="Are you sure?"
 jop_rbb_msg="Are you sure you want to revert this backup?"
 
+## Dialog Pane: PrintReportButton (Incomplete Input)
+jop_prb_title_fail="No Setting Selected!"
+jop_prb_msg_fail="Please select the type of output before creating a report!"
+## Dialog Pane: PrintReportButton (Success)
+jop_prb_title_success="Created Report!"
+jop_prb_msg_success="Report has been successfully created!"
+jop_prb_option_oke="Ok"
+jop_prb_option_open="Open Report"
 
+## Dialog Pane: Update (Success)
+jop_update_title_success="New Version Available!"
+jop_update_msg_success="A new version of this software is available."
+jop_update_option_ok="Ok"
+jop_update_option_open="Download Update"
+## Dialog Pane: Update (Fail)
+jop_update_title_fail="No Update Available."
+jop_update_msg_fail="There are no new updates. The latest version is currently installed."
 
+## Dialog Pane: SaveSettingsButton (Confirm)
+jop_ssb_title_confirm="Are you sure?"
+jop_ssb_msg_confirm="Are you sure you want to save these settings?"
+## Dialog Pane: SaveSettingsButton (Success)
+jop_ssb_title_success="Settings Saved!"
+jop_ssb_msg_success="Settings have succesfully been saved!\nPlease restart the application for the new settings to take effect."
 
+## Dialog Pane: Database (Success)
+jop_db_title_success="Successfull Reversion!"
+jop_db_msg_success="Backup has succesfully been reverted!"
+## Dailog Pane: Database (Fail)
+jop_db_title_fail="Unsuccesfull Reversion!"
+jop_db_msg_fail="Unable to revert Backup!"
 
-
-
+## Dialog Pane: SubmitButton (Add)
+jop_sb_title_add_success="Successful Creation!"
+jop_sb_msg_add_success="Employee has succesfully been created."
+jop_sb_title_add_fail="Empty Field!"
+jop_sb_msg_add_fail="Please fill in all fields before submitting."
+## Dialog Pane: SubmitButton (Remove)
+jop_sb_title_remove_success="Successfull Removal!"
+jop_sb_msg_remove_success="Employee has succesfully been removed."
+jop_sb_title_remove_confirm="Are you sure?"
+jop_sb_msg_remove_confirm="Are you sure you want to remove this employee?"
+## Dialog Pane: SubmitButton (Edit)
+jop_sb_title_edit_success="Successful Edit!"
+jop_sb_msg_edit_success="Employee has succesfully been edited and saved."
+jop_sb_title_edit_confirm="Are you sure?"
+jop_sb_msg_edit_confirm="Are you sure you want to save this employee?"
+jop_sb_title_edit_fail="Empty Field!"
+jop_sb_msg_edit_fail="Please fill in all fields before submitting."

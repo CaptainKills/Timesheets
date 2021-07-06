@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -15,13 +16,13 @@ import javax.swing.JOptionPane;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
+import timesheets.gui.optionpanes.CustomOptionPane;
 import timesheets.logging.Logger;
-import timesheets.report.ReportFormatter;
-import timesheets.report.ReportFormatter.OutputType;
-import timesheets.report.ReportManager;
-import timesheets.report.Reporter;
+import timesheets.report.html.ReportFormatter;
+import timesheets.report.html.ReportFormatter.OutputType;
+import timesheets.report.html.ReportManager;
+import timesheets.report.html.Reporter;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
@@ -30,15 +31,20 @@ public class PrintReportButton extends JButton {
 	private static final long serialVersionUID = 2083380215334310336L;
 	private static final Logger logger = new Logger(PrintReportButton.class);
 	
-	private static String buttonText = LanguageManager.language.get("print_report_button");
+	private static Map<String, String> lang = LanguageManager.language;
+	private static String buttonText = lang.get("print_report_button");
+	
+	private String dialogTitleFail = lang.get("jop_prb_title_fail");
+	private String dialogMsgFail = lang.get("jop_prb_msg_fail");
+	private String dialogTitleSuccess = lang.get("jop_prb_title_success");
+	private String dialogMsgSuccess = lang.get("jop_prb_msg_success");
+	private Object[] buttonOptions = {lang.get("jop_prb_option_oke"), lang.get("jop_prb_option_open")};
 
 	public PrintReportButton() {
 		super(buttonText);
 		setPreferredSize(DimensionList.dateDisplaySize_large);
 		setFont(FontList.textDisplayFont);
 		setEnabled(true);
-		
-		Object[] options = {"Ok", "Open Report"};
 
 		addActionListener(new ActionListener() {
 			@Override
@@ -62,14 +68,22 @@ public class PrintReportButton extends JButton {
 					LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
 					report_text = ReportFormatter.build(beginDate, endDate);
 				} else {
-					JOptionPane.showMessageDialog(PanelList.mainPanel, "Please select the type of output before creating a report!",
-							"No Setting Selected!", JOptionPane.INFORMATION_MESSAGE);
+					CustomOptionPane cop = new CustomOptionPane("HTML Report Fail");
+					cop.setText(dialogTitleFail, dialogMsgFail);
+					cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
+					cop.showDialog();
+					
 					return;
 				}
 				
 				Reporter.createReport(report_text, type);
 				
-				int status = JOptionPane.showOptionDialog(PanelList.mainPanel, "Report has been successfully created!", "Success Report!", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+				CustomOptionPane cop = new CustomOptionPane("HTML Report Success");
+				cop.setText(dialogTitleSuccess, dialogMsgSuccess);
+				cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
+				cop.setButtons(buttonOptions);
+				
+				int status = cop.showDialog();
 				if(status == JOptionPane.NO_OPTION) {
 					logger.info("Opening report with desktop.");
 					
