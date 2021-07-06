@@ -6,21 +6,36 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import timesheets.Settings;
 import timesheets.logging.Logger;
 
 public class LanguageManager {
 	
 	private static final Logger logger = new Logger(LanguageManager.class);
-	private static InputStreamReader lang_isr = new InputStreamReader(ResourceHandler.lang_en);
-	private static BufferedReader lang_reader = new BufferedReader(lang_isr);
-	
 	public static Map<String, String> language = new LinkedHashMap<String, String>();
 	
 	public static void initialise() {	
 		logger.info("Loading Language File.");
 		
+		InputStreamReader lang_isr;
+		String selectedLanguage = Settings.settings.get("language");
+		
+		switch(selectedLanguage) {
+		case "en":
+			lang_isr = new InputStreamReader(ResourceHandler.lang_en);
+			break;
+		case "nl":
+			lang_isr = new InputStreamReader(ResourceHandler.lang_nl);
+			break;
+		default:
+			logger.warn("Inidentified Language Setting. Default Language Selected.");
+			lang_isr = new InputStreamReader(ResourceHandler.lang_en);
+			break;				
+		}
+		
 		try {
 			String line;
+			BufferedReader lang_reader = new BufferedReader(lang_isr);
 			
 			while ((line = lang_reader.readLine()) != null) {
 				if(!line.startsWith("#") && !line.isEmpty()) {
@@ -31,7 +46,15 @@ public class LanguageManager {
 					}
 					
 					String object = segments[0];
-					String value = segments[1].replaceAll("\"", "");
+					String value = segments[1]; //.replaceAll("\"", "");
+					
+					if(value.startsWith("\"")) {
+						value = value.substring(1);
+					}
+					
+					if(value.endsWith("\"")) {
+						value = value.substring(0, value.length()-1);
+					}
 
 					language.put(object, value);
 				}

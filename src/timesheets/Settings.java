@@ -25,7 +25,7 @@ public class Settings {
 			+ "delete_logs=false\n"
 			+ "number_of_logs=20\n"
 			+ "number_of_backups=5\n" 
-			+ "" 
+			+ "language=en" 
 			+ ""
 			+ "";
 	// @formatter:on
