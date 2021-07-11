@@ -1,4 +1,4 @@
-package timesheets.gui.optionpanes;
+package timesheets.gui.other;
 
 import java.awt.Color;
 

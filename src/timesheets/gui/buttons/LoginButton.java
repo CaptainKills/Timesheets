@@ -13,7 +13,7 @@ import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.DisplayList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
-import timesheets.gui.optionpanes.CustomOptionPane;
+import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;

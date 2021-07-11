@@ -20,7 +20,7 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.lists.UnusualsList;
-import timesheets.gui.optionpanes.CustomOptionPane;
+import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;

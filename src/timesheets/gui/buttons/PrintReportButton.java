@@ -17,7 +17,7 @@ import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
-import timesheets.gui.optionpanes.CustomOptionPane;
+import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.report.html.ReportFormatter;
 import timesheets.report.html.ReportFormatter.OutputType;

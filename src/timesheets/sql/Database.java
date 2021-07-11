@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import timesheets.Employee;
 import timesheets.Settings;
 import timesheets.TimeHandler;
-import timesheets.gui.optionpanes.CustomOptionPane;
+import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;

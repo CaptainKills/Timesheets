@@ -9,6 +9,7 @@ public class DimensionList {
 	private static int frameHeight = Integer.parseInt(Settings.settings.get("height"));
 
 	public static Dimension defaultPanelSize = new Dimension(frameWidth / 2, frameHeight);
+	public static Dimension menuPanelSize = new Dimension(frameWidth / 3, frameHeight);
 
 	public static Dimension buttonSize_numbers = new Dimension(150, 50);
 	public static Dimension buttonSize_menu = new Dimension(228, 50);

@@ -2,7 +2,7 @@ package timesheets.exceptions;
 
 import javax.swing.JOptionPane;
 
-import timesheets.gui.optionpanes.CustomOptionPane;
+import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 

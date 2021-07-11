@@ -7,12 +7,14 @@ import javax.swing.Timer;
 
 import timesheets.gui.combobox.BackupBox;
 import timesheets.gui.combobox.EmployeeBox;
+import timesheets.gui.other.MenuScrollPane;
 import timesheets.sql.Database;
 
 public class UnusualsList {
 
 	public static EmployeeBox<String> empBox = new EmployeeBox<String>();
 	public static BackupBox<String> backupBox = new BackupBox<String>();
+	public static MenuScrollPane menuScrollPane = new MenuScrollPane();
 
 
 	public static Timer updateTimer = new Timer(500, new ActionListener() {
