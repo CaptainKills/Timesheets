@@ -21,13 +21,12 @@ public class ReportButton extends JButton {
 		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
-		setVisible(false);
 
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
-				ExtendedHandler.displayAdminPanels(false, false, true, false);
+				ExtendedHandler.displayPanels(false, false, true, false, true, false);
 			}
 		});
 

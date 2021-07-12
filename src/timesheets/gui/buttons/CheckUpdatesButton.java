@@ -21,7 +21,6 @@ public class CheckUpdatesButton extends JButton {
 		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
-		setVisible(false);
 
 		addActionListener(new ActionListener() {
 			@Override

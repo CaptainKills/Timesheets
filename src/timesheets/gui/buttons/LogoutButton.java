@@ -37,10 +37,8 @@ public class LogoutButton extends JButton {
 
 				ButtonList.loginButton.setEnabled(true);
 
-				ExtendedHandler.displayTimeButtons(true);
-				ExtendedHandler.displayAdminButtons(false);
 				ExtendedHandler.enableShiftButtons(false, false, false, false);
-				ExtendedHandler.displayAdminPanels(true, false, false, false);
+				ExtendedHandler.displayPanels(true, true, false, false, false, false);
 
 				setEnabled(false);
 				logger.info("Employee has logged out.");

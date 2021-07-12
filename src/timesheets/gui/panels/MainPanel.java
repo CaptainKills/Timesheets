@@ -19,9 +19,10 @@ public class MainPanel extends JPanel {
 	}
 
 	public void setupPanel() {
-		// add(PanelList.testPanel);
+		//add(PanelList.testPanel);
 		add(PanelList.numpadPanel);
 		add(PanelList.menuPanel);
+		add(PanelList.adminPanel);
 		add(PanelList.editPanel);
 		add(PanelList.timesheetPanel);
 		add(PanelList.settingsPanel);

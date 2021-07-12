@@ -50,6 +50,7 @@ public class ButtonList {
 	public static JButton settingsButton = new SettingsButton();
 	public static JButton updateButton = new CheckUpdatesButton();
 	public static ExitButton exitButton = new ExitButton();
+	public static JButton returnToNumpadButton = new ReturnToNumpadButton();
 
 	public static JRadioButton dateTodayButton = new DateTodayButton();
 	public static JRadioButton dateWeekButton = new DateWeekButton();

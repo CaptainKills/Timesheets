@@ -25,13 +25,12 @@ public class AddEmployeeButton extends JButton {
 		super(buttonText);
 		setPreferredSize(DimensionList.buttonSize_menu);
 		setFont(FontList.buttonFont);
-		setVisible(false);
 
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
-				ExtendedHandler.displayAdminPanels(false, true, false, false);
+				ExtendedHandler.displayPanels(false, false, true, true, false, false);
 
 				ButtonList.submitButton.setText(submitButtonText);
 				PanelList.editPanel.setupEditPanel(true, false);

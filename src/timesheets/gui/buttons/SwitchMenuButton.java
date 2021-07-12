@@ -24,19 +24,7 @@ public class SwitchMenuButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
-				if (getText().equals(">>")) {
-					ExtendedHandler.displayAdminPanels(false, true, false, false);
-					ExtendedHandler.displayTimeButtons(false);
-					ExtendedHandler.displayAdminButtons(true);
-
-					setText("<<");
-				} else if (getText().equals("<<")) {
-					ExtendedHandler.displayAdminPanels(true, false, false, false);
-					ExtendedHandler.displayTimeButtons(true);
-					ExtendedHandler.displayAdminButtons(false);
-
-					setText(">>");
-				}
+				ExtendedHandler.displayPanels(false, false, true, true, false, false);
 			}
 		});
 
