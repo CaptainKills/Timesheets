@@ -66,20 +66,27 @@ public class Database {
 	// @formatter:on
 
 	public void setupDatabase() {
-		String query_checkAdmin = "SELECT id FROM employees WHERE id=12345;";
-		String query_addAdmin = "INSERT INTO employees(id,name,age,salary,admin) VALUES(12345,\"Administrator\",20,0.0,true);";
+		String query_check_emp_table = "SELECT COUNT(*) FROM employees;";
+		String query_check_time_table = "SELECT COUNT(*) FROM timedata;";
+		
+		String query_add_admin = "INSERT INTO employees(id, name, age, salary, admin) VALUES(12345, \"Administrator\", 20, 0.0, true);";
 
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
-			stmt.execute(timedata_table);
-			logger.debug("Checked SQLite Database file for missing Tables.");
-
-			ResultSet rs = stmt.executeQuery(query_checkAdmin);
-			if (rs.next() == false) { // If there is no initial entry of administrator, add it.
-				stmt.executeUpdate(query_addAdmin);
-				logger.debug("Tables were new: Created Administrator account.");
+			ResultSet rs = stmt.executeQuery(query_check_emp_table);
+			int number_of_entries = rs.getInt(1);
+			logger.debug("SQL Table \"employees\" has " + number_of_entries + " entries.");
+			
+			if(number_of_entries == 0) {
+				logger.debug("No entries. Adding Administrator.");
+				stmt.execute(query_add_admin);
 			}
-
+			
+			stmt.execute(timedata_table);
+			rs = stmt.executeQuery(query_check_time_table);
+			number_of_entries = rs.getInt(1);
+			logger.debug("SQL Table \"timedata\" has " + number_of_entries + " entries.");
+			
 			rs.close();
 		} catch (SQLException e) {
 			logger.error("COULD NOT SET UP SQLite DATABASE!", e);
