@@ -2,7 +2,7 @@ package timesheets.report.html;
 
 import java.time.LocalDate;
 
-import timesheets.report.html.ReportFormatter.OutputType;
+import timesheets.report.html.HTMLFormatter.OutputType;
 
 public class Reporter {
 	

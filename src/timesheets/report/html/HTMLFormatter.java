@@ -10,9 +10,9 @@ import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
-public class ReportFormatter {
+public class HTMLFormatter {
 
-	private static final Logger logger = new Logger(ReportFormatter.class);
+	private static final Logger logger = new Logger(HTMLFormatter.class);
 	private static TimeHandler time = new TimeHandler();
 	private static Map<String, String> lang = LanguageManager.language;
 

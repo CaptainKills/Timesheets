@@ -50,7 +50,7 @@ public class Update {
 			int status = cop.showDialog();
 			if(status == JOptionPane.NO_OPTION) {
 				try {
-					logger.info("Opening URL with desktop.");
+					logger.debug("Opening URL with desktop.");
 					Desktop.getDesktop().browse(URI.create(DOWNLOAD_URL));
 				} catch(IOException e) {
 					logger.error("COULD NOT OPEN URL WITH DESKTOP!", e);
@@ -58,6 +58,7 @@ public class Update {
 			}
 		} else {
 			logger.info("No new version available.");
+			
 			if(displayOnFail) {
 				CustomOptionPane cop = new CustomOptionPane("Update Fail");
 				cop.setText(dialogTitleFail, dialogMsgFail);
@@ -75,7 +76,7 @@ public class Update {
 		Version latestVersion = currentVersion;
 
 		try {
-			logger.info("API Opening Connection...");
+			logger.debug("API Opening Connection...");
 			URL apiURL = new URL(API_URL);
 			conn = (HttpURLConnection) apiURL.openConnection();
 
@@ -84,7 +85,7 @@ public class Update {
 			conn.setReadTimeout(5000);
 
 			int status = conn.getResponseCode();
-			logger.info("API Connection Status: " + status);
+			logger.debug("API Connection Status: " + status);
 
 			if (status > 299) {
 				reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));

@@ -1,7 +1,9 @@
 package timesheets;
 
-import java.util.*;
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Employee {
 	private int ID;
@@ -17,8 +19,7 @@ public class Employee {
 	private LocalTime BreakStarted = null;
 	private LocalTime BreakEnded = null;
 
-	public Employee(int id, String name, int age, double salary, boolean admin,
-			TreeMap<LocalDate, LocalTime[]> timeMap) {
+	public Employee(int id, String name, int age, double salary, boolean admin, TreeMap<LocalDate, LocalTime[]> timeMap) {
 		this.ID = id;
 		this.Name = name;
 		this.Age = age;

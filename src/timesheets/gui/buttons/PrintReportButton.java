@@ -19,8 +19,8 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
-import timesheets.report.html.ReportFormatter;
-import timesheets.report.html.ReportFormatter.OutputType;
+import timesheets.report.html.HTMLFormatter;
+import timesheets.report.html.HTMLFormatter.OutputType;
 import timesheets.report.html.ReportManager;
 import timesheets.report.html.Reporter;
 import timesheets.resources.LanguageManager;
@@ -55,18 +55,18 @@ public class PrintReportButton extends JButton {
 				
 				if(ButtonList.dateTodayButton.isSelected()) {
 					type = OutputType.TODAY;
-					report_text = ReportFormatter.build(OutputType.TODAY);
+					report_text = HTMLFormatter.build(OutputType.TODAY);
 				} else if(ButtonList.dateWeekButton.isSelected()) {
 					type = OutputType.WEEK;
-					report_text = ReportFormatter.build(OutputType.WEEK);
+					report_text = HTMLFormatter.build(OutputType.WEEK);
 				} else if(ButtonList.dateMonthButton.isSelected()) {
 					type = OutputType.MONTH;
-					report_text = ReportFormatter.build(OutputType.MONTH);
+					report_text = HTMLFormatter.build(OutputType.MONTH);
 				} else if(ButtonList.dateSpecificButton.isSelected()) {
 					type = OutputType.SPECIFIC;
 					LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
 					LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
-					report_text = ReportFormatter.build(beginDate, endDate);
+					report_text = HTMLFormatter.build(beginDate, endDate);
 				} else {
 					CustomOptionPane cop = new CustomOptionPane("HTML Report Fail");
 					cop.setText(dialogTitleFail, dialogMsgFail);

@@ -39,7 +39,7 @@ public class Encryption {
 	}
 
 	public static void decrypt(String key, File inputFile, File outputFile) {
-		logger.info("Decrypting file: " + inputFile.getName());
+		logger.debug("Decrypting file: " + inputFile.getName());
 
 		if (inputFile.exists()) {
 			try {
@@ -52,8 +52,7 @@ public class Encryption {
 		}
 	}
 
-	private static void doCrypto(int cipherMode, String key, File inputFile, File outputFile)
-			throws EncryptionException {
+	private static void doCrypto(int cipherMode, String key, File inputFile, File outputFile) throws EncryptionException {
 		try (FileInputStream inputStream = new FileInputStream(inputFile);
 				FileOutputStream outputStream = new FileOutputStream(outputFile);) {
 

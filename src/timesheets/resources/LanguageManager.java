@@ -24,9 +24,11 @@ public class LanguageManager {
 		case "en":
 			lang_isr = new InputStreamReader(ResourceHandler.lang_en);
 			break;
+			
 		case "nl":
 			lang_isr = new InputStreamReader(ResourceHandler.lang_nl);
 			break;
+			
 		default:
 			logger.warn("Inidentified Language Setting. Default Language Selected.");
 			lang_isr = new InputStreamReader(ResourceHandler.lang_en);
@@ -46,7 +48,7 @@ public class LanguageManager {
 					}
 					
 					String object = segments[0];
-					String value = segments[1]; //.replaceAll("\"", "");
+					String value = segments[1];
 					
 					if(value.startsWith("\"")) {
 						value = value.substring(1);

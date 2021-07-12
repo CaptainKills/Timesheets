@@ -82,6 +82,6 @@ public class SaveSettingsButton extends JButton {
 		settings.put("width", Integer.toString((Integer) widthInput.getValue()));
 		settings.put("height", Integer.toString((Integer) heightInput.getValue()));
 
-		Settings.saveSettings();
+		Settings.save();
 	}
 }

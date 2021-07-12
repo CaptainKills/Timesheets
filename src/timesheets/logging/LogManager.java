@@ -18,12 +18,9 @@ import timesheets.exceptions.CrashExceptionHandler;
 import timesheets.resources.ResourceHandler;
 
 public class LogManager {
+	
 	private static final Logger logger = new Logger(LogManager.class);
-
-	private static LocalTime initial_time = LocalTime.now();
-	private static LocalDate initial_date = LocalDate.now();
-
-	private static String activeLog = "Timesheets Log " + initial_date + ".txt";
+	private static String activeLog = "Timesheets Log " + LocalDate.now() + ".txt";
 
 	private static final Path log_directory = ResourceHandler.log_directory_path;
 	private static final Path log_path = Paths.get(log_directory + File.separator + activeLog).toAbsolutePath();
@@ -44,10 +41,10 @@ public class LogManager {
 			e.printStackTrace();
 		}
 
-		writeLog("---Timesheets Log created [" + initial_date + " " + initial_time + "]---\n");
+		writeLog("---Timesheets Log created [" + LocalDate.now() + " " + LocalTime.now() + "]---\n");
 		logger.info("LogManager Initialised.");
+		
 		archiveLogs();
-
 		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
 		logger.info("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
 	}
@@ -67,6 +64,7 @@ public class LogManager {
 
 	private static void archiveLogs() {
 		logger.info("Archiving Log Files.");
+		
 		if (directory_files != null) {
 			for (String log : directory_files) {
 				if (log.contains(".zip") || log.equals(activeLog)) {
@@ -95,6 +93,7 @@ public class LogManager {
 			FileInputStream fis = new FileInputStream(p.toFile());
 			byte[] buffer = new byte[1024];
 			int len;
+			
 			while ((len = fis.read(buffer)) > 0) {
 				zos.write(buffer, 0, len);
 			}
@@ -122,6 +121,7 @@ public class LogManager {
 					File f = new File(log_directory + File.separator + directory_files[i]);
 					f.delete();
 				}
+				
 				logger.info("Log Directory Clean finished.");
 			} else {
 				logger.info("Log deletion is disabled. No logs will be deleted.");

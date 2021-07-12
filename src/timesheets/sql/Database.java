@@ -103,6 +103,7 @@ public class Database {
 
 			logger.info("Establishing connection to SQLite Database...");
 			conn = DriverManager.getConnection(url);
+			
 			if (conn != null) {
 				logger.info("Connection to SQLite Database has been established.");
 			} else {
@@ -133,21 +134,24 @@ public class Database {
 		try (Connection conn = this.connect();
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);) {
-
 			logger.info("Loading Database in program.");
+			
 			while (rs.next()) {
 				int employeeID = rs.getInt("id");
-				// logger.info("Loading Employee " + employeeID);
-
 				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
-				Employee employee = new Employee(employeeID, rs.getString("name"), rs.getInt("age"),
-						rs.getDouble("salary"), rs.getBoolean("admin"), timeMap);
-
+				
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				double salary = rs.getDouble("salary");
+				boolean admin = rs.getBoolean("admin");
+				
+				Employee employee = new Employee(employeeID, name, age, salary, admin, timeMap);
 				EmployeeList.put(employeeID, employee);
 			}
+			
 			logger.info("Loading Database Complete.");
 		} catch (SQLException e) {
-			logger.error("SQL DATABASE ERROR!", e);
+			logger.error("COULD NOT LOAD EMPLOYEES FROM DATABASE!", e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}
@@ -159,17 +163,17 @@ public class Database {
 
 		try (Statement stmt = c.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 			while (rs.next()) {
-				LocalTime[] workedHours = { rs.getTime("start").toLocalTime(), rs.getTime("end").toLocalTime(),
-						rs.getTime("break").toLocalTime(), rs.getTime("total").toLocalTime() };
-
-				// logger.info("Loaded shift: " + workedHours[0] + ", " + workedHours[1] + ", "
-				// + workedHours[2] + ", "
-				// + workedHours[3] + "|" + rs.getDate("date").toLocalDate());
-
-				timemap.put(rs.getDate("date").toLocalDate(), workedHours);
+				LocalDate date = rs.getDate("date").toLocalDate();
+				LocalTime startTime = rs.getTime("start").toLocalTime();
+				LocalTime endTime = rs.getTime("end").toLocalTime();
+				LocalTime breakTime = rs.getTime("break").toLocalTime();
+				LocalTime totalTime = rs.getTime("total").toLocalTime();
+						
+				LocalTime[] workedHours = { startTime, endTime, breakTime, totalTime};
+				timemap.put(date, workedHours);
 			}
 		} catch (SQLException e) {
-			logger.error("COULD NOT EXTRACT TIMEDATA FROM DATABASE!", e);
+			logger.error("COULD NOT LOAD TIMEDATA FROM DATABASE!", e);
 		}
 
 		return timemap;
@@ -177,7 +181,7 @@ public class Database {
 
 	public static void backupDatabase() {
 		try {
-			logger.info("Creating Backup of SQLite Database.");
+			logger.debug("Creating Backup of SQLite Database.");
 			String fileName = "Timesheets Backup " + time.getCurrentDate();
 			String directory = ResourceHandler.data_directory_path.toString();
 			String postfix = ResourceHandler.encrypted_postfix;
@@ -186,12 +190,12 @@ public class Database {
 			File backup = backup_path.toFile();
 
 			if (backup.exists()) {
-				logger.info("Current Backup File will be deleted.");
+				logger.debug("Current Backup File will be deleted.");
 				backup.delete();
 			}
 
 			Files.copy(encrypted_file.toPath(), backup_path, StandardCopyOption.COPY_ATTRIBUTES);
-			logger.info("Backup of SQLite Database Created.");
+			logger.debug("Backup of SQLite Database Created.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE BACKUP!", e);
 		}
@@ -200,7 +204,7 @@ public class Database {
 	public static void revertBackup(String backupName) {
 		try {
 			backupDatabase();
-			logger.info("Reverting Backup of SQLite Database.");
+			logger.debug("Reverting Backup of SQLite Database.");
 			String postfix = ResourceHandler.encrypted_postfix;
 
 			Path backup_path = Paths.get(directory + File.separator + backupName + postfix).toAbsolutePath();
@@ -227,26 +231,26 @@ public class Database {
 		String directory = ResourceHandler.data_directory_path.toString();
 
 		if (directory_files != null) {
-			logger.info("Backup files in Directory: " + (directory_files.length - 2) + ", # of Files allowed: "
-					+ number_of_backups);
-
-			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings
-																				// file are not included.
+			logger.info("Backup files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_backups);
+			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings file are not included.
+			
 			if (difference > 0) {
-				logger.info("There are currently " + difference + "  backups too many.");
+				logger.debug("There are currently " + difference + "  backups too many.");
+				
 				for (int i = 0; i < difference; i++) {
 					if (directory_files[i].contains("Backup")) {
-						logger.info("Removing " + directory_files[i]);
+						logger.debug("Removing " + directory_files[i]);
 						File f = new File(directory + File.separator + directory_files[i]);
 						f.delete();
 					}
 				}
+				
 				logger.info("Backup Directory Clean finished.");
 			} else {
 				logger.info("Backup Limit has not been reached yet. Cleaning Backup Directory skipped.");
 			}
 		} else {
-			logger.info("Backup files in Directory: 0, directory is empty.");
+			logger.debug("Backup files in Directory: 0, directory is empty.");
 		}
 	}
 
@@ -331,7 +335,7 @@ public class Database {
 			pstmt.setDate(12, java.sql.Date.valueOf(date));
 
 			pstmt.executeUpdate();
-			logger.info("Succesfully logged Time: " + id + " - " + date);
+			logger.debug("Succesfully logged Time: " + id + " - " + date);
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT TIME INTO DATABASE!", e);
 		} finally {

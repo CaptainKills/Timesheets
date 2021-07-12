@@ -7,8 +7,8 @@ import java.io.PrintWriter;
 
 import timesheets.logging.Logger;
 
-public class StyleFormatter {
-	private static final Logger logger = new Logger(StyleFormatter.class);
+public class CSSFormatter {
+	private static final Logger logger = new Logger(CSSFormatter.class);
 	
 	public static void initFile(File style_file) {
 		try (FileWriter file_writer = new FileWriter(style_file, false);

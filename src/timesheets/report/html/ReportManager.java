@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import timesheets.logging.Logger;
-import timesheets.report.html.ReportFormatter.OutputType;
+import timesheets.report.html.HTMLFormatter.OutputType;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
@@ -59,7 +59,7 @@ public class ReportManager {
 			if(!report_style_path.toFile().exists() || report_style_path.toFile().length() == 0) {
 				File report_style_file = report_style_path.toFile();
 				report_style_file.createNewFile();
-				StyleFormatter.initFile(report_style_file);
+				CSSFormatter.initFile(report_style_file);
 			}
 
 			logger.info("Creating Report File.");

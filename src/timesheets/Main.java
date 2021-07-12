@@ -22,7 +22,7 @@ public class Main {
 		LogManager.initialise();
 		logger.info("Initialising Program.");
 
-		Settings.loadSettings();
+		Settings.load();
 		LanguageManager.initialise();
 		LogManager.cleanDirectory();
 		Database.cleanDirectory();

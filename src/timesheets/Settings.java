@@ -30,19 +30,20 @@ public class Settings {
 			+ "";
 	// @formatter:on
 
-	public static void loadSettings() {
+	public static void load() {
 		logger.info("Loading Settings File.");
 		checkFile();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(settings_file))) {
 			String newline;
+			
 			while ((newline = reader.readLine()) != null) {
 				String[] segments = newline.split("=");
 				String setting = segments[0];
 				String value = segments[1];
 
 				settings.put(setting, value);
-				logger.info("Added Setting " + setting + ", Value: " + value);
+				logger.debug("Added Setting " + setting + ", Value: " + value);
 			}
 		} catch (IOException e) {
 			logger.error("COULD NOT LOAD SETTINGS!", e);
@@ -54,10 +55,10 @@ public class Settings {
 			logger.info("Settings file does not exist.");
 			createFile(settings_file);
 		} else if (settings_file.length() == 0) {
-			logger.info("Settings File is empty: Length=" + settings_file.length());
+			logger.debug("Settings File is empty: Length=" + settings_file.length());
 			writeDefaultsToFile(settings_file);
 		} else {
-			logger.info("Settings file exists: Length=" + settings_file.length());
+			logger.debug("Settings file exists: Length=" + settings_file.length());
 		}
 	}
 
@@ -66,7 +67,7 @@ public class Settings {
 			if (!file.getParentFile().exists()) {
 				logger.info("Parent Directory of files does not exist.");
 				file.getParentFile().mkdirs();
-				logger.info("Parent Directory of files created.");
+				logger.debug("Parent Directory of files created.");
 			}
 		} catch (Exception e) {
 			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
@@ -74,9 +75,9 @@ public class Settings {
 
 		try (PrintWriter writer = new PrintWriter(file)) {
 			file.createNewFile();
-			logger.info("New File created at " + file.toString());
+			logger.debug("New File created at " + file.toString());
 			writeDefaultsToFile(file);
-			logger.info("File creation succesfully completed.");
+			logger.debug("File creation succesfully completed.");
 		} catch (IOException e) {
 			logger.error("COULD NOT CREATE FILE!", e);
 		}
@@ -91,7 +92,7 @@ public class Settings {
 		}
 	}
 
-	public static void saveSettings() {
+	public static void save() {
 		logger.info("Saving settings to file.");
 		try (PrintWriter writer = new PrintWriter(settings_file)) {
 			for (Map.Entry<String, String> entry : settings.entrySet()) {
