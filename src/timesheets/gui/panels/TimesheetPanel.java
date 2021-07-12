@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.LabelList;
-import timesheets.gui.lists.LayoutList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
@@ -20,7 +19,6 @@ public class TimesheetPanel extends JPanel {
 	public TimesheetPanel() {
 		super();
 		setPreferredSize(DimensionList.defaultPanelSize);
-		setLayout(LayoutList.defaultLayout);
 		setBackground(Color.WHITE);
 		setVisible(false);
 
