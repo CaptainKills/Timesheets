@@ -41,7 +41,7 @@ public class SubmitButton extends JButton {
 	private Employee transferEmployee;
 	
 	private static Map<String, String> lang = LanguageManager.language;
-	private static String buttonText = lang.get("submit_button");
+	private static String buttonText = lang.get("submit_button_add");
 	
 	private static String dialogTitleAddSuccess = lang.get("jop_sb_title_add_success");
 	private static String dialogMsgAddSuccess = lang.get("jop_sb_msg_add_success");
