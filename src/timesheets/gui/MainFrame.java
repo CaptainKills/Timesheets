@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import timesheets.Settings;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
@@ -34,7 +35,11 @@ public class MainFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				ButtonList.exitButton.exitApplication();
+				boolean exitOnClose = Boolean.parseBoolean(Settings.settings.get("exit_on_close"));
+				
+				if(exitOnClose) {
+					ButtonList.exitButton.exitApplication();
+				}
 			}
 		});
 

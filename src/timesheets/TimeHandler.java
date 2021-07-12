@@ -43,6 +43,11 @@ public class TimeHandler {
 	}
 
 	public LocalTime roundOffTime(LocalTime time) {
+		boolean roundOff = Boolean.parseBoolean(Settings.settings.get("round_off_time"));
+		if(!roundOff) {
+			return time;
+		}
+		
 		LocalTime newTime = null;
 		
 		if (time.getMinute() >= 0 && time.getMinute() < 8) {

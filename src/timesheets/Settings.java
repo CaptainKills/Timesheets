@@ -25,8 +25,9 @@ public class Settings {
 			+ "delete_logs=false\n"
 			+ "number_of_logs=20\n"
 			+ "number_of_backups=5\n" 
-			+ "language=en" 
-			+ ""
+			+ "language=en\n" 
+			+ "exit_on_close=true\n"
+			+ "round_off_time=true\n"
 			+ "";
 	// @formatter:on
 
