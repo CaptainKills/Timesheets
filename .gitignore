@@ -9,7 +9,6 @@ $RECYCLE.BIN/
 .classpath
 .project
 bin/
-tmp/
 data/
 logs/
 reports/
@@ -22,6 +21,7 @@ launch4j/
 *.class
 *.dat
 *.encrypted
+*.properties
 
 # Package Files
 *.zip

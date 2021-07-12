@@ -232,7 +232,7 @@ public class Database {
 
 		if (directory_files != null) {
 			logger.info("Backup files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_backups);
-			int difference = directory_files.length - number_of_backups - 2; // -2 because the original and settings file are not included.
+			int difference = directory_files.length - number_of_backups - 1; // -1 because the original file is not included.
 			
 			if (difference > 0) {
 				logger.debug("There are currently " + difference + "  backups too many.");
