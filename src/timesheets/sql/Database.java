@@ -49,7 +49,8 @@ public class Database {
 	// @formatter:off
 		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
 				+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
-				+ "	name TEXT NOT NULL,\n"
+				+ "	firstName TEXT NOT NULL,\n"
+				+ " lastName TEXT NOT NULL,\n"
 				+ "	age INTEGER NOT NULL,\n"
 				+ " salary INTEGER NOT NULL,\n"
 				+ " admin BOOLEAN DEFAULT false\n" + ") WITHOUT ROWID;";
@@ -69,7 +70,8 @@ public class Database {
 		String query_check_emp_table = "SELECT COUNT(*) FROM employees;";
 		String query_check_time_table = "SELECT COUNT(*) FROM timedata;";
 		
-		String query_add_admin = "INSERT INTO employees(id, name, age, salary, admin) VALUES(12345, \"Administrator\", 20, 0.0, true);";
+		String query_add_admin = "INSERT INTO employees(id, firstName, lastName, age, salary, admin)"
+							   + " VALUES(12345, \"Administrator\", \"\", 20, 0.0, true);";
 
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(employees_table);
@@ -140,12 +142,13 @@ public class Database {
 				int employeeID = rs.getInt("id");
 				TreeMap<LocalDate, LocalTime[]> timeMap = loadTimeData(conn, employeeID);
 				
-				String name = rs.getString("name");
+				String firstName = rs.getString("firstName");
+				String lastName = rs.getString("lastName");
 				int age = rs.getInt("age");
 				double salary = rs.getDouble("salary");
 				boolean admin = rs.getBoolean("admin");
 				
-				Employee employee = new Employee(employeeID, name, age, salary, admin, timeMap);
+				Employee employee = new Employee(employeeID, firstName, lastName, age, salary, admin, timeMap);
 				EmployeeList.put(employeeID, employee);
 			}
 			
@@ -255,14 +258,15 @@ public class Database {
 	}
 
 	public void insertEmployee(Employee emp) {
-		String query = "INSERT INTO employees(id,name,age,salary,admin) VALUES(?,?,?,?,?);";
+		String query = "INSERT INTO employees(id,firstName,lastName,age,salary,admin) VALUES(?,?,?,?,?,?);";
 
 		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setInt(1, emp.getID());
-			pstmt.setString(2, emp.getName());
-			pstmt.setInt(3, emp.getAge());
-			pstmt.setDouble(4, emp.getSalary());
-			pstmt.setBoolean(5, emp.getAdmin());
+			pstmt.setString(2, emp.getFirstName());
+			pstmt.setString(3, emp.getLastName());
+			pstmt.setInt(4, emp.getAge());
+			pstmt.setDouble(5, emp.getSalary());
+			pstmt.setBoolean(6, emp.getAdmin());
 
 			pstmt.executeUpdate();
 			logger.info("Added Employee to Database: " + emp.getID());
@@ -274,8 +278,8 @@ public class Database {
 	}
 
 	public void deleteEmployee(int id) {
-		String query_emp = "DELETE FROM employees\nWHERE id = ?;";
-		String query_time = "DELETE FROM timedata\nWHERE id = ?;";
+		String query_emp = "DELETE FROM employees WHERE id = ?;";
+		String query_time = "DELETE FROM timedata WHERE id = ?;";
 
 		try (Connection conn = this.connect();
 				PreparedStatement pstmt_emp = conn.prepareStatement(query_emp);
@@ -294,19 +298,20 @@ public class Database {
 		}
 	}
 
-	public void updateEmployee(int oldID, Employee new_emp) {
-		String query = "UPDATE employees SET id = ?, name = ?, age = ?, salary = ?, admin = ? WHERE id = ?;";
+	public void updateEmployee(int oldID, Employee emp) {
+		String query = "UPDATE employees SET id = ?, firstName = ?, lastName = ?, age = ?, salary = ?, admin = ? WHERE id = ?;";
 
 		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-			pstmt.setInt(1, new_emp.getID());
-			pstmt.setString(2, new_emp.getName());
-			pstmt.setInt(3, new_emp.getAge());
-			pstmt.setDouble(4, new_emp.getSalary());
-			pstmt.setBoolean(5, new_emp.getAdmin());
+			pstmt.setInt(1, emp.getID());
+			pstmt.setString(2, emp.getFirstName());
+			pstmt.setString(3, emp.getLastName());
+			pstmt.setInt(3, emp.getAge());
+			pstmt.setDouble(4, emp.getSalary());
+			pstmt.setBoolean(5, emp.getAdmin());
 			pstmt.setInt(6, oldID);
 
 			pstmt.executeUpdate();
-			logger.info("Updated Employee in Database: " + oldID + " -> " + new_emp.getID());
+			logger.info("Updated Employee in Database: " + oldID + " -> " + emp.getID());
 		} catch (SQLException e) {
 			logger.error("COULD NOT UPDATE EMPLOYEE IN DATABASE!", e);
 		} finally {

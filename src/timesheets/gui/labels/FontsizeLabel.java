@@ -18,7 +18,7 @@ public class FontsizeLabel extends JLabel {
 		setPreferredSize(DimensionList.dateDisplaySize_small);
 		setFont(FontList.textDisplayFont);
 		setEnabled(false);
-		// setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		
 
 		logger.debug("FontsizeLabel initialised.");
 	}

@@ -31,7 +31,8 @@ public class SubmitButton extends JButton {
 
 	private int menuChoice;
 	private JTextField idField = TextFieldList.idField;
-	private JTextField nameField = TextFieldList.nameField;
+	private JTextField firstNameField = TextFieldList.firstNameField;
+	private JTextField lastNameField = TextFieldList.lastNameField;
 	private JSpinner ageField = TextFieldList.ageField;
 	private JSpinner salaryField = TextFieldList.salaryField;
 	private JComboBox<String> empBox = UnusualsList.empBox;
@@ -82,7 +83,7 @@ public class SubmitButton extends JButton {
 	}
 
 	private void addEmployee() {
-		if (idField.getText().equals("") || nameField.getText().equals("")) {
+		if (idField.getText().equals("") || firstNameField.getText().equals("") || lastNameField.getText().equals("")) {
 			CustomOptionPane cop = new CustomOptionPane("SubmitButton (Add, Fail)");
 			cop.setText(dialogTitleAddFail, dialogMsgAddFail);
 			cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
@@ -92,7 +93,8 @@ public class SubmitButton extends JButton {
 		}
 		
 		int id = Integer.parseInt(idField.getText());
-		String name = nameField.getText();
+		String firstName = firstNameField.getText();
+		String lastName = lastNameField.getText();
 		int age = Integer.parseInt(ageField.getValue().toString());
 		double salary = Double.parseDouble(salaryField.getValue().toString());
 		
@@ -101,7 +103,7 @@ public class SubmitButton extends JButton {
 			admin = true;
 		}
 		
-		transferEmployee = new Employee(id, name, age, salary, admin, new TreeMap<LocalDate, LocalTime[]>());
+		transferEmployee = new Employee(id, firstName, lastName, age, salary, admin, new TreeMap<LocalDate, LocalTime[]>());
 
 		EmployeeList.put(transferEmployee.getID(), transferEmployee);
 		database.insertEmployee(transferEmployee);
@@ -146,7 +148,7 @@ public class SubmitButton extends JButton {
 	}
 
 	private void saveEmployee() {
-		if (idField.getText().equals("") || nameField.getText().equals("")) {
+		if (idField.getText().equals("") || firstNameField.getText().equals("") || lastNameField.getText().equals("")) {
 			CustomOptionPane cop = new CustomOptionPane("SubmitButton (Edit, Fail)");
 			cop.setText(dialogTitleEditFail, dialogMsgEditFail);
 			cop.setConfig(JOptionPane.ERROR_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
@@ -177,7 +179,10 @@ public class SubmitButton extends JButton {
 		EmployeeList.remove(oldID);
 
 		transferEmployee.setID(Integer.parseInt(idField.getText()));
-		transferEmployee.setName(nameField.getText());
+		
+		transferEmployee.setFirstName(firstNameField.getText());
+		transferEmployee.setLastName(lastNameField.getText());
+		
 		transferEmployee.setAge(Integer.parseInt(ageField.getValue().toString()));
 		transferEmployee.setSalary(Double.parseDouble(salaryField.getValue().toString()));
 

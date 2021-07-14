@@ -6,12 +6,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Employee {
-	private int ID;
-	private String Name;
-	private int Age;
-	private double Salary;
-	private boolean Admin;
-	private TreeMap<LocalDate, LocalTime[]> WorkedTime = new TreeMap<LocalDate, LocalTime[]>();
+	private int id;
+	private String firstName;
+	private String lastName;
+	private int age;
+	private double salary;
+	private boolean admin;
+	private TreeMap<LocalDate, LocalTime[]> workedTime = new TreeMap<LocalDate, LocalTime[]>();
 
 	private LocalTime TimeStarted = null;
 	private LocalTime TimeEnded = null;
@@ -19,74 +20,87 @@ public class Employee {
 	private LocalTime BreakStarted = null;
 	private LocalTime BreakEnded = null;
 
-	public Employee(int id, String name, int age, double salary, boolean admin, TreeMap<LocalDate, LocalTime[]> timeMap) {
-		this.ID = id;
-		this.Name = name;
-		this.Age = age;
-		this.Salary = salary;
-		this.Admin = admin;
-		this.WorkedTime = timeMap;
+	public Employee(int id, String firstName, String lastName, int age, double salary, boolean admin, TreeMap<LocalDate, LocalTime[]> timeMap) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.salary = salary;
+		this.admin = admin;
+		this.workedTime = timeMap;
 	}
 
 	@Override
 	public String toString() {
-		return getID_String() + "/" + Name + "/" + Age + "/" + Salary + "/" + Admin;
+		return getID_String() + "/" + getName() + "/" + age + "/" + salary + "/" + admin;
 	}
 
 	public int getID() {
-		return ID;
+		return this.id;
 	}
 
 	public String getID_String() {
-		return String.format("%05d", ID);
+		return String.format("%05d", id);
 	}
 
 	public void setID(int id) {
-		this.ID = id;
+		this.id = id;
 	}
-
+	
 	public String getName() {
-		return Name;
+		return this.firstName + " " + this.lastName;
 	}
 
-	public void setName(String name) {
-		this.Name = name;
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return this.lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public int getAge() {
-		return Age;
+		return this.age;
 	}
 
 	public void setAge(int age) {
-		this.Age = age;
+		this.age = age;
 	}
 
 	public double getSalary() {
-		return Salary;
+		return this.salary;
 	}
 
 	public void setSalary(double salary) {
-		this.Salary = salary;
+		this.salary = salary;
 	}
 
 	public boolean getAdmin() {
-		return Admin;
+		return this.admin;
 	}
 
 	public void setAdmin(boolean admin) {
-		this.Admin = admin;
+		this.admin = admin;
 	}
 
 	public Map<LocalDate, LocalTime[]> getWorkedTime() {
-		return WorkedTime;
+		return this.workedTime;
 	}
 
 	public void setWorkedTime(LocalDate date, LocalTime[] time) {
-		WorkedTime.put(date, time);
+		this.workedTime.put(date, time);
 	}
 
 	public LocalTime getTimeStarted() {
-		return TimeStarted;
+		return this.TimeStarted;
 	}
 
 	public void setTimeStarted(LocalTime time) {
@@ -94,7 +108,7 @@ public class Employee {
 	}
 
 	public LocalTime getTimeEnded() {
-		return TimeEnded;
+		return this.TimeEnded;
 	}
 
 	public void setTimeEnded(LocalTime time) {
@@ -102,7 +116,7 @@ public class Employee {
 	}
 
 	public LocalTime getTimePaused() {
-		return TimePaused;
+		return this.TimePaused;
 	}
 
 	public void setTimePaused(LocalTime time) {
@@ -110,7 +124,7 @@ public class Employee {
 	}
 
 	public LocalTime getBreakStarted() {
-		return BreakStarted;
+		return this.BreakStarted;
 	}
 
 	public void setBreakStarted(LocalTime time) {
@@ -118,7 +132,7 @@ public class Employee {
 	}
 
 	public LocalTime getBreakEnded() {
-		return BreakEnded;
+		return this.BreakEnded;
 	}
 
 	public void setBreakEnded(LocalTime time) {

@@ -9,7 +9,8 @@ public class TextFieldList {
 
 	public static JTextField inputField = new NumberInputTextField();
 	public static JTextField idField = new IDInputField();
-	public static JTextField nameField = new NameInputField();
+	public static JTextField firstNameField = new NameInputField();
+	public static JTextField lastNameField = new NameInputField();
 	public static JSpinner ageField = new AgeInputField();
 	public static JSpinner salaryField = new SalaryInputField();
 

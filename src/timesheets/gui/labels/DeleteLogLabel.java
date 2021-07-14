@@ -19,7 +19,7 @@ public class DeleteLogLabel extends JLabel {
 		setPreferredSize(DimensionList.labelSize);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(FontList.labelFont);
-		// setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+		
 
 		logger.debug("LogLabel initialised.");
 	}

@@ -33,7 +33,8 @@ public class EmployeeBox<T> extends JComboBox<String> {
 					for (Employee emp : EmployeeList.values()) {
 						if (getSelectedItem().toString().equals(emp.getName())) {
 							TextFieldList.idField.setText(emp.getID_String());
-							TextFieldList.nameField.setText(emp.getName());
+							TextFieldList.firstNameField.setText(emp.getFirstName());
+							TextFieldList.lastNameField.setText(emp.getLastName());
 							TextFieldList.ageField.setValue(emp.getAge());
 							TextFieldList.salaryField.setValue(emp.getSalary());
 
