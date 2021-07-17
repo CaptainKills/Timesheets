@@ -62,12 +62,15 @@ public class HTMLFormatter {
 			String emp_text = buildEmployee(emp);
 			builder.append(emp_text);
 
-			String time_text = "";
 			if (!emp.getWorkedTime().isEmpty()) {
 				logger.info("Building Text - Specific");
-				time_text = buildSpecific(emp.getWorkedTime(), beginDate, endDate);
+				
+				String time_text = buildSpecific(emp.getWorkedTime(), beginDate, endDate);
 				builder.append(time_text);
 			}
+			
+			String table_end = buildFooter();
+			builder.append(table_end);
 		}
 		
 		return builder.toString();
