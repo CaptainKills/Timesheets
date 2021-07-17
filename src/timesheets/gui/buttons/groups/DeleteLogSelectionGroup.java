@@ -1,4 +1,4 @@
-package timesheets.gui.buttons;
+package timesheets.gui.buttons.groups;
 
 import javax.swing.ButtonGroup;
 

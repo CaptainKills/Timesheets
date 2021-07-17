@@ -11,7 +11,7 @@ public class PanelList {
 	public static JPanel menuPanel = new MenuPanel();
 	public static JPanel adminPanel = new AdminPanel();
 	public static DataEditPanel editPanel = new DataEditPanel();
-	public static JPanel timesheetPanel = new TimesheetPanel();
+	public static JPanel reportPanel = new ReportPanel();
 	public static JPanel settingsPanel = new SettingsPanel();
 
 	public static JPanel testPanel = new TestingPanel();

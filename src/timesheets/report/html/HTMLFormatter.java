@@ -7,6 +7,7 @@ import java.util.Map;
 import timesheets.Employee;
 import timesheets.TimeHandler;
 import timesheets.logging.Logger;
+import timesheets.report.ReportOutputType;
 import timesheets.resources.LanguageManager;
 import timesheets.sql.Database;
 
@@ -16,11 +17,7 @@ public class HTMLFormatter {
 	private static TimeHandler time = new TimeHandler();
 	private static Map<String, String> lang = LanguageManager.language;
 
-	public enum OutputType {
-		TODAY, WEEK, MONTH, SPECIFIC
-	}
-
-	public static String build(OutputType t) {
+	public static String build(ReportOutputType t) {
 		StringBuilder builder = new StringBuilder();
 
 		logger.info("Building Text - " + t);

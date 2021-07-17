@@ -11,12 +11,12 @@ import timesheets.gui.lists.LabelList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.logging.Logger;
 
-public class TimesheetPanel extends JPanel {
+public class ReportPanel extends JPanel {
 
 	private static final long serialVersionUID = -6585500139170806555L;
-	private static final Logger logger = new Logger(TimesheetPanel.class);
+	private static final Logger logger = new Logger(ReportPanel.class);
 
-	public TimesheetPanel() {
+	public ReportPanel() {
 		super();
 		setPreferredSize(DimensionList.defaultPanelSize);
 		setBackground(Color.WHITE);
@@ -29,6 +29,12 @@ public class TimesheetPanel extends JPanel {
 		// @formatter:off		
 		layout.setHorizontalGroup(layout.createSequentialGroup()
 				.addGroup(layout.createParallelGroup()
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(LabelList.reportTypeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(ButtonList.excelReportButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								.addComponent(ButtonList.htmlReportButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+								)
+						
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(ButtonList.dateTodayButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 								.addComponent(LabelList.todayLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
@@ -61,6 +67,12 @@ public class TimesheetPanel extends JPanel {
 				);
 		
 		layout.setVerticalGroup(layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup()
+						.addComponent(LabelList.reportTypeLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.excelReportButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						.addComponent(ButtonList.htmlReportButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+						)
+				
 				.addGroup(layout.createParallelGroup()
 						.addComponent(ButtonList.dateTodayButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 						.addComponent(LabelList.todayLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)

@@ -13,6 +13,7 @@ public class LabelList {
 	public static JLabel ageLabel = new AgeSalaryLabel();
 	public static JLabel adminLabel = new AdminLabel();
 
+	public static JLabel reportTypeLabel = new ReportTypeLabel();
 	public static TodayLabel todayLabel = new TodayLabel();
 	public static WeekLabel weekLabel = new WeekLabel();
 	public static MonthLabel monthLabel = new MonthLabel();

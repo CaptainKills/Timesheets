@@ -24,7 +24,7 @@ public class MainPanel extends JPanel {
 		add(PanelList.menuPanel);
 		add(PanelList.adminPanel);
 		add(PanelList.editPanel);
-		add(PanelList.timesheetPanel);
+		add(PanelList.reportPanel);
 		add(PanelList.settingsPanel);
 
 		logger.debug("Panel Setup Complete.");

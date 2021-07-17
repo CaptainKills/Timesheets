@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import timesheets.gui.buttons.*;
+import timesheets.gui.buttons.groups.*;
 import timesheets.resources.LanguageManager;
 
 public class ButtonList {
@@ -57,6 +58,10 @@ public class ButtonList {
 	public static JRadioButton dateMonthButton = new DateMonthButton();
 	public static JRadioButton dateSpecificButton = new DateSpecificButton();
 	public static ButtonGroup dateSelectionGroup = new DateSelectionGroup();
+	
+	public static JRadioButton excelReportButton = new ReportRadioButton(lang.get("excel_report_button"), true);
+	public static JRadioButton htmlReportButton = new ReportRadioButton(lang.get("html_report_button"), false);
+	public static ButtonGroup reportButtonGroup = new ReportSelectionGroup();
 	public static JButton printReportButton = new PrintReportButton();
 
 	public static JRadioButton deleteLogEnabledButton = new DeleteLogRadioButton(lang.get("delete_log_enabled_button"), false);

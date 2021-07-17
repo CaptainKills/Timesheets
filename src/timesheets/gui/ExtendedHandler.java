@@ -17,7 +17,7 @@ public class ExtendedHandler {
 		PanelList.menuPanel.setVisible(menu);
 		PanelList.adminPanel.setVisible(admin);
 		PanelList.editPanel.setVisible(edit);
-		PanelList.timesheetPanel.setVisible(timesheet);
+		PanelList.reportPanel.setVisible(timesheet);
 		PanelList.settingsPanel.setVisible(settings);
 	}
 

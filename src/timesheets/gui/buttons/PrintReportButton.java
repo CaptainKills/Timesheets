@@ -19,10 +19,9 @@ import timesheets.gui.lists.FontList;
 import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
+import timesheets.report.ReportOutputType;
 import timesheets.report.html.HTMLFormatter;
-import timesheets.report.html.HTMLFormatter.OutputType;
-import timesheets.report.html.ReportManager;
-import timesheets.report.html.Reporter;
+import timesheets.report.html.HTMLReporter;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
@@ -50,25 +49,18 @@ public class PrintReportButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				logger.info("Button Clicked.");
-				String report_text = "";
-				OutputType type;
+				ReportOutputType type;
 				
 				if(ButtonList.dateTodayButton.isSelected()) {
-					type = OutputType.TODAY;
-					report_text = HTMLFormatter.build(OutputType.TODAY);
+					type = ReportOutputType.TODAY;
 				} else if(ButtonList.dateWeekButton.isSelected()) {
-					type = OutputType.WEEK;
-					report_text = HTMLFormatter.build(OutputType.WEEK);
+					type = ReportOutputType.WEEK;
 				} else if(ButtonList.dateMonthButton.isSelected()) {
-					type = OutputType.MONTH;
-					report_text = HTMLFormatter.build(OutputType.MONTH);
+					type = ReportOutputType.MONTH;
 				} else if(ButtonList.dateSpecificButton.isSelected()) {
-					type = OutputType.SPECIFIC;
-					LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
-					LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
-					report_text = HTMLFormatter.build(beginDate, endDate);
+					type = ReportOutputType.SPECIFIC;
 				} else {
-					CustomOptionPane cop = new CustomOptionPane("HTML Report Fail");
+					CustomOptionPane cop = new CustomOptionPane("Report Type Selection Fail");
 					cop.setText(dialogTitleFail, dialogMsgFail);
 					cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
 					cop.showDialog();
@@ -76,32 +68,65 @@ public class PrintReportButton extends JButton {
 					return;
 				}
 				
-				Reporter.createReport(report_text, type);
+				String fileName = "";
+				if(ButtonList.excelReportButton.isSelected()) {
+					fileName = printExcelReport(type);
+				} else if(ButtonList.htmlReportButton.isSelected()) {
+					fileName = printHTMLReport(type);
+				}
 				
-				CustomOptionPane cop = new CustomOptionPane("HTML Report Success");
-				cop.setText(dialogTitleSuccess, dialogMsgSuccess);
-				cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
-				cop.setButtons(buttonOptions);
-				
-				int status = cop.showDialog();
+				int status = showSuccessDialog();
 				if(status == JOptionPane.NO_OPTION) {
-					logger.info("Opening report with desktop.");
-					
-					Path report_directory = ResourceHandler.report_directory_path;
-					String report_name = ReportManager.getReportName();
-					Path report_path = Paths.get(report_directory + File.separator + report_name).toAbsolutePath();
-					File report_file = report_path.toFile();
-					
-					try {
-						Desktop.getDesktop().open(report_file);
-					} catch(IOException e) {
-						logger.error("COULD NOT OPEN FILE WITH DESKTOP!", e);
-					}
+					openReport(fileName);
 				}
 			}
 		});
 
 		logger.debug("SubmitDateButton initialised.");
+	}
+	
+	private String printExcelReport(ReportOutputType type) {
+		String fileName = ""; // ExcelReporter.createReport();
+		
+		return fileName;
+	}
+	
+	private String printHTMLReport(ReportOutputType type) {
+		String reportText = "";
+		
+		if(type != ReportOutputType.SPECIFIC) {
+			reportText = HTMLFormatter.build(type);
+		} else {
+			LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
+			LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
+			reportText = HTMLFormatter.build(beginDate, endDate);
+		}
+		
+		String fileName = HTMLReporter.createReport(reportText, type);
+		return fileName;
+	}
+	
+	private void openReport(String reportName) {
+		logger.info("Opening report with desktop.");
+		
+		Path reportDirectory = ResourceHandler.report_directory_path;
+		Path reportPath = Paths.get(reportDirectory + File.separator + reportName).toAbsolutePath();
+		File reportFile = reportPath.toFile();
+		
+		try {
+			Desktop.getDesktop().open(reportFile);
+		} catch(IOException e) {
+			logger.error("COULD NOT OPEN FILE WITH DESKTOP!", e);
+		}
+	}
+	
+	private int showSuccessDialog() {
+		CustomOptionPane cop = new CustomOptionPane("Report Success");
+		cop.setText(dialogTitleSuccess, dialogMsgSuccess);
+		cop.setConfig(JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION);
+		cop.setButtons(buttonOptions);
+		
+		return cop.showDialog();
 	}
 
 }
