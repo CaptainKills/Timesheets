@@ -4,10 +4,8 @@ import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -16,11 +14,10 @@ import javax.swing.JOptionPane;
 import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.gui.lists.FontList;
-import timesheets.gui.lists.TextFieldList;
 import timesheets.gui.other.CustomOptionPane;
 import timesheets.logging.Logger;
 import timesheets.report.ReportOutputType;
-import timesheets.report.html.HTMLFormatter;
+import timesheets.report.excel.ExcelReporter;
 import timesheets.report.html.HTMLReporter;
 import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
@@ -70,9 +67,9 @@ public class PrintReportButton extends JButton {
 				
 				String fileName = "";
 				if(ButtonList.excelReportButton.isSelected()) {
-					fileName = printExcelReport(type);
+					fileName = ExcelReporter.createReport(type);
 				} else if(ButtonList.htmlReportButton.isSelected()) {
-					fileName = printHTMLReport(type);
+					fileName = HTMLReporter.createReport(type);
 				}
 				
 				int status = showSuccessDialog();
@@ -85,27 +82,6 @@ public class PrintReportButton extends JButton {
 		logger.debug("SubmitDateButton initialised.");
 	}
 	
-	private String printExcelReport(ReportOutputType type) {
-		String fileName = ""; // ExcelReporter.createReport();
-		
-		return fileName;
-	}
-	
-	private String printHTMLReport(ReportOutputType type) {
-		String reportText = "";
-		
-		if(type != ReportOutputType.SPECIFIC) {
-			reportText = HTMLFormatter.build(type);
-		} else {
-			LocalDate beginDate = (LocalDate) TextFieldList.startingDateInput.getValue();
-			LocalDate endDate = (LocalDate) TextFieldList.endingDateInput.getValue();
-			reportText = HTMLFormatter.build(beginDate, endDate);
-		}
-		
-		String fileName = HTMLReporter.createReport(reportText, type);
-		return fileName;
-	}
-	
 	private void openReport(String reportName) {
 		logger.info("Opening report with desktop.");
 		
@@ -115,7 +91,7 @@ public class PrintReportButton extends JButton {
 		
 		try {
 			Desktop.getDesktop().open(reportFile);
-		} catch(IOException e) {
+		} catch(Exception e) {
 			logger.error("COULD NOT OPEN FILE WITH DESKTOP!", e);
 		}
 	}

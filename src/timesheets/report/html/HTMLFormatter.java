@@ -6,96 +6,67 @@ import java.util.Map;
 
 import timesheets.Employee;
 import timesheets.TimeHandler;
-import timesheets.logging.Logger;
-import timesheets.report.ReportOutputType;
+import timesheets.gui.lists.TextFieldList;
 import timesheets.resources.LanguageManager;
-import timesheets.sql.Database;
 
 public class HTMLFormatter {
 
-	private static final Logger logger = new Logger(HTMLFormatter.class);
 	private static TimeHandler time = new TimeHandler();
-	private static Map<String, String> lang = LanguageManager.language;
 
-	public static String build(ReportOutputType t) {
+	public static String buildToday(Map.Entry<LocalDate, LocalTime[]> entry) {
 		StringBuilder builder = new StringBuilder();
 
-		logger.info("Building Text - " + t);
-		for (Employee emp : Database.EmployeeList.values()) {
-			String emp_text = buildEmployee(emp);
-			builder.append(emp_text);
-
-			String time_text = "";
-			if (!emp.getWorkedTime().isEmpty()) {
-				switch (t) {
-				case TODAY:
-					time_text = buildToday(emp.getWorkedTime());
-					builder.append(time_text);
-					break;
-				case WEEK:
-					time_text = buildWeek(emp.getWorkedTime());
-					builder.append(time_text);
-					break;
-				case MONTH:
-					time_text = buildMonth(emp.getWorkedTime());
-					builder.append(time_text);
-					break;
-				default:
-					logger.info("Default Setting Used.");
-					time_text = buildToday(emp.getWorkedTime());
-					builder.append(time_text);
-					break;
-				}
-			}
-
-			String footer_text = buildFooter();
-			builder.append(footer_text);
+		LocalDate entryDate = entry.getKey();
+		LocalDate currentDate = time.getCurrentDate();
+		
+		if(entryDate.isEqual(currentDate)) {
+			builder.append(buildEntry(entry));
 		}
 
 		return builder.toString();
 	}
 
-	public static String build(LocalDate beginDate, LocalDate endDate) {
+	public static String buildWeek(Map.Entry<LocalDate, LocalTime[]> entry) {
 		StringBuilder builder = new StringBuilder();
 
-		for (Employee emp : Database.EmployeeList.values()) {
-			String emp_text = buildEmployee(emp);
-			builder.append(emp_text);
-
-			if (!emp.getWorkedTime().isEmpty()) {
-				logger.info("Building Text - Specific");
-				
-				String time_text = buildSpecific(emp.getWorkedTime(), beginDate, endDate);
-				builder.append(time_text);
-			}
-			
-			String table_end = buildFooter();
-			builder.append(table_end);
+		LocalDate entryDate = entry.getKey();
+		LocalDate weekStart = time.getWeekStart().minusDays(1);
+		LocalDate weekEnd = time.getWeekEnd().plusDays(1);
+		
+		if (entryDate.isAfter(weekStart) && entryDate.isBefore(weekEnd)) {
+			builder.append(buildEntry(entry));
 		}
-		
+
 		return builder.toString();
 	}
 
-	private static String buildEmployee(Employee emp) {
+	public static String buildMonth(Map.Entry<LocalDate, LocalTime[]> entry) {
+		StringBuilder builder = new StringBuilder();
+
+		LocalDate entryDate = entry.getKey();
+		LocalDate currentDate = time.getCurrentDate();
+		
+		if (entryDate.getMonth() == currentDate.getMonth() && entryDate.getYear() == currentDate.getYear()) {
+			builder.append(buildEntry(entry));
+		}
+
+		return builder.toString();
+	}
+
+	public static String buildSpecific(Map.Entry<LocalDate, LocalTime[]> entry) {
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append("\t\t<p>\n");
-		builder.append("\t\t\t<table style=\"table-layout:fixed; width:50%\">\n");
-		builder.append("\t\t\t\t<caption><b>");
-		builder.append(emp.getName() + " (" + emp.getID_String() + ")");
-		builder.append("</b></caption>\n");
+		LocalDate entryDate = entry.getKey();
+		LocalDate beginDate = ((LocalDate) TextFieldList.startingDateInput.getValue()).minusDays(1);
+		LocalDate endDate = ((LocalDate) TextFieldList.endingDateInput.getValue()).plusDays(1);
 		
-		builder.append("\t\t\t\t<tr>\n");
-		builder.append("\t\t\t\t\t<th>"+ lang.get("table_date") + "</th>\n");
-		builder.append("\t\t\t\t\t<th>"+ lang.get("table_start_time") + "</th>\n");
-		builder.append("\t\t\t\t\t<th>" + lang.get("table_end_time") + "</th>\n");
-		builder.append("\t\t\t\t\t<th>" + lang.get("table_break_time") + "</th>\n");
-		builder.append("\t\t\t\t\t<th>" + lang.get("table_total_time") + "</th>\n");
-		builder.append("\t\t\t\t</tr>\n");
+		if (entryDate.isAfter(beginDate) && entryDate.isBefore(endDate)) {
+			builder.append(buildEntry(entry));
+		}
 
 		return builder.toString();
 	}
-
+	
 	private static String buildEntry(Map.Entry<LocalDate, LocalTime[]> entry) {
 		StringBuilder builder = new StringBuilder();
 
@@ -115,71 +86,33 @@ public class HTMLFormatter {
 		return builder.toString();
 	}
 	
-	private static String buildFooter() {
+	public static String buildTableHeader(Employee emp) {
+		StringBuilder builder = new StringBuilder();
+		Map<String, String> lang = LanguageManager.language;
+		
+		builder.append("\t\t<p>\n");
+		builder.append("\t\t\t<table style=\"table-layout:fixed; width:50%\">\n");
+		builder.append("\t\t\t\t<caption><b>");
+		builder.append(emp.getName() + " (" + emp.getID_String() + ")");
+		builder.append("</b></caption>\n");
+		
+		builder.append("\t\t\t\t<tr>\n");
+		builder.append("\t\t\t\t\t<th>"+ lang.get("table_date") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>"+ lang.get("table_start_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_end_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_break_time") + "</th>\n");
+		builder.append("\t\t\t\t\t<th>" + lang.get("table_total_time") + "</th>\n");
+		builder.append("\t\t\t\t</tr>\n");
+
+		return builder.toString();
+	}
+	
+	public static String buildTableFooter() {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("\t\t\t</table>\n");
 		builder.append("\t\t</p><br>\n\n");
 		
-		return builder.toString();
-	}
-
-	private static String buildToday(Map<LocalDate, LocalTime[]> timeMap) {
-		StringBuilder builder = new StringBuilder();
-
-		for (Map.Entry<LocalDate, LocalTime[]> entry : timeMap.entrySet()) {
-			if (entry.getKey().isEqual(time.getCurrentDate())) {
-				builder.append(buildEntry(entry));
-			} else {
-				continue;
-			}
-		}
-
-		return builder.toString();
-	}
-
-	private static String buildWeek(Map<LocalDate, LocalTime[]> timeMap) {
-		StringBuilder builder = new StringBuilder();
-
-		for (Map.Entry<LocalDate, LocalTime[]> entry : timeMap.entrySet()) {
-			if (entry.getKey().isAfter(time.getWeekStart().minusDays(1))
-					&& entry.getKey().isBefore(time.getWeekEnd().plusDays(1))) {
-
-				builder.append(buildEntry(entry));
-			} else {
-				continue;
-			}
-		}
-
-		return builder.toString();
-	}
-
-	private static String buildMonth(Map<LocalDate, LocalTime[]> timeMap) {
-		StringBuilder builder = new StringBuilder();
-
-		for (Map.Entry<LocalDate, LocalTime[]> entry : timeMap.entrySet()) {
-			if (entry.getKey().getMonth() == time.getCurrentDate().getMonth()
-					&& entry.getKey().getYear() == time.getCurrentDate().getYear()) {
-				builder.append(buildEntry(entry));
-			} else {
-				continue;
-			}
-		}
-
-		return builder.toString();
-	}
-
-	private static String buildSpecific(Map<LocalDate, LocalTime[]> timeMap, LocalDate beginDate, LocalDate endDate) {
-		StringBuilder builder = new StringBuilder();
-
-		for (Map.Entry<LocalDate, LocalTime[]> entry : timeMap.entrySet()) {
-			if (entry.getKey().isAfter(beginDate.minusDays(1)) && entry.getKey().isBefore(endDate.plusDays(1))) {
-				builder.append(buildEntry(entry));
-			} else {
-				continue;
-			}
-		}
-
 		return builder.toString();
 	}
 

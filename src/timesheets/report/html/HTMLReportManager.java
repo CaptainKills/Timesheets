@@ -10,29 +10,27 @@ import java.time.LocalDate;
 
 import timesheets.logging.Logger;
 import timesheets.report.ReportOutputType;
+import timesheets.resources.LanguageManager;
 import timesheets.resources.ResourceHandler;
 
 public class HTMLReportManager {
 	private static final Logger logger = new Logger(HTMLReportManager.class);
 	
-	private static String report_name_prefix = "Timesheets Report ";
-	private static String report_name_postfix = ".html";
+	private static String reportNamePrefix = LanguageManager.language.get("report_name_prefix");
+	private static String reportNamePostfix = ".html";
 
-	private static final Path report_directory = ResourceHandler.report_directory_path;
-	private static final Path report_style_path = ResourceHandler.report_style_path;
+	private static final Path reportDirectory = ResourceHandler.report_directory_path;
+	private static final Path reportStylePath = ResourceHandler.report_style_path;
 	private static Path reportPath;
-	private static File reportFile;
-	
 	
 	public static String writeToFile(String report, ReportOutputType type) {
 		String fileName = initialiseFile(type);
 		
-		try (FileWriter fw = new FileWriter(reportFile, false);
+		try (FileWriter fw = new FileWriter(reportPath.toFile(), false);
 				PrintWriter pw = new PrintWriter(fw)) {
 			logger.debug("Writing to Report file.");
 			pw.println(report);
 			logger.debug("Finished writing to Report file.");
-			
 		} catch (IOException e) {
 			logger.error("COULD NOT WRITE TO REPORT FILE!", e);
 		}
@@ -40,23 +38,22 @@ public class HTMLReportManager {
 		return fileName;
 	}
 	
-	public static String initialiseFile(ReportOutputType type) {
-		String fileName = "";
+	private static String initialiseFile(ReportOutputType type) {
+		String fileName = reportNamePrefix + " " + LocalDate.now() + " " + type.toString() + reportNamePostfix;
 		
 		try {
 			logger.info("Initialising Report File.");
 			
-			fileName = report_name_prefix + LocalDate.now() + " " + type.toString() + report_name_postfix;
-			reportPath = Paths.get(report_directory + File.separator + fileName).toAbsolutePath();
-			reportFile = reportPath.toFile();
+			reportPath = Paths.get(reportDirectory + File.separator + fileName).toAbsolutePath();
+			File reportFile = reportPath.toFile();
 			
 			if (!reportFile.getParentFile().exists()) {
-				logger.debug("Parent Directory of Report File does not exist.");
+				logger.debug("Parent directory of report file does not exist.");
 				reportFile.getParentFile().mkdirs();
 			}
 			
-			if(!report_style_path.toFile().exists() || report_style_path.toFile().length() == 0) {
-				File report_style_file = report_style_path.toFile();
+			if(!reportStylePath.toFile().exists() || reportStylePath.toFile().length() == 0) {
+				File report_style_file = reportStylePath.toFile();
 				report_style_file.createNewFile();
 				CSSFormatter.initFile(report_style_file);
 			}
@@ -64,10 +61,10 @@ public class HTMLReportManager {
 			logger.info("Creating Report File.");
 			reportFile.createNewFile();
 		} catch (IOException e) {
-			logger.error("COULD NOT CREATE REPORT FILE!", e);
+			logger.error("COULD NOT CREATE REPORT DIRECTORY!", e);
 		}
 
-		logger.info("Report File Successfully Initialised.");
+		logger.info("Report directory successfully initialised.");
 		return fileName;
 	}
 
