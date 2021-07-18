@@ -1,21 +1,19 @@
 package timesheets;
 
-import java.awt.Color;
-
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
-import timesheets.gui.MainFrame;
 import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
-import timesheets.resources.ResourceHandler;
+import timesheets.runnable.Editor;
+import timesheets.runnable.SelectedRunnable;
+import timesheets.runnable.Timesheets;
 import timesheets.sql.Database;
 import timesheets.update.Update;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class);
+	private static SelectedRunnable runnable = SelectedRunnable.TIMESHEETS;
 
 	public static void main(String[] args) {
 		setupCommandLineParameters(args);
@@ -27,31 +25,18 @@ public class Main {
 		LogManager.cleanDirectory();
 		Database.cleanDirectory();
 
-		logger.info("Initialising SwingUtilities.");
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				logger.info("Initialising Mainframe.");
-				
-				try {
-					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-					UIManager.getLookAndFeelDefaults().put("Panel.background", Color.WHITE);
-					logger.info("Set Look And Feel.");
-				} catch(Exception e) {
-					logger.error("COULD NOT SET LOOK AND FEEL!", e);
-				}
-				
-				MainFrame frame = new MainFrame();
-
-				logger.info("Setting Frame Parameters.");
-				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-				frame.setResizable(true);
-				frame.pack();
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				frame.setIconImages(ResourceHandler.getIcons());
-				logger.info("Initialisation of SwingUtilities Complete.");
-			}
-		});
+		logger.info("Opening Runnable: " + runnable);
+		switch(runnable) {
+		case TIMESHEETS:
+			SwingUtilities.invokeLater(new Timesheets());
+			break;
+		case EDITOR:
+			new Thread(new Editor()).start();
+			break;
+		default:
+			SwingUtilities.invokeLater(new Timesheets());
+			break;	
+		}
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -76,6 +61,8 @@ public class Main {
 				System.exit(0);
 			} else if (arg.equals("-debug") || arg.equals("-d")) {
 				LogManager.setDebugMode(true);
+			} else if(arg.equals("-edit") || arg.equals("-e")){ 
+				runnable = SelectedRunnable.EDITOR;
 			} else {
 				System.out.println("Unknown Argument: " + arg + ".");
 				System.out.println("For help, type: java -jar Timesheets.jar --help");
