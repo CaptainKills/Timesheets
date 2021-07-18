@@ -36,7 +36,7 @@ public class StartBreakButton extends JButton {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
 				Employee activeEmployee = Database.EmployeeList.get(id);
 
-				LocalTime currentTime = time.roundOffTime(time.getCurrentTime());
+				LocalTime currentTime = time.getCurrentTime();
 				DisplayList.loginTextArea.updateInfoText("Break has been started at: " + currentTime);
 				logger.info("Employee " + activeEmployee.getID_String() + " has started their break at " + currentTime);
 

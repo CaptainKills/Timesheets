@@ -5,7 +5,14 @@ import java.time.*;
 public class TimeHandler {
 
 	public LocalTime getCurrentTime() {
-		return LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+		LocalTime time = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+		
+		boolean roundOffTime = Boolean.parseBoolean(Settings.settings.get("round_off_time"));
+		if(roundOffTime) {
+			time = roundOffTime(time);
+		}
+		
+		return time;
 	}
 
 	public LocalDate getCurrentDate() {
@@ -42,12 +49,7 @@ public class TimeHandler {
 		return newTime;
 	}
 
-	public LocalTime roundOffTime(LocalTime time) {
-		boolean roundOff = Boolean.parseBoolean(Settings.settings.get("round_off_time"));
-		if(!roundOff) {
-			return time;
-		}
-		
+	private LocalTime roundOffTime(LocalTime time) {
 		LocalTime newTime = null;
 		
 		if (time.getMinute() >= 0 && time.getMinute() < 8) {

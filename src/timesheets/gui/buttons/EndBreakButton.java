@@ -38,7 +38,7 @@ public class EndBreakButton extends JButton {
 				int id = Integer.parseInt(TextFieldList.inputField.getText());
 				Employee activeEmployee = Database.EmployeeList.get(id);
 
-				currentTime = time.roundOffTime(time.getCurrentTime());
+				currentTime = time.getCurrentTime();
 				activeEmployee.setBreakEnded(currentTime);
 				logger.info("Employee " + activeEmployee.getID_String() + " has ended their break at: " + currentTime);
 

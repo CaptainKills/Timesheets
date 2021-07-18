@@ -41,7 +41,7 @@ public class EndShiftButton extends JButton {
 				Employee activeEmployee = Database.EmployeeList.get(id);
 
 				LocalDate currentDate = time.getCurrentDate();
-				LocalTime currentTime = time.roundOffTime(time.getCurrentTime());
+				LocalTime currentTime = time.getCurrentTime();
 				activeEmployee.setTimeEnded(currentTime);
 
 				LocalTime newWorkedTime = time.calculateDifference(activeEmployee.getTimeStarted(),
