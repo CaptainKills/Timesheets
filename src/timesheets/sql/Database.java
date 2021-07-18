@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,7 +37,7 @@ public class Database {
 	private static final File directory = ResourceHandler.data_directory_path.toFile();
 	private static String[] directory_files = directory.list();
 
-	public static Map<Integer, Employee> EmployeeList = new HashMap<Integer, Employee>();
+	public static Map<Integer, Employee> EmployeeList = new TreeMap<Integer, Employee>();
 	private static Map<String, String> lang = LanguageManager.language;
 	
 	private static String dialogTitleSuccess = lang.get("jop_db_title_success");
