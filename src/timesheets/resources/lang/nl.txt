@@ -67,6 +67,9 @@ enter_id_text="Log in met uw ID a.u.b..."
 
 
 ## Report:
+report_name_prefix="Timesheets Rapport"
+html_company_label="Bedrijfsnaam:"
+html_timeperiod_label="voor tijdsperiode:"
 today_const="Vandaag"
 week_const="Week"
 month_const="Maand"

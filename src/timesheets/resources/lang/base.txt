@@ -67,6 +67,9 @@ enter_id_text=""
 
 
 ## Report:
+report_name_prefix=""
+html_company_label=""
+html_timeperiod_label=""
 today_const=""
 week_const=""
 month_const=""

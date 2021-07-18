@@ -67,6 +67,9 @@ enter_id_text="Please enter ID to log in..."
 
 
 ## Report:
+report_name_prefix="Timesheets Report"
+html_company_label="Company Name:"
+html_timeperiod_label="for time period:"
 today_const="Today"
 week_const="Week"
 month_const="Month"
