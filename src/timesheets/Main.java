@@ -13,6 +13,8 @@ import timesheets.update.Update;
 
 public class Main {
 	private static final Logger logger = new Logger(Main.class);
+	private static Database database = new Database();
+	
 	private static SelectedRunnable runnable = SelectedRunnable.TIMESHEETS;
 
 	public static void main(String[] args) {
@@ -21,9 +23,13 @@ public class Main {
 		logger.info("Initialising Program.");
 
 		Settings.load();
+		
 		LanguageManager.initialise();
 		LogManager.cleanDirectory();
+		
 		Database.cleanDirectory();
+		database.setup();
+		database.load();
 
 		logger.info("Opening Runnable: " + runnable);
 		switch(runnable) {

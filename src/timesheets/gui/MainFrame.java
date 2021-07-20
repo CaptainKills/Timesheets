@@ -11,21 +11,16 @@ import timesheets.gui.lists.PanelList;
 import timesheets.gui.lists.UnusualsList;
 import timesheets.gui.panels.MainPanel;
 import timesheets.logging.Logger;
-import timesheets.sql.Database;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 01L;
 	private static final Logger logger = new Logger(MainFrame.class);
 
-	private Database database = new Database();
 	private MainPanel mainPanel = PanelList.mainPanel;
 
 	public MainFrame() {
 		super("Timesheets");
 		logger.info("Start MainFrame Setup.");
-
-		database.setupDatabase();
-		database.loadDatabase();
 
 		mainPanel.setupPanel();
 		getContentPane().add(mainPanel);
