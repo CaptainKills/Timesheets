@@ -46,26 +46,26 @@ public class Database {
 	private static String dialogMsgFail = lang.get("jop_db_msg_fail");
 
 	// @formatter:off
-		private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
-				+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
-				+ "	firstName TEXT NOT NULL,\n"
-				+ " lastName TEXT NOT NULL,\n"
-				+ "	age INTEGER NOT NULL,\n"
-				+ " salary INTEGER NOT NULL,\n"
-				+ " admin BOOLEAN DEFAULT false\n" + ") WITHOUT ROWID;";
+	private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
+			+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
+			+ "	firstName TEXT NOT NULL,\n"
+			+ " lastName TEXT NOT NULL,\n"
+			+ "	age INTEGER NOT NULL,\n"
+			+ " salary INTEGER NOT NULL,\n"
+			+ " admin BOOLEAN DEFAULT false\n" + ") WITHOUT ROWID;";
 
-		private final String timedata_table = "CREATE TABLE IF NOT EXISTS timedata (\n"
-				+ " id INTEGER NOT NULL,\n"
-				+ " date DATE NOT NULL,\n"
-				+ " start TIME NOT NULL,\n"
-				+ " end TIME NOT NULL,\n"
-				+ " break TIME NOT NULL,\n"
-				+ " total TIME NOT NULL,\n"
-				+ " PRIMARY KEY (id,date),\n"
-				+ " FOREIGN KEY (id) REFERENCES employees(id)" + ") WITHOUT ROWID;";
+	private final String timedata_table = "CREATE TABLE IF NOT EXISTS timedata (\n"
+			+ " id INTEGER NOT NULL,\n"
+			+ " date DATE NOT NULL,\n"
+			+ " start TIME NOT NULL,\n"
+			+ " end TIME NOT NULL,\n"
+			+ " break TIME NOT NULL,\n"
+			+ " total TIME NOT NULL,\n"
+			+ " PRIMARY KEY (id,date),\n"
+			+ " FOREIGN KEY (id) REFERENCES employees(id)" + ") WITHOUT ROWID;";
 	// @formatter:on
 
-	public void setupDatabase() {
+	public void setup() {
 		String query_check_emp_table = "SELECT COUNT(*) FROM employees;";
 		String query_check_time_table = "SELECT COUNT(*) FROM timedata;";
 		
@@ -129,7 +129,7 @@ public class Database {
 		}
 	}
 
-	public void loadDatabase() {
+	public void load() {
 		String query = "SELECT * FROM employees;";
 
 		try (Connection conn = this.connect();
@@ -304,10 +304,10 @@ public class Database {
 			pstmt.setInt(1, emp.getID());
 			pstmt.setString(2, emp.getFirstName());
 			pstmt.setString(3, emp.getLastName());
-			pstmt.setInt(3, emp.getAge());
-			pstmt.setDouble(4, emp.getSalary());
-			pstmt.setBoolean(5, emp.getAdmin());
-			pstmt.setInt(6, oldID);
+			pstmt.setInt(4, emp.getAge());
+			pstmt.setDouble(5, emp.getSalary());
+			pstmt.setBoolean(6, emp.getAdmin());
+			pstmt.setInt(7, oldID);
 
 			pstmt.executeUpdate();
 			logger.info("Updated Employee in Database: " + oldID + " -> " + emp.getID());
