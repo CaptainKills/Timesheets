@@ -37,7 +37,7 @@ public class LogManager {
 
 			log_file.createNewFile();
 		} catch (IOException e) {
-			System.err.println("The file could not be created: " + e);
+			System.err.println("LOG FILE COULD NOT BE CREATED!" + e);
 			e.printStackTrace();
 		}
 
@@ -46,7 +46,7 @@ public class LogManager {
 		
 		archiveLogs();
 		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
-		logger.info("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
+		logger.debug("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
 	}
 
 	public static void writeLog(String log) {
@@ -58,7 +58,8 @@ public class LogManager {
 				System.out.println(log);
 			}
 		} catch (IOException e) {
-			logger.error("COULD NOT WRITE TO LOG FILE!", e);
+			System.err.println("COULD NOT WRITE TO LOG FILE!" + e);
+			e.printStackTrace();
 		}
 	}
 

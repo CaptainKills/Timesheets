@@ -70,7 +70,7 @@ public class Settings {
 				file.getParentFile().mkdirs();
 				logger.debug("Parent Directory of files created.");
 			}
-		} catch (Exception e) {
+		} catch (SecurityException e) {
 			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
 		}
 
