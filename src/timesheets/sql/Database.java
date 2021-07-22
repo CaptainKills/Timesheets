@@ -45,46 +45,30 @@ public class Database {
 	private static String dialogTitleFail = lang.get("jop_db_title_fail");
 	private static String dialogMsgFail = lang.get("jop_db_msg_fail");
 
-	// @formatter:off
-	private final String employees_table = "CREATE TABLE IF NOT EXISTS employees (\n"
-			+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
-			+ "	firstName TEXT NOT NULL,\n"
-			+ " lastName TEXT NOT NULL,\n"
-			+ "	age INTEGER NOT NULL,\n"
-			+ " salary INTEGER NOT NULL,\n"
-			+ " admin BOOLEAN DEFAULT false\n" + ") WITHOUT ROWID;";
-
-	private final String timedata_table = "CREATE TABLE IF NOT EXISTS timedata (\n"
-			+ " id INTEGER NOT NULL,\n"
-			+ " date DATE NOT NULL,\n"
-			+ " start TIME NOT NULL,\n"
-			+ " end TIME NOT NULL,\n"
-			+ " break TIME NOT NULL,\n"
-			+ " total TIME NOT NULL,\n"
-			+ " PRIMARY KEY (id,date),\n"
-			+ " FOREIGN KEY (id) REFERENCES employees(id)" + ") WITHOUT ROWID;";
-	// @formatter:on
-
 	public void setup() {
-		String query_check_emp_table = "SELECT COUNT(*) FROM employees;";
-		String query_check_time_table = "SELECT COUNT(*) FROM timedata;";
-		
-		String query_add_admin = "INSERT INTO employees(id, firstName, lastName, age, salary, admin)"
-							   + " VALUES(12345, \"Administrator\", \"\", 20, 0.0, true);";
-
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
-			stmt.execute(employees_table);
-			ResultSet rs = stmt.executeQuery(query_check_emp_table);
+			stmt.execute(SQLQuery.queryCreateEmployeeTable);
+			ResultSet rs = stmt.executeQuery(SQLQuery.queryCountEmployees);
 			int number_of_entries = rs.getInt(1);
 			logger.debug("SQL Table \"employees\" has " + number_of_entries + " entries.");
 			
 			if(number_of_entries == 0) {
 				logger.debug("No entries. Adding Administrator.");
-				stmt.execute(query_add_admin);
+				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryAddEmployee);
+				
+				pstmt.setInt(1, 12345);
+				pstmt.setString(2, "Administrator");
+				pstmt.setString(3, " ");
+				pstmt.setInt(4, 0);
+				pstmt.setDouble(5, 0.0);
+				pstmt.setBoolean(6, true);
+				
+				pstmt.execute();
+				pstmt.close();
 			}
 			
-			stmt.execute(timedata_table);
-			rs = stmt.executeQuery(query_check_time_table);
+			stmt.execute(SQLQuery.queryCreateTimeTable);
+			rs = stmt.executeQuery(SQLQuery.queryCountTime);
 			number_of_entries = rs.getInt(1);
 			logger.debug("SQL Table \"timedata\" has " + number_of_entries + " entries.");
 			
@@ -130,11 +114,9 @@ public class Database {
 	}
 
 	public void load() {
-		String query = "SELECT * FROM employees;";
-
 		try (Connection conn = this.connect();
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);) {
+				ResultSet rs = stmt.executeQuery(SQLQuery.querySelectAllEmployees);) {
 			logger.info("Loading Database in program.");
 			
 			while (rs.next()) {
@@ -160,10 +142,12 @@ public class Database {
 	}
 
 	private TreeMap<LocalDate, LocalTime[]> loadTimeData(Connection c, int id) {
-		String query = "SELECT * FROM timedata WHERE id = " + id + ";";
 		TreeMap<LocalDate, LocalTime[]> timemap = new TreeMap<LocalDate, LocalTime[]>();
 
-		try (Statement stmt = c.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+		try (PreparedStatement pstmt = c.prepareStatement(SQLQuery.querySelectTime); ) {
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				LocalDate date = rs.getDate("date").toLocalDate();
 				LocalTime startTime = rs.getTime("start").toLocalTime();
@@ -171,7 +155,7 @@ public class Database {
 				LocalTime breakTime = rs.getTime("break").toLocalTime();
 				LocalTime totalTime = rs.getTime("total").toLocalTime();
 						
-				LocalTime[] workedHours = { startTime, endTime, breakTime, totalTime};
+				LocalTime[] workedHours = {startTime, endTime, breakTime, totalTime};
 				timemap.put(date, workedHours);
 			}
 		} catch (SQLException e) {
@@ -257,9 +241,7 @@ public class Database {
 	}
 
 	public void insertEmployee(Employee emp) {
-		String query = "INSERT INTO employees(id,firstName,lastName,age,salary,admin) VALUES(?,?,?,?,?,?);";
-
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryAddEmployee)) {
 			pstmt.setInt(1, emp.getID());
 			pstmt.setString(2, emp.getFirstName());
 			pstmt.setString(3, emp.getLastName());
@@ -277,17 +259,10 @@ public class Database {
 	}
 
 	public void deleteEmployee(int id) {
-		String query_emp = "DELETE FROM employees WHERE id = ?;";
-		String query_time = "DELETE FROM timedata WHERE id = ?;";
-
-		try (Connection conn = this.connect();
-				PreparedStatement pstmt_emp = conn.prepareStatement(query_emp);
-				PreparedStatement pstmt_time = conn.prepareStatement(query_time)) {
-			pstmt_emp.setInt(1, id);
-			pstmt_emp.executeUpdate();
-
-			pstmt_time.setInt(1, id);
-			pstmt_time.executeUpdate();
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryDeleteEmployee)) {
+			pstmt.setInt(1, id);
+			//pstmt.setInt(2, id);
+			pstmt.executeUpdate();
 
 			logger.info("Deleted Employee from Database: " + id);
 		} catch (SQLException e) {
@@ -298,9 +273,7 @@ public class Database {
 	}
 
 	public void updateEmployee(int oldID, Employee emp) {
-		String query = "UPDATE employees SET id = ?, firstName = ?, lastName = ?, age = ?, salary = ?, admin = ? WHERE id = ?;";
-
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryUpdateEmployee)) {
 			pstmt.setInt(1, emp.getID());
 			pstmt.setString(2, emp.getFirstName());
 			pstmt.setString(3, emp.getLastName());
@@ -319,11 +292,7 @@ public class Database {
 	}
 
 	public void insertTime(int id, LocalDate date, LocalTime[] shift) {
-		String query = "INSERT INTO timedata(id,date,start,end,break,total) VALUES(?,?,?,?,?,?)\n"
-				+ "ON CONFLICT(id,date) DO UPDATE SET start = ?, end = ?, break = ?, total = ?\n"
-				+ "WHERE id = ? AND date = ?;";
-
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryAddTime)) {
 			pstmt.setInt(1, id);
 			pstmt.setDate(2, java.sql.Date.valueOf(date));
 			pstmt.setTime(3, java.sql.Time.valueOf(shift[0]));
