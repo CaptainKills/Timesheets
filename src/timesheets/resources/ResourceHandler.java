@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 
 import timesheets.Settings;
 import timesheets.logging.Logger;
+import timesheets.report.html.CSSFormatter;
 
 public class ResourceHandler {
 	private static final Logger logger = new Logger(ResourceHandler.class);
@@ -72,7 +73,15 @@ public class ResourceHandler {
 		
 		File reportDirectory = report_directory_path.toFile();
 		if(!reportDirectory.exists()) {
-			reportDirectory.mkdir();
+			try {
+				reportDirectory.mkdir();
+				File cssFile = report_style_path.toFile();
+				cssFile.createNewFile();
+				CSSFormatter.initFile(cssFile);
+			} catch(IOException e) {
+				System.err.println(e.getMessage());
+				e.printStackTrace();
+			}
 		}
 		
 		File settingsFile = settings_path.toFile();
