@@ -2,6 +2,7 @@ package timesheets.resources;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +10,7 @@ import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
+import timesheets.Settings;
 import timesheets.logging.Logger;
 
 public class ResourceHandler {
@@ -55,5 +57,33 @@ public class ResourceHandler {
 
 		logger.info("Loaded Program Icons.");
 		return list;
+	}
+	
+	public static void generateFileStructure() {
+		File dataDirectory = data_directory_path.toFile();
+		if(!dataDirectory.exists()) {
+			dataDirectory.mkdir();
+		}
+		
+		File logDirectory = log_directory_path.toFile();
+		if(!logDirectory.exists()) {
+			logDirectory.mkdir();
+		}
+		
+		File reportDirectory = report_directory_path.toFile();
+		if(!reportDirectory.exists()) {
+			reportDirectory.mkdir();
+		}
+		
+		File settingsFile = settings_path.toFile();
+		if(!settingsFile.exists()) {
+			try {
+				settingsFile.createNewFile();
+				Settings.writeDefaultsToFile(settingsFile);
+			} catch(IOException e) {
+				System.err.println(e.getMessage());
+				e.printStackTrace();
+			}
+		}
 	}
 }

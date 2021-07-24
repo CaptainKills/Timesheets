@@ -14,27 +14,21 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import timesheets.Settings;
-import timesheets.exceptions.CrashExceptionHandler;
 import timesheets.resources.ResourceHandler;
 
 public class LogManager {
 	
 	private static final Logger logger = new Logger(LogManager.class);
-	private static String activeLog = "Timesheets Log " + LocalDate.now() + ".txt";
+	private static String logName = "Timesheets Log " + LocalDate.now() + ".txt";
 
 	private static final Path log_directory = ResourceHandler.log_directory_path;
-	private static final Path log_path = Paths.get(log_directory + File.separator + activeLog).toAbsolutePath();
+	private static final Path log_path = Paths.get(log_directory + File.separator + logName).toAbsolutePath();
 	private static final File log_file = log_path.toFile();
 
 	private static boolean debugMode = false;
-	private static String[] directory_files = log_directory.toFile().list();
 
-	public static void initialise() {
+	public static void openLog() {
 		try {
-			if (!log_file.getParentFile().exists()) {
-				log_file.getParentFile().mkdirs();
-			}
-
 			log_file.createNewFile();
 		} catch (IOException e) {
 			System.err.println("LOG FILE COULD NOT BE CREATED!" + e);
@@ -42,11 +36,7 @@ public class LogManager {
 		}
 
 		writeLog("---Timesheets Log created [" + LocalDate.now() + " " + LocalTime.now() + "]---\n");
-		logger.info("LogManager Initialised.");
-		
-		archiveLogs();
-		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
-		logger.debug("DefaultUncaughtExceptionHandler set: CrashExceptionHandler");
+		logger.info("Log opened.");
 	}
 
 	public static void writeLog(String log) {
@@ -63,22 +53,19 @@ public class LogManager {
 		}
 	}
 
-	private static void archiveLogs() {
+	public static void archiveLogs() {
 		logger.info("Archiving Log Files.");
+		String[] directoryFiles = log_directory.toFile().list();
 		
-		if (directory_files != null) {
-			for (String log : directory_files) {
-				if (log.contains(".zip") || log.equals(activeLog)) {
-					continue;
-				} else {
-					logger.info("Archiving " + log);
-					createZip(log);
-					File f = new File(log_directory + File.separator + log);
-					f.delete();
-				}
+		for (String log : directoryFiles) {
+			if (log.contains(".zip") || log.equals(logName)) {
+				continue;
+			} else {
+				logger.info("Archiving " + log);
+				createZip(log);
+				File f = new File(log_directory + File.separator + log);
+				f.delete();
 			}
-		} else {
-			logger.info("There are currently no log files present. Archiving will be skipped.");
 		}
 	}
 
@@ -109,27 +96,23 @@ public class LogManager {
 	public static void cleanDirectory() {
 		boolean delete_logs = Boolean.parseBoolean(Settings.settings.get("delete_logs"));
 		int number_of_logs = Integer.parseInt(Settings.settings.get("number_of_logs"));
+		String[] directoryFiles = log_directory.toFile().list();
 
-		if (directory_files != null) {
-			logger.info("Log files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_logs);
+		logger.info("Log files in Directory: " + directoryFiles.length + ", # of Files allowed: " + number_of_logs);
 
-			if (delete_logs == true) {
-				int difference = directory_files.length - number_of_logs;
-				logger.info("Log deletion is enabeled. There are currently " + difference + "  logs too many.");
+		if (delete_logs == true && number_of_logs > 1) {
+			int difference = directoryFiles.length - number_of_logs;
+			logger.info("Log deletion is enabeled. There are currently " + difference + "  logs too many.");
 
-				for (int i = 0; i < difference; i++) {
-					logger.info("Removing " + directory_files[i]);
-					File f = new File(log_directory + File.separator + directory_files[i]);
-					f.delete();
-				}
-				
-				logger.info("Log Directory Clean finished.");
-			} else {
-				logger.info("Log deletion is disabled. No logs will be deleted.");
-				return;
+			for (int i = 0; i < difference; i++) {
+				logger.info("Removing " + directoryFiles[i]);
+				File f = new File(log_directory + File.separator + directoryFiles[i]);
+				f.delete();
 			}
+			
+			logger.info("Log Directory Clean finished.");
 		} else {
-			logger.info("Log files in Directory: 0, directory is empty.");
+			logger.info("No logs will be deleted.");
 		}
 	}
 

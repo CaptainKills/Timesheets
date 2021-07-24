@@ -2,9 +2,11 @@ package timesheets;
 
 import javax.swing.SwingUtilities;
 
+import timesheets.exceptions.CrashExceptionHandler;
 import timesheets.logging.LogManager;
 import timesheets.logging.Logger;
 import timesheets.resources.LanguageManager;
+import timesheets.resources.ResourceHandler;
 import timesheets.runnable.Editor;
 import timesheets.runnable.SelectedRunnable;
 import timesheets.runnable.Timesheets;
@@ -18,16 +20,21 @@ public class Main {
 	private static SelectedRunnable runnable = SelectedRunnable.TIMESHEETS;
 
 	public static void main(String[] args) {
+		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
+		
 		setupCommandLineParameters(args);
-		LogManager.initialise();
-		logger.info("Initialising Program.");
-
+		ResourceHandler.generateFileStructure();
+		
+		LogManager.openLog();
 		Settings.load();
+		logger.info("Initialising Program.");
 		
 		LanguageManager.initialise();
+		
+		LogManager.archiveLogs();
 		LogManager.cleanDirectory();
 		
-		Database.cleanDirectory();
+		database.cleanDirectory();
 		database.setup();
 		database.load();
 

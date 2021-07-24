@@ -33,8 +33,6 @@ public class Settings {
 
 	public static void load() {
 		logger.info("Loading Settings File.");
-		checkFile();
-
 		try (BufferedReader reader = new BufferedReader(new FileReader(settings_file))) {
 			String newline;
 			
@@ -51,48 +49,6 @@ public class Settings {
 		}
 	}
 
-	private static void checkFile() {
-		if (!settings_file.exists()) {
-			logger.info("Settings file does not exist.");
-			createFile(settings_file);
-		} else if (settings_file.length() == 0) {
-			logger.debug("Settings File is empty: Length=" + settings_file.length());
-			writeDefaultsToFile(settings_file);
-		} else {
-			logger.debug("Settings file exists: Length=" + settings_file.length());
-		}
-	}
-
-	private static void createFile(File file) {
-		try {
-			if (!file.getParentFile().exists()) {
-				logger.info("Parent Directory of files does not exist.");
-				file.getParentFile().mkdirs();
-				logger.debug("Parent Directory of files created.");
-			}
-		} catch (SecurityException e) {
-			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
-		}
-
-		try (PrintWriter writer = new PrintWriter(file)) {
-			file.createNewFile();
-			logger.debug("New File created at " + file.toString());
-			writeDefaultsToFile(file);
-			logger.debug("File creation succesfully completed.");
-		} catch (IOException e) {
-			logger.error("COULD NOT CREATE FILE!", e);
-		}
-	}
-
-	private static void writeDefaultsToFile(File file) {
-		try (PrintWriter writer = new PrintWriter(file)) {
-			logger.debug("Writing default settings to Settings file.");
-			writer.print(defaultSettings);
-		} catch (IOException e) {
-			logger.error("COULD NOT WRITE DEFAULTS TO FILE!", e);
-		}
-	}
-
 	public static void save() {
 		logger.info("Saving settings to file.");
 		try (PrintWriter writer = new PrintWriter(settings_file)) {
@@ -102,5 +58,11 @@ public class Settings {
 		} catch (IOException e) {
 			logger.error("COULD NOT SAVE SETTINGS TO FILE!", e);
 		}
+	}
+	
+	public static void writeDefaultsToFile(File file) throws IOException {
+		PrintWriter writer = new PrintWriter(file);
+		writer.print(defaultSettings);
+		writer.close();
 	}
 }

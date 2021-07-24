@@ -35,7 +35,6 @@ public class Database {
 	private static final File database_file = ResourceHandler.database_path.toFile();
 	private static final File encrypted_file = ResourceHandler.encrypted_path.toFile();
 	private static final File directory = ResourceHandler.data_directory_path.toFile();
-	private static String[] directory_files = directory.list();
 
 	public static Map<Integer, Employee> EmployeeList = new TreeMap<Integer, Employee>();
 	private static Map<String, String> lang = LanguageManager.language;
@@ -49,10 +48,11 @@ public class Database {
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
 			stmt.execute(SQLQuery.queryCreateEmployeeTable);
 			ResultSet rs = stmt.executeQuery(SQLQuery.queryCountEmployees);
-			int number_of_entries = rs.getInt(1);
-			logger.debug("SQL Table \"employees\" has " + number_of_entries + " entries.");
 			
-			if(number_of_entries == 0) {
+			int numberOfEntries = rs.getInt(1);
+			logger.debug("SQL Table \"employees\" has " + numberOfEntries + " entries.");
+			
+			if(numberOfEntries == 0) {
 				logger.debug("No entries. Adding Administrator.");
 				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryAddEmployee);
 				
@@ -69,8 +69,9 @@ public class Database {
 			
 			stmt.execute(SQLQuery.queryCreateTimeTable);
 			rs = stmt.executeQuery(SQLQuery.queryCountTime);
-			number_of_entries = rs.getInt(1);
-			logger.debug("SQL Table \"timedata\" has " + number_of_entries + " entries.");
+			
+			numberOfEntries = rs.getInt(1);
+			logger.debug("SQL Table \"timedata\" has " + numberOfEntries + " entries.");
 			
 			rs.close();
 		} catch (SQLException e) {
@@ -78,39 +79,20 @@ public class Database {
 		}
 	}
 
-	private Connection connect() {
-		Connection conn = null;
+	private Connection connect() throws SQLException {
+		Encryption.decrypt(enc_key, encrypted_file, database_file);
+		String url = "jdbc:sqlite:" + database_file;
 
-		try {
-			checkDirectory();
-			Encryption.decrypt(enc_key, encrypted_file, database_file);
-			String url = "jdbc:sqlite:" + database_file;
-
-			logger.info("Establishing connection to SQLite Database...");
-			conn = DriverManager.getConnection(url);
-			
-			if (conn != null) {
-				logger.info("Connection to SQLite Database has been established.");
-			} else {
-				logger.warn("Connection to SQLite Database failed.");
-			}
-		} catch (SQLException e) {
-			logger.error("SQL CONNECTION ERROR!", e);
+		logger.info("Establishing connection to SQLite Database...");
+		Connection conn = DriverManager.getConnection(url);
+		
+		if (conn != null) {
+			logger.info("Connection to SQLite Database has been established.");
+		} else {
+			logger.warn("Connection to SQLite Database failed.");
 		}
 
 		return conn;
-	}
-
-	private void checkDirectory() {
-		try {
-			if (!database_file.getParentFile().exists()) {
-				logger.info("Parent Directory of Database does not exist.");
-				database_file.getParentFile().mkdir();
-				logger.info("Parent Directory of Database created.");
-			}
-		} catch (SecurityException e) {
-			logger.error("COULD NOT CREATE PARENT DIRECTORY!", e);
-		}
 	}
 
 	public void load() {
@@ -212,21 +194,22 @@ public class Database {
 		}
 	}
 
-	public static void cleanDirectory() {
+	public void cleanDirectory() {
 		int number_of_backups = Integer.parseInt(Settings.settings.get("number_of_backups"));
-		String directory = ResourceHandler.data_directory_path.toString();
+		Path directory = ResourceHandler.data_directory_path;
+		String[] directoryFiles = directory.toFile().list();
 
-		if (directory_files != null) {
-			logger.info("Backup files in Directory: " + directory_files.length + ", # of Files allowed: " + number_of_backups);
-			int difference = directory_files.length - number_of_backups - 1; // -1 because the original file is not included.
+		if (directoryFiles != null) {
+			logger.info("Backup files in Directory: " + directoryFiles.length + ", # of Files allowed: " + number_of_backups);
+			int difference = directoryFiles.length - number_of_backups - 1; // -1 because the original file is not included.
 			
 			if (difference > 0) {
 				logger.debug("There are currently " + difference + "  backups too many.");
 				
 				for (int i = 0; i < difference; i++) {
-					if (directory_files[i].contains("Backup")) {
-						logger.debug("Removing " + directory_files[i]);
-						File f = new File(directory + File.separator + directory_files[i]);
+					if (directoryFiles[i].contains("Backup")) {
+						logger.debug("Removing " + directoryFiles[i]);
+						File f = new File(directory + File.separator + directoryFiles[i]);
 						f.delete();
 					}
 				}
@@ -259,10 +242,14 @@ public class Database {
 	}
 
 	public void deleteEmployee(int id) {
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryDeleteEmployee)) {
-			pstmt.setInt(1, id);
-			//pstmt.setInt(2, id);
-			pstmt.executeUpdate();
+		try (Connection conn = this.connect();
+				PreparedStatement pstmt_emp = conn.prepareStatement(SQLQuery.queryDeleteEmployee);
+				PreparedStatement pstmt_time = conn.prepareStatement(SQLQuery.queryDeleteTime)) {
+			pstmt_emp.setInt(1, id);
+			pstmt_time.setInt(1, id);
+			
+			pstmt_emp.executeUpdate();
+			pstmt_time.executeUpdate();
 
 			logger.info("Deleted Employee from Database: " + id);
 		} catch (SQLException e) {

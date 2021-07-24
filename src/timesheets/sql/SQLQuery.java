@@ -12,7 +12,7 @@ public class SQLQuery {
 	public static final String queryCreateEmployeeTable = "CREATE TABLE IF NOT EXISTS employees (\n"
 			+ "	id INTEGER PRIMARY KEY UNIQUE,\n"
 			+ "	firstName TEXT NOT NULL,\n"
-			+ " lastName TEXT,\n"
+			+ " lastName TEXT NOT NULL,\n"
 			+ "	age INTEGER NOT NULL,\n"
 			+ " salary INTEGER NOT NULL,\n"
 			+ " admin BOOLEAN NOT NULL\n"
