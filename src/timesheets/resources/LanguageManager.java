@@ -35,9 +35,13 @@ public class LanguageManager {
 			break;				
 		}
 		
+		loadLanguage(lang_isr);
+	}
+	
+	private static void loadLanguage(InputStreamReader isr) {
 		try {
 			String line;
-			BufferedReader lang_reader = new BufferedReader(lang_isr);
+			BufferedReader lang_reader = new BufferedReader(isr);
 			
 			while ((line = lang_reader.readLine()) != null) {
 				if(!line.startsWith("#") && !line.isEmpty()) {
