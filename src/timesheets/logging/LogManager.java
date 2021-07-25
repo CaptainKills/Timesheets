@@ -30,19 +30,18 @@ public class LogManager {
 	public static void openLog() {
 		try {
 			log_file.createNewFile();
+			writeLog("---Timesheets Log created [" + LocalDate.now() + " " + LocalTime.now() + "]---\n");
+			logger.info("Log opened.");
 		} catch (IOException e) {
 			System.err.println("LOG FILE COULD NOT BE CREATED!" + e);
 			e.printStackTrace();
 		}
-
-		writeLog("---Timesheets Log created [" + LocalDate.now() + " " + LocalTime.now() + "]---\n");
-		logger.info("Log opened.");
 	}
 
 	public static void writeLog(String log) {
-		try (FileWriter file_writer = new FileWriter(log_file, true);
-				PrintWriter log_writer = new PrintWriter(file_writer)) {
-			log_writer.println(log);
+		try (FileWriter fw = new FileWriter(log_file, true);
+				PrintWriter pw = new PrintWriter(fw)) {
+			pw.println(log);
 
 			if (debugMode) {
 				System.out.println(log);

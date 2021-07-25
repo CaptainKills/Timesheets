@@ -49,10 +49,10 @@ public class Database {
 			stmt.execute(SQLQuery.queryCreateEmployeeTable);
 			ResultSet rs = stmt.executeQuery(SQLQuery.queryCountEmployees);
 			
-			int numberOfEntries = rs.getInt(1);
-			logger.debug("SQL Table \"employees\" has " + numberOfEntries + " entries.");
+			int numberOfEmployeeEntries = rs.getInt(1);
+			logger.debug("SQL Table \"employees\" has " + numberOfEmployeeEntries + " entries.");
 			
-			if(numberOfEntries == 0) {
+			if(numberOfEmployeeEntries == 0) {
 				logger.debug("No entries. Adding Administrator.");
 				PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryAddEmployee);
 				
@@ -70,8 +70,8 @@ public class Database {
 			stmt.execute(SQLQuery.queryCreateTimeTable);
 			rs = stmt.executeQuery(SQLQuery.queryCountTime);
 			
-			numberOfEntries = rs.getInt(1);
-			logger.debug("SQL Table \"timedata\" has " + numberOfEntries + " entries.");
+			int numberOfTimeEntries = rs.getInt(1);
+			logger.debug("SQL Table \"timedata\" has " + numberOfTimeEntries + " entries.");
 			
 			rs.close();
 		} catch (SQLException e) {
@@ -123,25 +123,23 @@ public class Database {
 		}
 	}
 
-	private TreeMap<LocalDate, LocalTime[]> loadTimeData(Connection c, int id) {
+	private TreeMap<LocalDate, LocalTime[]> loadTimeData(Connection c, int id) throws SQLException {
 		TreeMap<LocalDate, LocalTime[]> timemap = new TreeMap<LocalDate, LocalTime[]>();
-
-		try (PreparedStatement pstmt = c.prepareStatement(SQLQuery.querySelectTime); ) {
-			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				LocalDate date = rs.getDate("date").toLocalDate();
-				LocalTime startTime = rs.getTime("start").toLocalTime();
-				LocalTime endTime = rs.getTime("end").toLocalTime();
-				LocalTime breakTime = rs.getTime("break").toLocalTime();
-				LocalTime totalTime = rs.getTime("total").toLocalTime();
-						
-				LocalTime[] workedHours = {startTime, endTime, breakTime, totalTime};
-				timemap.put(date, workedHours);
-			}
-		} catch (SQLException e) {
-			logger.error("COULD NOT LOAD TIMEDATA FROM DATABASE!", e);
+		
+		PreparedStatement pstmt = c.prepareStatement(SQLQuery.querySelectTime);
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		pstmt.close();
+		
+		while (rs.next()) {
+			LocalDate date = rs.getDate("date").toLocalDate();
+			LocalTime startTime = rs.getTime("start").toLocalTime();
+			LocalTime endTime = rs.getTime("end").toLocalTime();
+			LocalTime breakTime = rs.getTime("break").toLocalTime();
+			LocalTime totalTime = rs.getTime("total").toLocalTime();
+					
+			LocalTime[] workedHours = {startTime, endTime, breakTime, totalTime};
+			timemap.put(date, workedHours);
 		}
 
 		return timemap;

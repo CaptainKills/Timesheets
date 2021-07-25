@@ -79,7 +79,7 @@ public class ResourceHandler {
 				cssFile.createNewFile();
 				CSSFormatter.initFile(cssFile);
 			} catch(IOException e) {
-				System.err.println(e.getMessage());
+				System.err.println("COULD NOT CREATE REPORT DIRECTORY! " + e);
 				e.printStackTrace();
 			}
 		}
@@ -90,7 +90,7 @@ public class ResourceHandler {
 				settingsFile.createNewFile();
 				Settings.writeDefaultsToFile(settingsFile);
 			} catch(IOException e) {
-				System.err.println(e.getMessage());
+				System.err.println("COULD NOT CREATE SETTINGS FILE! " + e);
 				e.printStackTrace();
 			}
 		}

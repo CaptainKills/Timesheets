@@ -42,7 +42,7 @@ public class Settings {
 				String value = segments[1];
 
 				settings.put(setting, value);
-				logger.debug("Added Setting " + setting + ", Value: " + value);
+				logger.debug("Added Setting: " + setting + ", Value: " + value);
 			}
 		} catch (IOException e) {
 			logger.error("COULD NOT LOAD SETTINGS!", e);
