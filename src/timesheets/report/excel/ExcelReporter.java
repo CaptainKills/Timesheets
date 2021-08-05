@@ -64,7 +64,9 @@ public class ExcelReporter {
 					break;
 				}
 				
-				rowId++;
+				if(row.getCell(0) != null) {
+					rowId++;
+				}
 			}
 		}
 	}
