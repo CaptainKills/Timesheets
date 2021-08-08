@@ -2,6 +2,7 @@ package timesheets.runnable;
 
 import java.awt.Color;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import timesheets.gui.MainFrame;
@@ -27,6 +28,7 @@ public class Timesheets implements Runnable {
 		MainFrame frame = new MainFrame();
 
 		logger.info("Setting Frame Parameters.");
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setResizable(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
