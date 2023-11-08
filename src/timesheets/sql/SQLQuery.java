@@ -26,7 +26,7 @@ public class SQLQuery {
 			+ " break TIME NOT NULL,\n"
 			+ " total TIME NOT NULL,\n"
 			+ " PRIMARY KEY (id, date),\n"
-			+ " FOREIGN KEY (id) REFERENCES employees(id) ON DELETE CASCADE\n"
+			+ " FOREIGN KEY (id) REFERENCES employees(id)\n"
 			+ ") WITHOUT ROWID;";
 	
 	public static final String queryAddEmployee = "INSERT INTO employees(id, firstName, lastName, age, salary, admin)"
@@ -38,11 +38,13 @@ public class SQLQuery {
 	public static final String queryDeleteEmployee = "DELETE FROM employees WHERE id = ?;";
 	
 	
-	public static final String queryAddTime = "INSERT INTO timedata(id,date,start,end,break,total)"
+	public static final String queryAddTime = "INSERT INTO timedata(id, date, start, end, break, total)"
 			+ " VALUES(?, ?, ?, ?, ?, ?)\n"
 			+ " ON CONFLICT(id, date) DO UPDATE SET start = ?, end = ?, break = ?, total = ?\n"
 			+ " WHERE id = ? AND date = ?;";
 	
-	public static final String queryDeleteTime = "DELETE FROM timedata WHERE id = ?;";
+	public static final String queryDeleteTimeMap = "DELETE FROM timedata WHERE id = ?;";
+	
+	public static final String queryDeleteTimeEntry = "DELETE FROM timedata	WHERE id = ? AND date = ?;";
 	// @formatter:on
 }

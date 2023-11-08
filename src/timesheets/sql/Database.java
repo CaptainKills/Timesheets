@@ -129,7 +129,6 @@ public class Database {
 		PreparedStatement pstmt = c.prepareStatement(SQLQuery.querySelectTime);
 		pstmt.setInt(1, id);
 		ResultSet rs = pstmt.executeQuery();
-		pstmt.close();
 		
 		while (rs.next()) {
 			LocalDate date = rs.getDate("date").toLocalDate();
@@ -141,6 +140,8 @@ public class Database {
 			LocalTime[] workedHours = {startTime, endTime, breakTime, totalTime};
 			timemap.put(date, workedHours);
 		}
+		
+		pstmt.close();
 
 		return timemap;
 	}
@@ -242,7 +243,7 @@ public class Database {
 	public void deleteEmployee(int id) {
 		try (Connection conn = this.connect();
 				PreparedStatement pstmt_emp = conn.prepareStatement(SQLQuery.queryDeleteEmployee);
-				PreparedStatement pstmt_time = conn.prepareStatement(SQLQuery.queryDeleteTime)) {
+				PreparedStatement pstmt_time = conn.prepareStatement(SQLQuery.queryDeleteTimeMap)) {
 			pstmt_emp.setInt(1, id);
 			pstmt_time.setInt(1, id);
 			
@@ -296,6 +297,20 @@ public class Database {
 			logger.debug("Succesfully logged Time: " + id + " - " + date);
 		} catch (SQLException e) {
 			logger.error("COULD NOT INSERT TIME INTO DATABASE!", e);
+		} finally {
+			Encryption.encrypt(enc_key, database_file, encrypted_file);
+		}
+	}
+	
+	public void deleteTime(int id, LocalDate date) {
+		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQLQuery.queryDeleteTimeEntry)) {
+			pstmt.setInt(1, id);
+			pstmt.setDate(2, java.sql.Date.valueOf(date));
+
+			pstmt.executeUpdate();
+			logger.debug("Succesfully deleted time: " + id + " - " + date);
+		} catch (SQLException e) {
+			logger.error("COULD NOT DELETE TIME FROM DATABASE!", e);
 		} finally {
 			Encryption.encrypt(enc_key, database_file, encrypted_file);
 		}

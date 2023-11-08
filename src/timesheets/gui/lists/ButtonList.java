@@ -70,4 +70,5 @@ public class ButtonList {
 	public static JButton revertBackupButton = new RevertBackupButton();
 
 	public static JButton saveSettingsButton = new SaveSettingsButton();
+	public static JButton tipCalculationButton = new TipCalculationButton();
 }

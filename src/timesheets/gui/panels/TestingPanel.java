@@ -3,6 +3,7 @@ package timesheets.gui.panels;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
+import timesheets.gui.lists.ButtonList;
 import timesheets.gui.lists.DimensionList;
 import timesheets.logging.Logger;
 
@@ -20,11 +21,11 @@ public class TestingPanel extends JPanel {
 
 		// @formatter:off
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-				
+				.addComponent(ButtonList.tipCalculationButton)
 				);
 
 		layout.setVerticalGroup(layout.createSequentialGroup()
-					
+				.addComponent(ButtonList.tipCalculationButton)
 				);
 		// @formatter:on
 		setLayout(layout);
