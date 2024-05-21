@@ -59,20 +59,6 @@ application {
     mainClass = "nl.triantis.timesheets.Main"
 }
 
-// tasks.withType<Jar> {
-//     manifest {
-//         attributes["Main-Class"] = "nl.triantis.timesheets.Main"
-//     }
-// }
-
-// shadowJar {
-//     archiveBaseName.set("timesheets_shadow")
-//
-//     manifest {
-//         attributes["Main-Class"] = "nl.triantis.timesheets.Main"
-//     }
-// }
-
 tasks {
     named<ShadowJar>("shadowJar") {
         archiveBaseName.set("timesheets-shadow")
@@ -97,4 +83,3 @@ tasks {
         dependsOn(shadowJar)
     }
 }
-
