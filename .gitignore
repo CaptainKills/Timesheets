@@ -29,3 +29,9 @@ launch4j/
 
 # GitHub config files
 .gitattributes
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
