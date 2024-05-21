@@ -5,10 +5,12 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.7/userguide/building_java_projects.html in the Gradle documentation.
  * This project uses @Incubating APIs which are subject to change.
  */
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -57,8 +59,42 @@ application {
     mainClass = "nl.triantis.timesheets.Main"
 }
 
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "nl.triantis.timesheets.Main"
+// tasks.withType<Jar> {
+//     manifest {
+//         attributes["Main-Class"] = "nl.triantis.timesheets.Main"
+//     }
+// }
+
+// shadowJar {
+//     archiveBaseName.set("timesheets_shadow")
+//
+//     manifest {
+//         attributes["Main-Class"] = "nl.triantis.timesheets.Main"
+//     }
+// }
+
+tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveBaseName.set("timesheets-shadow")
+        archiveClassifier.set("")
+        archiveVersion.set("")
+
+        mergeServiceFiles()
+
+        manifest {
+            attributes["Main-Class"] = "nl.triantis.timesheets.Main"
+        }
+
+        dependencies {
+            include(dependency("org.json:"))
+            include(dependency("org.xerial:"))
+        }
     }
 }
+
+tasks {
+    build {
+        dependsOn(shadowJar)
+    }
+}
+
