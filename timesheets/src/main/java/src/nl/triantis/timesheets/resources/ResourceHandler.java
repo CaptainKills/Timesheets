@@ -36,12 +36,12 @@ public class ResourceHandler {
 	public static final Path log_directory_path = Paths.get(log_directory).toAbsolutePath();
 	public static final Path report_directory_path = Paths.get(report_directory).toAbsolutePath();
 	
-	private static final String lang_path = "nl/triantis/timesheets/resources/lang/";
+	private static final String lang_path = "lang/";
 	public static final InputStream lang_base = loader.getResourceAsStream(lang_path + "base.txt");
 	public static final InputStream lang_en = loader.getResourceAsStream(lang_path + "en.txt");
 	public static final InputStream lang_nl = loader.getResourceAsStream(lang_path + "nl.txt");
 
-	private static final String images_path = "nl/triantis/timesheets/resources/images/";
+	private static final String images_path = "images/";
 	private static final ImageIcon img16 = new ImageIcon(loader.getResource(images_path + "atom16.png"));
 	private static final ImageIcon img32 = new ImageIcon(loader.getResource(images_path + "atom32.png"));
 	private static final ImageIcon img128 = new ImageIcon(loader.getResource(images_path + "atom128.png"));

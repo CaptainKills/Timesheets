@@ -28,6 +28,10 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.0.0")
     implementation("org.apache.poi:poi-ooxml-lite:5.0.0")
     implementation("org.apache.xmlbeans:xmlbeans:4.0.0")
+
+    // Collections
+    implementation("org.apache.commons:commons-compress:1.20")
+    implementation("org.apache.commons:commons-collections4:4.4")
 }
 
 testing {
@@ -38,6 +42,7 @@ testing {
             useJUnitJupiter("5.10.1")
         }
     }
+}
 
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -50,4 +55,10 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "nl.triantis.timesheets.Main"
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "nl.triantis.timesheets.Main"
+    }
 }
