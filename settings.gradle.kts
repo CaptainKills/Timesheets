@@ -12,4 +12,4 @@ plugins {
 }
 
 rootProject.name = "timesheets"
-include("timesheets")
+include("application")
