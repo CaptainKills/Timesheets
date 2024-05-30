@@ -20,7 +20,8 @@ public class Employee {
 	private LocalTime BreakStarted = null;
 	private LocalTime BreakEnded = null;
 
-	public Employee(int id, String firstName, String lastName, int age, double salary, boolean admin, TreeMap<LocalDate, LocalTime[]> timeMap) {
+	public Employee(int id, String firstName, String lastName, int age, double salary, boolean admin,
+			TreeMap<LocalDate, LocalTime[]> timeMap) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -46,7 +47,7 @@ public class Employee {
 	public void setID(int id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return this.firstName + " " + this.lastName;
 	}
@@ -58,11 +59,11 @@ public class Employee {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return this.lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}

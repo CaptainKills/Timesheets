@@ -16,39 +16,39 @@ import nl.triantis.timesheets.update.Update;
 public class Main {
 	private static final Logger logger = new Logger(Main.class);
 	private static Database database = new Database();
-	
+
 	private static SelectedRunnable runnable = SelectedRunnable.TIMESHEETS;
 
 	public static void main(String[] args) {
 		Thread.setDefaultUncaughtExceptionHandler(new CrashExceptionHandler());
-		
+
 		setupCommandLineParameters(args);
 		ResourceHandler.generateFileStructure();
-		
+
 		LogManager.openLog();
 		Settings.load();
 		logger.info("Initialising Program.");
-		
+
 		LanguageManager.initialise();
-		
+
 		LogManager.archiveLogs();
 		LogManager.cleanDirectory();
-		
+
 		database.cleanDirectory();
 		database.setup();
 		database.load();
 
 		logger.info("Opening Runnable: " + runnable);
-		switch(runnable) {
-		case TIMESHEETS:
-			SwingUtilities.invokeLater(new Timesheets());
-			break;
-		case EDITOR:
-			new Thread(new Editor()).start();
-			break;
-		default:
-			SwingUtilities.invokeLater(new Timesheets());
-			break;	
+		switch (runnable) {
+			case TIMESHEETS:
+				SwingUtilities.invokeLater(new Timesheets());
+				break;
+			case EDITOR:
+				new Thread(new Editor()).start();
+				break;
+			default:
+				SwingUtilities.invokeLater(new Timesheets());
+				break;
 		}
 
 		new Thread(new Runnable() {
@@ -74,7 +74,7 @@ public class Main {
 				System.exit(0);
 			} else if (arg.equals("-debug") || arg.equals("-d")) {
 				LogManager.setDebugMode(true);
-			} else if(arg.equals("-edit") || arg.equals("-e")){ 
+			} else if (arg.equals("-edit") || arg.equals("-e")) {
 				runnable = SelectedRunnable.EDITOR;
 			} else {
 				System.out.println("Unknown Argument: " + arg + ".");
