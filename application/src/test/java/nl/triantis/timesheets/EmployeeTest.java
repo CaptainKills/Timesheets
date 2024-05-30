@@ -1,18 +1,16 @@
 package nl.triantis.timesheets;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import nl.triantis.timesheets.Employee;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Map;
 import java.util.TreeMap;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
-	
+
 	private Employee employee;
 
 	@BeforeEach
@@ -38,9 +36,9 @@ class EmployeeTest {
 
 	@Test
 	void testWorkedTime() {
-		this.employee.setTimeStarted(LocalTime.of(8,0));
-		this.employee.setTimeEnded(LocalTime.of(18,0));
-		this.employee.setTimePaused(LocalTime.of(0,30));
+		this.employee.setTimeStarted(LocalTime.of(8, 0));
+		this.employee.setTimeEnded(LocalTime.of(18, 0));
+		this.employee.setTimePaused(LocalTime.of(0, 30));
 
 		assertTrue(this.employee.getTimeStarted() != null, () -> "Employee: Time Started equal to null");
 		assertTrue(this.employee.getTimeEnded() != null, () -> "Employee: Time Ended equal to null");
@@ -53,4 +51,3 @@ class EmployeeTest {
 		assertTrue(this.employee.getTimePaused() == null, () -> "Employee: Time Paused not equal to null");
 	}
 }
-
