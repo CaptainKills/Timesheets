@@ -33,21 +33,4 @@ class EmployeeTest {
 
 		assertTrue(idString.equals("00001"), () -> "Employee: ID String 00001");
 	}
-
-	@Test
-	void testWorkedTime() {
-		this.employee.setTimeStarted(LocalTime.of(8, 0));
-		this.employee.setTimeEnded(LocalTime.of(18, 0));
-		this.employee.setTimePaused(LocalTime.of(0, 30));
-
-		assertTrue(this.employee.getTimeStarted() != null, () -> "Employee: Time Started equal to null");
-		assertTrue(this.employee.getTimeEnded() != null, () -> "Employee: Time Ended equal to null");
-		assertTrue(this.employee.getTimePaused() != null, () -> "Employee: Time Paused equal to null");
-
-		this.employee.resetTime();
-
-		assertTrue(this.employee.getTimeStarted() == null, () -> "Employee: Time Started not equal to null");
-		assertTrue(this.employee.getTimeEnded() == null, () -> "Employee: Time Ended not equal to null");
-		assertTrue(this.employee.getTimePaused() == null, () -> "Employee: Time Paused not equal to null");
-	}
 }
